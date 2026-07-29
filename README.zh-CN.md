@@ -6,17 +6,19 @@
 
 [English](README.md) · [案例](examples/) · [Skill](skills/shotflow/) · [Schema](schemas/) · [Pro 边界](PRO.md)
 
+![《天幕修补师》已接受的 Clip 01，由小云雀 / Seedance 2.0 生成](examples/sky-mender/evidence/clip-01-preview.gif)
+
 ## 当前证据状态
 
-ShotFlow v0.1 Core 已实现并可测试。三组首发案例已经预注册，但真实 Seedance A/B 视频**尚未生成**；证据门通过前，不宣称 ShotFlow 已提升连续性。
+ShotFlow v0.1 Core 已实现并可测试。三组真实 Seedance Clip 01 已经生成、接受、观察并记录哈希，也已从真实终点编译出 Clip 02 合同。受控 Clip 02 A/B **尚未生成**，因此目前仍不宣称 ShotFlow 已提升连续性。
 
 | 案例 | 作用 | 当前状态 |
 | --- | --- | --- |
-| 天幕修补师 | 旗舰视觉奇观 | Prompt 已冻结，等待批准生成 |
-| 暴风甲板 | 现实动作 | Prompt 已冻结，等待批准生成 |
-| 黑曜之息 | 虚构产品广告 | Prompt 已冻结，等待批准生成 |
+| 天幕修补师 | 旗舰视觉奇观 | Clip 01 已接受；真实终点的裂隙侧与缆绳方向偏离计划 |
+| 暴风甲板 | 现实动作 | Clip 01 已接受；真实终点已在栏杆旁接近停止 |
+| 黑曜之息 | 虚构产品广告 | Clip 01 已接受；瓶盖、切面、液滴与悬浮状态偏离计划 |
 
-模型参数、18 次上限与积分确认边界见[生成审批清单](examples/GENERATION_APPROVAL.md)。
+三条原始视频均为 1920×1080、24fps、5.125 秒，并保留平台容器级 `AIGC Label=1`；公开衍生预览额外增加可见披露。Clip 02 两组精确 Prompt 与下一次积分边界见 [Gate 2 审批清单](examples/GATE_2_APPROVAL.md)。
 
 ## 它解决什么
 

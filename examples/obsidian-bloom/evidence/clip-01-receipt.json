@@ -1,0 +1,38 @@
+{
+  "evidence_version": "1.0",
+  "case_id": "obsidian-bloom",
+  "variant": "clip-01",
+  "status": "accepted",
+  "recorded_at": "2026-07-29T15:17:43+00:00",
+  "provider": "Xiaoyunque",
+  "model": "seedance2.0_vision",
+  "parameters": {
+    "ratio": "16:9",
+    "resolution": "1080p",
+    "duration_seconds_requested": 5,
+    "duration_seconds_observed": 5.125,
+    "frame_rate": 24,
+    "width": 1920,
+    "height": 1080
+  },
+  "original_video": {
+    "sha256": "af845de5b3eff841f1b142b6ae03bf66e0585d073129da7856f6ebfb9180d827",
+    "bytes": 8110759,
+    "release_asset": "pending"
+  },
+  "public_preview": {
+    "path": "clip-01-preview.gif",
+    "sha256": "0e7e660ee5d52c495dcff1d065698fe5dd1fd29db00221fd0127ce67bb00d3c3",
+    "bytes": 1046128
+  },
+  "public_final_frame": {
+    "path": "clip-01-final-frame.jpg",
+    "sha256": "c75cd54375c614c89f7f573e83f19cd01697689c87856ac62af0895be3851a0a",
+    "bytes": 47854
+  },
+  "aigc_disclosure": {
+    "original_container_label_present": true,
+    "public_derivatives_have_visible_label": true,
+    "provider_identifiers_anonymized": true
+  }
+}

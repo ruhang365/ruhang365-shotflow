@@ -1,0 +1,71 @@
+{
+  "contract_version": "1.0",
+  "project_schema_version": "1.0",
+  "source_shot_id": "clip-01",
+  "next_shot_id": "clip-02",
+  "continuity_safe": true,
+  "authoritative_source": "observed",
+  "source_artifacts": {
+    "video_sha256": "09564c755fc4b845f501e5bcf68e4192b65bc00e8a2be395159a05c831c99243",
+    "final_frame_sha256": "f05efcff94c047cdf46f681daf8996896e257ea3e9a6e54f1d36944b81bba1cd"
+  },
+  "beat": "The worker regains tower contact and seals the fissure before dawn appears.",
+  "observed_state": {
+    "identity": "One adult sky-repair worker remains visible as a dark segmented climbing silhouette with a long red cape; facial detail is indistinct at this distance.",
+    "wardrobe_props": "The red cape remains attached and trails away from the torso. An amber repair light remains visible in the hand nearest the tower. A thin safety cable exits the lower torso and continues out of frame; no equipment damage is clearly visible.",
+    "space_direction": "At the accepted endpoint the worker is fully screen-right of the bright vertical fissure and tower, not left of it. The tower occupies the left half of frame, open storm sky occupies the right, and the camera stays on the same exterior side.",
+    "motion": "The worker ends suspended almost horizontally away from the tower with residual screen-right motion blur. The cable is taut toward the lower frame rather than the planned lower-left anchor, the cape trails screen-right, and physical contact with the tower has not resumed.",
+    "light_material": "Soft cold-gray storm light exposes the steel tower and clouds. The vertical fissure and handheld amber light add warm edge illumination to the worker; the steel remains dull and weathered rather than glossy.",
+    "story_beat": "The fissure has opened and the worker has swung completely off the tower while remaining tethered. Recovery, renewed tower contact, and the repair itself remain unresolved."
+  },
+  "continuity_locks": [
+    {
+      "category": "identity",
+      "value": "One adult sky-repair worker remains visible as a dark segmented climbing silhouette with a long red cape; facial detail is indistinct at this distance.",
+      "source": "observed",
+      "required": true
+    },
+    {
+      "category": "wardrobe_props",
+      "value": "The red cape remains attached and trails away from the torso. An amber repair light remains visible in the hand nearest the tower. A thin safety cable exits the lower torso and continues out of frame; no equipment damage is clearly visible.",
+      "source": "observed",
+      "required": true
+    },
+    {
+      "category": "space_direction",
+      "value": "At the accepted endpoint the worker is fully screen-right of the bright vertical fissure and tower, not left of it. The tower occupies the left half of frame, open storm sky occupies the right, and the camera stays on the same exterior side.",
+      "source": "observed",
+      "required": true
+    },
+    {
+      "category": "motion",
+      "value": "The worker ends suspended almost horizontally away from the tower with residual screen-right motion blur. The cable is taut toward the lower frame rather than the planned lower-left anchor, the cape trails screen-right, and physical contact with the tower has not resumed.",
+      "source": "observed",
+      "required": true
+    },
+    {
+      "category": "light_material",
+      "value": "Soft cold-gray storm light exposes the steel tower and clouds. The vertical fissure and handheld amber light add warm edge illumination to the worker; the steel remains dull and weathered rather than glossy.",
+      "source": "observed",
+      "required": true
+    },
+    {
+      "category": "story_beat",
+      "value": "The fissure has opened and the worker has swung completely off the tower while remaining tethered. Recovery, renewed tower contact, and the repair itself remain unresolved.",
+      "source": "observed",
+      "required": true
+    }
+  ],
+  "grammar": {
+    "narrative_moment": "Continue from the real caught swing and complete the repair only after the worker regains physical contact.",
+    "camera_movement": "Track beside the real endpoint at matched speed; preserve the accepted camera side and avoid an axis-crossing orbit.",
+    "light_color": "Retain the accepted storm source direction and material exposure; let the repaired seam motivate any warmer change.",
+    "space_composition": "Preserve the worker-fissure-tower relationship and accepted screen direction; reveal dawn only behind the repaired seam.",
+    "material_physics": "Continue actual cable tension, cape drag, body inertia, wetness, and tool contact before allowing recovery."
+  },
+  "compiled_prompt": {
+    "text": "NEXT SHOT CONTRACT\n\nStory beat: The worker regains tower contact and seals the fissure before dawn appears.\n\nObserved continuity facts — preserve exactly:\n- identity: One adult sky-repair worker remains visible as a dark segmented climbing silhouette with a long red cape; facial detail is indistinct at this distance.\n- wardrobe_props: The red cape remains attached and trails away from the torso. An amber repair light remains visible in the hand nearest the tower. A thin safety cable exits the lower torso and continues out of frame; no equipment damage is clearly visible.\n- space_direction: At the accepted endpoint the worker is fully screen-right of the bright vertical fissure and tower, not left of it. The tower occupies the left half of frame, open storm sky occupies the right, and the camera stays on the same exterior side.\n- motion: The worker ends suspended almost horizontally away from the tower with residual screen-right motion blur. The cable is taut toward the lower frame rather than the planned lower-left anchor, the cape trails screen-right, and physical contact with the tower has not resumed.\n- light_material: Soft cold-gray storm light exposes the steel tower and clouds. The vertical fissure and handheld amber light add warm edge illumination to the worker; the steel remains dull and weathered rather than glossy.\n- story_beat: The fissure has opened and the worker has swung completely off the tower while remaining tethered. Recovery, renewed tower contact, and the repair itself remain unresolved.\n\nCinematic grammar:\n- narrative_moment: Continue from the real caught swing and complete the repair only after the worker regains physical contact.\n- camera_movement: Track beside the real endpoint at matched speed; preserve the accepted camera side and avoid an axis-crossing orbit.\n- light_color: Retain the accepted storm source direction and material exposure; let the repaired seam motivate any warmer change.\n- space_composition: Preserve the worker-fissure-tower relationship and accepted screen direction; reveal dawn only behind the repaired seam.\n- material_physics: Continue actual cable tension, cape drag, body inertia, wetness, and tool contact before allowing recovery.\n\nExecution rule: continue the accepted action from its real endpoint. Do not reset pose, prop ownership, screen direction, lighting source, material state, or spatial geography.\n",
+    "sha256": "54fc2cbe07400c7a2808cce26294b3cc9f60f74fc65c40cb84008758e7946ed6",
+    "frozen": true
+  }
+}

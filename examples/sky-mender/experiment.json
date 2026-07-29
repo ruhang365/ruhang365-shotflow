@@ -1,7 +1,7 @@
 {
   "experiment_version": "1.0",
   "case_id": "sky-mender",
-  "status": "awaiting_generation_approval",
+  "status": "clip_01_accepted_gate_2_pending",
   "provider": {
     "adapter": "seedance-2.0",
     "model": "seedance2.0_vision",
@@ -24,9 +24,9 @@
       "frozen": true
     },
     "clip_02_shotflow": {
-      "path": null,
-      "sha256": null,
-      "frozen": false,
+      "path": "prompts/clip-02-shotflow.txt",
+      "sha256": "54fc2cbe07400c7a2808cce26294b3cc9f60f74fc65c40cb84008758e7946ed6",
+      "frozen": true,
       "requires_accepted_clip_01": true
     }
   },
@@ -35,5 +35,9 @@
     "sha256": "a1ccb98576cb14203878f3447870a92913488075be1e66ee0406c04b20d7b329"
   },
   "reference_policy": "Use the same accepted Clip 01 video and final frame for baseline and ShotFlow Clip 02.",
+  "accepted_reference_hashes": {
+    "video_sha256": "09564c755fc4b845f501e5bcf68e4192b65bc00e8a2be395159a05c831c99243",
+    "final_frame_sha256": "f05efcff94c047cdf46f681daf8996896e257ea3e9a6e54f1d36944b81bba1cd"
+  },
   "ai_generated_disclosure_required": true
 }

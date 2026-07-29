@@ -1,7 +1,7 @@
 {
   "experiment_version": "1.0",
   "case_id": "obsidian-bloom",
-  "status": "awaiting_generation_approval",
+  "status": "clip_01_accepted_gate_2_pending",
   "provider": {
     "adapter": "seedance-2.0",
     "model": "seedance2.0_vision",
@@ -24,9 +24,9 @@
       "frozen": true
     },
     "clip_02_shotflow": {
-      "path": null,
-      "sha256": null,
-      "frozen": false,
+      "path": "prompts/clip-02-shotflow.txt",
+      "sha256": "29bffd3051599bd69185f06120d3d73e1d8e8b0241937774b47778618f13cf68",
+      "frozen": true,
       "requires_accepted_clip_01": true
     }
   },
@@ -35,5 +35,9 @@
     "sha256": "634428be6b5288ff57afa8bfbf55a35a45e2ee3656a3ecca993ace5e84954668"
   },
   "reference_policy": "Use the same accepted Clip 01 video and final frame for baseline and ShotFlow Clip 02.",
+  "accepted_reference_hashes": {
+    "video_sha256": "af845de5b3eff841f1b142b6ae03bf66e0585d073129da7856f6ebfb9180d827",
+    "final_frame_sha256": "56d6455da0310b8acce2364af99229825307b70bae8f677306496c1fa08e8a0e"
+  },
   "ai_generated_disclosure_required": true
 }

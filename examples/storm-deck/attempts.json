@@ -1,5 +1,44 @@
 {
   "ledger_version": "1.0",
   "case_id": "storm-deck",
-  "attempts": []
+  "attempts": [
+    {
+      "attempt_id": "storm-deck-001",
+      "variant": "clip-01",
+      "status": "accepted",
+      "recorded_at": "2026-07-29T15:17:43+00:00",
+      "provider": {
+        "adapter": "seedance-2.0",
+        "model": "seedance2.0_vision",
+        "verified": true,
+        "parameters": {
+          "ratio": "16:9",
+          "resolution": "1080p",
+          "duration_seconds": 5
+        }
+      },
+      "prompt": {
+        "path": "prompts/clip-01.txt",
+        "sha256": "92ac27fddc08b7393887506dc08074015124334aff80d76dd31d7447950915d1",
+        "bytes": 1183
+      },
+      "references": {
+        "source_video": null,
+        "source_final_frame": null
+      },
+      "output": {
+        "video": {
+          "path": "artifacts/v03c76g10004d9l1gqq7dld7d93q9670.mp4",
+          "sha256": "d7e36d9b270a3f9280dca19d50afe856177c3426e1a12a0b3511dbc811a2a198",
+          "bytes": 8098739
+        },
+        "final_frame": {
+          "path": "artifacts/clip-01-final-frame.png",
+          "sha256": "5b32eb1a7519d543be037cf86c8e2079803d8f9a7be99174184c691c4faec5f6",
+          "bytes": 1389542
+        }
+      },
+      "reason": ""
+    }
+  ]
 }

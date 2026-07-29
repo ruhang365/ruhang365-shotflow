@@ -1,7 +1,7 @@
 {
   "experiment_version": "1.0",
   "case_id": "storm-deck",
-  "status": "awaiting_generation_approval",
+  "status": "clip_01_accepted_gate_2_pending",
   "provider": {
     "adapter": "seedance-2.0",
     "model": "seedance2.0_vision",
@@ -24,9 +24,9 @@
       "frozen": true
     },
     "clip_02_shotflow": {
-      "path": null,
-      "sha256": null,
-      "frozen": false,
+      "path": "prompts/clip-02-shotflow.txt",
+      "sha256": "5b42cebe1d64a19c6970f45f916e009c8fe873cf190082a0e532bbeea0f27fc7",
+      "frozen": true,
       "requires_accepted_clip_01": true
     }
   },
@@ -35,5 +35,9 @@
     "sha256": "e1570ee7246b469e7b0f41dabe36efa532d23369e563ec92494c276c1fbe8b1a"
   },
   "reference_policy": "Use the same accepted Clip 01 video and final frame for baseline and ShotFlow Clip 02.",
+  "accepted_reference_hashes": {
+    "video_sha256": "d7e36d9b270a3f9280dca19d50afe856177c3426e1a12a0b3511dbc811a2a198",
+    "final_frame_sha256": "5b32eb1a7519d543be037cf86c8e2079803d8f9a7be99174184c691c4faec5f6"
+  },
   "ai_generated_disclosure_required": true
 }

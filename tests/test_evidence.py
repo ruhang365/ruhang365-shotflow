@@ -16,8 +16,17 @@ class EvidenceTests(unittest.TestCase):
     def create_case(self, temporary: str) -> Path:
         source = ROOT / "examples" / "storm-deck"
         target = Path(temporary) / "storm-deck"
-        shutil.copytree(source, target, ignore=shutil.ignore_patterns("artifacts"))
+        shutil.copytree(
+            source,
+            target,
+            ignore=shutil.ignore_patterns("artifacts", ".shotflow-private"),
+        )
         (target / "artifacts").mkdir()
+        (target / "attempts.json").write_text(
+            '{\n  "ledger_version": "1.0",\n'
+            '  "case_id": "storm-deck",\n  "attempts": []\n}\n',
+            encoding="utf-8",
+        )
         return target
 
     def test_attempt_lifecycle_preserves_prompt(self) -> None:

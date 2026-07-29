@@ -32,17 +32,41 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
     project = load_json(root / "shotflow.project.json")
     clip1 = root / "prompts" / "clip-01.txt"
     baseline = root / "prompts" / "clip-02-baseline-frozen.txt"
+    shotflow = root / "prompts" / "clip-02-shotflow.txt"
     grammar = root / "plan" / "clip-02-grammar.json"
-    recorded = project["shots"][0]["prompt"]["sha256"]
+    source_shot = project["shots"][0]
+    recorded = source_shot["prompt"]["sha256"]
     actual = sha256(clip1)
     if recorded != actual:
         raise ValueError(
             f"{case_id}: project Clip 01 prompt hash does not match prompt file"
         )
+    observed = source_shot.get("observed")
+    if observed and not shotflow.exists():
+        raise ValueError(f"{case_id}: accepted Clip 01 is missing its ShotFlow prompt")
+    shotflow_prompt = (
+        {
+            "path": "prompts/clip-02-shotflow.txt",
+            "sha256": sha256(shotflow),
+            "frozen": True,
+            "requires_accepted_clip_01": True,
+        }
+        if observed
+        else {
+            "path": None,
+            "sha256": None,
+            "frozen": False,
+            "requires_accepted_clip_01": True,
+        }
+    )
     return {
         "experiment_version": "1.0",
         "case_id": case_id,
-        "status": "awaiting_generation_approval",
+        "status": (
+            "clip_01_accepted_gate_2_pending"
+            if observed
+            else "awaiting_generation_approval"
+        ),
         "provider": project["provider"],
         "prompts": {
             "clip_01": {
@@ -55,12 +79,7 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
                 "sha256": sha256(baseline),
                 "frozen": True,
             },
-            "clip_02_shotflow": {
-                "path": None,
-                "sha256": None,
-                "frozen": False,
-                "requires_accepted_clip_01": True,
-            },
+            "clip_02_shotflow": shotflow_prompt,
         },
         "next_shot_grammar": {
             "path": "plan/clip-02-grammar.json",
@@ -69,6 +88,14 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
         "reference_policy": (
             "Use the same accepted Clip 01 video and final frame for baseline "
             "and ShotFlow Clip 02."
+        ),
+        "accepted_reference_hashes": (
+            {
+                "video_sha256": source_shot["artifacts"]["video"]["sha256"],
+                "final_frame_sha256": source_shot["artifacts"]["final_frame"]["sha256"],
+            }
+            if observed
+            else None
         ),
         "ai_generated_disclosure_required": True,
     }

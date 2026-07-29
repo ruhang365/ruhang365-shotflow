@@ -1,6 +1,6 @@
 # Generation approval gate
 
-Status: **PROMPTS PREPARED — NO VIDEO JOB SUBMITTED**
+Status: **GATE 1 COMPLETE — THREE CLIP 01 OUTPUTS ACCEPTED**
 
 ## Fixed settings
 
@@ -31,6 +31,8 @@ Only a failed or continuity-breaking result may use a retry. Every attempt remai
 
 Review the three `clip-01.txt` prompts and the three frozen `clip-02-baseline-frozen.txt` prompts. Approval authorizes only the initial Clip 01 submissions, one per case.
 
+Completed on 2026-07-29 with one accepted submission per case. No generation retry was used. One rate-limited submission request was retried after the provider's required one-minute interval; it did not create a run and is not counted as a generation attempt.
+
 ### Gate 2 — Clip 02 variants
 
 After each accepted Clip 01:
@@ -42,6 +44,8 @@ After each accepted Clip 01:
 5. present the baseline and compiled ShotFlow Clip 02 prompts side-by-side.
 
 Approval then authorizes the baseline and ShotFlow Clip 02 submissions for that case, with identical Clip 01 references and provider settings.
+
+Current state: awaiting explicit approval of the six initial Clip 02 submissions in [GATE_2_APPROVAL.md](GATE_2_APPROVAL.md).
 
 ## Public disclosure
 

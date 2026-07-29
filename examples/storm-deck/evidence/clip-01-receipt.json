@@ -1,0 +1,38 @@
+{
+  "evidence_version": "1.0",
+  "case_id": "storm-deck",
+  "variant": "clip-01",
+  "status": "accepted",
+  "recorded_at": "2026-07-29T15:17:43+00:00",
+  "provider": "Xiaoyunque",
+  "model": "seedance2.0_vision",
+  "parameters": {
+    "ratio": "16:9",
+    "resolution": "1080p",
+    "duration_seconds_requested": 5,
+    "duration_seconds_observed": 5.125,
+    "frame_rate": 24,
+    "width": 1920,
+    "height": 1080
+  },
+  "original_video": {
+    "sha256": "d7e36d9b270a3f9280dca19d50afe856177c3426e1a12a0b3511dbc811a2a198",
+    "bytes": 8098739,
+    "release_asset": "pending"
+  },
+  "public_preview": {
+    "path": "clip-01-preview.gif",
+    "sha256": "e9d8e554d99381ddbab94b5bc1e7263357d393d1bd5f19ae43dcb1e760668e5a",
+    "bytes": 1197717
+  },
+  "public_final_frame": {
+    "path": "clip-01-final-frame.jpg",
+    "sha256": "64b528b7626c26b88ad7c217a370b71b21b0738604ee66fde084dfa810262c27",
+    "bytes": 93395
+  },
+  "aigc_disclosure": {
+    "original_container_label_present": true,
+    "public_derivatives_have_visible_label": true,
+    "provider_identifiers_anonymized": true
+  }
+}

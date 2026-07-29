@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import subprocess
@@ -101,6 +102,56 @@ def check_skill(failures: list[str]) -> None:
         failures.append("SKILL.md still contains TODO")
 
 
+def check_evidence_receipts(paths: list[Path], failures: list[str]) -> None:
+    for receipt_path in paths:
+        if receipt_path.name != "clip-01-receipt.json":
+            continue
+        try:
+            receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            continue
+        disclosure = receipt.get("aigc_disclosure", {})
+        if disclosure.get("original_container_label_present") is not True:
+            failures.append(
+                f"missing original AIGC label proof: {receipt_path.relative_to(ROOT)}"
+            )
+        if disclosure.get("public_derivatives_have_visible_label") is not True:
+            failures.append(
+                f"missing visible preview disclosure: {receipt_path.relative_to(ROOT)}"
+            )
+        evidence_root = receipt_path.parent.resolve()
+        for field in ("public_preview", "public_final_frame"):
+            artifact = receipt.get(field, {})
+            relative = artifact.get("path")
+            if not isinstance(relative, str):
+                failures.append(
+                    f"missing {field} path: {receipt_path.relative_to(ROOT)}"
+                )
+                continue
+            candidate = (evidence_root / relative).resolve()
+            try:
+                candidate.relative_to(evidence_root)
+            except ValueError:
+                failures.append(
+                    f"unsafe {field} path: {receipt_path.relative_to(ROOT)}"
+                )
+                continue
+            if not candidate.is_file():
+                failures.append(
+                    f"missing {field} file: {candidate.relative_to(ROOT)}"
+                )
+                continue
+            actual_hash = hashlib.sha256(candidate.read_bytes()).hexdigest()
+            if actual_hash != artifact.get("sha256"):
+                failures.append(
+                    f"{field} hash mismatch: {candidate.relative_to(ROOT)}"
+                )
+            if candidate.stat().st_size != artifact.get("bytes"):
+                failures.append(
+                    f"{field} size mismatch: {candidate.relative_to(ROOT)}"
+                )
+
+
 def main() -> int:
     paths = files()
     failures: list[str] = []
@@ -108,6 +159,7 @@ def main() -> int:
     check_size_and_media(paths, failures)
     check_secrets(paths, failures)
     check_skill(failures)
+    check_evidence_receipts(paths, failures)
     required = (
         "LICENSE",
         "README.md",

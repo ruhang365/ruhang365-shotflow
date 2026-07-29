@@ -5,7 +5,7 @@
     "title": "Storm Deck / 暴风甲板",
     "created_at": "2026-07-29T14:39:35+00:00"
   },
-  "updated_at": "2026-07-29T14:52:09+00:00",
+  "updated_at": "2026-07-29T15:17:43+00:00",
   "provider": {
     "adapter": "seedance-2.0",
     "model": "seedance2.0_vision",
@@ -29,7 +29,7 @@
     {
       "id": "clip-01",
       "beat": "The rescuer catches the case strap before the slide stops.",
-      "status": "planned",
+      "status": "observed",
       "planned": {
         "identity": "One rescue worker in a matte yellow storm suit and plain white helmet.",
         "wardrobe_props": "Red rigid emergency case with two silver latches; black strap caught by the worker's left hand; black safety line at the waist.",
@@ -47,14 +47,117 @@
       },
       "continuity_locks": [],
       "reference_shot_id": null,
-      "artifacts": {},
+      "artifacts": {
+        "video": {
+          "kind": "video",
+          "path": "artifacts/v03c76g10004d9l1gqq7dld7d93q9670.mp4",
+          "sha256": "d7e36d9b270a3f9280dca19d50afe856177c3426e1a12a0b3511dbc811a2a198",
+          "bytes": 8098739
+        },
+        "final_frame": {
+          "kind": "final_frame",
+          "path": "artifacts/clip-01-final-frame.png",
+          "sha256": "5b32eb1a7519d543be037cf86c8e2079803d8f9a7be99174184c691c4faec5f6",
+          "bytes": 1389542
+        }
+      },
       "prompt": {
         "text": "At night on the rain-lashed deck of a fictional container ship, a single rescue worker wears a matte yellow storm suit with black reinforced knees, a plain white helmet, and a black safety line clipped to the waist. A rigid red emergency case with two silver latches breaks loose on the wet deck and slides screen-right toward a low railing. In one continuous five-second shot, hold a low medium-wide witness position beside a fixed row of blue cargo containers as the ship rolls. The worker lunges after the case, drops onto the right knee, and reaches with the left hand. End before the rescue resolves: the left fingertips have just caught the case's black strap, both worker and case are still sliding screen-right, and the safety line is taut toward an upper-left deck anchor. Cold blue work lights remain fixed overhead; one distant lightning flash briefly exposes rain and steel without changing the source geography. Preserve the container row, railing, screen direction, case shape, latch count, suit colors, and causal weight. Water sheets downhill with the ship's roll; no cuts, no impossible crane move, no explosion, no injury detail, no text, no real company markings.\n",
         "sha256": "92ac27fddc08b7393887506dc08074015124334aff80d76dd31d7447950915d1",
         "frozen": true
       },
-      "observed": null,
+      "observed": {
+        "patch_version": "1.0",
+        "project_schema_version": "1.0",
+        "shot_id": "clip-01",
+        "source": "human",
+        "media_sha256": "d7e36d9b270a3f9280dca19d50afe856177c3426e1a12a0b3511dbc811a2a198",
+        "observed_at": "2026-07-29T15:17:43+00:00",
+        "confidence": 1.0,
+        "evidence": [],
+        "state": {
+          "identity": "One rescue worker remains visible in a saturated yellow storm suit with black reinforced knees and elbows, black boots, and a plain white helmet.",
+          "wardrobe_props": "The rigid red emergency case retains its rectangular shell and black top strap; one front silver latch is visible while the other side is occluded. The worker has hand contact on the strap or case top. A black waist safety line is taut toward an off-screen upper-left anchor.",
+          "space_direction": "The worker finishes center-right and the case finishes at the far screen-right railing. A fixed blue container wall spans the background, the low railing remains on the right, and the camera stays on the same deck side.",
+          "motion": "The worker ends low on one knee with an outstretched hand maintaining contact with the case. The safety line is fully taut toward upper-left. By the final frame the case is pressed near the railing and visible sliding has nearly stopped, rather than both bodies still moving quickly.",
+          "light_material": "Cold rectangular deck practicals remain overhead, with rain continuing across the frame and specular reflections on the wet steel deck, suit, helmet, and case. The final frame is not held in the earlier lightning-bright exposure.",
+          "story_beat": "The worker has reached the case and established contact before it leaves the deck. Whether the worker can secure and pull the case away from the railing remains unresolved."
+        }
+      },
       "evaluation": null
+    },
+    {
+      "id": "clip-02",
+      "beat": "The taut safety line arrests the worker, who pivots and secures the case away from the railing.",
+      "status": "compiled",
+      "planned": {
+        "identity": "One rescue worker remains visible in a saturated yellow storm suit with black reinforced knees and elbows, black boots, and a plain white helmet.",
+        "wardrobe_props": "The rigid red emergency case retains its rectangular shell and black top strap; one front silver latch is visible while the other side is occluded. The worker has hand contact on the strap or case top. A black waist safety line is taut toward an off-screen upper-left anchor.",
+        "space_direction": "The worker finishes center-right and the case finishes at the far screen-right railing. A fixed blue container wall spans the background, the low railing remains on the right, and the camera stays on the same deck side.",
+        "motion": "The worker ends low on one knee with an outstretched hand maintaining contact with the case. The safety line is fully taut toward upper-left. By the final frame the case is pressed near the railing and visible sliding has nearly stopped, rather than both bodies still moving quickly.",
+        "light_material": "Cold rectangular deck practicals remain overhead, with rain continuing across the frame and specular reflections on the wet steel deck, suit, helmet, and case. The final frame is not held in the earlier lightning-bright exposure.",
+        "story_beat": "The worker has reached the case and established contact before it leaves the deck. Whether the worker can secure and pull the case away from the railing remains unresolved."
+      },
+      "grammar": {
+        "narrative_moment": "Continue the unresolved slide and show the physical chain that stops the worker and then the case.",
+        "camera_movement": "Remain on the accepted camera side and preserve the container row and railing as geographic references.",
+        "light_color": "Keep accepted practical lights, lightning state, rain density, and wet exposure without decorative color shifts.",
+        "space_composition": "Preserve actual screen direction, case-worker separation, safety anchor, railing distance, and deck slope.",
+        "material_physics": "Continue real velocity, line tension, strap contact, water flow, friction, and case rotation before any recovery."
+      },
+      "continuity_locks": [
+        {
+          "category": "identity",
+          "value": "One rescue worker remains visible in a saturated yellow storm suit with black reinforced knees and elbows, black boots, and a plain white helmet.",
+          "source": "observed",
+          "required": true
+        },
+        {
+          "category": "wardrobe_props",
+          "value": "The rigid red emergency case retains its rectangular shell and black top strap; one front silver latch is visible while the other side is occluded. The worker has hand contact on the strap or case top. A black waist safety line is taut toward an off-screen upper-left anchor.",
+          "source": "observed",
+          "required": true
+        },
+        {
+          "category": "space_direction",
+          "value": "The worker finishes center-right and the case finishes at the far screen-right railing. A fixed blue container wall spans the background, the low railing remains on the right, and the camera stays on the same deck side.",
+          "source": "observed",
+          "required": true
+        },
+        {
+          "category": "motion",
+          "value": "The worker ends low on one knee with an outstretched hand maintaining contact with the case. The safety line is fully taut toward upper-left. By the final frame the case is pressed near the railing and visible sliding has nearly stopped, rather than both bodies still moving quickly.",
+          "source": "observed",
+          "required": true
+        },
+        {
+          "category": "light_material",
+          "value": "Cold rectangular deck practicals remain overhead, with rain continuing across the frame and specular reflections on the wet steel deck, suit, helmet, and case. The final frame is not held in the earlier lightning-bright exposure.",
+          "source": "observed",
+          "required": true
+        },
+        {
+          "category": "story_beat",
+          "value": "The worker has reached the case and established contact before it leaves the deck. Whether the worker can secure and pull the case away from the railing remains unresolved.",
+          "source": "observed",
+          "required": true
+        }
+      ],
+      "reference_shot_id": "clip-01",
+      "artifacts": {},
+      "prompt": {
+        "text": "NEXT SHOT CONTRACT\n\nStory beat: The taut safety line arrests the worker, who pivots and secures the case away from the railing.\n\nObserved continuity facts — preserve exactly:\n- identity: One rescue worker remains visible in a saturated yellow storm suit with black reinforced knees and elbows, black boots, and a plain white helmet.\n- wardrobe_props: The rigid red emergency case retains its rectangular shell and black top strap; one front silver latch is visible while the other side is occluded. The worker has hand contact on the strap or case top. A black waist safety line is taut toward an off-screen upper-left anchor.\n- space_direction: The worker finishes center-right and the case finishes at the far screen-right railing. A fixed blue container wall spans the background, the low railing remains on the right, and the camera stays on the same deck side.\n- motion: The worker ends low on one knee with an outstretched hand maintaining contact with the case. The safety line is fully taut toward upper-left. By the final frame the case is pressed near the railing and visible sliding has nearly stopped, rather than both bodies still moving quickly.\n- light_material: Cold rectangular deck practicals remain overhead, with rain continuing across the frame and specular reflections on the wet steel deck, suit, helmet, and case. The final frame is not held in the earlier lightning-bright exposure.\n- story_beat: The worker has reached the case and established contact before it leaves the deck. Whether the worker can secure and pull the case away from the railing remains unresolved.\n\nCinematic grammar:\n- narrative_moment: Continue the unresolved slide and show the physical chain that stops the worker and then the case.\n- camera_movement: Remain on the accepted camera side and preserve the container row and railing as geographic references.\n- light_color: Keep accepted practical lights, lightning state, rain density, and wet exposure without decorative color shifts.\n- space_composition: Preserve actual screen direction, case-worker separation, safety anchor, railing distance, and deck slope.\n- material_physics: Continue real velocity, line tension, strap contact, water flow, friction, and case rotation before any recovery.\n\nExecution rule: continue the accepted action from its real endpoint. Do not reset pose, prop ownership, screen direction, lighting source, material state, or spatial geography.\n",
+        "sha256": "5b42cebe1d64a19c6970f45f916e009c8fe873cf190082a0e532bbeea0f27fc7",
+        "frozen": true
+      },
+      "observed": null,
+      "evaluation": null,
+      "contract": {
+        "version": "1.0",
+        "continuity_safe": true,
+        "source_video_sha256": "d7e36d9b270a3f9280dca19d50afe856177c3426e1a12a0b3511dbc811a2a198",
+        "source_final_frame_sha256": "5b32eb1a7519d543be037cf86c8e2079803d8f9a7be99174184c691c4faec5f6"
+      }
     }
   ]
 }

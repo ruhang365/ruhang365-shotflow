@@ -1,5 +1,44 @@
 {
   "ledger_version": "1.0",
   "case_id": "obsidian-bloom",
-  "attempts": []
+  "attempts": [
+    {
+      "attempt_id": "obsidian-bloom-001",
+      "variant": "clip-01",
+      "status": "accepted",
+      "recorded_at": "2026-07-29T15:17:43+00:00",
+      "provider": {
+        "adapter": "seedance-2.0",
+        "model": "seedance2.0_vision",
+        "verified": true,
+        "parameters": {
+          "ratio": "16:9",
+          "resolution": "1080p",
+          "duration_seconds": 5
+        }
+      },
+      "prompt": {
+        "path": "prompts/clip-01.txt",
+        "sha256": "3f432c4162a5d311111dfd77497da697a00e8c8af84bd494fc386dd391afb193",
+        "bytes": 1153
+      },
+      "references": {
+        "source_video": null,
+        "source_final_frame": null
+      },
+      "output": {
+        "video": {
+          "path": "artifacts/v03c76g10004d9l1hbi7dld5rvk6e07g.mp4",
+          "sha256": "af845de5b3eff841f1b142b6ae03bf66e0585d073129da7856f6ebfb9180d827",
+          "bytes": 8110759
+        },
+        "final_frame": {
+          "path": "artifacts/clip-01-final-frame.png",
+          "sha256": "56d6455da0310b8acce2364af99229825307b70bae8f677306496c1fa08e8a0e",
+          "bytes": 568869
+        }
+      },
+      "reason": ""
+    }
+  ]
 }

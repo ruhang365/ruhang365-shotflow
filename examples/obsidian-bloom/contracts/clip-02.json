@@ -1,0 +1,71 @@
+{
+  "contract_version": "1.0",
+  "project_schema_version": "1.0",
+  "source_shot_id": "clip-01",
+  "next_shot_id": "clip-02",
+  "continuity_safe": true,
+  "authoritative_source": "observed",
+  "source_artifacts": {
+    "video_sha256": "af845de5b3eff841f1b142b6ae03bf66e0585d073129da7856f6ebfb9180d827",
+    "final_frame_sha256": "56d6455da0310b8acce2364af99229825307b70bae8f677306496c1fa08e8a0e"
+  },
+  "beat": "The collar rotation and exterior droplet continue before the cap opens and releases amber vapor.",
+  "observed_state": {
+    "identity": "One centered squat rectangular perfume bottle remains, made from dark translucent smoky glass with broad shoulders and a pronounced asymmetric front-right facet; no label is present.",
+    "wardrobe_props": "The bottle has a glossy rounded black cap and overlapping curved silver collar elements. A large amber droplet hangs on the exterior upper-left face. A separate internal droplet is not clearly discernible in the accepted final frame.",
+    "space_direction": "The bottle ends centered in a near-frontal view above a low black-liquid horizon. The dominant silver petal crosses the collar from center toward upper-right, and the left face and front-right facet remain readable.",
+    "motion": "The bottle rises out of the liquid and ends visibly hovering above the surface. The collar elements retain unresolved rotational displacement, the exterior droplet remains suspended in a downward path, expanding ripples remain below, and the cap stays closed.",
+    "light_material": "A large cool soft source creates broad white glass and metal reflections from camera-left, while a narrow amber underlight glows through the bottle base and liquid. The glass reads dense and transparent, the collar polished metal, the cap glossy black, and the liquid viscous.",
+    "story_beat": "The sealed bottle has emerged and is still hovering with the collar rotation, exterior droplet, and surface ripples unresolved. The cap has not opened."
+  },
+  "continuity_locks": [
+    {
+      "category": "identity",
+      "value": "One centered squat rectangular perfume bottle remains, made from dark translucent smoky glass with broad shoulders and a pronounced asymmetric front-right facet; no label is present.",
+      "source": "observed",
+      "required": true
+    },
+    {
+      "category": "wardrobe_props",
+      "value": "The bottle has a glossy rounded black cap and overlapping curved silver collar elements. A large amber droplet hangs on the exterior upper-left face. A separate internal droplet is not clearly discernible in the accepted final frame.",
+      "source": "observed",
+      "required": true
+    },
+    {
+      "category": "space_direction",
+      "value": "The bottle ends centered in a near-frontal view above a low black-liquid horizon. The dominant silver petal crosses the collar from center toward upper-right, and the left face and front-right facet remain readable.",
+      "source": "observed",
+      "required": true
+    },
+    {
+      "category": "motion",
+      "value": "The bottle rises out of the liquid and ends visibly hovering above the surface. The collar elements retain unresolved rotational displacement, the exterior droplet remains suspended in a downward path, expanding ripples remain below, and the cap stays closed.",
+      "source": "observed",
+      "required": true
+    },
+    {
+      "category": "light_material",
+      "value": "A large cool soft source creates broad white glass and metal reflections from camera-left, while a narrow amber underlight glows through the bottle base and liquid. The glass reads dense and transparent, the collar polished metal, the cap glossy black, and the liquid viscous.",
+      "source": "observed",
+      "required": true
+    },
+    {
+      "category": "story_beat",
+      "value": "The sealed bottle has emerged and is still hovering with the collar rotation, exterior droplet, and surface ripples unresolved. The cap has not opened.",
+      "source": "observed",
+      "required": true
+    }
+  ],
+  "grammar": {
+    "narrative_moment": "Continue the accepted ring and droplet motion before allowing the real cap geometry to open.",
+    "camera_movement": "Continue from the accepted camera position, arc direction, focal behavior, and bottle scale without a reset.",
+    "light_color": "Preserve actual source positions, reflection paths, transparency, internal amber state, and black-liquid exposure.",
+    "space_composition": "Keep the accepted silhouette, facet orientation, collar asymmetry, liquid horizon, and petal position as anchors.",
+    "material_physics": "Continue actual ring velocity, exterior droplet gravity, liquid ripples, glass density, and cap contact before vapor release."
+  },
+  "compiled_prompt": {
+    "text": "NEXT SHOT CONTRACT\n\nStory beat: The collar rotation and exterior droplet continue before the cap opens and releases amber vapor.\n\nObserved continuity facts — preserve exactly:\n- identity: One centered squat rectangular perfume bottle remains, made from dark translucent smoky glass with broad shoulders and a pronounced asymmetric front-right facet; no label is present.\n- wardrobe_props: The bottle has a glossy rounded black cap and overlapping curved silver collar elements. A large amber droplet hangs on the exterior upper-left face. A separate internal droplet is not clearly discernible in the accepted final frame.\n- space_direction: The bottle ends centered in a near-frontal view above a low black-liquid horizon. The dominant silver petal crosses the collar from center toward upper-right, and the left face and front-right facet remain readable.\n- motion: The bottle rises out of the liquid and ends visibly hovering above the surface. The collar elements retain unresolved rotational displacement, the exterior droplet remains suspended in a downward path, expanding ripples remain below, and the cap stays closed.\n- light_material: A large cool soft source creates broad white glass and metal reflections from camera-left, while a narrow amber underlight glows through the bottle base and liquid. The glass reads dense and transparent, the collar polished metal, the cap glossy black, and the liquid viscous.\n- story_beat: The sealed bottle has emerged and is still hovering with the collar rotation, exterior droplet, and surface ripples unresolved. The cap has not opened.\n\nCinematic grammar:\n- narrative_moment: Continue the accepted ring and droplet motion before allowing the real cap geometry to open.\n- camera_movement: Continue from the accepted camera position, arc direction, focal behavior, and bottle scale without a reset.\n- light_color: Preserve actual source positions, reflection paths, transparency, internal amber state, and black-liquid exposure.\n- space_composition: Keep the accepted silhouette, facet orientation, collar asymmetry, liquid horizon, and petal position as anchors.\n- material_physics: Continue actual ring velocity, exterior droplet gravity, liquid ripples, glass density, and cap contact before vapor release.\n\nExecution rule: continue the accepted action from its real endpoint. Do not reset pose, prop ownership, screen direction, lighting source, material state, or spatial geography.\n",
+    "sha256": "29bffd3051599bd69185f06120d3d73e1d8e8b0241937774b47778618f13cf68",
+    "frozen": true
+  }
+}

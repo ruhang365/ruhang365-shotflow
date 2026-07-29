@@ -6,17 +6,19 @@
 
 [中文说明](README.zh-CN.md) · [Examples](examples/) · [Skill](skills/shotflow/) · [Schemas](schemas/) · [Pro boundary](PRO.md)
 
+![The Sky Mender accepted Clip 01, generated with Xiaoyunque / Seedance 2.0](examples/sky-mender/evidence/clip-01-preview.gif)
+
 ## Evidence status
 
-ShotFlow v0.1 Core is implemented and testable. The three launch cases are pre-registered, but their real Seedance A/B videos have **not** been generated yet. No performance claim is made before the evidence gate passes.
+ShotFlow v0.1 Core is implemented and testable. Three real Seedance Clip 01 results have been accepted, observed, hashed, and compiled into continuity-safe Clip 02 contracts. The controlled Clip 02 A/B videos have **not** been generated yet, so no improvement claim is made.
 
 | Case | Role | Status |
 | --- | --- | --- |
-| The Sky Mender | flagship spectacle | prompts frozen; awaiting approved generation |
-| Storm Deck | physical action | prompts frozen; awaiting approved generation |
-| Obsidian Bloom | fictional product film | prompts frozen; awaiting approved generation |
+| The Sky Mender | flagship spectacle | Clip 01 accepted; observed endpoint differs on fissure side and cable direction |
+| Storm Deck | physical action | Clip 01 accepted; observed endpoint is nearly stopped at the railing |
+| Obsidian Bloom | fictional product film | Clip 01 accepted; observed cap, facet, droplet, and hover state differ |
 
-The exact provider settings, attempt cap, and credit boundary are public in [Generation approval](examples/GENERATION_APPROVAL.md).
+All three originals are 1920×1080, 24fps, 5.125 seconds and retain the provider's container-level `AIGC Label=1`. Public derivatives add a visible disclosure. Exact Clip 02 prompts and the next credit boundary are in [Gate 2 approval](examples/GATE_2_APPROVAL.md).
 
 ## The problem
 

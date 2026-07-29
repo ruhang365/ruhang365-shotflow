@@ -1,5 +1,44 @@
 {
   "ledger_version": "1.0",
   "case_id": "sky-mender",
-  "attempts": []
+  "attempts": [
+    {
+      "attempt_id": "sky-mender-001",
+      "variant": "clip-01",
+      "status": "accepted",
+      "recorded_at": "2026-07-29T15:17:43+00:00",
+      "provider": {
+        "adapter": "seedance-2.0",
+        "model": "seedance2.0_vision",
+        "verified": true,
+        "parameters": {
+          "ratio": "16:9",
+          "resolution": "1080p",
+          "duration_seconds": 5
+        }
+      },
+      "prompt": {
+        "path": "prompts/clip-01.txt",
+        "sha256": "72cc20f2598282c7bde6a80a27d2536765543815f69f8a68e0aedda365d5c28a",
+        "bytes": 1272
+      },
+      "references": {
+        "source_video": null,
+        "source_final_frame": null
+      },
+      "output": {
+        "video": {
+          "path": "artifacts/v02c76g10004d9l1fua7dld9270q0lag.mp4",
+          "sha256": "09564c755fc4b845f501e5bcf68e4192b65bc00e8a2be395159a05c831c99243",
+          "bytes": 8130438
+        },
+        "final_frame": {
+          "path": "artifacts/clip-01-final-frame.png",
+          "sha256": "f05efcff94c047cdf46f681daf8996896e257ea3e9a6e54f1d36944b81bba1cd",
+          "bytes": 1099668
+        }
+      },
+      "reason": ""
+    }
+  ]
 }
