@@ -27,9 +27,11 @@ Prompt 编译器修订。
 [《天幕修补师》盲评](examples/sky-mender/reviews/clip-02-blind-review-v1.md)
 与[已关闭的 Gate 2 清单](examples/GATE_2_APPROVAL.md)。
 
-下一轮已经切换为成本更低的普通版 `Seedance_2.0_mini_lite`。为了保证
-A/B 公平，三组 Clip 02 的基线与 ShotFlow 都必须在同一普通模型下重新
-生成；之前的 VIP 结果只保留为历史证据。见
+下一轮已经切换为完整的标准非 VIP 模型 `seedance2.0_direct`，也就是界面
+最下面的“Seedance 2.0”，不是 `Seedance_2.0_mini_lite` Mini 体验版。
+本轮以效果优先，可以接受更慢的排队速度。为了保证 A/B 公平，三组 Clip 02
+的基线与 ShotFlow 都必须在同一标准模型下重新生成；之前的 VIP 结果只保留
+为历史证据。见
 [Gate 3 标准模型审批](examples/GATE_3_STANDARD_MODEL_APPROVAL.md)。
 
 ## 它解决什么

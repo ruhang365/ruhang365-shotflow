@@ -17,8 +17,9 @@ both Clip 02 variants will use the same Clip 01 video and final frame.
 ## Fixed settings
 
 - Provider: 小云雀 / Xiaoyunque
-- CLI model ID: `Seedance_2.0_mini_lite`
-- Product tier: normal-user Seedance 2.0, not VIP
+- Xiaoyunque model value / proposed CLI model ID: `seedance2.0_direct`
+- Visible product tier: full `Seedance 2.0`, not Mini, Fast, or VIP
+- Queue policy: effect-first; the slower non-VIP queue is acceptable
 - Ratio: `16:9`
 - Resolution: `1080p`
 - Duration: `5` seconds
@@ -29,7 +30,11 @@ both Clip 02 variants will use the same Clip 01 video and final frame.
 - Current adapter evidence state: `verified=false`
 
 Successful real outputs are required before this model can be marked
-forward-tested.
+forward-tested. The current web client maps `seedance2.0_direct` to
+“Seedance 2.0” and maps `Seedance_2.0_mini_lite` to
+“Seedance 2.0 Mini 体验版”. The installed CLI does not yet list the full standard
+model in its help text, so a service rejection must stop the run without retry,
+fallback, or model substitution.
 
 ## Frozen jobs
 

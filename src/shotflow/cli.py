@@ -37,7 +37,7 @@ def build_parser() -> argparse.ArgumentParser:
     init.add_argument("directory")
     init.add_argument("--title", required=True)
     init.add_argument("--provider", default="seedance-2.0")
-    init.add_argument("--model", default="Seedance_2.0_mini_lite")
+    init.add_argument("--model", default="seedance2.0_direct")
     init.add_argument("--ratio", default="16:9")
     init.add_argument("--resolution", default="1080p")
     init.add_argument("--duration", type=int, default=5)

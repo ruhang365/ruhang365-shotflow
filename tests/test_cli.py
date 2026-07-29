@@ -77,6 +77,13 @@ class CliTests(unittest.TestCase):
             root = Path(temporary)
             project = root / "demo"
             self.run_cli("init", str(project), "--title", "Demo")
+            initialized = json.loads(
+                (project / "shotflow.project.json").read_text(encoding="utf-8")
+            )
+            self.assertEqual(
+                initialized["provider"]["model"], "seedance2.0_direct"
+            )
+            self.assertFalse(initialized["provider"]["verified"])
 
             plan_file = root / "plan.json"
             prompt_file = root / "baseline.md"

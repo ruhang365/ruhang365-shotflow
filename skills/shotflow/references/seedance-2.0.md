@@ -17,10 +17,17 @@
 
 Do not mark Fast, Mini, or another provider verified without a real forward test.
 
-The Core default is the lower-cost normal-user
-`Seedance_2.0_mini_lite`. Keep it `verified=false` until a real forward test
-passes. `seedance2.0_vision` remains historical verified evidence; do not use it
-by default when a standard-model run is sufficient.
+The Core default is the full standard, non-VIP model
+`seedance2.0_direct`. The Xiaoyunque web client maps this value to the visible
+label “Seedance 2.0”; it separately maps `Seedance_2.0_mini_lite` to
+“Seedance 2.0 Mini 体验版”. Keep the standard model `verified=false` until a real
+CLI forward test passes. `seedance2.0_vision` remains historical verified
+evidence; do not use it by default when the slower standard queue is acceptable.
+
+The installed official CLI may lag the web model list. It passes the model
+value to the service for semantic validation, so show the exact identifier and
+settings at the generation gate. Never silently fall back to Mini, Fast, or VIP
+if the standard value is rejected.
 
 ## Generation boundary
 

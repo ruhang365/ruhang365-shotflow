@@ -62,9 +62,7 @@ class CoreTests(unittest.TestCase):
         standard = new_project("Standard")
         verified = new_project("Verified", model="seedance2.0_vision")
         unverified = new_project("Other", model="unverified-model")
-        self.assertEqual(
-            standard["provider"]["model"], "Seedance_2.0_mini_lite"
-        )
+        self.assertEqual(standard["provider"]["model"], "seedance2.0_direct")
         self.assertFalse(standard["provider"]["verified"])
         self.assertTrue(verified["provider"]["verified"])
         self.assertFalse(unverified["provider"]["verified"])
