@@ -8,8 +8,8 @@
   "updated_at": "2026-07-29T15:48:01+00:00",
   "provider": {
     "adapter": "seedance-2.0",
-    "model": "seedance2.0_vision",
-    "verified": true,
+    "model": "Seedance_2.0_mini_lite",
+    "verified": false,
     "parameters": {
       "ratio": "16:9",
       "resolution": "1080p",

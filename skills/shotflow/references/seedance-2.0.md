@@ -17,6 +17,11 @@
 
 Do not mark Fast, Mini, or another provider verified without a real forward test.
 
+The Core default is the lower-cost normal-user
+`Seedance_2.0_mini_lite`. Keep it `verified=false` until a real forward test
+passes. `seedance2.0_vision` remains historical verified evidence; do not use it
+by default when a standard-model run is sufficient.
+
 ## Generation boundary
 
 ShotFlow compiles and freezes the prompt. It does not submit paid jobs.

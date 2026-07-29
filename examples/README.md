@@ -15,3 +15,7 @@ Each case freezes its baseline Clip 02 prompt before Clip 01 is generated. The S
 
 See [GATE_2_APPROVAL.md](GATE_2_APPROVAL.md) for the exact submitted prompts,
 shared references, failed run state, and frozen v2 candidates.
+
+The next fair run uses the lower-cost normal-user Seedance 2.0 model. See
+[GATE_3_STANDARD_MODEL_APPROVAL.md](GATE_3_STANDARD_MODEL_APPROVAL.md) for the
+six frozen jobs and the new approval boundary.

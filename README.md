@@ -28,6 +28,11 @@ provider's container-level `AIGC Label=1`. Public derivatives add a visible
 disclosure. See the [blind review](examples/sky-mender/reviews/clip-02-blind-review-v1.md)
 and [closed Gate 2 ledger](examples/GATE_2_APPROVAL.md).
 
+The next controlled run is prepared on the lower-cost normal-user
+`Seedance_2.0_mini_lite` model. All six Clip 02 variants must be regenerated on
+that model to keep the A/B fair; previous VIP results remain historical
+evidence. See [Gate 3](examples/GATE_3_STANDARD_MODEL_APPROVAL.md).
+
 ## The problem
 
 Most multi-shot AI video workflows write Clip 02 from the original plan. But Clip 01 rarely ends exactly as planned: a prop changes hands, a cape tears, the camera crosses the axis, or an unfinished motion lands somewhere unexpected.

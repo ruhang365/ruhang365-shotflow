@@ -59,8 +59,13 @@ PERFECT_SCORE = {
 
 class CoreTests(unittest.TestCase):
     def test_new_project_marks_only_verified_model(self) -> None:
-        verified = new_project("Verified")
+        standard = new_project("Standard")
+        verified = new_project("Verified", model="seedance2.0_vision")
         unverified = new_project("Other", model="unverified-model")
+        self.assertEqual(
+            standard["provider"]["model"], "Seedance_2.0_mini_lite"
+        )
+        self.assertFalse(standard["provider"]["verified"])
         self.assertTrue(verified["provider"]["verified"])
         self.assertFalse(unverified["provider"]["verified"])
 

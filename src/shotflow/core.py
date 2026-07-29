@@ -121,7 +121,7 @@ def save_project(project_file: Path, project: dict[str, Any]) -> None:
 def new_project(
     title: str,
     provider_adapter: str = "seedance-2.0",
-    model: str = "seedance2.0_vision",
+    model: str = "Seedance_2.0_mini_lite",
     ratio: str = "16:9",
     resolution: str = "1080p",
     duration_seconds: int = 5,
