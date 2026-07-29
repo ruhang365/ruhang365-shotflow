@@ -34,6 +34,19 @@ Prefer an endpoint with unfinished causal energy:
 
 Start the next shot by continuing that exact action. Do not reset the subject into a neutral pose.
 
+## Provider-facing prompt
+
+Keep the complete observed state in the JSON contract for audit. Render the
+provider-facing prompt with the `provider-direct-v2` profile:
+
+1. put the required visible action and physical order first;
+2. require the ending to visibly prove that action;
+3. include only the opening-state locks needed to prevent a reset;
+4. follow with camera, composition, lighting, and physics directives;
+5. end with the hard no-reset rule.
+
+Do not let a long state inventory bury the action the shot must complete.
+
 ## Fair A/B comparison
 
 - Freeze the baseline next-shot prompt before Clip 01 generation.

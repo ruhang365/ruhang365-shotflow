@@ -1,7 +1,7 @@
 {
   "experiment_version": "1.0",
   "case_id": "obsidian-bloom",
-  "status": "clip_01_accepted_gate_2_pending",
+  "status": "mechanism_v2_awaiting_generation_approval",
   "provider": {
     "adapter": "seedance-2.0",
     "model": "seedance2.0_vision",
@@ -24,10 +24,11 @@
       "frozen": true
     },
     "clip_02_shotflow": {
-      "path": "prompts/clip-02-shotflow.txt",
-      "sha256": "29bffd3051599bd69185f06120d3d73e1d8e8b0241937774b47778618f13cf68",
+      "path": "prompts/clip-02-shotflow-v2.txt",
+      "sha256": "55344974177eb1c9d5caf622c8e5efd7e91f45fd1f4044051a4921008021ef4d",
       "frozen": true,
-      "requires_accepted_clip_01": true
+      "requires_accepted_clip_01": true,
+      "profile": "provider-direct-v2"
     }
   },
   "next_shot_grammar": {
@@ -39,5 +40,13 @@
     "video_sha256": "af845de5b3eff841f1b142b6ae03bf66e0585d073129da7856f6ebfb9180d827",
     "final_frame_sha256": "56d6455da0310b8acce2364af99229825307b70bae8f677306496c1fa08e8a0e"
   },
+  "shotflow_prompt_history": [
+    {
+      "path": "prompts/clip-02-shotflow.txt",
+      "sha256": "29bffd3051599bd69185f06120d3d73e1d8e8b0241937774b47778618f13cf68",
+      "profile": "contract-first-v1",
+      "status": "superseded_before_generation"
+    }
+  ],
   "ai_generated_disclosure_required": true
 }

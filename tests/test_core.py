@@ -141,6 +141,20 @@ class CoreTests(unittest.TestCase):
             self.assertTrue(contract["continuity_safe"])
             self.assertEqual(contract["observed_state"], OBSERVED)
             self.assertIn("repair tool in left hand", contract["compiled_prompt"]["text"])
+            self.assertEqual(
+                contract["compiled_prompt"]["profile"], "provider-direct-v2"
+            )
+            prompt = contract["compiled_prompt"]["text"]
+            self.assertTrue(
+                prompt.startswith("CONTINUE FROM THE PROVIDED VIDEO AND FINAL FRAME.")
+            )
+            self.assertLess(
+                prompt.index("Seal the widening fissure"),
+                prompt.index("repair tool in left hand"),
+            )
+            self.assertIn(
+                "The final seconds must visibly prove the required action", prompt
+            )
 
             shotflow_media = root / "clip-02.mp4"
             shotflow_frame = root / "clip-02-final.png"

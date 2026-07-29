@@ -1,0 +1,21 @@
+CONTINUE FROM THE PROVIDED VIDEO AND FINAL FRAME.
+
+Required visible action:
+- The taut safety line arrests the worker; the worker visibly pivots, pulls the case away from the railing, and ends with the case secured beside the container row.
+- Physical order: Continue the unresolved slide and show the physical chain that stops the worker and then the case.
+- The final seconds must visibly prove the required action. Do not stop at setup.
+
+Opening continuity locks — match before advancing the action:
+- motion: The worker ends low on one knee with an outstretched hand maintaining contact with the case. The safety line is fully taut toward upper-left. By the final frame the case is pressed near the railing and visible sliding has nearly stopped, rather than both bodies still moving quickly.
+- space: The worker finishes center-right and the case finishes at the far screen-right railing. A fixed blue container wall spans the background, the low railing remains on the right, and the camera stays on the same deck side.
+- subject: One rescue worker remains visible in a saturated yellow storm suit with black reinforced knees and elbows, black boots, and a plain white helmet.
+- props and wardrobe: The rigid red emergency case retains its rectangular shell and black top strap; one front silver latch is visible while the other side is occluded. The worker has hand contact on the strap or case top. A black waist safety line is taut toward an off-screen upper-left anchor.
+- light and material: Cold rectangular deck practicals remain overhead, with rain continuing across the frame and specular reflections on the wet steel deck, suit, helmet, and case. The final frame is not held in the earlier lightning-bright exposure.
+
+Shot execution:
+- camera: Remain on the accepted camera side and preserve the container row and railing as geographic references.
+- composition: Preserve actual screen direction, case-worker separation, safety anchor, railing distance, and deck slope.
+- lighting: Keep accepted practical lights, lightning state, rain density, and wet exposure without decorative color shifts.
+- physics: Continue real velocity, line tension, strap contact, water flow, friction, and case rotation before any recovery.
+
+Hard rule: continue the accepted action from its real endpoint. Do not reset pose, prop ownership, screen direction, lighting source, material state, or spatial geography.

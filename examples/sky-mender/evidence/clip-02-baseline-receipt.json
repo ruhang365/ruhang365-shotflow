@@ -1,0 +1,42 @@
+{
+  "evidence_version": "1.0",
+  "case_id": "sky-mender",
+  "variant": "clip-02-baseline",
+  "status": "accepted",
+  "recorded_at": "2026-07-29T15:42:34+00:00",
+  "provider": "Xiaoyunque",
+  "model": "seedance2.0_vision",
+  "parameters": {
+    "ratio": "16:9",
+    "resolution": "1080p",
+    "duration_seconds_requested": 5,
+    "duration_seconds_observed": 5.125,
+    "frame_rate": 24,
+    "width": 1920,
+    "height": 1080
+  },
+  "shared_references": {
+    "video_sha256": "09564c755fc4b845f501e5bcf68e4192b65bc00e8a2be395159a05c831c99243",
+    "final_frame_sha256": "f05efcff94c047cdf46f681daf8996896e257ea3e9a6e54f1d36944b81bba1cd"
+  },
+  "original_video": {
+    "sha256": "7361c6a3fbb8090c58514a1698a1ea90e56bb5349b2766d7a12c8c2605dcc51f",
+    "bytes": 8042768,
+    "release_asset": "pending"
+  },
+  "public_preview": {
+    "path": "clip-02-baseline-preview.gif",
+    "sha256": "d8dba7bf639054aee24047b9c7826255b89250cf68f632d658a0fbb5ef629bab",
+    "bytes": 1566829
+  },
+  "public_final_frame": {
+    "path": "clip-02-baseline-final-frame.jpg",
+    "sha256": "d97891d23cc4cc421cbdef93ac6f22bcfbb102eaa43c11cb86b238eb99519894",
+    "bytes": 60530
+  },
+  "aigc_disclosure": {
+    "original_container_label_present": true,
+    "public_derivatives_have_visible_label": true,
+    "provider_identifiers_anonymized": true
+  }
+}

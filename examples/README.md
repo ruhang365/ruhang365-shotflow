@@ -1,6 +1,9 @@
 # ShotFlow evidence cases
 
-These three original cases are pre-registered A/B experiments, not finished performance claims. Their real Clip 01 outputs are accepted and observed; their Clip 02 A/B outputs are awaiting approval.
+These three original cases are pre-registered A/B experiments, not finished
+performance claims. Their real Clip 01 outputs are accepted and observed. The
+first Clip 02 pair failed the ShotFlow claim gate; the remaining run stopped
+when provider credits were insufficient.
 
 | Case | Role | Primary continuity stress | Clip 01 evidence |
 | --- | --- | --- | --- |
@@ -10,4 +13,5 @@ These three original cases are pre-registered A/B experiments, not finished perf
 
 Each case freezes its baseline Clip 02 prompt before Clip 01 is generated. The ShotFlow Clip 02 prompt cannot exist until an accepted Clip 01 has been observed.
 
-See [GATE_2_APPROVAL.md](GATE_2_APPROVAL.md) for the exact baseline and ShotFlow prompts, shared references, and next credit boundary.
+See [GATE_2_APPROVAL.md](GATE_2_APPROVAL.md) for the exact submitted prompts,
+shared references, failed run state, and frozen v2 candidates.

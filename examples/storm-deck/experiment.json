@@ -1,7 +1,7 @@
 {
   "experiment_version": "1.0",
   "case_id": "storm-deck",
-  "status": "clip_01_accepted_gate_2_pending",
+  "status": "mechanism_v2_awaiting_generation_approval",
   "provider": {
     "adapter": "seedance-2.0",
     "model": "seedance2.0_vision",
@@ -24,10 +24,11 @@
       "frozen": true
     },
     "clip_02_shotflow": {
-      "path": "prompts/clip-02-shotflow.txt",
-      "sha256": "5b42cebe1d64a19c6970f45f916e009c8fe873cf190082a0e532bbeea0f27fc7",
+      "path": "prompts/clip-02-shotflow-v2.txt",
+      "sha256": "a9f1d5136dca79a0944c24a9bb940befa194fdd54c9ffd768098e5dabf0e9439",
       "frozen": true,
-      "requires_accepted_clip_01": true
+      "requires_accepted_clip_01": true,
+      "profile": "provider-direct-v2"
     }
   },
   "next_shot_grammar": {
@@ -39,5 +40,13 @@
     "video_sha256": "d7e36d9b270a3f9280dca19d50afe856177c3426e1a12a0b3511dbc811a2a198",
     "final_frame_sha256": "5b32eb1a7519d543be037cf86c8e2079803d8f9a7be99174184c691c4faec5f6"
   },
+  "shotflow_prompt_history": [
+    {
+      "path": "prompts/clip-02-shotflow.txt",
+      "sha256": "5b42cebe1d64a19c6970f45f916e009c8fe873cf190082a0e532bbeea0f27fc7",
+      "profile": "contract-first-v1",
+      "status": "superseded_before_generation"
+    }
+  ],
   "ai_generated_disclosure_required": true
 }

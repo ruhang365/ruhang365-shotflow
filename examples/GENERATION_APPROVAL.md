@@ -45,7 +45,9 @@ After each accepted Clip 01:
 
 Approval then authorizes the baseline and ShotFlow Clip 02 submissions for that case, with identical Clip 01 references and provider settings.
 
-Current state: awaiting explicit approval of the six initial Clip 02 submissions in [GATE_2_APPROVAL.md](GATE_2_APPROVAL.md).
+Current state: Gate 2 was partially executed and then closed after insufficient
+credits and a failed blind-review claim gate. See
+[GATE_2_APPROVAL.md](GATE_2_APPROVAL.md). No retry is authorized.
 
 ## Public disclosure
 

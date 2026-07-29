@@ -104,7 +104,7 @@ def check_skill(failures: list[str]) -> None:
 
 def check_evidence_receipts(paths: list[Path], failures: list[str]) -> None:
     for receipt_path in paths:
-        if receipt_path.name != "clip-01-receipt.json":
+        if not receipt_path.name.endswith("-receipt.json"):
             continue
         try:
             receipt = json.loads(receipt_path.read_text(encoding="utf-8"))

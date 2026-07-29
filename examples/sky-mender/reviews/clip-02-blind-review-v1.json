@@ -1,0 +1,73 @@
+{
+  "review_version": "1.0",
+  "case_id": "sky-mender",
+  "source_video_sha256": "09564c755fc4b845f501e5bcf68e4192b65bc00e8a2be395159a05c831c99243",
+  "blind_mapping_revealed_after_review": {
+    "A": "clip-02-shotflow-v1",
+    "B": "clip-02-baseline"
+  },
+  "reviewers": [
+    {
+      "reviewer_id": "independent-ai-01",
+      "scores": {
+        "A": {
+          "subject_identity": 2,
+          "wardrobe_props": 2,
+          "space_direction": 2,
+          "motion_handoff": 2,
+          "light_material": 2,
+          "story_beat": 1,
+          "percentage": 91.67
+        },
+        "B": {
+          "subject_identity": 2,
+          "wardrobe_props": 2,
+          "space_direction": 2,
+          "motion_handoff": 2,
+          "light_material": 2,
+          "story_beat": 2,
+          "percentage": 100
+        }
+      },
+      "preferred": "B",
+      "clear_winner": false
+    },
+    {
+      "reviewer_id": "independent-ai-02",
+      "scores": {
+        "A": {
+          "subject_identity": 2,
+          "wardrobe_props": 2,
+          "space_direction": 2,
+          "motion_handoff": 2,
+          "light_material": 1,
+          "story_beat": 0,
+          "percentage": 75
+        },
+        "B": {
+          "subject_identity": 2,
+          "wardrobe_props": 2,
+          "space_direction": 2,
+          "motion_handoff": 2,
+          "light_material": 2,
+          "story_beat": 2,
+          "percentage": 100
+        }
+      },
+      "preferred": "B",
+      "clear_winner": true
+    }
+  ],
+  "aggregate": {
+    "shotflow_v1_average": 83.34,
+    "baseline_average": 100,
+    "shotflow_minus_baseline": -16.66,
+    "majority_winner": "baseline",
+    "passes_public_claim_gate": false
+  },
+  "decision": {
+    "shotflow_v1_attempt_status": "rejected",
+    "reason": "Continuity was strong in both variants, but ShotFlow v1 did not make the required repair action as visibly complete as the baseline.",
+    "next_mechanism": "provider-direct-v2"
+  }
+}

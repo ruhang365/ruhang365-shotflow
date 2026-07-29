@@ -1,8 +1,42 @@
 # Gate 2 approval — Clip 02 A/B submissions
 
-Status: **AWAITING USER APPROVAL — NO CLIP 02 JOB SUBMITTED**
+Status: **PARTIAL RUN CLOSED — BLOCKED BY CREDITS AND FAILED CLAIM GATE**
 
-Approval authorizes exactly six initial submissions: one frozen baseline Clip 02 and one ShotFlow Clip 02 for each accepted Clip 01. It does not authorize retries, model downgrade, recharge, publication, or social posting.
+The original approval authorized exactly six initial submissions: one frozen
+baseline Clip 02 and one ShotFlow Clip 02 for each accepted Clip 01. It did not
+authorize retries, model downgrade, recharge, publication, or social posting.
+
+Execution stopped after the provider reported insufficient credits. Do not
+resume from this approval:
+
+| Case | Baseline | ShotFlow v1 |
+| --- | --- | --- |
+| The Sky Mender | accepted | rejected after two-reviewer blind loss |
+| Storm Deck | failed without media: insufficient credits | not submitted |
+| Obsidian Bloom | not submitted | not submitted |
+
+The Sky Mender blind review scored ShotFlow v1 at 83.34 average versus 100 for
+the baseline. See
+[`clip-02-blind-review-v1.md`](sky-mender/reviews/clip-02-blind-review-v1.md).
+No positive performance claim is allowed.
+
+The mechanism has been revised to `provider-direct-v2`, which puts the required
+visible action before continuity locks and requires the ending to prove the
+action. New frozen candidates exist but have not been submitted:
+
+| Case | v2 Prompt SHA-256 |
+| --- | --- |
+| The Sky Mender | `8b4654143c531b237c4797aac666a7cde70b9f184b5327c92f61fcc2b36b1201` |
+| Storm Deck | `a9f1d5136dca79a0944c24a9bb940befa194fdd54c9ffd768098e5dabf0e9439` |
+| Obsidian Bloom | `55344974177eb1c9d5caf622c8e5efd7e91f45fd1f4044051a4921008021ef4d` |
+
+Any retry requires a new approval after credits are replenished.
+
+No-credit forward tests were run on all three v2 candidates. Two independent
+task parsers recovered the intended opening locks, causal action order, and
+required ending proof. The remaining risk is empirical: continuity-lock prose
+is still longer than the action block, so only real generation can show whether
+the provider follows the reordered priority.
 
 ## Shared settings
 

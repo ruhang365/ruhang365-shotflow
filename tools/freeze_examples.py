@@ -33,6 +33,7 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
     clip1 = root / "prompts" / "clip-01.txt"
     baseline = root / "prompts" / "clip-02-baseline-frozen.txt"
     shotflow = root / "prompts" / "clip-02-shotflow.txt"
+    shotflow_v2 = root / "prompts" / "clip-02-shotflow-v2.txt"
     grammar = root / "plan" / "clip-02-grammar.json"
     source_shot = project["shots"][0]
     recorded = source_shot["prompt"]["sha256"]
@@ -44,12 +45,16 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
     observed = source_shot.get("observed")
     if observed and not shotflow.exists():
         raise ValueError(f"{case_id}: accepted Clip 01 is missing its ShotFlow prompt")
+    active_shotflow = shotflow_v2 if shotflow_v2.exists() else shotflow
     shotflow_prompt = (
         {
-            "path": "prompts/clip-02-shotflow.txt",
-            "sha256": sha256(shotflow),
+            "path": active_shotflow.relative_to(root).as_posix(),
+            "sha256": sha256(active_shotflow),
             "frozen": True,
             "requires_accepted_clip_01": True,
+            "profile": (
+                "provider-direct-v2" if shotflow_v2.exists() else "contract-first-v1"
+            ),
         }
         if observed
         else {
@@ -57,13 +62,41 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
             "sha256": None,
             "frozen": False,
             "requires_accepted_clip_01": True,
+            "profile": None,
         }
     )
+    prompt_history: list[dict[str, Any]] = []
+    if observed and shotflow_v2.exists():
+        ledger = load_json(root / "attempts.json")
+        v1_hash = sha256(shotflow)
+        v1_attempt = next(
+            (
+                attempt
+                for attempt in ledger["attempts"]
+                if attempt["variant"] == "clip-02-shotflow"
+                and attempt["prompt"]["sha256"] == v1_hash
+            ),
+            None,
+        )
+        prompt_history.append(
+            {
+                "path": "prompts/clip-02-shotflow.txt",
+                "sha256": v1_hash,
+                "profile": "contract-first-v1",
+                "status": (
+                    v1_attempt["status"]
+                    if v1_attempt
+                    else "superseded_before_generation"
+                ),
+            }
+        )
     return {
         "experiment_version": "1.0",
         "case_id": case_id,
         "status": (
-            "clip_01_accepted_gate_2_pending"
+            "mechanism_v2_awaiting_generation_approval"
+            if observed and shotflow_v2.exists()
+            else "clip_01_accepted_gate_2_pending"
             if observed
             else "awaiting_generation_approval"
         ),
@@ -97,6 +130,7 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
             if observed
             else None
         ),
+        "shotflow_prompt_history": prompt_history,
         "ai_generated_disclosure_required": True,
     }
 

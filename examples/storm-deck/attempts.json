@@ -39,6 +39,44 @@
         }
       },
       "reason": ""
+    },
+    {
+      "attempt_id": "storm-deck-002",
+      "variant": "clip-02-baseline",
+      "status": "failed",
+      "recorded_at": "2026-07-29T15:40:00+00:00",
+      "provider": {
+        "adapter": "seedance-2.0",
+        "model": "seedance2.0_vision",
+        "verified": true,
+        "parameters": {
+          "ratio": "16:9",
+          "resolution": "1080p",
+          "duration_seconds": 5
+        }
+      },
+      "prompt": {
+        "path": "prompts/clip-02-baseline-frozen.txt",
+        "sha256": "3d7e34a97bf97aaad1131deccaf9200603fd7ca56c729669b67bbddd5cc777fb",
+        "bytes": 882
+      },
+      "references": {
+        "source_video": {
+          "path": "artifacts/v03c76g10004d9l1gqq7dld7d93q9670.mp4",
+          "sha256": "d7e36d9b270a3f9280dca19d50afe856177c3426e1a12a0b3511dbc811a2a198",
+          "bytes": 8098739
+        },
+        "source_final_frame": {
+          "path": "artifacts/clip-01-final-frame.png",
+          "sha256": "5b32eb1a7519d543be037cf86c8e2079803d8f9a7be99174184c691c4faec5f6",
+          "bytes": 1389542
+        }
+      },
+      "output": {
+        "video": null,
+        "final_frame": null
+      },
+      "reason": "Provider completed the run without media because account credits were insufficient."
     }
   ]
 }

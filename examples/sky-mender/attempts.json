@@ -39,6 +39,98 @@
         }
       },
       "reason": ""
+    },
+    {
+      "attempt_id": "sky-mender-002",
+      "variant": "clip-02-baseline",
+      "status": "accepted",
+      "recorded_at": "2026-07-29T15:42:34+00:00",
+      "provider": {
+        "adapter": "seedance-2.0",
+        "model": "seedance2.0_vision",
+        "verified": true,
+        "parameters": {
+          "ratio": "16:9",
+          "resolution": "1080p",
+          "duration_seconds": 5
+        }
+      },
+      "prompt": {
+        "path": "prompts/clip-02-baseline-frozen.txt",
+        "sha256": "065e32b4788d3e86faec7226b451f843227d6b32f0f941ddff73ee9161288e35",
+        "bytes": 820
+      },
+      "references": {
+        "source_video": {
+          "path": "artifacts/v02c76g10004d9l1fua7dld9270q0lag.mp4",
+          "sha256": "09564c755fc4b845f501e5bcf68e4192b65bc00e8a2be395159a05c831c99243",
+          "bytes": 8130438
+        },
+        "source_final_frame": {
+          "path": "artifacts/clip-01-final-frame.png",
+          "sha256": "f05efcff94c047cdf46f681daf8996896e257ea3e9a6e54f1d36944b81bba1cd",
+          "bytes": 1099668
+        }
+      },
+      "output": {
+        "video": {
+          "path": "artifacts/clip-02-baseline/v02c76g10004d9l1sdi7dldasaer1v3g.mp4",
+          "sha256": "7361c6a3fbb8090c58514a1698a1ea90e56bb5349b2766d7a12c8c2605dcc51f",
+          "bytes": 8042768
+        },
+        "final_frame": {
+          "path": "artifacts/clip-02-baseline/final-frame.png",
+          "sha256": "3d54c109049261284e4cb37e2e89e36025f713f258350b3c91dbcff3ace475c7",
+          "bytes": 1052913
+        }
+      },
+      "reason": ""
+    },
+    {
+      "attempt_id": "sky-mender-003",
+      "variant": "clip-02-shotflow",
+      "status": "rejected",
+      "recorded_at": "2026-07-29T15:48:01+00:00",
+      "provider": {
+        "adapter": "seedance-2.0",
+        "model": "seedance2.0_vision",
+        "verified": true,
+        "parameters": {
+          "ratio": "16:9",
+          "resolution": "1080p",
+          "duration_seconds": 5
+        }
+      },
+      "prompt": {
+        "path": "prompts/clip-02-shotflow.txt",
+        "sha256": "54fc2cbe07400c7a2808cce26294b3cc9f60f74fc65c40cb84008758e7946ed6",
+        "bytes": 2400
+      },
+      "references": {
+        "source_video": {
+          "path": "artifacts/v02c76g10004d9l1fua7dld9270q0lag.mp4",
+          "sha256": "09564c755fc4b845f501e5bcf68e4192b65bc00e8a2be395159a05c831c99243",
+          "bytes": 8130438
+        },
+        "source_final_frame": {
+          "path": "artifacts/clip-01-final-frame.png",
+          "sha256": "f05efcff94c047cdf46f681daf8996896e257ea3e9a6e54f1d36944b81bba1cd",
+          "bytes": 1099668
+        }
+      },
+      "output": {
+        "video": {
+          "path": "artifacts/clip-02-shotflow/v03c76g10004d9l1t0i7dldajl2sj8ag.mp4",
+          "sha256": "ef3cc89397ea41734b7a908056ffb08c0a9a6be57827ab68da9779f50f18c824",
+          "bytes": 8135847
+        },
+        "final_frame": {
+          "path": "artifacts/clip-02-shotflow/final-frame.png",
+          "sha256": "53b577c42f98960ae0aa11fe238695bb07bc05dfd2e2fdb70b142a55a910c6cc",
+          "bytes": 939842
+        }
+      },
+      "reason": "Two independent blind AI reviewers preferred the baseline because this result did not visibly complete the fissure repair strongly enough."
     }
   ]
 }

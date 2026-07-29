@@ -71,7 +71,11 @@ Read [continuity-contract.md](references/continuity-contract.md) before observin
 
 Use `compile-next` only after `observe`. Preserve the exact observed endpoint, prop ownership, screen direction, light source, material state, and geography. Change only what the new story beat requires.
 
-The CLI emits a frozen prompt and hash. Present that prompt to the user before any paid or credit-consuming generation. Submit it unchanged after approval.
+The CLI keeps the complete observed state in the JSON contract and emits a
+separate frozen provider-facing prompt and hash. The provider prompt must put
+the required visible action first, require visible proof at the ending, then
+apply the minimum opening-state locks. Present that prompt to the user before
+any paid or credit-consuming generation. Submit it unchanged after approval.
 
 ## Use Seedance 2.0
 
@@ -87,6 +91,10 @@ Score every applicable dimension with:
 - `n/a`: genuinely not applicable.
 
 Do not hide applicable dimensions with `n/a`. A score is evidence from the supplied evaluation, not automatic video understanding.
+
+If a blinded result loses, preserve the attempt and review. Do not select only
+the attractive output or claim a win. Revise the mechanism under a new prompt
+profile, freeze it before another run, and require new credit approval.
 
 ## Safety and provenance
 

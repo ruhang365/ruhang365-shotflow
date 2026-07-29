@@ -10,15 +10,23 @@
 
 ## Evidence status
 
-ShotFlow v0.1 Core is implemented and testable. Three real Seedance Clip 01 results have been accepted, observed, hashed, and compiled into continuity-safe Clip 02 contracts. The controlled Clip 02 A/B videos have **not** been generated yet, so no improvement claim is made.
+ShotFlow v0.1 Core is implemented and testable. Three real Seedance Clip 01
+results have been accepted, observed, and hashed. The first controlled Clip 02
+A/B pair was generated and blindly reviewed — and **the baseline won**. ShotFlow
+v1 scored 83.34 average versus 100 for the baseline, so no improvement claim is
+made. The failed result remains public evidence and drove a prompt-compiler
+revision.
 
 | Case | Role | Status |
 | --- | --- | --- |
-| The Sky Mender | flagship spectacle | Clip 01 accepted; observed endpoint differs on fissure side and cable direction |
-| Storm Deck | physical action | Clip 01 accepted; observed endpoint is nearly stopped at the railing |
-| Obsidian Bloom | fictional product film | Clip 01 accepted; observed cap, facet, droplet, and hover state differ |
+| The Sky Mender | flagship spectacle | Clip 02 v1 blind review lost; mechanism v2 frozen, untested |
+| Storm Deck | physical action | baseline run ended without media after insufficient credits |
+| Obsidian Bloom | fictional product film | Clip 02 variants not submitted |
 
-All three originals are 1920×1080, 24fps, 5.125 seconds and retain the provider's container-level `AIGC Label=1`. Public derivatives add a visible disclosure. Exact Clip 02 prompts and the next credit boundary are in [Gate 2 approval](examples/GATE_2_APPROVAL.md).
+All accepted originals are 1920×1080, 24fps, 5.125 seconds and retain the
+provider's container-level `AIGC Label=1`. Public derivatives add a visible
+disclosure. See the [blind review](examples/sky-mender/reviews/clip-02-blind-review-v1.md)
+and [closed Gate 2 ledger](examples/GATE_2_APPROVAL.md).
 
 ## The problem
 

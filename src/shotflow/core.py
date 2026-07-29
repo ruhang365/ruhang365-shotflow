@@ -15,6 +15,7 @@ from .providers import get_adapter
 SCHEMA_VERSION = "1.0"
 CONTRACT_VERSION = "1.0"
 PATCH_VERSION = "1.0"
+PROMPT_PROFILE = "provider-direct-v2"
 
 GRAMMAR_AXES = (
     "narrative_moment",
@@ -437,25 +438,30 @@ def render_prompt(
     grammar: dict[str, Any],
 ) -> str:
     lines = [
-        "NEXT SHOT CONTRACT",
+        "CONTINUE FROM THE PROVIDED VIDEO AND FINAL FRAME.",
         "",
-        f"Story beat: {beat}",
+        "Required visible action:",
+        f"- {beat}",
+        f"- Physical order: {_render_value(grammar['narrative_moment'])}",
+        "- The final seconds must visibly prove the required action. Do not stop at setup.",
         "",
-        "Observed continuity facts — preserve exactly:",
+        "Opening continuity locks — match before advancing the action:",
+        f"- motion: {_render_value(state['motion'])}",
+        f"- space: {_render_value(state['space_direction'])}",
+        f"- subject: {_render_value(state['identity'])}",
+        f"- props and wardrobe: {_render_value(state['wardrobe_props'])}",
+        f"- light and material: {_render_value(state['light_material'])}",
+        "",
+        "Shot execution:",
+        f"- camera: {_render_value(grammar['camera_movement'])}",
+        f"- composition: {_render_value(grammar['space_composition'])}",
+        f"- lighting: {_render_value(grammar['light_color'])}",
+        f"- physics: {_render_value(grammar['material_physics'])}",
+        "",
+        "Hard rule: continue the accepted action from its real endpoint. "
+        "Do not reset pose, prop ownership, screen direction, lighting source, "
+        "material state, or spatial geography.",
     ]
-    for category in REQUIRED_OBSERVED_STATE:
-        lines.append(f"- {category}: {_render_value(state[category])}")
-    lines.extend(["", "Cinematic grammar:"])
-    for axis in GRAMMAR_AXES:
-        lines.append(f"- {axis}: {_render_value(grammar[axis])}")
-    lines.extend(
-        [
-            "",
-            "Execution rule: continue the accepted action from its real endpoint. "
-            "Do not reset pose, prop ownership, screen direction, lighting source, "
-            "material state, or spatial geography.",
-        ]
-    )
     return "\n".join(lines).rstrip() + "\n"
 
 
@@ -502,6 +508,7 @@ def compile_next_shot(
         "text": prompt,
         "sha256": sha256_text(prompt),
         "frozen": True,
+        "profile": PROMPT_PROFILE,
     }
     next_shot = {
         "id": next_shot_id,

@@ -1,7 +1,7 @@
 {
   "experiment_version": "1.0",
   "case_id": "sky-mender",
-  "status": "clip_01_accepted_gate_2_pending",
+  "status": "mechanism_v2_awaiting_generation_approval",
   "provider": {
     "adapter": "seedance-2.0",
     "model": "seedance2.0_vision",
@@ -24,10 +24,11 @@
       "frozen": true
     },
     "clip_02_shotflow": {
-      "path": "prompts/clip-02-shotflow.txt",
-      "sha256": "54fc2cbe07400c7a2808cce26294b3cc9f60f74fc65c40cb84008758e7946ed6",
+      "path": "prompts/clip-02-shotflow-v2.txt",
+      "sha256": "8b4654143c531b237c4797aac666a7cde70b9f184b5327c92f61fcc2b36b1201",
       "frozen": true,
-      "requires_accepted_clip_01": true
+      "requires_accepted_clip_01": true,
+      "profile": "provider-direct-v2"
     }
   },
   "next_shot_grammar": {
@@ -39,5 +40,13 @@
     "video_sha256": "09564c755fc4b845f501e5bcf68e4192b65bc00e8a2be395159a05c831c99243",
     "final_frame_sha256": "f05efcff94c047cdf46f681daf8996896e257ea3e9a6e54f1d36944b81bba1cd"
   },
+  "shotflow_prompt_history": [
+    {
+      "path": "prompts/clip-02-shotflow.txt",
+      "sha256": "54fc2cbe07400c7a2808cce26294b3cc9f60f74fc65c40cb84008758e7946ed6",
+      "profile": "contract-first-v1",
+      "status": "rejected"
+    }
+  ],
   "ai_generated_disclosure_required": true
 }
