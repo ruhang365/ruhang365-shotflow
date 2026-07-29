@@ -29,6 +29,11 @@ value to the service for semantic validation, so show the exact identifier and
 settings at the generation gate. Never silently fall back to Mini, Fast, or VIP
 if the standard value is rejected.
 
+Current provider evidence shows that `seedance2.0_direct` rejects `1080p`;
+the service reports `1080p` support only for `seedance2.0_vision` and
+`Seedance_2.5`. Do not pair the standard model with `1080p` or silently lower
+the resolution. Require a new explicit choice whenever this conflict appears.
+
 ## Generation boundary
 
 ShotFlow compiles and freezes the prompt. It does not submit paid jobs.

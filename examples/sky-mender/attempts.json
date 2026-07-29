@@ -131,6 +131,44 @@
         }
       },
       "reason": "Two independent blind AI reviewers preferred the baseline because this result did not visibly complete the fissure repair strongly enough."
+    },
+    {
+      "attempt_id": "sky-mender-004",
+      "variant": "clip-02-baseline",
+      "status": "failed",
+      "recorded_at": "2026-07-29T16:26:24+00:00",
+      "provider": {
+        "adapter": "seedance-2.0",
+        "model": "seedance2.0_direct",
+        "verified": false,
+        "parameters": {
+          "ratio": "16:9",
+          "resolution": "1080p",
+          "duration_seconds": 5
+        }
+      },
+      "prompt": {
+        "path": "prompts/clip-02-baseline-frozen.txt",
+        "sha256": "065e32b4788d3e86faec7226b451f843227d6b32f0f941ddff73ee9161288e35",
+        "bytes": 820
+      },
+      "references": {
+        "source_video": {
+          "path": "artifacts/v02c76g10004d9l1fua7dld9270q0lag.mp4",
+          "sha256": "09564c755fc4b845f501e5bcf68e4192b65bc00e8a2be395159a05c831c99243",
+          "bytes": 8130438
+        },
+        "source_final_frame": {
+          "path": "artifacts/clip-01-final-frame.png",
+          "sha256": "f05efcff94c047cdf46f681daf8996896e257ea3e9a6e54f1d36944b81bba1cd",
+          "bytes": 1099668
+        }
+      },
+      "output": {
+        "video": null,
+        "final_frame": null
+      },
+      "reason": "Provider rejected the submission before creating a run: seedance2.0_direct does not support 1080p; the service permits 1080p only for seedance2.0_vision or Seedance_2.5. No remaining Gate 3 jobs were submitted."
     }
   ]
 }

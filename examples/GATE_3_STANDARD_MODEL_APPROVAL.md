@@ -1,6 +1,6 @@
 # Gate 3 approval — standard Seedance 2.0 model
 
-Status: **MODEL SWITCH PREPARED — NO STANDARD-MODEL JOB SUBMITTED**
+Status: **STOPPED — STANDARD MODEL REJECTED THE APPROVED 1080P SETTINGS**
 
 This gate replaces the incomplete VIP Clip 02 run. It does not alter or erase
 the historical VIP evidence.
@@ -36,6 +36,19 @@ forward-tested. The current web client maps `seedance2.0_direct` to
 model in its help text, so a service rejection must stop the run without retry,
 fallback, or model substitution.
 
+## Gate outcome
+
+On 2026-07-30, the first frozen job (The Sky Mender baseline) was submitted
+with the approved prompt, shared references, and fixed settings. The provider
+rejected it before returning a `thread_id` or `run_id`:
+
+> `seedance2.0_direct` does not support `1080p`; the service reported that
+> `1080p` is limited to `seedance2.0_vision` and `Seedance_2.5`.
+
+The remaining five jobs were not submitted. No retry, recharge, resolution
+downgrade, or model substitution was performed. Continuing requires a new
+decision because either the resolution or model must change.
+
 ## Frozen jobs
 
 | Case | Variant | Exact Prompt | Prompt SHA-256 |
@@ -55,6 +68,5 @@ fallback, or model substitution.
 | Storm Deck | `d7e36d9b270a3f9280dca19d50afe856177c3426e1a12a0b3511dbc811a2a198` | `5b32eb1a7519d543be037cf86c8e2079803d8f9a7be99174184c691c4faec5f6` |
 | Obsidian Bloom | `af845de5b3eff841f1b142b6ae03bf66e0585d073129da7856f6ebfb9180d827` | `56d6455da0310b8acce2364af99229825307b70bae8f677306496c1fa08e8a0e` |
 
-Approval authorizes only these six initial standard-model submissions. Any
-failed result, retry, parameter change, publication, or social post requires a
-separate decision.
+This approval is now closed by the provider rejection. Any retry, resolution
+change, model change, publication, or social post requires a separate decision.
