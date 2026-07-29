@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "project": {
+    "id": "the-sky-mender",
+    "title": "The Sky Mender / 天幕修补师",
+    "created_at": "2026-07-29T14:39:35+00:00"
+  },
+  "updated_at": "2026-07-29T14:52:09+00:00",
+  "provider": {
+    "adapter": "seedance-2.0",
+    "model": "seedance2.0_vision",
+    "verified": true,
+    "parameters": {
+      "ratio": "16:9",
+      "resolution": "1080p",
+      "duration_seconds": 5
+    }
+  },
+  "entities": [],
+  "props": [],
+  "grammar_defaults": {
+    "narrative_moment": "",
+    "camera_movement": "",
+    "light_color": "",
+    "space_composition": "",
+    "material_physics": ""
+  },
+  "shots": [
+    {
+      "id": "clip-01",
+      "beat": "The repair cable catches as the sky fissure widens.",
+      "status": "planned",
+      "planned": {
+        "identity": "One human sky-repair worker with a stable silhouette and dark brass climbing harness.",
+        "wardrobe_props": "Heavy red oilcloth cape with one triangular lower edge; compact amber repair torch in the right hand; steel safety cable anchored lower-left.",
+        "space_direction": "Worker stays left of the vertical sky fissure and moves screen-right on the tower exterior.",
+        "motion": "Worker ends swinging screen-right as the safety cable first becomes taut.",
+        "light_material": "Cold storm daylight from upper camera-left; amber fissure bounce on wet brass and oilcloth.",
+        "story_beat": "The repair attempt begins, but the fissure widens and pulls the worker off the tower rib."
+      },
+      "grammar": {
+        "narrative_moment": "End on the instant the safety cable catches the falling worker, before recovery.",
+        "camera_movement": "Measured wide observation from a neighboring gantry, then a lateral track at subject speed without crossing the tower axis.",
+        "light_color": "Cold source-bound storm daylight from upper camera-left with a narrow amber reflection from the fissure.",
+        "space_composition": "Tower ribs provide fixed depth; worker remains left of the fissure and travels screen-right toward open cloud space.",
+        "material_physics": "Wet brass and oilcloth carry weight; the cable goes taut before body direction changes; the cape trails downwind."
+      },
+      "continuity_locks": [],
+      "reference_shot_id": null,
+      "artifacts": {},
+      "prompt": {
+        "text": "A lone sky-repair worker climbs the exterior maintenance ribs of an immense weathered tower above a storm cloud ocean. The worker has a stable human silhouette, a dark brass climbing harness, a heavy red oilcloth cape with one triangular lower edge, and a compact amber repair torch held in the right hand. A narrow luminous fissure runs vertically through the cloud ceiling to the worker's right. In one continuous five-second shot, begin with a measured wide view from a physically plausible neighboring gantry, then track laterally at the worker's speed as the worker clips a steel safety cable to the tower and reaches the torch toward the fissure. Cold storm daylight comes from upper camera-left; the amber fissure adds a restrained warm reflection to wet brass and cloth. The fissure suddenly widens, a pressure gust tears the worker's boots from the rib, and the shot ends before recovery: the worker is swinging screen-right, the cable has just snapped taut from the lower-left anchor, the cape is pulled downwind, and the torch remains visible in the right hand. Preserve tower geography and screen direction. Real weight, wet surfaces, cable tension, and wind-driven cloth; no cuts, no teleporting camera, no heroic pose, no decorative smoke, no text, no logo.\n",
+        "sha256": "72cc20f2598282c7bde6a80a27d2536765543815f69f8a68e0aedda365d5c28a",
+        "frozen": true
+      },
+      "observed": null,
+      "evaluation": null
+    }
+  ]
+}

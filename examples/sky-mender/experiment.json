@@ -1,0 +1,39 @@
+{
+  "experiment_version": "1.0",
+  "case_id": "sky-mender",
+  "status": "awaiting_generation_approval",
+  "provider": {
+    "adapter": "seedance-2.0",
+    "model": "seedance2.0_vision",
+    "verified": true,
+    "parameters": {
+      "ratio": "16:9",
+      "resolution": "1080p",
+      "duration_seconds": 5
+    }
+  },
+  "prompts": {
+    "clip_01": {
+      "path": "prompts/clip-01.txt",
+      "sha256": "72cc20f2598282c7bde6a80a27d2536765543815f69f8a68e0aedda365d5c28a",
+      "frozen": true
+    },
+    "clip_02_baseline": {
+      "path": "prompts/clip-02-baseline-frozen.txt",
+      "sha256": "065e32b4788d3e86faec7226b451f843227d6b32f0f941ddff73ee9161288e35",
+      "frozen": true
+    },
+    "clip_02_shotflow": {
+      "path": null,
+      "sha256": null,
+      "frozen": false,
+      "requires_accepted_clip_01": true
+    }
+  },
+  "next_shot_grammar": {
+    "path": "plan/clip-02-grammar.json",
+    "sha256": "a1ccb98576cb14203878f3447870a92913488075be1e66ee0406c04b20d7b329"
+  },
+  "reference_policy": "Use the same accepted Clip 01 video and final frame for baseline and ShotFlow Clip 02.",
+  "ai_generated_disclosure_required": true
+}

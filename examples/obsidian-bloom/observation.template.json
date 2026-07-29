@@ -1,0 +1,8 @@
+{
+  "identity": "Replace with the accepted bottle silhouette, proportions, glass color, and facet geometry.",
+  "wardrobe_props": "Replace with actual collar, cap, internal droplet, petal ring, exterior droplet, and any deformation.",
+  "space_direction": "Replace with actual bottle position, camera angle, arc direction, ring direction, and liquid horizon.",
+  "motion": "Replace with actual rise, ring position and velocity, droplet path, ripples, and unresolved action.",
+  "light_material": "Replace with actual source positions, reflections, transparency, metal, stone, glass, and liquid response.",
+  "story_beat": "Replace with what visibly completed and what remains unresolved."
+}

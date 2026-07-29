@@ -1,0 +1,18 @@
+{
+  "planned": {
+    "identity": "One human sky-repair worker with a stable silhouette and dark brass climbing harness.",
+    "wardrobe_props": "Heavy red oilcloth cape with one triangular lower edge; compact amber repair torch in the right hand; steel safety cable anchored lower-left.",
+    "space_direction": "Worker stays left of the vertical sky fissure and moves screen-right on the tower exterior.",
+    "motion": "Worker ends swinging screen-right as the safety cable first becomes taut.",
+    "light_material": "Cold storm daylight from upper camera-left; amber fissure bounce on wet brass and oilcloth.",
+    "story_beat": "The repair attempt begins, but the fissure widens and pulls the worker off the tower rib."
+  },
+  "grammar": {
+    "narrative_moment": "End on the instant the safety cable catches the falling worker, before recovery.",
+    "camera_movement": "Measured wide observation from a neighboring gantry, then a lateral track at subject speed without crossing the tower axis.",
+    "light_color": "Cold source-bound storm daylight from upper camera-left with a narrow amber reflection from the fissure.",
+    "space_composition": "Tower ribs provide fixed depth; worker remains left of the fissure and travels screen-right toward open cloud space.",
+    "material_physics": "Wet brass and oilcloth carry weight; the cable goes taut before body direction changes; the cape trails downwind."
+  },
+  "continuity_locks": []
+}

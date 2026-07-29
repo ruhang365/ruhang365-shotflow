@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/ruhang365/ruhang365-shotflow/main/schemas/shotflow.project.schema.json",
+  "title": "ShotFlow Project v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "project",
+    "updated_at",
+    "provider",
+    "entities",
+    "props",
+    "grammar_defaults",
+    "shots"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "project": {
+      "type": "object",
+      "required": ["id", "title", "created_at"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "created_at": {"type": "string", "format": "date-time"}
+      },
+      "additionalProperties": false
+    },
+    "updated_at": {"type": "string", "format": "date-time"},
+    "provider": {
+      "type": "object",
+      "required": ["adapter", "model", "verified", "parameters"],
+      "properties": {
+        "adapter": {"type": "string", "enum": ["generic", "seedance-2.0"]},
+        "model": {"type": "string", "minLength": 1},
+        "verified": {"type": "boolean"},
+        "parameters": {
+          "type": "object",
+          "required": ["ratio", "resolution", "duration_seconds"],
+          "properties": {
+            "ratio": {"type": "string", "minLength": 1},
+            "resolution": {"type": "string", "minLength": 1},
+            "duration_seconds": {"type": "integer", "minimum": 1}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "entities": {"type": "array", "items": {"type": "object"}},
+    "props": {"type": "array", "items": {"type": "object"}},
+    "grammar_defaults": {"$ref": "#/$defs/grammar"},
+    "shots": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/shot"}
+    }
+  },
+  "$defs": {
+    "grammar": {
+      "type": "object",
+      "required": [
+        "narrative_moment",
+        "camera_movement",
+        "light_color",
+        "space_composition",
+        "material_physics"
+      ],
+      "properties": {
+        "narrative_moment": {"type": "string"},
+        "camera_movement": {"type": "string"},
+        "light_color": {"type": "string"},
+        "space_composition": {"type": "string"},
+        "material_physics": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "shot": {
+      "type": "object",
+      "required": [
+        "id",
+        "beat",
+        "status",
+        "planned",
+        "grammar",
+        "continuity_locks",
+        "artifacts",
+        "prompt",
+        "observed",
+        "evaluation"
+      ],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "beat": {"type": "string", "minLength": 1},
+        "status": {"type": "string"},
+        "planned": {"type": "object"},
+        "grammar": {"$ref": "#/$defs/grammar"},
+        "continuity_locks": {"type": "array"},
+        "reference_shot_id": {"type": ["string", "null"]},
+        "artifacts": {"type": "object"},
+        "prompt": {"type": ["object", "null"]},
+        "observed": {"type": ["object", "null"]},
+        "evaluation": {"type": ["object", "null"]},
+        "contract": {"type": "object"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

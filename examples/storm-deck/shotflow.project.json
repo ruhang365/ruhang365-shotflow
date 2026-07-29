@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "project": {
+    "id": "storm-deck",
+    "title": "Storm Deck / 暴风甲板",
+    "created_at": "2026-07-29T14:39:35+00:00"
+  },
+  "updated_at": "2026-07-29T14:52:09+00:00",
+  "provider": {
+    "adapter": "seedance-2.0",
+    "model": "seedance2.0_vision",
+    "verified": true,
+    "parameters": {
+      "ratio": "16:9",
+      "resolution": "1080p",
+      "duration_seconds": 5
+    }
+  },
+  "entities": [],
+  "props": [],
+  "grammar_defaults": {
+    "narrative_moment": "",
+    "camera_movement": "",
+    "light_color": "",
+    "space_composition": "",
+    "material_physics": ""
+  },
+  "shots": [
+    {
+      "id": "clip-01",
+      "beat": "The rescuer catches the case strap before the slide stops.",
+      "status": "planned",
+      "planned": {
+        "identity": "One rescue worker in a matte yellow storm suit and plain white helmet.",
+        "wardrobe_props": "Red rigid emergency case with two silver latches; black strap caught by the worker's left hand; black safety line at the waist.",
+        "space_direction": "Worker and case slide screen-right toward the railing; safety anchor remains upper-left beside blue containers.",
+        "motion": "Worker ends on the right knee with left fingertips on the strap while the line becomes taut.",
+        "light_material": "Cold overhead blue work lights, rain-slick steel, one distant lightning exposure.",
+        "story_beat": "The worker catches the case strap before either the case or the sliding body has stopped."
+      },
+      "grammar": {
+        "narrative_moment": "End on first contact with the strap, before the rescue outcome is known.",
+        "camera_movement": "Low medium-wide fixed witness position beside a stable container row; absorb ship roll without an impossible floating camera.",
+        "light_color": "Cold practical work lights remain fixed; a distant lightning pulse reveals rain without moving the source.",
+        "space_composition": "Blue containers anchor upper-left depth; worker and case travel screen-right toward a visible low railing.",
+        "material_physics": "Deck water flows downhill, the rigid case slides with mass, and the safety line arrests the body only after becoming taut."
+      },
+      "continuity_locks": [],
+      "reference_shot_id": null,
+      "artifacts": {},
+      "prompt": {
+        "text": "At night on the rain-lashed deck of a fictional container ship, a single rescue worker wears a matte yellow storm suit with black reinforced knees, a plain white helmet, and a black safety line clipped to the waist. A rigid red emergency case with two silver latches breaks loose on the wet deck and slides screen-right toward a low railing. In one continuous five-second shot, hold a low medium-wide witness position beside a fixed row of blue cargo containers as the ship rolls. The worker lunges after the case, drops onto the right knee, and reaches with the left hand. End before the rescue resolves: the left fingertips have just caught the case's black strap, both worker and case are still sliding screen-right, and the safety line is taut toward an upper-left deck anchor. Cold blue work lights remain fixed overhead; one distant lightning flash briefly exposes rain and steel without changing the source geography. Preserve the container row, railing, screen direction, case shape, latch count, suit colors, and causal weight. Water sheets downhill with the ship's roll; no cuts, no impossible crane move, no explosion, no injury detail, no text, no real company markings.\n",
+        "sha256": "92ac27fddc08b7393887506dc08074015124334aff80d76dd31d7447950915d1",
+        "frozen": true
+      },
+      "observed": null,
+      "evaluation": null
+    }
+  ]
+}

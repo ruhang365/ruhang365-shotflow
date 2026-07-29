@@ -1,0 +1,39 @@
+{
+  "experiment_version": "1.0",
+  "case_id": "storm-deck",
+  "status": "awaiting_generation_approval",
+  "provider": {
+    "adapter": "seedance-2.0",
+    "model": "seedance2.0_vision",
+    "verified": true,
+    "parameters": {
+      "ratio": "16:9",
+      "resolution": "1080p",
+      "duration_seconds": 5
+    }
+  },
+  "prompts": {
+    "clip_01": {
+      "path": "prompts/clip-01.txt",
+      "sha256": "92ac27fddc08b7393887506dc08074015124334aff80d76dd31d7447950915d1",
+      "frozen": true
+    },
+    "clip_02_baseline": {
+      "path": "prompts/clip-02-baseline-frozen.txt",
+      "sha256": "3d7e34a97bf97aaad1131deccaf9200603fd7ca56c729669b67bbddd5cc777fb",
+      "frozen": true
+    },
+    "clip_02_shotflow": {
+      "path": null,
+      "sha256": null,
+      "frozen": false,
+      "requires_accepted_clip_01": true
+    }
+  },
+  "next_shot_grammar": {
+    "path": "plan/clip-02-grammar.json",
+    "sha256": "e1570ee7246b469e7b0f41dabe36efa532d23369e563ec92494c276c1fbe8b1a"
+  },
+  "reference_policy": "Use the same accepted Clip 01 video and final frame for baseline and ShotFlow Clip 02.",
+  "ai_generated_disclosure_required": true
+}

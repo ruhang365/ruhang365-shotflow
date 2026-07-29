@@ -1,0 +1,8 @@
+{
+  "identity": "Replace with the accepted worker's visible identity and silhouette.",
+  "wardrobe_props": "Replace with actual cape shape, harness, torch appearance, hand, cable, and damage.",
+  "space_direction": "Replace with actual final positions, screen direction, tower landmarks, and camera side.",
+  "motion": "Replace with actual final pose, velocity, open action, cable tension, and balance.",
+  "light_material": "Replace with actual source direction, exposure, weather, wetness, colors, and surface response.",
+  "story_beat": "Replace with what visibly completed and what remains unresolved."
+}

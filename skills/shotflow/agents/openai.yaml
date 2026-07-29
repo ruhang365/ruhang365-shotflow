@@ -1,0 +1,4 @@
+interface:
+  display_name: "ShotFlow"
+  short_description: "Compile continuity-safe prompts from real shot outcomes"
+  default_prompt: "Use $shotflow to plan a cinematic sequence and compile the next shot from the accepted result."

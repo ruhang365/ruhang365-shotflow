@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ruhang365-shotflow"
+version = "0.1.0"
+description = "Cinematic continuity contracts compiled from real AI video shot outcomes."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+authors = [
+  {name = "Ruhang365"}
+]
+keywords = [
+  "ai-video",
+  "cinematic-continuity",
+  "seedance",
+  "skill",
+  "shot-planning",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+]
+dependencies = []
+
+[project.scripts]
+shotflow = "shotflow.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/ruhang365/ruhang365-shotflow"
+Repository = "https://github.com/ruhang365/ruhang365-shotflow"
+Issues = "https://github.com/ruhang365/ruhang365-shotflow/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

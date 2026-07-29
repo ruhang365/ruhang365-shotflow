@@ -1,0 +1,18 @@
+{
+  "planned": {
+    "identity": "One rescue worker in a matte yellow storm suit and plain white helmet.",
+    "wardrobe_props": "Red rigid emergency case with two silver latches; black strap caught by the worker's left hand; black safety line at the waist.",
+    "space_direction": "Worker and case slide screen-right toward the railing; safety anchor remains upper-left beside blue containers.",
+    "motion": "Worker ends on the right knee with left fingertips on the strap while the line becomes taut.",
+    "light_material": "Cold overhead blue work lights, rain-slick steel, one distant lightning exposure.",
+    "story_beat": "The worker catches the case strap before either the case or the sliding body has stopped."
+  },
+  "grammar": {
+    "narrative_moment": "End on first contact with the strap, before the rescue outcome is known.",
+    "camera_movement": "Low medium-wide fixed witness position beside a stable container row; absorb ship roll without an impossible floating camera.",
+    "light_color": "Cold practical work lights remain fixed; a distant lightning pulse reveals rain without moving the source.",
+    "space_composition": "Blue containers anchor upper-left depth; worker and case travel screen-right toward a visible low railing.",
+    "material_physics": "Deck water flows downhill, the rigid case slides with mass, and the safety line arrests the body only after becoming taut."
+  },
+  "continuity_locks": []
+}

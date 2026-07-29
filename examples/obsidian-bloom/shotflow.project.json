@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "project": {
+    "id": "obsidian-bloom",
+    "title": "Obsidian Bloom / 黑曜之息",
+    "created_at": "2026-07-29T14:39:35+00:00"
+  },
+  "updated_at": "2026-07-29T14:52:09+00:00",
+  "provider": {
+    "adapter": "seedance-2.0",
+    "model": "seedance2.0_vision",
+    "verified": true,
+    "parameters": {
+      "ratio": "16:9",
+      "resolution": "1080p",
+      "duration_seconds": 5
+    }
+  },
+  "entities": [],
+  "props": [],
+  "grammar_defaults": {
+    "narrative_moment": "",
+    "camera_movement": "",
+    "light_color": "",
+    "space_composition": "",
+    "material_physics": ""
+  },
+  "shots": [
+    {
+      "id": "clip-01",
+      "beat": "The sealed bottle emerges with ring and droplet motion unresolved.",
+      "status": "planned",
+      "planned": {
+        "identity": "One fictional squat rectangular perfume bottle of translucent smoky obsidian glass with wider shoulders and a front-left diagonal facet.",
+        "wardrobe_props": "Asymmetrical brushed-silver collar, low black stone cap, one internal amber droplet, one rotating silver petal ring, no label.",
+        "space_direction": "Bottle remains centered in shallow black liquid while camera arcs front-left toward center and ring rotates clockwise.",
+        "motion": "Bottle rises two centimeters; clip ends with one petal crossing the front-right edge and an exterior droplet descending on the left face.",
+        "light_material": "Large soft white source camera-left, narrow amber underlight, dense glass and viscous black liquid.",
+        "story_beat": "The sealed product emerges and accumulates an unresolved moving ring and droplet state."
+      },
+      "grammar": {
+        "narrative_moment": "End before the cap opens, with petal and droplet motion visibly unresolved.",
+        "camera_movement": "Macro bottle-height twenty-degree arc from front-left toward center with controlled focus on silhouette and facet.",
+        "light_color": "Fixed large white source camera-left and narrow amber underlight; reflections track real surface and camera movement.",
+        "space_composition": "Single centered bottle, low liquid horizon, stable negative space, front-left facet and front-right petal both readable.",
+        "material_physics": "Dense glass, brushed metal, stone cap, viscous liquid, restrained displacement ripples, and gravity-driven droplet motion."
+      },
+      "continuity_locks": [],
+      "reference_shot_id": null,
+      "artifacts": {},
+      "prompt": {
+        "text": "A fictional luxury perfume object stands alone on a shallow plane of black liquid: a squat rectangular bottle of translucent smoky obsidian glass, slightly wider at the shoulders, with one clean diagonal facet across its front-left face, no label, and an asymmetrical brushed-silver collar supporting a low black stone cap. A single amber perfume droplet is suspended inside the glass near the upper-left shoulder. In one continuous five-second macro product shot, begin at bottle height and make a slow physically plausible twenty-degree arc from front-left toward center while the bottle rises two centimeters through the liquid. A thin silver petal ring rotates clockwise around the collar. End before the motion resolves: one petal is crossing the bottle's front-right edge, a narrow droplet trail is descending on the exterior left face, and the cap remains fully closed. A large soft white source stays camera-left and a narrow amber source glows from below; reflections must follow the facet and camera movement. Dense glass, viscous liquid, restrained ripples, no floating dust, no text, no logo, no extra bottle, no cap transformation, no cut.\n",
+        "sha256": "3f432c4162a5d311111dfd77497da697a00e8c8af84bd494fc386dd391afb193",
+        "frozen": true
+      },
+      "observed": null,
+      "evaluation": null
+    }
+  ]
+}

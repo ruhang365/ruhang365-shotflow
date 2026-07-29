@@ -1,0 +1,39 @@
+{
+  "experiment_version": "1.0",
+  "case_id": "obsidian-bloom",
+  "status": "awaiting_generation_approval",
+  "provider": {
+    "adapter": "seedance-2.0",
+    "model": "seedance2.0_vision",
+    "verified": true,
+    "parameters": {
+      "ratio": "16:9",
+      "resolution": "1080p",
+      "duration_seconds": 5
+    }
+  },
+  "prompts": {
+    "clip_01": {
+      "path": "prompts/clip-01.txt",
+      "sha256": "3f432c4162a5d311111dfd77497da697a00e8c8af84bd494fc386dd391afb193",
+      "frozen": true
+    },
+    "clip_02_baseline": {
+      "path": "prompts/clip-02-baseline-frozen.txt",
+      "sha256": "5b0cd96768dfd861ddd790d05de78f91c100242cb8975f7dca4a117fb19d1884",
+      "frozen": true
+    },
+    "clip_02_shotflow": {
+      "path": null,
+      "sha256": null,
+      "frozen": false,
+      "requires_accepted_clip_01": true
+    }
+  },
+  "next_shot_grammar": {
+    "path": "plan/clip-02-grammar.json",
+    "sha256": "634428be6b5288ff57afa8bfbf55a35a45e2ee3656a3ecca993ace5e84954668"
+  },
+  "reference_policy": "Use the same accepted Clip 01 video and final frame for baseline and ShotFlow Clip 02.",
+  "ai_generated_disclosure_required": true
+}

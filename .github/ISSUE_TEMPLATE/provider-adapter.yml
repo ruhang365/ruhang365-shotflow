@@ -1,0 +1,39 @@
+name: Provider adapter proposal
+description: Propose a provider with official docs and real evidence
+title: "[Adapter] "
+labels: ["provider-adapter", "needs-evidence"]
+body:
+  - type: input
+    id: provider
+    attributes:
+      label: Provider and exact model identifier
+    validations:
+      required: true
+  - type: input
+    id: docs
+    attributes:
+      label: Official documentation URL
+    validations:
+      required: true
+  - type: textarea
+    id: parameters
+    attributes:
+      label: Supported parameters and limitations
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Sanitized real-run evidence
+      description: Include hashes and attempt counts, never credentials or private URLs.
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: The evidence comes from a real run, not documentation alone.
+          required: true
+        - label: Shared media and inputs are original or authorized.
+          required: true

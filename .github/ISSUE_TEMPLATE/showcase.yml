@@ -1,0 +1,49 @@
+name: ShotFlow showcase
+description: Share a real two-shot result with public-safe evidence
+title: "[Showcase] "
+labels: ["showcase", "evidence"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not upload private media, credentials, account links, or unlicensed assets.
+  - type: input
+    id: public_url
+    attributes:
+      label: Public work URL
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: ShotFlow version or commit
+    validations:
+      required: true
+  - type: input
+    id: provider
+    attributes:
+      label: Provider and exact model
+    validations:
+      required: true
+  - type: textarea
+    id: handoff
+    attributes:
+      label: Observed handoff
+      description: What real Clip 01 facts constrained Clip 02?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: A/B evidence and limitations
+    validations:
+      required: true
+  - type: checkboxes
+    id: rights
+    attributes:
+      label: Rights and disclosure
+      options:
+        - label: I have the right to share every submitted asset.
+          required: true
+        - label: I disclosed the AI provider and preserved required AI labels.
+          required: true

@@ -1,0 +1,7 @@
+{
+  "narrative_moment": "Continue the accepted ring and droplet motion before allowing the real cap geometry to open.",
+  "camera_movement": "Continue from the accepted camera position, arc direction, focal behavior, and bottle scale without a reset.",
+  "light_color": "Preserve actual source positions, reflection paths, transparency, internal amber state, and black-liquid exposure.",
+  "space_composition": "Keep the accepted silhouette, facet orientation, collar asymmetry, liquid horizon, and petal position as anchors.",
+  "material_physics": "Continue actual ring velocity, exterior droplet gravity, liquid ripples, glass density, and cap contact before vapor release."
+}

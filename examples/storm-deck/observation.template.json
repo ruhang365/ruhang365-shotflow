@@ -1,0 +1,8 @@
+{
+  "identity": "Replace with the accepted worker's visible suit, helmet, and silhouette.",
+  "wardrobe_props": "Replace with actual case shape, latch count, strap, hand contact, and safety-line attachment.",
+  "space_direction": "Replace with actual final positions, screen direction, railing, containers, anchor, and camera side.",
+  "motion": "Replace with actual pose, slide direction, velocity, contact, line tension, and open action.",
+  "light_material": "Replace with actual work-light direction, lightning state, rain, wetness, water flow, and surface response.",
+  "story_beat": "Replace with what visibly completed and what remains unresolved."
+}

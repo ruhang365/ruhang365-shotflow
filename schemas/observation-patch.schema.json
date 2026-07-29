@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/ruhang365/ruhang365-shotflow/main/schemas/observation-patch.schema.json",
+  "title": "ShotFlow ObservationPatch v1",
+  "type": "object",
+  "required": [
+    "patch_version",
+    "project_schema_version",
+    "shot_id",
+    "source",
+    "media_sha256",
+    "observed_at",
+    "confidence",
+    "evidence",
+    "state"
+  ],
+  "properties": {
+    "patch_version": {"const": "1.0"},
+    "project_schema_version": {"const": "1.0"},
+    "shot_id": {"type": "string", "minLength": 1},
+    "source": {"type": "string", "enum": ["human", "pro-analyzer"]},
+    "media_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["timestamp_seconds", "description"],
+        "properties": {
+          "timestamp_seconds": {"type": "number", "minimum": 0},
+          "description": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "state": {
+      "type": "object",
+      "required": [
+        "identity",
+        "wardrobe_props",
+        "space_direction",
+        "motion",
+        "light_material",
+        "story_beat"
+      ],
+      "properties": {
+        "identity": {},
+        "wardrobe_props": {},
+        "space_direction": {},
+        "motion": {},
+        "light_material": {},
+        "story_beat": {}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}
