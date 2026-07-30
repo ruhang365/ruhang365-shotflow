@@ -1,6 +1,6 @@
 # Gate 5 draft — Google Flow portability A/B
 
-Status: **DRAFT — LIVE FLOW SETTINGS AND CREDIT COST NOT VERIFIED**
+Status: **DRAFT — PARTIALLY VERIFIED; DURATION AND OUTPUT SETTINGS PENDING**
 
 This is an additional cross-provider test. It does not replace, complete, or
 enter the aggregate for the Xiaoyunque / Seedance Gate 4 experiment.
@@ -44,22 +44,39 @@ The accepted Clip 01 video is intentionally not included unless the live Flow
 mode supports the same video reference role for both variants. This makes Gate
 5 a first-frame portability test, not a video-to-video comparison.
 
-## Live settings still required
+## Live settings
 
-The following fields must be copied from the authenticated Flow generation
-screen immediately before approval:
+The following values were read from the authenticated Flow interface without
+creating a project, uploading media, entering a prompt, or submitting a
+generation:
 
 | Field | Verified value |
 | --- | --- |
-| Active model | `PENDING` |
-| Feature mode | `PENDING` |
+| Account tier | `PRO` badge; full plan name not displayed |
+| Current balance | `1,050` Google Flow credits |
+| Active model | `Veo 3.1 - Quality` |
+| Other visible models | `Omni Flash`, `Veo 3.1 - Lite`, `Veo 3.1 - Fast` |
+| Feature mode | Direct `Video` → `Frames`; separate start and end frame slots are visible |
+| First-frame-only submission support | `PENDING` — not tested because no media or prompt was entered |
 | Duration | `PENDING` |
-| Aspect ratio | `PENDING` |
+| Aspect ratio | `16:9`; `9:16` is also visible |
+| Output count | `x1`; `x2`, `x3`, and `x4` are also visible |
 | Native output resolution | `PENDING` |
 | Upscale setting and cost | `PENDING` |
-| Credits per submission | `PENDING` |
-| Total maximum credits | `PENDING` |
-| Sufficient balance confirmed | `PENDING` |
+| Credits per submission | `100` at the inspected `Veo 3.1 - Quality` / `16:9` / `x1` combination |
+| Total maximum credits | `200` for the two frozen submissions |
+| Sufficient balance confirmed | `YES` at inspection time: `1,050 ≥ 200` |
+
+Additional read-only observations:
+
+- Flow opened in agent mode with generation confirmation set to `Always`.
+- The account panel showed visible watermarking as disabled. This does not
+  establish whether SynthID is present.
+- Existing video detail pages remained loading and the browser connection later
+  interrupted, so duration, native resolution, and upscale could not be
+  evidenced safely.
+- No model was switched. Costs and compatibility for other models remain
+  unverified.
 
 ## Execution and stop rules
 
@@ -76,4 +93,5 @@ screen immediately before approval:
    decision.
 7. Preserve SynthID and any visible AI disclosure.
 
-Gate 5 is not approved while any live setting remains `PENDING`.
+Gate 5 is not approved while any live setting remains `PENDING`. The inspected
+balance and credit cost must also be rechecked immediately before approval.

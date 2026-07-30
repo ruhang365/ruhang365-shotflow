@@ -1,12 +1,15 @@
 # Google Flow portability validation
 
-Status: **ADDITIONAL VALIDATION REQUESTED — AWAITING CURRENT FLOW SETTINGS**
+Status: **ADDITIONAL VALIDATION REQUESTED — LIVE SETTINGS PARTIALLY VERIFIED**
 
 After Gate 4 stopped for insufficient Xiaoyunque credits, the user clarified
 that the Seedance queue must remain assigned to Xiaoyunque after its daily
 credit refresh. Google Flow is assigned only additional cross-provider tasks.
-No current Flow model selection, feature mode, displayed credit cost, balance,
-or output has yet been verified for this repository.
+The authenticated Flow interface currently shows a `PRO` badge, `1,050`
+credits, `Veo 3.1 - Quality`, direct video frame mode, 16:9, one output, and
+`100` credits per submission. Duration, native resolution, upscale, and
+first-frame-only submission support remain unverified. No Flow output has been
+generated for this repository.
 
 ## Role in ShotFlow evidence
 
