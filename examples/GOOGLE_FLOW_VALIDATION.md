@@ -1,6 +1,6 @@
 # Google Flow portability validation
 
-Status: **TEMPORARY SETUP VERIFIED — PAID GATE BLOCKED ON 8-SECOND PROMPTS**
+Status: **FLOW PROMPTS FROZEN — PAID GENERATION NOT APPROVED**
 
 After Gate 4 stopped for insufficient Xiaoyunque credits, the user clarified
 that the Seedance queue must remain assigned to Xiaoyunque after its daily
@@ -10,7 +10,8 @@ The authenticated Flow interface showed a `PRO` badge, `1,050` credits,
 credits per submission. A temporary project named `ShotFlow Gate 5 Draft` now
 contains the accepted Clip 01 final frame in the start-frame role with the end
 frame empty. The Prompt remains empty, generation stayed disabled, and no Flow
-credits were consumed.
+credits were consumed. A provider-specific eight-second Prompt pair is now
+frozen in the repository, but it has not been entered into Flow.
 
 ## Role in ShotFlow evidence
 
@@ -54,18 +55,18 @@ Official references:
 
 1. Use the accepted Clip 01 final frame as the first frame.
 2. Use only the reference assets supported by the selected Flow model.
-3. Create a Flow-specific pair that applies the same eight-second provider
-   instruction to both variants and removes the baseline's conflicting
-   five-second phrase without changing its visual decisions.
+3. Use the frozen Flow-specific pair, which applies the same eight-second
+   first-frame instruction to both variants and leaves each variant's remaining
+   visual or continuity decisions unchanged.
 4. Use the same Flow model, aspect ratio, duration, output count, and references
    for both variants.
 5. Record any provider-enforced prompt, model, duration, or resolution change.
 6. Score with the same six continuity dimensions, but report it separately from
    the Seedance aggregate.
 
-Before any Flow credit is consumed, the Flow-specific eight-second prompt pair
-must be hashed and displayed in full. A current authenticated Flow screen must
-then reconfirm the active model, bound start frame, feature mode, displayed
-credit cost and balance, aspect ratio, output count, and absence of upscale.
-The gate must freeze those values, submission order, and maximum attempt budget
-for explicit approval.
+Before any Flow credit is consumed, review the Flow-specific eight-second
+Prompt pair and hashes displayed in full in Gate 5. A current authenticated Flow
+screen must then reconfirm the active model, bound start frame, feature mode,
+displayed credit cost and balance, aspect ratio, output count, and absence of
+upscale. The fixed order is baseline first and ShotFlow second, with a maximum
+of two submissions and no automatic retry.

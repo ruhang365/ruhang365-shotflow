@@ -1,6 +1,6 @@
 # Gate 5 draft — Google Flow portability A/B
 
-Status: **BLOCKED — TEMPORARY SETUP COMPLETE; 8-SECOND PROMPT CONTRACT NOT FROZEN**
+Status: **READY FOR PAID REVIEW — GENERATION NOT APPROVED**
 
 This is an additional cross-provider test. It does not replace, complete, or
 enter the aggregate for the Xiaoyunque / Seedance Gate 4 experiment.
@@ -21,20 +21,68 @@ enter the aggregate for the Xiaoyunque / Seedance Gate 4 experiment.
 The Sky Mender is selected before any Flow output is generated. This prevents
 case selection based on which result happens to look best.
 
-## Frozen prompts
+## Source prompts
 
 | Variant | Exact Prompt | SHA-256 | Bytes |
 | --- | --- | --- | ---: |
 | baseline | [`sky-mender/prompts/clip-02-baseline-frozen.txt`](sky-mender/prompts/clip-02-baseline-frozen.txt) | `065e32b4788d3e86faec7226b451f843227d6b32f0f941ddff73ee9161288e35` | 820 |
 | ShotFlow v2 | [`sky-mender/prompts/clip-02-shotflow-v2.txt`](sky-mender/prompts/clip-02-shotflow-v2.txt) | `8b4654143c531b237c4797aac666a7cde70b9f184b5327c92f61fcc2b36b1201` | 2,371 |
 
-These are the frozen five-second Seedance prompts. They must not be submitted
-to Flow yet: the baseline text explicitly requests a five-second take while
-`Veo 3.1 - Quality` has an eight-second generation contract. A Flow-specific
-pair must be reviewed and frozen before paid execution. The clean adaptation is
-to give both variants the same eight-second provider instruction and remove the
-conflicting five-second phrase from the baseline without changing its visual
-decisions.
+These original Seedance prompts remain unchanged and are not submitted to Flow.
+
+## Frozen Flow prompts
+
+| Variant | Exact Prompt | SHA-256 | Bytes |
+| --- | --- | --- | ---: |
+| baseline Flow v1 | [`sky-mender/prompts/clip-02-baseline-flow-v1.txt`](sky-mender/prompts/clip-02-baseline-flow-v1.txt) | `7d3736086362cceadb7fdf565513ab9d75a2e03af313284e52522b3164f49970` | 822 |
+| ShotFlow Flow v1 | [`sky-mender/prompts/clip-02-shotflow-flow-v1.txt`](sky-mender/prompts/clip-02-shotflow-flow-v1.txt) | `f6c444d462ca00d2103b4423fbd6a24d5e72dd847a0228df6c60cdaef095a2eb` | 2,402 |
+
+The provider adaptation is deliberately narrow and symmetric:
+
+1. Both variants begin with the exact same provider instruction:
+   `GENERATE ONE CONTINUOUS EIGHT-SECOND CONTINUATION FROM THE PROVIDED FIRST FRAME.`
+2. The baseline's conflicting five-second sentence is removed; all remaining
+   visual decisions are byte-for-byte identical to its source prompt.
+3. ShotFlow's video-and-final-frame opening is replaced by the same shared
+   first-frame instruction; all remaining continuity-contract text is
+   byte-for-byte identical to its source prompt.
+
+If Flow rejects, rewrites, or silently changes either Prompt, stop and record
+the provider-enforced change. Do not retry.
+
+### Exact baseline Flow v1
+
+```text
+GENERATE ONE CONTINUOUS EIGHT-SECOND CONTINUATION FROM THE PROVIDED FIRST FRAME.
+
+The same sky-repair worker in the red oilcloth cape swings screen-right on the taut safety cable, keeps the amber repair torch in the right hand, plants both boots on the outer rib, and drags the torch upward along the luminous fissure until the opening seals. Track closer beside the worker without crossing the tower axis. Keep the cable anchored lower-left, keep cold storm daylight from upper camera-left, and let the amber seam reflect on wet brass and cloth. The sealed sky opens into a restrained pale dawn behind the worker. Preserve the worker, cape shape, tower geography, screen direction, tool, cable tension, wet material response, and physically causal motion. No reset pose, no new tools, no cut, no orbit, no text, no logo.
+```
+
+### Exact ShotFlow Flow v1
+
+```text
+GENERATE ONE CONTINUOUS EIGHT-SECOND CONTINUATION FROM THE PROVIDED FIRST FRAME.
+
+Required visible action:
+- The worker regains tower contact, visibly seals the fissure with the amber repair light, and only then reveals a restrained dawn.
+- Physical order: Continue from the real caught swing and complete the repair only after the worker regains physical contact.
+- The final seconds must visibly prove the required action. Do not stop at setup.
+
+Opening continuity locks — match before advancing the action:
+- motion: The worker ends suspended almost horizontally away from the tower with residual screen-right motion blur. The cable is taut toward the lower frame rather than the planned lower-left anchor, the cape trails screen-right, and physical contact with the tower has not resumed.
+- space: At the accepted endpoint the worker is fully screen-right of the bright vertical fissure and tower, not left of it. The tower occupies the left half of frame, open storm sky occupies the right, and the camera stays on the same exterior side.
+- subject: One adult sky-repair worker remains visible as a dark segmented climbing silhouette with a long red cape; facial detail is indistinct at this distance.
+- props and wardrobe: The red cape remains attached and trails away from the torso. An amber repair light remains visible in the hand nearest the tower. A thin safety cable exits the lower torso and continues out of frame; no equipment damage is clearly visible.
+- light and material: Soft cold-gray storm light exposes the steel tower and clouds. The vertical fissure and handheld amber light add warm edge illumination to the worker; the steel remains dull and weathered rather than glossy.
+
+Shot execution:
+- camera: Track beside the real endpoint at matched speed; preserve the accepted camera side and avoid an axis-crossing orbit.
+- composition: Preserve the worker-fissure-tower relationship and accepted screen direction; reveal dawn only behind the repaired seam.
+- lighting: Retain the accepted storm source direction and material exposure; let the repaired seam motivate any warmer change.
+- physics: Continue actual cable tension, cape drag, body inertia, wetness, and tool contact before allowing recovery.
+
+Hard rule: continue the accepted action from its real endpoint. Do not reset pose, prop ownership, screen direction, lighting source, material state, or spatial geography.
+```
 
 ## Frozen shared reference
 
@@ -108,24 +156,21 @@ Additional observations:
 - No model was switched. Costs and compatibility for other models remain
   unverified.
 
-## Blocking protocol conflict
+## Resolved protocol conflict
 
 The frozen baseline begins with:
 
 > Continue immediately from the previous shot in one continuous five-second
 > take.
 
-The ShotFlow v2 prompt has no explicit duration. Submitting both unchanged to an
-eight-second provider would expose only the baseline to a conflicting duration
-instruction. That is an avoidable asymmetric treatment and would weaken any
-claim that the resulting difference came from the continuity protocol.
-
-No paid execution is allowed until a Flow-specific eight-second pair is created,
-hashed, displayed in full, and explicitly approved.
+The ShotFlow v2 prompt had no explicit duration. Submitting both source Prompts
+unchanged to an eight-second provider would have exposed only the baseline to a
+conflicting duration instruction. Flow v1 resolves that asymmetry with one
+shared provider line and no other content changes.
 
 ## Execution and stop rules
 
-1. Freeze a Flow-specific eight-second baseline and ShotFlow prompt pair.
+1. Verify the two Flow Prompt hashes and shared-reference hash.
 2. Display the completed settings table, both exact prompts, reference, fixed
    submission order, and maximum credit cost for explicit approval.
 3. Submit the baseline first and ShotFlow second, one job at a time.
@@ -140,6 +185,6 @@ hashed, displayed in full, and explicitly approved.
    post-generation upscale decision.
 8. Preserve SynthID and any visible AI disclosure.
 
-Gate 5 is not approved while the eight-second prompt pair remains unfrozen. The
-inspected balance, reference binding, model, and displayed credit cost must also
-be rechecked immediately before each paid submission.
+Gate 5 is ready for paid review but no paid submission is approved by this
+document update. The inspected balance, reference binding, model, and displayed
+credit cost must be rechecked immediately before each paid submission.

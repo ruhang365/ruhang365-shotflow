@@ -1,0 +1,21 @@
+GENERATE ONE CONTINUOUS EIGHT-SECOND CONTINUATION FROM THE PROVIDED FIRST FRAME.
+
+Required visible action:
+- The worker regains tower contact, visibly seals the fissure with the amber repair light, and only then reveals a restrained dawn.
+- Physical order: Continue from the real caught swing and complete the repair only after the worker regains physical contact.
+- The final seconds must visibly prove the required action. Do not stop at setup.
+
+Opening continuity locks — match before advancing the action:
+- motion: The worker ends suspended almost horizontally away from the tower with residual screen-right motion blur. The cable is taut toward the lower frame rather than the planned lower-left anchor, the cape trails screen-right, and physical contact with the tower has not resumed.
+- space: At the accepted endpoint the worker is fully screen-right of the bright vertical fissure and tower, not left of it. The tower occupies the left half of frame, open storm sky occupies the right, and the camera stays on the same exterior side.
+- subject: One adult sky-repair worker remains visible as a dark segmented climbing silhouette with a long red cape; facial detail is indistinct at this distance.
+- props and wardrobe: The red cape remains attached and trails away from the torso. An amber repair light remains visible in the hand nearest the tower. A thin safety cable exits the lower torso and continues out of frame; no equipment damage is clearly visible.
+- light and material: Soft cold-gray storm light exposes the steel tower and clouds. The vertical fissure and handheld amber light add warm edge illumination to the worker; the steel remains dull and weathered rather than glossy.
+
+Shot execution:
+- camera: Track beside the real endpoint at matched speed; preserve the accepted camera side and avoid an axis-crossing orbit.
+- composition: Preserve the worker-fissure-tower relationship and accepted screen direction; reveal dawn only behind the repaired seam.
+- lighting: Retain the accepted storm source direction and material exposure; let the repaired seam motivate any warmer change.
+- physics: Continue actual cable tension, cape drag, body inertia, wetness, and tool contact before allowing recovery.
+
+Hard rule: continue the accepted action from its real endpoint. Do not reset pose, prop ownership, screen direction, lighting source, material state, or spatial geography.
