@@ -19,9 +19,9 @@ revision.
 
 | Case | Role | Status |
 | --- | --- | --- |
-| The Sky Mender | flagship spectacle | Clip 02 v1 blind review lost; mechanism v2 frozen, untested |
-| Storm Deck | physical action | baseline run ended without media after insufficient credits |
-| Obsidian Bloom | fictional product film | Clip 02 variants not submitted |
+| The Sky Mender | flagship spectacle | Clip 02 v1 blind review lost; v2 VIP job ended without media after insufficient credits |
+| Storm Deck | physical action | earlier baseline ended without media; Gate 4 variants not submitted |
+| Obsidian Bloom | fictional product film | Gate 4 variants not submitted |
 
 All accepted originals are 1920×1080, 24fps, 5.125 seconds and retain the
 provider's container-level `AIGC Label=1`. Public derivatives add a visible
@@ -29,11 +29,13 @@ disclosure. See the [blind review](examples/sky-mender/reviews/clip-02-blind-rev
 and [closed Gate 2 ledger](examples/GATE_2_APPROVAL.md).
 
 The standard non-VIP `seedance2.0_direct` run stopped because that model rejects
-`1080p`. The next proposed evidence gate therefore uses the user-selected
-`seedance2.0_vision` VIP model at `1080p`. It reuses the existing valid Sky
-Mender baseline and needs five, not six, new runs. Google Flow is reserved for
-a later cross-provider portability check because its reference and duration
-contracts differ. See [Gate 4](examples/GATE_4_VIP_1080P_APPROVAL.md).
+`1080p`. Gate 4 then used the user-selected `seedance2.0_vision` VIP model at
+`1080p`, but its first job returned no media because the account had
+insufficient credits. The other four Xiaoyunque jobs were not submitted.
+Google Flow has been requested as a fallback, but it will be reported
+separately because its model, reference, and duration contracts differ. See
+[Gate 4](examples/GATE_4_VIP_1080P_APPROVAL.md) and the
+[Flow validation protocol](examples/GOOGLE_FLOW_VALIDATION.md).
 
 ## The problem
 

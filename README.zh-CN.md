@@ -18,20 +18,22 @@ Prompt 编译器修订。
 
 | 案例 | 作用 | 当前状态 |
 | --- | --- | --- |
-| 天幕修补师 | 旗舰视觉奇观 | Clip 02 v1 盲评落败；机制 v2 已冻结、未测试 |
-| 暴风甲板 | 现实动作 | 基线任务因积分不足结束，无产物 |
-| 黑曜之息 | 虚构产品广告 | Clip 02 两组均未提交 |
+| 天幕修补师 | 旗舰视觉奇观 | Clip 02 v1 盲评落败；v2 VIP 任务因积分不足结束，无产物 |
+| 暴风甲板 | 现实动作 | 早期基线无产物；Gate 4 两组均未提交 |
+| 黑曜之息 | 虚构产品广告 | Gate 4 两组均未提交 |
 
 所有已接受原始视频均为 1920×1080、24fps、5.125 秒，并保留平台容器级
 `AIGC Label=1`；公开衍生预览额外增加可见披露。见
 [《天幕修补师》盲评](examples/sky-mender/reviews/clip-02-blind-review-v1.md)
 与[已关闭的 Gate 2 清单](examples/GATE_2_APPROVAL.md)。
 
-标准非 VIP 模型 `seedance2.0_direct` 因不支持 1080p 已停止。下一份提案
-改用用户选择的 `seedance2.0_vision` VIP 模型与 1080p，并复用已经满足公平
-条件的《天幕修补师》旧 baseline，因此只需新生成 5 条，而不是 6 条。
-Google Flow 因参考素材与时长契约不同，留到第二阶段做跨平台可移植性复验。
-见 [Gate 4 VIP 审批](examples/GATE_4_VIP_1080P_APPROVAL.md)。
+标准非 VIP 模型 `seedance2.0_direct` 因不支持 1080p 已停止。Gate 4 随后
+改用用户选择的 `seedance2.0_vision` VIP 模型与 1080p，但第一条任务因账号
+积分不足结束，未返回视频；其余 4 条小云雀任务没有提交。Google Flow 已被
+指定为后备平台，但因模型、参考素材与时长契约不同，将作为独立的跨平台
+可移植性证据，不并入 Seedance A/B。见
+[Gate 4 VIP 记录](examples/GATE_4_VIP_1080P_APPROVAL.md)与
+[Flow 复验协议](examples/GOOGLE_FLOW_VALIDATION.md)。
 
 ## 它解决什么
 

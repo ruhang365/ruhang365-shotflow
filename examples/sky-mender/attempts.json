@@ -169,6 +169,44 @@
         "final_frame": null
       },
       "reason": "Provider rejected the submission before creating a run: seedance2.0_direct does not support 1080p; the service permits 1080p only for seedance2.0_vision or Seedance_2.5. No remaining Gate 3 jobs were submitted."
+    },
+    {
+      "attempt_id": "sky-mender-005",
+      "variant": "clip-02-shotflow",
+      "status": "failed",
+      "recorded_at": "2026-07-30T12:41:43+00:00",
+      "provider": {
+        "adapter": "seedance-2.0",
+        "model": "seedance2.0_vision",
+        "verified": true,
+        "parameters": {
+          "ratio": "16:9",
+          "resolution": "1080p",
+          "duration_seconds": 5
+        }
+      },
+      "prompt": {
+        "path": "prompts/clip-02-shotflow-v2.txt",
+        "sha256": "8b4654143c531b237c4797aac666a7cde70b9f184b5327c92f61fcc2b36b1201",
+        "bytes": 2371
+      },
+      "references": {
+        "source_video": {
+          "path": "artifacts/v02c76g10004d9l1fua7dld9270q0lag.mp4",
+          "sha256": "09564c755fc4b845f501e5bcf68e4192b65bc00e8a2be395159a05c831c99243",
+          "bytes": 8130438
+        },
+        "source_final_frame": {
+          "path": "artifacts/clip-01-final-frame.png",
+          "sha256": "f05efcff94c047cdf46f681daf8996896e257ea3e9a6e54f1d36944b81bba1cd",
+          "bytes": 1099668
+        }
+      },
+      "output": {
+        "video": null,
+        "final_frame": null
+      },
+      "reason": "Provider completed the Gate 4 submission without media because account credits were insufficient. The remaining four Xiaoyunque jobs were not submitted."
     }
   ]
 }

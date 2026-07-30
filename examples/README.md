@@ -2,8 +2,8 @@
 
 These three original cases are pre-registered A/B experiments, not finished
 performance claims. Their real Clip 01 outputs are accepted and observed. The
-first Clip 02 pair failed the ShotFlow claim gate; the remaining run stopped
-when provider credits were insufficient.
+first Clip 02 pair failed the ShotFlow claim gate. Gate 4 then stopped after its
+first job returned no media because provider credits were insufficient.
 
 | Case | Role | Primary continuity stress | Clip 01 evidence |
 | --- | --- | --- | --- |
@@ -17,7 +17,8 @@ See [GATE_2_APPROVAL.md](GATE_2_APPROVAL.md) for the exact submitted prompts,
 shared references, failed run state, and frozen v2 candidates.
 
 [GATE_3_STANDARD_MODEL_APPROVAL.md](GATE_3_STANDARD_MODEL_APPROVAL.md) records
-the stopped standard-model attempt. The proposed successor is
-[GATE_4_VIP_1080P_APPROVAL.md](GATE_4_VIP_1080P_APPROVAL.md). Google Flow remains
-an independent portability check described in
+the stopped standard-model attempt.
+[GATE_4_VIP_1080P_APPROVAL.md](GATE_4_VIP_1080P_APPROVAL.md) records the
+subsequent VIP credit stop. Google Flow is an independent fallback portability
+check described in
 [GOOGLE_FLOW_VALIDATION.md](GOOGLE_FLOW_VALIDATION.md).

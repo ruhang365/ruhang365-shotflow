@@ -1,9 +1,27 @@
 # Gate 4 approval — Seedance 2.0 VIP at 1080p
 
-Status: **PREPARED — NO GATE 4 JOB SUBMITTED**
+Status: **CLOSED — STOPPED AFTER THE FIRST JOB**
 
 This gate follows the provider rejection recorded in Gate 3. It does not erase
 the failed standard-model attempt or the earlier VIP v1 evidence.
+
+## Recorded outcome
+
+The first authorized job, The Sky Mender ShotFlow v2, was submitted with the
+exact frozen prompt, references, model, and settings below. The provider
+completed the task without returning media because the account had insufficient
+credits.
+
+Execution stopped immediately under the pre-registered stop rules:
+
+- New jobs submitted: `1`
+- Media outputs received: `0`
+- Remaining Xiaoyunque jobs submitted: `0`
+- Automatic retry, recharge, downgrade, or model substitution: `none`
+
+The failed public-safe attempt is recorded as `sky-mender-005` in
+[`sky-mender/attempts.json`](sky-mender/attempts.json). Private account and task
+identifiers are intentionally excluded.
 
 ## Why only five new videos are required
 
@@ -67,5 +85,5 @@ Storm Deck and Obsidian Bloom still need both variants. The new paid workload is
 - Any retry, parameter change, sixth paid job, publication, or social post
   requires a new decision.
 
-Approval must explicitly refer to this Gate 4 configuration after reviewing
-the exact model, settings, references, prompts, and five-job budget.
+This gate is closed. Any Xiaoyunque retry or new paid submission requires a new
+gate with the exact model, settings, references, prompts, and attempt budget.
