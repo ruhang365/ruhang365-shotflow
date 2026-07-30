@@ -21,4 +21,5 @@ the stopped standard-model attempt.
 [GATE_4_VIP_1080P_APPROVAL.md](GATE_4_VIP_1080P_APPROVAL.md) records the
 subsequent VIP credit stop and retained Xiaoyunque queue. Google Flow is an
 additional independent portability check described in
-[GOOGLE_FLOW_VALIDATION.md](GOOGLE_FLOW_VALIDATION.md).
+[GOOGLE_FLOW_VALIDATION.md](GOOGLE_FLOW_VALIDATION.md); its frozen two-output
+draft is [GATE_5_GOOGLE_FLOW_APPROVAL.md](GATE_5_GOOGLE_FLOW_APPROVAL.md).

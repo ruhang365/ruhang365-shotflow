@@ -18,7 +18,8 @@ outcome.
 
 The first Flow case will be selected before seeing any Flow output. A separate
 Flow protocol must be frozen before generation and its results must be labelled
-as cross-provider evidence.
+as cross-provider evidence. The pre-registered two-output draft is
+[Gate 5](GATE_5_GOOGLE_FLOW_APPROVAL.md).
 
 ## Current official constraints
 
