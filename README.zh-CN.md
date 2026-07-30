@@ -27,11 +27,11 @@ Prompt 编译器修订。
 [《天幕修补师》盲评](examples/sky-mender/reviews/clip-02-blind-review-v1.md)
 与[已关闭的 Gate 2 清单](examples/GATE_2_APPROVAL.md)。
 
-完整标准非 VIP 模型 `seedance2.0_direct` 的首次任务目前已经停止：服务端
-在创建任务前拒绝了已批准的 `1080p` 设置，并明确该模型不支持 1080p。
-剩余五个任务均未提交，也没有自动降低分辨率或切换模型；之前的 VIP 结果
-只保留为历史证据。继续前必须重新决定模型或分辨率。见
-[Gate 3 标准模型审批](examples/GATE_3_STANDARD_MODEL_APPROVAL.md)。
+标准非 VIP 模型 `seedance2.0_direct` 因不支持 1080p 已停止。下一份提案
+改用用户选择的 `seedance2.0_vision` VIP 模型与 1080p，并复用已经满足公平
+条件的《天幕修补师》旧 baseline，因此只需新生成 5 条，而不是 6 条。
+Google Flow 因参考素材与时长契约不同，留到第二阶段做跨平台可移植性复验。
+见 [Gate 4 VIP 审批](examples/GATE_4_VIP_1080P_APPROVAL.md)。
 
 ## 它解决什么
 

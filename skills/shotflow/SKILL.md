@@ -82,7 +82,8 @@ any paid or credit-consuming generation. Submit it unchanged after approval.
 Read [seedance-2.0.md](references/seedance-2.0.md) when the chosen provider is Seedance. Treat only `seedance2.0_vision` as forward-tested in v0.1. Keep every A/B parameter and reference identical.
 
 Default new projects to the full standard, non-VIP Seedance 2.0 channel
-`seedance2.0_direct`, with `verified=false` until its real forward test passes.
+`seedance2.0_direct` at `720p`, with `verified=false` until its real forward test
+passes.
 Do not substitute `Seedance_2.0_mini_lite`: that identifier is the Mini trial
 model, not the standard model. Use VIP only when the user explicitly selects
 and approves that higher-cost queue.

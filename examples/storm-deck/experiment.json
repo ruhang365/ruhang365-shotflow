@@ -4,8 +4,8 @@
   "status": "mechanism_v2_awaiting_generation_approval",
   "provider": {
     "adapter": "seedance-2.0",
-    "model": "seedance2.0_direct",
-    "verified": false,
+    "model": "seedance2.0_vision",
+    "verified": true,
     "parameters": {
       "ratio": "16:9",
       "resolution": "1080p",

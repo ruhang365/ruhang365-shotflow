@@ -28,12 +28,12 @@ provider's container-level `AIGC Label=1`. Public derivatives add a visible
 disclosure. See the [blind review](examples/sky-mender/reviews/clip-02-blind-review-v1.md)
 and [closed Gate 2 ledger](examples/GATE_2_APPROVAL.md).
 
-The attempted full standard, non-VIP `seedance2.0_direct` run is currently
-blocked: the provider rejected the approved `1080p` setting before creating a
-run and reported that this model does not support `1080p`. The remaining five
-jobs were not submitted, and no automatic resolution or model fallback was
-used. Previous VIP results remain historical evidence. See
-[Gate 3](examples/GATE_3_STANDARD_MODEL_APPROVAL.md).
+The standard non-VIP `seedance2.0_direct` run stopped because that model rejects
+`1080p`. The next proposed evidence gate therefore uses the user-selected
+`seedance2.0_vision` VIP model at `1080p`. It reuses the existing valid Sky
+Mender baseline and needs five, not six, new runs. Google Flow is reserved for
+a later cross-provider portability check because its reference and duration
+contracts differ. See [Gate 4](examples/GATE_4_VIP_1080P_APPROVAL.md).
 
 ## The problem
 

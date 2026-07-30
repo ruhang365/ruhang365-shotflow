@@ -83,6 +83,9 @@ class CliTests(unittest.TestCase):
             self.assertEqual(
                 initialized["provider"]["model"], "seedance2.0_direct"
             )
+            self.assertEqual(
+                initialized["provider"]["parameters"]["resolution"], "720p"
+            )
             self.assertFalse(initialized["provider"]["verified"])
 
             plan_file = root / "plan.json"

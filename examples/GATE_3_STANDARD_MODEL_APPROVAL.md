@@ -2,6 +2,10 @@
 
 Status: **STOPPED — STANDARD MODEL REJECTED THE APPROVED 1080P SETTINGS**
 
+The proposed successor is
+[Gate 4](GATE_4_VIP_1080P_APPROVAL.md), using the user-selected VIP model while
+reusing the already valid Sky Mender baseline to avoid one unnecessary paid run.
+
 This gate replaces the incomplete VIP Clip 02 run. It does not alter or erase
 the historical VIP evidence.
 

@@ -123,7 +123,7 @@ def new_project(
     provider_adapter: str = "seedance-2.0",
     model: str = "seedance2.0_direct",
     ratio: str = "16:9",
-    resolution: str = "1080p",
+    resolution: str = "720p",
     duration_seconds: int = 5,
 ) -> dict[str, Any]:
     if duration_seconds < 1:

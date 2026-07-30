@@ -63,6 +63,7 @@ class CoreTests(unittest.TestCase):
         verified = new_project("Verified", model="seedance2.0_vision")
         unverified = new_project("Other", model="unverified-model")
         self.assertEqual(standard["provider"]["model"], "seedance2.0_direct")
+        self.assertEqual(standard["provider"]["parameters"]["resolution"], "720p")
         self.assertFalse(standard["provider"]["verified"])
         self.assertTrue(verified["provider"]["verified"])
         self.assertFalse(unverified["provider"]["verified"])
