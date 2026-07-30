@@ -1,6 +1,6 @@
 # Gate 4 approval — Seedance 2.0 VIP at 1080p
 
-Status: **CLOSED — STOPPED AFTER THE FIRST JOB**
+Status: **PAUSED — FIRST JOB STOPPED; XIAOYUNQUE QUEUE RETAINED**
 
 This gate follows the provider rejection recorded in Gate 3. It does not erase
 the failed standard-model attempt or the earlier VIP v1 evidence.
@@ -22,6 +22,20 @@ Execution stopped immediately under the pre-registered stop rules:
 The failed public-safe attempt is recorded as `sky-mender-005` in
 [`sky-mender/attempts.json`](sky-mender/attempts.json). Private account and task
 identifiers are intentionally excluded.
+
+The user reports that Xiaoyunque credits refresh daily and has instructed that
+these Seedance tasks remain assigned to Xiaoyunque. They are not transferred to
+Google Flow. The required output queue remains:
+
+1. The Sky Mender — ShotFlow v2 retry
+2. Storm Deck — baseline
+3. Storm Deck — ShotFlow v2
+4. Obsidian Bloom — baseline
+5. Obsidian Bloom — ShotFlow v2
+
+This is a retained queue, not an unattended retry instruction. Before execution
+resumes, the account balance and exact remaining submission budget must be
+checked; jobs must still run sequentially under the stop rules below.
 
 ## Why only five new videos are required
 
@@ -85,5 +99,6 @@ Storm Deck and Obsidian Bloom still need both variants. The new paid workload is
 - Any retry, parameter change, sixth paid job, publication, or social post
   requires a new decision.
 
-This gate is closed. Any Xiaoyunque retry or new paid submission requires a new
-gate with the exact model, settings, references, prompts, and attempt budget.
+This gate is paused. Any resumed Xiaoyunque submission must retain the exact
+model, settings, references, and prompts above, and must record its approved
+remaining attempt budget before consuming refreshed credits.

@@ -1,18 +1,20 @@
 # Google Flow portability validation
 
-Status: **FALLBACK REQUESTED — AWAITING CURRENT FLOW SETTINGS**
+Status: **ADDITIONAL VALIDATION REQUESTED — AWAITING CURRENT FLOW SETTINGS**
 
-After Gate 4 stopped for insufficient Xiaoyunque credits, the user requested
-Google Flow as the fallback provider. No current Flow model selection, feature
-mode, displayed credit cost, balance, or output has yet been verified for this
-repository.
+After Gate 4 stopped for insufficient Xiaoyunque credits, the user clarified
+that the Seedance queue must remain assigned to Xiaoyunque after its daily
+credit refresh. Google Flow is assigned only additional cross-provider tasks.
+No current Flow model selection, feature mode, displayed credit cost, balance,
+or output has yet been verified for this repository.
 
 ## Role in ShotFlow evidence
 
-Google Flow is a cross-provider portability check, not a continuation of the
-Seedance Gate 4 A/B. Replacing the provider changes the model, duration
-contract, and supported reference roles, so Flow results cannot be pooled into
-the Seedance aggregate or used to rewrite the stopped Gate 4 outcome.
+Google Flow is an additional cross-provider portability check, not a
+continuation or replacement of the Seedance Gate 4 A/B. Its model, duration
+contract, and supported reference roles differ, so Flow results cannot be
+pooled into the Seedance aggregate or used to rewrite the paused Gate 4
+outcome.
 
 The first Flow case will be selected before seeing any Flow output. A separate
 Flow protocol must be frozen before generation and its results must be labelled

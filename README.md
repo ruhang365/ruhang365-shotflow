@@ -19,9 +19,9 @@ revision.
 
 | Case | Role | Status |
 | --- | --- | --- |
-| The Sky Mender | flagship spectacle | Clip 02 v1 blind review lost; v2 VIP job ended without media after insufficient credits |
-| Storm Deck | physical action | earlier baseline ended without media; Gate 4 variants not submitted |
-| Obsidian Bloom | fictional product film | Gate 4 variants not submitted |
+| The Sky Mender | flagship spectacle | Clip 02 v1 blind review lost; v2 VIP retry retained in Xiaoyunque queue |
+| Storm Deck | physical action | earlier baseline ended without media; Gate 4 variants retained in Xiaoyunque queue |
+| Obsidian Bloom | fictional product film | Gate 4 variants retained in Xiaoyunque queue |
 
 All accepted originals are 1920×1080, 24fps, 5.125 seconds and retain the
 provider's container-level `AIGC Label=1`. Public derivatives add a visible
@@ -31,10 +31,11 @@ and [closed Gate 2 ledger](examples/GATE_2_APPROVAL.md).
 The standard non-VIP `seedance2.0_direct` run stopped because that model rejects
 `1080p`. Gate 4 then used the user-selected `seedance2.0_vision` VIP model at
 `1080p`, but its first job returned no media because the account had
-insufficient credits. The other four Xiaoyunque jobs were not submitted.
-Google Flow has been requested as a fallback, but it will be reported
-separately because its model, reference, and duration contracts differ. See
-[Gate 4](examples/GATE_4_VIP_1080P_APPROVAL.md) and the
+insufficient credits. The other four Xiaoyunque jobs were not submitted. The
+user reports a daily credit refresh, so all five required successful outputs
+remain in the Xiaoyunque queue. Google Flow is assigned additional portability
+work and will be reported separately because its model, reference, and duration
+contracts differ. See [Gate 4](examples/GATE_4_VIP_1080P_APPROVAL.md) and the
 [Flow validation protocol](examples/GOOGLE_FLOW_VALIDATION.md).
 
 ## The problem
