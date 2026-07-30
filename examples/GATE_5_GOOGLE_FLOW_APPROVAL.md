@@ -1,6 +1,6 @@
 # Gate 5 draft — Google Flow portability A/B
 
-Status: **DRAFT — PARTIALLY VERIFIED; DURATION AND OUTPUT SETTINGS PENDING**
+Status: **BLOCKED — TEMPORARY SETUP COMPLETE; 8-SECOND PROMPT CONTRACT NOT FROZEN**
 
 This is an additional cross-provider test. It does not replace, complete, or
 enter the aggregate for the Xiaoyunque / Seedance Gate 4 experiment.
@@ -15,7 +15,7 @@ enter the aggregate for the Xiaoyunque / Seedance Gate 4 experiment.
 - Maximum submissions: `2`
 - Automatic retry: disabled
 - Model switching: disabled unless disclosed by Flow before submission
-- Upscaling: disabled unless separately frozen below
+- Upscaling: disabled for the initial A/B; any later upscale is a separate action
 - Publication: not authorized by this gate
 
 The Sky Mender is selected before any Flow output is generated. This prevents
@@ -28,8 +28,13 @@ case selection based on which result happens to look best.
 | baseline | [`sky-mender/prompts/clip-02-baseline-frozen.txt`](sky-mender/prompts/clip-02-baseline-frozen.txt) | `065e32b4788d3e86faec7226b451f843227d6b32f0f941ddff73ee9161288e35` | 820 |
 | ShotFlow v2 | [`sky-mender/prompts/clip-02-shotflow-v2.txt`](sky-mender/prompts/clip-02-shotflow-v2.txt) | `8b4654143c531b237c4797aac666a7cde70b9f184b5327c92f61fcc2b36b1201` | 2,371 |
 
-The texts must be submitted unchanged. If Flow rejects or rewrites either
-prompt, stop and record the provider-enforced change before any retry.
+These are the frozen five-second Seedance prompts. They must not be submitted
+to Flow yet: the baseline text explicitly requests a five-second take while
+`Veo 3.1 - Quality` has an eight-second generation contract. A Flow-specific
+pair must be reviewed and frozen before paid execution. The clean adaptation is
+to give both variants the same eight-second provider instruction and remove the
+conflicting five-second phrase from the baseline without changing its visual
+decisions.
 
 ## Frozen shared reference
 
@@ -46,9 +51,9 @@ mode supports the same video reference role for both variants. This makes Gate
 
 ## Live settings
 
-The following values were read from the authenticated Flow interface without
-creating a project, uploading media, entering a prompt, or submitting a
-generation:
+The following values combine the authenticated Flow interface, the temporary
+project setup, and current official Google documentation. No prompt was entered
+and no generation was submitted:
 
 | Field | Verified value |
 | --- | --- |
@@ -56,42 +61,85 @@ generation:
 | Current balance | `1,050` Google Flow credits |
 | Active model | `Veo 3.1 - Quality` |
 | Other visible models | `Omni Flash`, `Veo 3.1 - Lite`, `Veo 3.1 - Fast` |
-| Feature mode | Direct `Video` → `Frames`; separate start and end frame slots are visible |
-| First-frame-only submission support | `PENDING` — not tested because no media or prompt was entered |
-| Duration | `PENDING` |
+| Feature mode | Direct `Video` → `Frames`; the accepted Clip 01 frame is attached to the start-frame slot and the end-frame slot is empty |
+| First-frame-only submission support | Supported by the selected interface and listed for Veo 3.1 in the official model table; paid service submission is not yet exercised |
+| Duration | `8 seconds` for `Veo 3.1 - Quality` according to the official credit table; the current interface did not expose a duration control |
 | Aspect ratio | `16:9`; `9:16` is also visible |
 | Output count | `x1`; `x2`, `x3`, and `x4` are also visible |
-| Native output resolution | `PENDING` |
-| Upscale setting and cost | `PENDING` |
+| Native output resolution | Not disclosed by the inspected interface or current official documentation; measure the downloaded source media after generation and make no advance native-resolution claim |
+| Upscale setting and cost | Disabled for the initial A/B. Official documentation lists 1080p upscaling at `0` credits for Pro and 4K as unavailable to Pro; either remains a separate post-generation action requiring a new decision |
 | Credits per submission | `100` at the inspected `Veo 3.1 - Quality` / `16:9` / `x1` combination |
 | Total maximum credits | `200` for the two frozen submissions |
 | Sufficient balance confirmed | `YES` at inspection time: `1,050 ≥ 200` |
 
-Additional read-only observations:
+Official settings sources:
+
+- [Flow models and supported features](https://support.google.com/flow/answer/16352836)
+- [Flow AI credits and video duration](https://support.google.com/flow/answer/16526234)
+- [Flow access, model switching, and watermarking](https://support.google.com/flow/answer/16353333)
+- [Google: Veo 3.1 reference consistency and 1080p/4K upscaling](https://blog.google/innovation-and-ai/technology/ai/veo-3-1-ingredients-to-video/)
+
+## Temporary project evidence
+
+- Project name: `ShotFlow Gate 5 Draft`
+- Uploaded media: only
+  [`sky-mender/artifacts/clip-01-final-frame.png`](sky-mender/artifacts/clip-01-final-frame.png)
+- Uploaded SHA-256:
+  `f05efcff94c047cdf46f681daf8996896e257ea3e9a6e54f1d36944b81bba1cd`
+- Current role: start frame; end frame empty
+- Current model: `Veo 3.1 - Quality`
+- Current settings: `Video` → `Frames`, `16:9`, `x1`, displayed cost
+  `100`
+- Prompt field: empty
+- Submission state: generate remained disabled; `0` credits consumed
+- Persistence: the project name and uploaded media were auto-saved. The
+  start-frame role did not persist after reopening the project, so it was
+  rebound from the existing media library.
+- Upload behavior: the interface briefly showed `99%` and a failed state, then
+  completed automatically after approximately 15 seconds. No retry was issued.
+
+Additional observations:
 
 - Flow opened in agent mode with generation confirmation set to `Always`.
 - The account panel showed visible watermarking as disabled. This does not
-  establish whether SynthID is present.
-- Existing video detail pages remained loading and the browser connection later
-  interrupted, so duration, native resolution, and upscale could not be
-  evidenced safely.
+  override Google's documented watermark policy and does not establish whether
+  SynthID is present.
+- Current Google documentation says Flow outputs include invisible SynthID.
 - No model was switched. Costs and compatibility for other models remain
   unverified.
 
+## Blocking protocol conflict
+
+The frozen baseline begins with:
+
+> Continue immediately from the previous shot in one continuous five-second
+> take.
+
+The ShotFlow v2 prompt has no explicit duration. Submitting both unchanged to an
+eight-second provider would expose only the baseline to a conflicting duration
+instruction. That is an avoidable asymmetric treatment and would weaken any
+claim that the resulting difference came from the continuity protocol.
+
+No paid execution is allowed until a Flow-specific eight-second pair is created,
+hashed, displayed in full, and explicitly approved.
+
 ## Execution and stop rules
 
-1. Verify that both jobs can use the same model, first-frame role, duration,
-   aspect ratio, resolution, and output count.
-2. Display the completed settings table, two exact prompts, reference, and
-   maximum credit cost for explicit approval.
-3. Submit one job at a time.
-4. Record the active model and displayed cost again immediately before each
-   submission because Flow may select a compatible model.
+1. Freeze a Flow-specific eight-second baseline and ShotFlow prompt pair.
+2. Display the completed settings table, both exact prompts, reference, fixed
+   submission order, and maximum credit cost for explicit approval.
+3. Submit the baseline first and ShotFlow second, one job at a time.
+4. Record the active model, bound start frame, displayed cost, and balance again
+   immediately before each submission because Flow may select a compatible
+   model.
 5. Stop on insufficient credits, a model switch, rejected prompt, missing
    reference, missing media, or any provider-enforced parameter change.
 6. Do not retry, upscale, add outputs, or change parameters without a new
    decision.
-7. Preserve SynthID and any visible AI disclosure.
+7. Download and record the source media's actual resolution before any
+   post-generation upscale decision.
+8. Preserve SynthID and any visible AI disclosure.
 
-Gate 5 is not approved while any live setting remains `PENDING`. The inspected
-balance and credit cost must also be rechecked immediately before approval.
+Gate 5 is not approved while the eight-second prompt pair remains unfrozen. The
+inspected balance, reference binding, model, and displayed credit cost must also
+be rechecked immediately before each paid submission.
