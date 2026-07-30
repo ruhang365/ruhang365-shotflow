@@ -1,6 +1,6 @@
 # Gate 5 draft — Google Flow portability A/B
 
-Status: **READY FOR PAID REVIEW — GENERATION NOT APPROVED**
+Status: **FAILED — PROMPT SUBMISSION MISMATCH; THREE INVALID TASKS**
 
 This is an additional cross-provider test. It does not replace, complete, or
 enter the aggregate for the Xiaoyunque / Seedance Gate 4 experiment.
@@ -106,7 +106,7 @@ and no generation was submitted:
 | Field | Verified value |
 | --- | --- |
 | Account tier | `PRO` badge; full plan name not displayed |
-| Current balance | `1,050` Google Flow credits |
+| Pre-execution balance | `1,050` Google Flow credits |
 | Active model | `Veo 3.1 - Quality` |
 | Other visible models | `Omni Flash`, `Veo 3.1 - Lite`, `Veo 3.1 - Fast` |
 | Feature mode | Direct `Video` → `Frames`; the accepted Clip 01 frame is attached to the start-frame slot and the end-frame slot is empty |
@@ -138,8 +138,9 @@ Official settings sources:
 - Current model: `Veo 3.1 - Quality`
 - Current settings: `Video` → `Frames`, `16:9`, `x1`, displayed cost
   `100`
-- Prompt field: empty
-- Submission state: generate remained disabled; `0` credits consumed
+- Prompt field at temporary-setup completion: empty
+- Submission state at temporary-setup completion: generate remained disabled;
+  `0` credits consumed
 - Persistence: the project name and uploaded media were auto-saved. The
   start-frame role did not persist after reopening the project, so it was
   rebound from the existing media library.
@@ -168,7 +169,33 @@ unchanged to an eight-second provider would have exposed only the baseline to a
 conflicting duration instruction. Flow v1 resolves that asymmetry with one
 shared provider line and no other content changes.
 
-## Execution and stop rules
+## Paid execution outcome
+
+The paid execution did not produce a valid baseline or ShotFlow comparison.
+[The public-safe receipt](sky-mender/evidence/flow-gate-5-receipt.json) records
+the following:
+
+- Authorized maximum: two tasks and `200` credits
+- Actual result: three independent tasks and `300` observed credits
+- Balance: `1,050` before execution and `750` after execution
+- Submitted internal Prompt for all three tasks: `G`
+- Outputs: three videos exist, but all are invalid for the experiment
+- ShotFlow Prompt: not submitted
+- A/B scoring, effect claims, and showcase use: prohibited
+
+Two `Enter` keystrokes intended to create the baseline Prompt's blank line were
+interpreted by Flow as paid submissions. A later explicit Create action
+submitted a third task. The editor visually presented more text than Flow's
+internal submitted Prompt state retained. The two accidental tasks caused the
+execution to exceed the authorized maximum by one task and `100` credits.
+
+Only the third invalid output was downloaded to the ignored private evidence
+directory. It is an unmodified H.264 video at 1280×720, 24 fps, and 8.000
+seconds with SHA-256
+`160defd544c8dd2a5bfe234e28b10adf4b47b2f4baabe2f85f645f4596fa2461`.
+No invalid output is committed or published.
+
+## Execution and stop rules for any future gate
 
 1. Verify the two Flow Prompt hashes and shared-reference hash.
 2. Display the completed settings table, both exact prompts, reference, fixed
@@ -185,6 +212,7 @@ shared provider line and no other content changes.
    post-generation upscale decision.
 8. Preserve SynthID and any visible AI disclosure.
 
-Gate 5 is ready for paid review but no paid submission is approved by this
-document update. The inspected balance, reference binding, model, and displayed
-credit cost must be rechecked immediately before each paid submission.
+Gate 5 is closed as an invalid execution. It must not be retried under the
+existing approval. Any future Flow gate requires a new explicit credit
+authorization and a Prompt-entry method that has been proven without paid
+submission. Automated `Enter` input is prohibited.

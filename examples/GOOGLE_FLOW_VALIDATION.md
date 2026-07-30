@@ -1,6 +1,6 @@
 # Google Flow portability validation
 
-Status: **FLOW PROMPTS FROZEN — PAID GENERATION NOT APPROVED**
+Status: **GATE 5 INVALID — THREE `G` TASKS; NO SHOTFLOW COMPARISON**
 
 After Gate 4 stopped for insufficient Xiaoyunque credits, the user clarified
 that the Seedance queue must remain assigned to Xiaoyunque after its daily
@@ -9,9 +9,16 @@ The authenticated Flow interface showed a `PRO` badge, `1,050` credits,
 `Veo 3.1 - Quality`, direct video frame mode, 16:9, one output, and `100`
 credits per submission. A temporary project named `ShotFlow Gate 5 Draft` now
 contains the accepted Clip 01 final frame in the start-frame role with the end
-frame empty. The Prompt remains empty, generation stayed disabled, and no Flow
-credits were consumed. A provider-specific eight-second Prompt pair is now
-frozen in the repository, but it has not been entered into Flow.
+frame empty. A provider-specific eight-second Prompt pair was frozen, but the
+paid execution failed to submit that text correctly.
+
+Flow created three independent tasks whose internal Prompt was only `G`. Two
+were triggered when automated `Enter` input intended to create a blank line was
+interpreted as submission; a third was triggered by the explicit Create action.
+All three produced videos, but none is valid baseline or ShotFlow evidence. The
+balance fell from `1,050` to `750`, an observed cost of `300` credits against an
+authorized maximum of `200`. ShotFlow was not submitted. See the
+[public-safe execution receipt](sky-mender/evidence/flow-gate-5-receipt.json).
 
 ## Role in ShotFlow evidence
 
@@ -70,3 +77,8 @@ screen must then reconfirm the active model, bound start frame, feature mode,
 displayed credit cost and balance, aspect ratio, output count, and absence of
 upscale. The fixed order is baseline first and ShotFlow second, with a maximum
 of two submissions and no automatic retry.
+
+Gate 5 demonstrated that those preflight checks are insufficient for Flow's
+Slate-based editor: DOM-visible text did not prove the internal submitted
+Prompt. Any future gate must first prove Prompt entry without a paid submission,
+must not use automated `Enter`, and requires a new explicit credit approval.

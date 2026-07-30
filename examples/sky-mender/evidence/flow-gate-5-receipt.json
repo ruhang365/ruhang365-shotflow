@@ -1,0 +1,68 @@
+{
+  "evidence_version": "1.0",
+  "case_id": "sky-mender",
+  "gate_id": "google-flow-gate-5",
+  "status": "invalid_protocol_execution",
+  "recorded_at": "2026-07-30T16:37:00+00:00",
+  "provider": "Google Flow",
+  "model": {
+    "selected": "Veo 3.1 - Quality",
+    "evidence_limit": "The model was verified in the creation interface; individual result detail pages did not expose the originating model."
+  },
+  "parameters": {
+    "mode": "Video to Frames, first frame only",
+    "ratio": "16:9",
+    "duration_seconds": 8,
+    "output_count": 1,
+    "displayed_credits_per_task": 100,
+    "upscale": false
+  },
+  "shared_reference": {
+    "role": "first_frame",
+    "sha256": "f05efcff94c047cdf46f681daf8996896e257ea3e9a6e54f1d36944b81bba1cd"
+  },
+  "expected_prompts": {
+    "baseline_sha256": "7d3736086362cceadb7fdf565513ab9d75a2e03af313284e52522b3164f49970",
+    "shotflow_sha256": "f6c444d462ca00d2103b4423fbd6a24d5e72dd847a0228df6c60cdaef095a2eb"
+  },
+  "actual_submission": {
+    "independent_tasks": 3,
+    "observed_prompt": "G",
+    "observed_prompt_sha256": "333e0a1e27815d0ceee55c473fe3dc93d56c63e3bee2b3b4aee8eed6d70191a3",
+    "successful_video_outputs": 3,
+    "baseline_valid": false,
+    "shotflow_submitted": false,
+    "cause": "Two Enter keystrokes intended to insert a blank line were interpreted by Flow as submissions. A later explicit Create action submitted a third task. Flow's visual editor state did not match its internal submitted Prompt state.",
+    "cause_confidence": "high",
+    "provider_task_identifiers_anonymized": true
+  },
+  "credits": {
+    "authorized_maximum": 200,
+    "balance_before": 1050,
+    "balance_after": 750,
+    "observed_consumption": 300,
+    "excess_over_authorized_maximum": 100,
+    "authorization_compliant": false
+  },
+  "downloaded_private_output": {
+    "attempt": 3,
+    "sha256": "160defd544c8dd2a5bfe234e28b10adf4b47b2f4baabe2f85f645f4596fa2461",
+    "bytes": 2041346,
+    "codec": "h264",
+    "width": 1280,
+    "height": 720,
+    "frame_rate": 24,
+    "duration_seconds": 8.0,
+    "audio_codec": "aac",
+    "committed_to_git": false
+  },
+  "evidence_use": {
+    "eligible_for_ab_scoring": false,
+    "eligible_for_effect_claims": false,
+    "eligible_for_public_showcase": false
+  },
+  "aigc_disclosure": {
+    "source_media_modified": false,
+    "provider_identifiers_anonymized": true
+  }
+}
