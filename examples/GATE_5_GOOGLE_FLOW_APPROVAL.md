@@ -172,7 +172,7 @@ shared provider line and no other content changes.
 ## Paid execution outcome
 
 The paid execution did not produce a valid baseline or ShotFlow comparison.
-[The public-safe receipt](sky-mender/evidence/flow-gate-5-receipt.json) records
+[The public-safe attempt ledger](sky-mender/evidence/flow-gate-5-attempts.json) records
 the following:
 
 - Authorized maximum: two tasks and `200` credits

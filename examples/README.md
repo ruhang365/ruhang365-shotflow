@@ -23,3 +23,10 @@ subsequent VIP credit stop and retained Xiaoyunque queue. Google Flow is an
 additional independent portability check described in
 [GOOGLE_FLOW_VALIDATION.md](GOOGLE_FLOW_VALIDATION.md); its frozen two-output
 draft is [GATE_5_GOOGLE_FLOW_APPROVAL.md](GATE_5_GOOGLE_FLOW_APPROVAL.md).
+
+Provider continuity is part of the experiment contract: work already started
+on Xiaoyunque remains there, while new supplementary work may use Xiaoyunque
+and Flow under separate, pre-registered provider roles. Current Flow Browser
+automation is safe for inspection and result handling but not Prompt entry;
+paid Flow Prompts require native user paste and user-controlled submission
+until the zero-credit Browser canary passes.

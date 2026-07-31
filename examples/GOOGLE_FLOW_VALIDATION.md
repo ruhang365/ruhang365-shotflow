@@ -1,6 +1,6 @@
 # Google Flow portability validation
 
-Status: **GATE 5 INVALID — THREE `G` TASKS; NO SHOTFLOW COMPARISON**
+Status: **GATE 5 INVALID — BROWSER PROMPT INPUT STILL UNSAFE**
 
 After Gate 4 stopped for insufficient Xiaoyunque credits, the user clarified
 that the Seedance queue must remain assigned to Xiaoyunque after its daily
@@ -18,7 +18,41 @@ interpreted as submission; a third was triggered by the explicit Create action.
 All three produced videos, but none is valid baseline or ShotFlow evidence. The
 balance fell from `1,050` to `750`, an observed cost of `300` credits against an
 authorized maximum of `200`. ShotFlow was not submitted. See the
-[public-safe execution receipt](sky-mender/evidence/flow-gate-5-receipt.json).
+[public-safe attempt ledger](sky-mender/evidence/flow-gate-5-attempts.json).
+
+## Provider allocation policy
+
+- Work already started as a Xiaoyunque / Seedance experiment remains on
+  Xiaoyunque so its model, duration, resolution, references, and comparison
+  contract do not change mid-experiment.
+- New work may combine Xiaoyunque and Google Flow when each provider has a
+  pre-registered role. Results remain provider-specific and are never pooled as
+  if they came from one controlled experiment.
+- Xiaoyunque remains appropriate for the retained Seedance VIP / 1080p queue.
+  Flow may handle new eight-second portability, exploration, or supplementary
+  shots after its Prompt is entered safely.
+- Every credit-consuming provider run still requires its own exact Prompt,
+  model, settings, references, attempt budget, and explicit approval.
+
+## Zero-credit Browser input canary
+
+On 2026-07-31, Browser plugin `26.727.40816` was tested with the single-line
+canary `SHOTFLOW_INPUT_CANARY_20260731_NO_SUBMIT`. No `Enter` key or Create
+action was used.
+
+- Input method: Browser Playwright `locator.fill()`
+- Result: failed
+- Failure mode: the canary was written into a Slate zero-width placeholder
+  node, while Flow retained its Prompt placeholder and kept Create disabled
+- Balance: `750` before and after
+- Independent video tasks: `3` before and after
+- New submissions and credit consumption: `0`
+
+This reproduces the underlying incompatibility without spending credits. The
+current Browser `fill()` path changes DOM content but does not update Flow's
+Slate/React editor state. Until a later canary passes, Codex Browser may inspect
+settings, attach approved media, monitor results, download outputs, and record
+evidence, but it must not enter paid Flow Prompts.
 
 ## Role in ShotFlow evidence
 
@@ -82,3 +116,5 @@ Gate 5 demonstrated that those preflight checks are insufficient for Flow's
 Slate-based editor: DOM-visible text did not prove the internal submitted
 Prompt. Any future gate must first prove Prompt entry without a paid submission,
 must not use automated `Enter`, and requires a new explicit credit approval.
+The current safe fallback is native user paste with no `Enter`, followed by
+user-controlled Create; Codex may resume monitoring only after submission.
