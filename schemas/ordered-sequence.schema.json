@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/ruhang365/ruhang365-shotflow/main/schemas/ordered-sequence.schema.json",
+  "title": "ShotFlow Ordered Sequence v1",
+  "type": "object",
+  "required": ["sequence_version", "duration_seconds", "anchors", "checkpoints"],
+  "properties": {
+    "sequence_version": {"const": "1.0"},
+    "duration_seconds": {"type": "number", "exclusiveMinimum": 0},
+    "anchors": {
+      "type": "object",
+      "required": ["identity", "wardrobe_props", "space_direction", "light_material"],
+      "properties": {
+        "identity": {"type": "string", "minLength": 1, "maxLength": 320},
+        "wardrobe_props": {"type": "string", "minLength": 1, "maxLength": 320},
+        "space_direction": {"type": "string", "minLength": 1, "maxLength": 320},
+        "light_material": {"type": "string", "minLength": 1, "maxLength": 320}
+      },
+      "additionalProperties": false
+    },
+    "checkpoints": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "prefixItems": [
+        {"$ref": "#/$defs/matchCheckpoint"},
+        {"$ref": "#/$defs/continueCheckpoint"},
+        {"$ref": "#/$defs/initiateCheckpoint"},
+        {"$ref": "#/$defs/resolveCheckpoint"},
+        {"$ref": "#/$defs/holdCheckpoint"}
+      ],
+      "items": false
+    }
+  },
+  "$defs": {
+    "checkpoint": {
+      "type": "object",
+      "required": ["phase", "start_seconds", "end_seconds", "state", "visual_test"],
+      "properties": {
+        "phase": {"type": "string"},
+        "start_seconds": {"type": "number", "minimum": 0},
+        "end_seconds": {"type": "number", "exclusiveMinimum": 0},
+        "state": {"type": "string", "minLength": 1, "maxLength": 360},
+        "visual_test": {"type": "string", "minLength": 1, "maxLength": 240}
+      },
+      "additionalProperties": false
+    },
+    "matchCheckpoint": {
+      "allOf": [
+        {"$ref": "#/$defs/checkpoint"},
+        {"properties": {"phase": {"const": "match"}}}
+      ]
+    },
+    "continueCheckpoint": {
+      "allOf": [
+        {"$ref": "#/$defs/checkpoint"},
+        {"properties": {"phase": {"const": "continue"}}}
+      ]
+    },
+    "initiateCheckpoint": {
+      "allOf": [
+        {"$ref": "#/$defs/checkpoint"},
+        {"properties": {"phase": {"const": "initiate"}}}
+      ]
+    },
+    "resolveCheckpoint": {
+      "allOf": [
+        {"$ref": "#/$defs/checkpoint"},
+        {"properties": {"phase": {"const": "resolve"}}}
+      ]
+    },
+    "holdCheckpoint": {
+      "allOf": [
+        {"$ref": "#/$defs/checkpoint"},
+        {"properties": {"phase": {"const": "hold"}}}
+      ]
+    }
+  },
+  "additionalProperties": false
+}

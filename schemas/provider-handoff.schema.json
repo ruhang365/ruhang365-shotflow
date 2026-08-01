@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/ruhang365/ruhang365-shotflow/main/schemas/provider-handoff.schema.json",
+  "title": "ShotFlow Provider Handoff v1",
+  "type": "object",
+  "required": [
+    "handoff_version",
+    "project_schema_version",
+    "profile",
+    "project_id",
+    "variant",
+    "source_shot_id",
+    "provider",
+    "creative_prompt",
+    "submission_prompt",
+    "references",
+    "known_output_sha256",
+    "acceptance_gates"
+  ],
+  "properties": {
+    "handoff_version": {"const": "1.0"},
+    "project_schema_version": {"const": "1.0"},
+    "profile": {
+      "type": "string",
+      "enum": ["video-context-v1", "anchor-frame-v1"]
+    },
+    "project_id": {"type": "string", "minLength": 1},
+    "variant": {"type": "string", "minLength": 1},
+    "source_shot_id": {"type": "string", "minLength": 1},
+    "provider": {
+      "type": "object",
+      "required": ["platform", "model_tool"],
+      "properties": {
+        "platform": {"type": "string", "minLength": 1},
+        "model_tool": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "creative_prompt": {"$ref": "#/$defs/artifact"},
+    "submission_prompt": {
+      "type": "object",
+      "required": ["text", "sha256", "creative_prompt_sha256"],
+      "properties": {
+        "text": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "creative_prompt_sha256": {"$ref": "#/$defs/sha256"}
+      },
+      "additionalProperties": false
+    },
+    "references": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["attachment_index", "role", "authority", "artifact"],
+        "properties": {
+          "attachment_index": {"type": "integer", "minimum": 1, "maximum": 2},
+          "role": {
+            "type": "string",
+            "enum": ["authoritative_opening_frame", "motion_context_video"]
+          },
+          "authority": {"type": "string", "minLength": 1},
+          "artifact": {"$ref": "#/$defs/artifact"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "known_output_sha256": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/sha256"},
+      "uniqueItems": true
+    },
+    "acceptance_gates": {
+      "type": "object",
+      "required": [
+        "new_artifact_hash_required",
+        "opening_frame_match_required",
+        "opening_frame_review",
+        "continuity_safe"
+      ],
+      "properties": {
+        "new_artifact_hash_required": {"const": true},
+        "opening_frame_match_required": {"const": true},
+        "opening_frame_review": {"enum": ["pending", "accepted", "rejected"]},
+        "continuity_safe": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"profile": {"const": "anchor-frame-v1"}}},
+      "then": {"properties": {"references": {"minItems": 1, "maxItems": 1}}}
+    },
+    {
+      "if": {"properties": {"profile": {"const": "video-context-v1"}}},
+      "then": {"properties": {"references": {"minItems": 2, "maxItems": 2}}}
+    }
+  ],
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "artifact": {
+      "type": "object",
+      "required": ["kind", "path", "sha256", "bytes"],
+      "properties": {
+        "kind": {"type": "string", "minLength": 1},
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "bytes": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

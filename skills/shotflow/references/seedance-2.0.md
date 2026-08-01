@@ -1,6 +1,6 @@
 # Seedance 2.0 adapter
 
-## Verified v0.1 profile
+## Verified v0.2 profile
 
 ```json
 {

@@ -10,6 +10,8 @@ from shotflow.evidence import record_attempt
 
 
 ROOT = Path(__file__).resolve().parents[1]
+MP4_BYTES = b"\x00\x00\x00\x18ftypisom\x00\x00\x00\x00"
+PNG_BYTES = b"\x89PNG\r\n\x1a\nshotflow"
 
 
 class EvidenceTests(unittest.TestCase):
@@ -38,8 +40,8 @@ class EvidenceTests(unittest.TestCase):
 
             video = case / "artifacts" / "clip-01.mp4"
             frame = case / "artifacts" / "clip-01-final.png"
-            video.write_bytes(b"video")
-            frame.write_bytes(b"frame")
+            video.write_bytes(MP4_BYTES + b"video")
+            frame.write_bytes(PNG_BYTES + b"frame")
             accepted = record_attempt(
                 case,
                 "clip-01",

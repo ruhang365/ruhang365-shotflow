@@ -1,0 +1,47 @@
+{
+  "sequence_version": "1.0",
+  "duration_seconds": 5,
+  "anchors": {
+    "identity": "One squat smoky-glass perfume bottle keeps its broad shoulders and asymmetric front-right facet.",
+    "wardrobe_props": "The rounded black cap stays level above the silver collar, and the amber exterior droplet stays attached to the upper-left face.",
+    "space_direction": "The near-frontal bottle stays centered above the low liquid horizon at constant scale.",
+    "light_material": "Cool camera-left light and amber underlight keep the accepted glass, metal, cap, and liquid response."
+  },
+  "checkpoints": [
+    {
+      "phase": "match",
+      "start_seconds": 0,
+      "end_seconds": 0.5,
+      "state": "The opening matches the accepted frame: centered hovering bottle, level closed cap, displaced collar, and attached upper-left droplet.",
+      "visual_test": "Bottle silhouette, cap alignment, collar asymmetry, droplet position, horizon, and reflection paths match the accepted frame."
+    },
+    {
+      "phase": "continue",
+      "start_seconds": 0.5,
+      "end_seconds": 1.25,
+      "state": "Residual collar rotation settles as the attached droplet elongates slightly and the bottle holds position.",
+      "visual_test": "The collar advances a small visible arc, the droplet remains attached, and bottle scale and horizon remain fixed."
+    },
+    {
+      "phase": "initiate",
+      "start_seconds": 1.25,
+      "end_seconds": 2.25,
+      "state": "The level black cap rises straight beyond one centimeter and reveals the silver neck for a clear beat.",
+      "visual_test": "A visible vertical gap separates the horizontal cap from the collar and the exposed neck reads cleanly."
+    },
+    {
+      "phase": "resolve",
+      "start_seconds": 2.25,
+      "end_seconds": 4.25,
+      "state": "One thin amber ribbon begins at the exposed neck and traces one tight clockwise neck orbit.",
+      "visual_test": "The ribbon source stays at the neck and its complete circular path remains localized above the bottle shoulders."
+    },
+    {
+      "phase": "hold",
+      "start_seconds": 4.25,
+      "end_seconds": 5,
+      "state": "The cap hovers level, the amber ring settles around the collar, and the attached droplet remains visible.",
+      "visual_test": "The final frame clearly shows the level hovering cap, centered bottle, neck-localized amber ring, attached droplet, and stable studio reflections."
+    }
+  ]
+}

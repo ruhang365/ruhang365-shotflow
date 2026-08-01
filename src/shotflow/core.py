@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import re
 from copy import deepcopy
 from datetime import datetime, timezone
@@ -13,9 +14,24 @@ from typing import Any, Iterable
 from .providers import get_adapter
 
 SCHEMA_VERSION = "1.0"
-CONTRACT_VERSION = "1.0"
+CONTRACT_VERSION = "1.1"
 PATCH_VERSION = "1.0"
-PROMPT_PROFILE = "provider-direct-v2"
+SEQUENCE_VERSION = "1.0"
+PROMPT_PROFILE = "provider-direct-v3"
+
+CHECKPOINT_PHASES = ("match", "continue", "initiate", "resolve", "hold")
+SEQUENCE_ANCHORS = (
+    "identity",
+    "wardrobe_props",
+    "space_direction",
+    "light_material",
+)
+NEGATIVE_DIRECTIVE = re.compile(
+    r"\b(?:do not|don't|must not|never|avoid|without|cannot)\b|"
+    r"(?:不要|不得|禁止|避免|不能)",
+    re.IGNORECASE,
+)
+MAX_SEQUENCE_PROMPT_CHARS = 2400
 
 GRAMMAR_AXES = (
     "narrative_moment",
@@ -227,6 +243,130 @@ def validate_observed_state(state: dict[str, Any]) -> None:
             raise ShotFlowError(f"Observed state category {key!r} must not be empty")
 
 
+def _validate_positive_text(value: Any, field: str, maximum: int) -> str:
+    if not isinstance(value, str) or not value.strip():
+        raise ShotFlowError(f"{field} must be a non-empty string")
+    text = value.strip()
+    if len(text) > maximum:
+        raise ShotFlowError(f"{field} exceeds {maximum} characters")
+    if NEGATIVE_DIRECTIVE.search(text):
+        raise ShotFlowError(
+            f"{field} uses a negative directive; rewrite it as a visible positive state"
+        )
+    return text
+
+
+def validate_ordered_sequence(
+    sequence: dict[str, Any],
+    duration_seconds: int,
+) -> None:
+    if not isinstance(sequence, dict):
+        raise ShotFlowError("Ordered sequence must be an object")
+    required = {"sequence_version", "duration_seconds", "anchors", "checkpoints"}
+    missing = sorted(required - set(sequence))
+    unknown = sorted(set(sequence) - required)
+    if missing:
+        raise ShotFlowError(
+            "Ordered sequence is missing fields: " + ", ".join(missing)
+        )
+    if unknown:
+        raise ShotFlowError(
+            "Ordered sequence has unknown fields: " + ", ".join(unknown)
+        )
+    if sequence["sequence_version"] != SEQUENCE_VERSION:
+        raise ShotFlowError(
+            f"Unsupported sequence_version {sequence['sequence_version']!r}"
+        )
+    sequence_duration = sequence["duration_seconds"]
+    if (
+        isinstance(sequence_duration, bool)
+        or not isinstance(sequence_duration, (int, float))
+        or not math.isclose(float(sequence_duration), float(duration_seconds))
+    ):
+        raise ShotFlowError(
+            "Ordered sequence duration_seconds must match the provider duration"
+        )
+
+    anchors = sequence["anchors"]
+    if not isinstance(anchors, dict):
+        raise ShotFlowError("Ordered sequence anchors must be an object")
+    missing_anchors = sorted(set(SEQUENCE_ANCHORS) - set(anchors))
+    unknown_anchors = sorted(set(anchors) - set(SEQUENCE_ANCHORS))
+    if missing_anchors:
+        raise ShotFlowError(
+            "Ordered sequence is missing anchors: " + ", ".join(missing_anchors)
+        )
+    if unknown_anchors:
+        raise ShotFlowError(
+            "Ordered sequence has unknown anchors: " + ", ".join(unknown_anchors)
+        )
+    for category in SEQUENCE_ANCHORS:
+        _validate_positive_text(anchors[category], f"anchors.{category}", 320)
+
+    checkpoints = sequence["checkpoints"]
+    if not isinstance(checkpoints, list) or len(checkpoints) != len(CHECKPOINT_PHASES):
+        raise ShotFlowError("Ordered sequence requires exactly five checkpoints")
+    previous_end = 0.0
+    checkpoint_fields = {
+        "phase",
+        "start_seconds",
+        "end_seconds",
+        "state",
+        "visual_test",
+    }
+    for index, (checkpoint, expected_phase) in enumerate(
+        zip(checkpoints, CHECKPOINT_PHASES, strict=True), start=1
+    ):
+        if not isinstance(checkpoint, dict):
+            raise ShotFlowError(f"Checkpoint {index} must be an object")
+        missing_checkpoint = sorted(checkpoint_fields - set(checkpoint))
+        unknown_checkpoint = sorted(set(checkpoint) - checkpoint_fields)
+        if missing_checkpoint:
+            raise ShotFlowError(
+                f"Checkpoint {index} is missing fields: "
+                + ", ".join(missing_checkpoint)
+            )
+        if unknown_checkpoint:
+            raise ShotFlowError(
+                f"Checkpoint {index} has unknown fields: "
+                + ", ".join(unknown_checkpoint)
+            )
+        if checkpoint["phase"] != expected_phase:
+            raise ShotFlowError(
+                f"Checkpoint {index} phase must be {expected_phase!r}"
+            )
+        start = checkpoint["start_seconds"]
+        end = checkpoint["end_seconds"]
+        if (
+            isinstance(start, bool)
+            or isinstance(end, bool)
+            or not isinstance(start, (int, float))
+            or not isinstance(end, (int, float))
+        ):
+            raise ShotFlowError(f"Checkpoint {index} times must be numbers")
+        start_value = float(start)
+        end_value = float(end)
+        if not math.isclose(start_value, previous_end, abs_tol=1e-6):
+            raise ShotFlowError(
+                f"Checkpoint {index} must start when the previous checkpoint ends"
+            )
+        if end_value <= start_value:
+            raise ShotFlowError(f"Checkpoint {index} end_seconds must follow its start")
+        if end_value > float(duration_seconds) + 1e-6:
+            raise ShotFlowError(f"Checkpoint {index} exceeds the provider duration")
+        _validate_positive_text(
+            checkpoint["state"], f"checkpoints[{index}].state", 360
+        )
+        _validate_positive_text(
+            checkpoint["visual_test"], f"checkpoints[{index}].visual_test", 240
+        )
+        previous_end = end_value
+    if not math.isclose(previous_end, float(duration_seconds), abs_tol=1e-6):
+        raise ShotFlowError(
+            "The final checkpoint must end at the provider duration"
+        )
+
+
 def find_shot(project: dict[str, Any], shot_id: str) -> dict[str, Any]:
     for shot in project["shots"]:
         if shot["id"] == shot_id:
@@ -292,8 +432,38 @@ def ensure_inside_project(project_file: Path, artifact: Path) -> tuple[Path, str
     return resolved, relative.as_posix()
 
 
+def validate_media_signature(path: Path, kind: str) -> None:
+    """Reject obvious non-media files without claiming full decode validation."""
+
+    if kind not in {"video", "final_frame"}:
+        return
+    with path.open("rb") as handle:
+        header = handle.read(16)
+    if kind == "video":
+        recognized = (
+            header[4:8] == b"ftyp"  # MP4, MOV, and related ISO base media
+            or header.startswith(b"\x1a\x45\xdf\xa3")  # WebM or Matroska
+            or (header.startswith(b"RIFF") and header[8:12] == b"AVI ")
+            or header.startswith((b"\x00\x00\x01\xba", b"\x00\x00\x01\xb3"))
+        )
+        label = "Video"
+    else:
+        recognized = (
+            header.startswith(b"\x89PNG\r\n\x1a\n")
+            or header.startswith(b"\xff\xd8\xff")
+            or (header.startswith(b"RIFF") and header[8:12] == b"WEBP")
+            or header.startswith((b"GIF87a", b"GIF89a", b"BM", b"II*\x00", b"MM\x00*"))
+        )
+        label = "Final-frame"
+    if not recognized:
+        raise ShotFlowError(
+            f"{label} artifact has no recognized media signature: {path}"
+        )
+
+
 def build_artifact(project_file: Path, path: Path, kind: str) -> dict[str, Any]:
     resolved, relative = ensure_inside_project(project_file, path)
+    validate_media_signature(resolved, kind)
     return {
         "kind": kind,
         "path": relative,
@@ -434,35 +604,55 @@ def _render_value(value: Any) -> str:
 
 def render_prompt(
     beat: str,
-    state: dict[str, Any],
     grammar: dict[str, Any],
+    sequence: dict[str, Any],
 ) -> str:
+    beat_text = _validate_positive_text(beat, "beat", 320)
+    for axis in GRAMMAR_AXES:
+        _validate_positive_text(grammar[axis], f"grammar.{axis}", 360)
+    checkpoints = sequence["checkpoints"]
+    anchors = sequence["anchors"]
     lines = [
-        "CONTINUE FROM THE PROVIDED VIDEO AND FINAL FRAME.",
+        "CONTINUE FROM THE ACCEPTED FINAL FRAME.",
         "",
-        "Required visible action:",
-        f"- {beat}",
-        f"- Physical order: {_render_value(grammar['narrative_moment'])}",
-        "- The final seconds must visibly prove the required action. Do not stop at setup.",
+        f"Story outcome: {beat_text}",
         "",
-        "Opening continuity locks — match before advancing the action:",
-        f"- motion: {_render_value(state['motion'])}",
-        f"- space: {_render_value(state['space_direction'])}",
-        f"- subject: {_render_value(state['identity'])}",
-        f"- props and wardrobe: {_render_value(state['wardrobe_props'])}",
-        f"- light and material: {_render_value(state['light_material'])}",
-        "",
-        "Shot execution:",
-        f"- camera: {_render_value(grammar['camera_movement'])}",
-        f"- composition: {_render_value(grammar['space_composition'])}",
-        f"- lighting: {_render_value(grammar['light_color'])}",
-        f"- physics: {_render_value(grammar['material_physics'])}",
-        "",
-        "Hard rule: continue the accepted action from its real endpoint. "
-        "Do not reset pose, prop ownership, screen direction, lighting source, "
-        "material state, or spatial geography.",
+        "Five visible checkpoints — follow this exact order:",
     ]
-    return "\n".join(lines).rstrip() + "\n"
+    for index, checkpoint in enumerate(checkpoints, start=1):
+        start = float(checkpoint["start_seconds"])
+        end = float(checkpoint["end_seconds"])
+        lines.append(
+            f"{index}. {checkpoint['phase'].upper()} | {start:.2f}-{end:.2f}s — "
+            f"{checkpoint['state'].strip()}"
+        )
+    lines.extend(
+        [
+            "",
+            "Continuity anchors throughout:",
+            f"- identity: {anchors['identity'].strip()}",
+            f"- props: {anchors['wardrobe_props'].strip()}",
+            f"- space: {anchors['space_direction'].strip()}",
+            f"- light and material: {anchors['light_material'].strip()}",
+            "",
+            "Cinematic execution:",
+            f"- narrative rhythm: {_render_value(grammar['narrative_moment'])}",
+            f"- camera: {_render_value(grammar['camera_movement'])}",
+            f"- composition: {_render_value(grammar['space_composition'])}",
+            f"- lighting: {_render_value(grammar['light_color'])}",
+            f"- physics: {_render_value(grammar['material_physics'])}",
+            "",
+            f"Completion: reach and clearly hold checkpoint 5 by "
+            f"{float(sequence['duration_seconds']):.2f}s.",
+        ]
+    )
+    prompt = "\n".join(lines).rstrip() + "\n"
+    if len(prompt) > MAX_SEQUENCE_PROMPT_CHARS:
+        raise ShotFlowError(
+            f"Compiled provider prompt exceeds {MAX_SEQUENCE_PROMPT_CHARS} characters; "
+            "shorten anchors or checkpoints"
+        )
+    return prompt
 
 
 def compile_next_shot(
@@ -471,6 +661,7 @@ def compile_next_shot(
     next_shot_id: str,
     beat: str,
     grammar: dict[str, Any],
+    sequence: dict[str, Any],
 ) -> dict[str, Any]:
     validate_grammar(grammar)
     source = find_shot(project, source_shot_id)
@@ -487,6 +678,10 @@ def compile_next_shot(
     final_frame = source.get("artifacts", {}).get("final_frame")
     if not video or not final_frame:
         raise ShotFlowError("Source shot must bind a video and final frame")
+    duration_seconds = project["provider"]["parameters"]["duration_seconds"]
+    validate_ordered_sequence(sequence, duration_seconds)
+    prompt = render_prompt(beat, grammar, sequence)
+    sequence_sha256 = sha256_text(canonical_json(sequence))
     contract = {
         "contract_version": CONTRACT_VERSION,
         "project_schema_version": SCHEMA_VERSION,
@@ -500,10 +695,12 @@ def compile_next_shot(
         },
         "beat": beat,
         "observed_state": deepcopy(state),
+        "observed_state_sha256": sha256_text(canonical_json(state)),
         "continuity_locks": continuity_locks_from_state(state),
         "grammar": deepcopy(grammar),
+        "ordered_sequence": deepcopy(sequence),
+        "ordered_sequence_sha256": sequence_sha256,
     }
-    prompt = render_prompt(beat, state, grammar)
     contract["compiled_prompt"] = {
         "text": prompt,
         "sha256": sha256_text(prompt),
@@ -516,6 +713,7 @@ def compile_next_shot(
         "status": "compiled",
         "planned": deepcopy(state),
         "grammar": deepcopy(grammar),
+        "execution_sequence": deepcopy(sequence),
         "continuity_locks": deepcopy(contract["continuity_locks"]),
         "reference_shot_id": source_shot_id,
         "artifacts": {},
@@ -527,6 +725,8 @@ def compile_next_shot(
             "continuity_safe": True,
             "source_video_sha256": video["sha256"],
             "source_final_frame_sha256": final_frame["sha256"],
+            "ordered_sequence_sha256": sequence_sha256,
+            "prompt_profile": PROMPT_PROFILE,
         },
     }
     existing = next(

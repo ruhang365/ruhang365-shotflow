@@ -37,15 +37,28 @@ Start the next shot by continuing that exact action. Do not reset the subject in
 ## Provider-facing prompt
 
 Keep the complete observed state in the JSON contract for audit. Render the
-provider-facing prompt with the `provider-direct-v2` profile:
+provider-facing prompt with the `provider-direct-v3` profile. Give it exactly
+five timed visible states in this order:
 
-1. put the required visible action and physical order first;
-2. require the ending to visibly prove that action;
-3. include only the opening-state locks needed to prevent a reset;
-4. follow with camera, composition, lighting, and physics directives;
-5. end with the hard no-reset rule.
+1. `match`: reproduce the accepted endpoint as the opening state;
+2. `continue`: carry the unresolved observed motion or force forward;
+3. `initiate`: make the new action's cause visibly occur;
+4. `resolve`: make the required effect visibly complete;
+5. `hold`: hold the final proof long enough to evaluate.
 
-Do not let a long state inventory bury the action the shot must complete.
+Write every checkpoint, compact anchor, beat, and grammar decision as a
+positive visible state. The compiler rejects negative directives such as
+`do not`, `must not`, `avoid`, and `without`. Translate them into the state that
+should be visible instead.
+
+Give every checkpoint a `visual_test` in the Ordered Sequence JSON. Keep those
+tests and the complete observation in the contract for human or Pro evaluation;
+send only the five checkpoint states and compact anchors to the provider. This
+keeps the creative Prompt shorter than the evidence contract.
+
+The five time ranges must be contiguous, begin at zero, and end at the provider
+duration. Keep `match` brief, give the causal action enough time in `initiate`
+and `resolve`, and reserve a visible final hold.
 
 ## Fair A/B comparison
 

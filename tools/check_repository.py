@@ -24,7 +24,7 @@ SECRET_PATTERNS = (
 
 def files() -> list[Path]:
     tracked = subprocess.run(
-        ["git", "ls-files", "-z"],
+        ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"],
         cwd=ROOT,
         capture_output=True,
         check=False,
@@ -169,6 +169,8 @@ def main() -> int:
         "schemas/shotflow.project.schema.json",
         "schemas/observation-patch.schema.json",
         "schemas/generation-attempt.schema.json",
+        "schemas/ordered-sequence.schema.json",
+        "schemas/provider-handoff.schema.json",
     )
     for relative in required:
         if not (ROOT / relative).is_file():

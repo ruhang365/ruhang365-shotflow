@@ -1,4 +1,4 @@
 interface:
   display_name: "ShotFlow"
-  short_description: "Compile continuity-safe prompts from real shot outcomes"
-  default_prompt: "Use $shotflow to plan a cinematic sequence and compile the next shot from the accepted result."
+  short_description: "Compile five-stage AI video continuity contracts"
+  default_prompt: "Use $shotflow to compile the next AI video shot into five timed visible checkpoints from an accepted result."

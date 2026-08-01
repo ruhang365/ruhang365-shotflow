@@ -1,8 +1,8 @@
-# ShotFlow
+# ShotFlow — AI 视频连续性编译器与 Benchmark
 
-**从真实生成结果继续，而不是从原计划脑补下一镜头。**
+**从真实结果编译下一镜头，再验证它是否真的接上了。**
 
-> 让下一个 AI 镜头，记得上一个镜头真实发生了什么。
+> 模型说它续上了，ShotFlow 负责检查它是否真的续上。
 
 [English](README.md) · [案例](examples/) · [Skill](skills/shotflow/) · [Schema](schemas/) · [Pro 边界](PRO.md)
 
@@ -10,7 +10,7 @@
 
 ## 当前证据状态
 
-ShotFlow v0.1 Core 已实现并可测试。三组真实 Seedance Clip 01 已经生成、
+ShotFlow v0.2 Core 已实现并可测试。三组真实 Seedance Clip 01 已经生成、
 接受、观察并记录哈希。第一组受控 Clip 02 A/B 已完成生成和盲评，
 结果是**基线获胜**：ShotFlow v1 两名评审平均 83.34，基线 100。
 因此目前不宣称 ShotFlow 已提升连续性；失败结果保留为公开证据，并已推动
@@ -56,7 +56,8 @@ ShotFlow 把已接受的视频当作事实源：
 验收动作承接与连续性
 ```
 
-它不是电影感形容词或导演姓名合集，而是一套可执行、可审计的状态工作流。
+它不是电影感形容词或导演姓名合集，而是一套连续性编译器与证据优先的
+Benchmark。
 
 ## 60 秒开始
 
@@ -100,20 +101,26 @@ shotflow score
 - `plan`：只计划当前镜头，记录五轴电影语法。
 - `observe`：绑定真实视频、最终帧和六类完整观察。
 - `diff`：暴露原计划与真实结果的差异。
-- `compile-next`：从真实状态生成下一镜头合同与冻结 Prompt。
+- `compile-next`：读取五阶段 Ordered Sequence，从真实状态生成下一镜头合同与冻结 Prompt。
 - `score`：用统一量表验收真实结果。
 
-所有视频与最终帧必须放在项目目录内。CLI 只保存相对路径、大小和 SHA-256，不保存账号、Token、Cookie 或私密运行链接。
+所有视频与最终帧必须放在项目目录内。CLI 会拒绝无法识别媒体文件头的明显伪文件，但该轻量门禁不代表完整解码成功，也不证明服务商来源。CLI 只保存相对路径、大小和 SHA-256，不保存账号、Token、Cookie 或私密运行链接。
 
 ## 稳定接口
 
 - [`shotflow.project.json` v1](schemas/shotflow.project.schema.json)：项目、模型、实体、道具、镜头、观察、连续性锁、素材哈希、Prompt 和评分。
 - [`ObservationPatch` v1](schemas/observation-patch.schema.json)：Core 人工观察与未来 Pro 自动分析共用的输出格式。
 - [`Generation Attempt Ledger` v1](schemas/generation-attempt.schema.json)：记录每次提交、接受、拒绝和失败，不写入服务商私密标识。
+- [`Ordered Sequence` v1](schemas/ordered-sequence.schema.json)：定义五个连续计时的正向状态、精简观察锚点和逐阶段视觉验收条件。
+- [`Provider Handoff` v1](schemas/provider-handoff.schema.json)：固定参考素材角色、提交 Prompt 哈希、历史产物排除规则和首帧门禁。`anchor-frame-v1` 只使用已接受终点；只有 Provider 已证明能可靠绑定“仅作上下文”的源视频时，才使用 `video-context-v1`。
 - 五轴电影语法：叙事时刻、镜头运动、光线色彩、空间构图、材质物理。
 - 六项连续性量表：人物身份、服装道具、空间方向、动作承接、光线材质、故事节拍。
 
 真实观察始终覆盖计划状态。没有完整观察，不得输出 `continuity_safe=true`。
+
+新的 `compile-next` 默认使用 `provider-direct-v3`：JSON 合同保留完整观察和
+五项 `visual_test`，服务商 Prompt 只发送
+`match → continue → initiate → resolve → hold` 五个正向状态、精简锚点和完整五轴电影语法，并强制不超过 2400 字符。
 
 ## 公平 A/B
 
@@ -121,9 +128,10 @@ shotflow score
 
 1. 在 Clip 01 生成前冻结普通方法的 Clip 02 Prompt；
 2. 只接受一个 Clip 01 作为共同起点；
-3. 普通组与 ShotFlow 组使用相同模型、参数、视频和最终帧；
-4. 唯一变量是 Clip 02 是否读取真实观察；
-5. 评分时隐藏组别。
+3. 用一个冻结的 Provider Handoff profile 绑定 Clip 01 的真实终点；
+4. 普通组与 ShotFlow 组使用相同模型、参数、profile 和参考素材；
+5. 唯一变量是 Clip 02 是否读取真实观察；
+6. 评分时隐藏组别。
 
 只有 ShotFlow 在至少两组案例中获得多数胜出，且平均分提升至少 20 分，才会公开宣称连续性改善。
 

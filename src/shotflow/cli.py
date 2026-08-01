@@ -69,6 +69,11 @@ def build_parser() -> argparse.ArgumentParser:
     compile_next.add_argument("--next-shot", required=True)
     compile_next.add_argument("--beat", required=True)
     compile_next.add_argument("--grammar", required=True)
+    compile_next.add_argument(
+        "--sequence",
+        required=True,
+        help="JSON file with five timed positive checkpoints and continuity anchors",
+    )
     compile_next.add_argument("--contract-out")
     compile_next.add_argument("--prompt-out")
 
@@ -148,12 +153,14 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
 
     if args.command == "compile-next":
         grammar = read_json(Path(args.grammar))
+        sequence = read_json(Path(args.sequence))
         contract = compile_next_shot(
             project,
             source_shot_id=args.from_shot,
             next_shot_id=args.next_shot,
             beat=args.beat,
             grammar=grammar,
+            sequence=sequence,
         )
         save_project(project_file, project)
         _write_optional_json(args.contract_out, contract)

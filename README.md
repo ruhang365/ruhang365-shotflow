@@ -1,8 +1,9 @@
-# ShotFlow
+# ShotFlow — AI Video Continuity Compiler & Benchmark
 
-**Cinematic continuity for AI video — compiled from what actually happened.**
+**Compile the next shot from what actually happened, then benchmark whether it
+really continued.**
 
-> Make the next AI shot remember the previous shot.
+> Your model says it continued. ShotFlow checks whether it actually did.
 
 [中文说明](README.zh-CN.md) · [Examples](examples/) · [Skill](skills/shotflow/) · [Schemas](schemas/) · [Pro boundary](PRO.md)
 
@@ -10,7 +11,7 @@
 
 ## Evidence status
 
-ShotFlow v0.1 Core is implemented and testable. Three real Seedance Clip 01
+ShotFlow v0.2 Core is implemented and testable. Three real Seedance Clip 01
 results have been accepted, observed, and hashed. The first controlled Clip 02
 A/B pair was generated and blindly reviewed — and **the baseline won**. ShotFlow
 v1 scored 83.34 average versus 100 for the baseline, so no improvement claim is
@@ -58,7 +59,8 @@ compile Clip 02 from the real endpoint
 score the handoff
 ```
 
-It is a workflow and evidence format, not another collection of cinematic adjectives.
+It is a continuity compiler and an evidence-first benchmark, not another
+collection of cinematic adjectives.
 
 ## 60-second start
 
@@ -101,7 +103,7 @@ shotflow plan \
   --prompt clip-01.txt
 ```
 
-After accepting a real result, place the media inside the project and record all six observation categories:
+After accepting a real result, place the media inside the project and record all six observation categories. Core rejects unrecognized video and image signatures as obvious non-media files; this lightweight gate does not replace decode validation or provider provenance:
 
 ```bash
 shotflow observe \
@@ -123,6 +125,7 @@ shotflow compile-next \
   --next-shot clip-02-shotflow \
   --beat "The worker regains contact and seals the fissure." \
   --grammar clip-02-grammar.json \
+  --sequence clip-02-sequence.json \
   --contract-out clip-02-contract.json \
   --prompt-out clip-02-shotflow.txt
 ```
@@ -141,11 +144,18 @@ shotflow score \
 - [`shotflow.project.json` v1](schemas/shotflow.project.schema.json) stores provider settings, entities, props, planned shots, observations, locks, artifact hashes, prompts, and evaluations.
 - [`ObservationPatch` v1](schemas/observation-patch.schema.json) is the shared human/Core and future Pro analyzer output.
 - [`Generation Attempt Ledger` v1](schemas/generation-attempt.schema.json) records every submitted, accepted, rejected, or failed run without private provider identifiers.
-- Provider adapters describe portable settings. v0.1 marks only `seedance2.0_vision` as forward-tested.
+- [`Ordered Sequence` v1](schemas/ordered-sequence.schema.json) defines five contiguous, timed, positive checkpoints plus compact observed-state anchors and per-checkpoint visual tests.
+- [`Provider Handoff` v1](schemas/provider-handoff.schema.json) binds reference roles, submission Prompt hashes, historical artifact exclusion, and the opening-frame gate. `anchor-frame-v1` uses only the accepted endpoint; `video-context-v1` adds the source video only when context-only binding is proved.
+- Provider adapters describe portable settings. v0.2 marks only `seedance2.0_vision` through Xiaoyunque as forward-tested; Lovart-routed models remain separate evidence until accepted.
 - The five-axis grammar covers narrative moment, camera movement, light/color, space/composition, and material/physics.
 - The six-dimension rubric covers identity, wardrobe/props, space, motion, light/material, and story beat.
 
 Observed state always overrides planned state. Missing observations cannot produce a continuity-safe contract.
+
+New `compile-next` calls use `provider-direct-v3`: the complete observation and
+five visual tests remain in the JSON contract, while the provider Prompt carries
+only the five positive `match → continue → initiate → resolve → hold` states,
+compact anchors, and cinematic execution.
 
 ## Fair A/B protocol
 
@@ -153,8 +163,8 @@ For every case:
 
 1. freeze the baseline Clip 02 prompt before Clip 01 generation;
 2. generate and accept one Clip 01;
-3. bind the real Clip 01 video and final frame;
-4. give baseline and ShotFlow variants the same model, parameters, and references;
+3. bind the real Clip 01 endpoint using one frozen Provider Handoff profile;
+4. give baseline and ShotFlow variants the same model, parameters, profile, and references;
 5. change only whether Clip 02 uses the accepted observation;
 6. blind the variant labels during scoring.
 

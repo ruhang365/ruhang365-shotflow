@@ -95,6 +95,7 @@
         "status": {"type": "string"},
         "planned": {"type": "object"},
         "grammar": {"$ref": "#/$defs/grammar"},
+        "execution_sequence": {"type": ["object", "null"]},
         "continuity_locks": {"type": "array"},
         "reference_shot_id": {"type": ["string", "null"]},
         "artifacts": {"type": "object"},

@@ -42,7 +42,7 @@ shotflow compile-next
 shotflow score
 ```
 
-Keep generated video and frames under the project directory before binding them. The CLI rejects external paths and records relative paths plus SHA-256 hashes.
+Keep generated video and frames under the project directory before binding them. The CLI rejects external paths and unrecognized media signatures, then records relative paths plus SHA-256 hashes. This signature gate rejects obvious fake files; it does not prove that a file fully decodes or came from the named provider.
 
 ## Plan a shot
 
@@ -71,19 +71,43 @@ Read [continuity-contract.md](references/continuity-contract.md) before observin
 
 Use `compile-next` only after `observe`. Preserve the exact observed endpoint, prop ownership, screen direction, light source, material state, and geography. Change only what the new story beat requires.
 
-The CLI keeps the complete observed state in the JSON contract and emits a
-separate frozen provider-facing prompt and hash. The provider prompt must put
-the required visible action first, require visible proof at the ending, then
-apply the minimum opening-state locks. Present that prompt to the user before
-any paid or credit-consuming generation. Submit it unchanged after approval.
+Before compiling, author an Ordered Sequence v1 JSON file with exactly five
+contiguous phases: `match`, `continue`, `initiate`, `resolve`, and `hold`. Give
+each phase a visible positive state and a separate `visual_test`. Keep all four
+anchor summaries grounded in the accepted observation. Read
+[continuity-contract.md](references/continuity-contract.md) for the complete
+rules and [ordered-sequence.md](references/ordered-sequence.md) for the input
+shape and concise example.
+
+Run `compile-next` with `--sequence`. The CLI rejects gaps, overlaps, duration
+mismatches, missing phases, negative directives, and overlong provider prompts.
+The frozen provider Prompt has a hard limit of 2400 characters.
+It keeps the complete observed state and all five `visual_test` values in the
+JSON contract, while the frozen `provider-direct-v3` Prompt sends only the five
+ordered states, compact positive anchors, and cinematic execution decisions.
+Present that exact Prompt, settings, references, and attempt budget before any
+paid or credit-consuming generation. Submit it unchanged after approval.
 
 ## Use Seedance 2.0
 
-Read [seedance-2.0.md](references/seedance-2.0.md) when the chosen provider is Seedance. Treat only `seedance2.0_vision` as forward-tested in v0.1. Keep every A/B parameter and reference identical.
+Read [seedance-2.0.md](references/seedance-2.0.md) when the chosen model family
+is Seedance 2.0. Treat only `seedance2.0_vision` through Xiaoyunque as
+forward-tested in v0.2. A Lovart-routed Seedance 2.0 result is separate provider
+evidence and remains unverified until it passes the continuity gates. Keep every
+A/B model, parameter, platform, and reference identical.
+
+Before any external provider submission, read
+[provider-handoff.md](references/provider-handoff.md). Freeze one Handoff
+profile for both A/B variants. Prefer `anchor-frame-v1` when the provider cannot
+guarantee context-only source-video binding; use `video-context-v1` only after
+those roles are proved. Always bind the accepted final frame as authoritative,
+exclude historical artifact hashes, and require a manual opening-frame review.
 
 Default new projects to the full standard, non-VIP Seedance 2.0 channel
 `seedance2.0_direct` at `720p`, with `verified=false` until its real forward test
 passes.
+Use the `generic` adapter for offline planning or an unverified provider; an
+arbitrary model identifier remains `verified=false`.
 Do not substitute `Seedance_2.0_mini_lite`: that identifier is the Mini trial
 model, not the standard model. Use VIP only when the user explicitly selects
 and approves that higher-cost queue.

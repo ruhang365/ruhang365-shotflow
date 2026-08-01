@@ -1,0 +1,25 @@
+CONTINUE FROM THE ACCEPTED FINAL FRAME.
+
+Story outcome: The level cap rises, exposes the neck, and releases one thin amber orbit.
+
+Five visible checkpoints — follow this exact order:
+1. MATCH | 0.00-0.50s — The opening matches the accepted frame: centered hovering bottle, level closed cap, displaced collar, and attached upper-left droplet.
+2. CONTINUE | 0.50-1.25s — Residual collar rotation settles as the attached droplet elongates slightly and the bottle holds position.
+3. INITIATE | 1.25-2.25s — The level black cap rises straight beyond one centimeter and reveals the silver neck for a clear beat.
+4. RESOLVE | 2.25-4.25s — One thin amber ribbon begins at the exposed neck and traces one tight clockwise neck orbit.
+5. HOLD | 4.25-5.00s — The cap hovers level, the amber ring settles around the collar, and the attached droplet remains visible.
+
+Continuity anchors throughout:
+- identity: One squat smoky-glass perfume bottle keeps its broad shoulders and asymmetric front-right facet.
+- props: The rounded black cap stays level above the silver collar, and the amber exterior droplet stays attached to the upper-left face.
+- space: The near-frontal bottle stays centered above the low liquid horizon at constant scale.
+- light and material: Cool camera-left light and amber underlight keep the accepted glass, metal, cap, and liquid response.
+
+Cinematic execution:
+- narrative rhythm: Match, settle, lift, orbit, and hold in five visible stages.
+- camera: Lock the accepted near-frontal camera, horizon, focus, and bottle scale.
+- composition: Center the bottle above the low liquid horizon with both front facets readable.
+- lighting: Keep cool camera-left light and narrow amber underlight stable.
+- physics: Settle collar momentum, lift the cap vertically, then trace one thin vapor orbit from the neck.
+
+Completion: reach and clearly hold checkpoint 5 by 5.00s.
