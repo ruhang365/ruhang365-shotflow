@@ -1,0 +1,59 @@
+{
+  "receipt_version": "1.0",
+  "case_id": "obsidian-bloom",
+  "gate": "gate-7",
+  "variant": "clip-02-baseline-v03-gate7",
+  "status": "failed",
+  "recorded_at": "2026-08-01T12:09:55Z",
+  "provider": {
+    "platform": "Lovart",
+    "model_tool": "generate_video_seedance_v2_0",
+    "generation_mode": "unlimited",
+    "reasoning_mode": "thinking",
+    "ratio": "16:9",
+    "requested_duration_seconds": 5
+  },
+  "run": {
+    "thread_id_sha256": "2546667fcc717e9f92ff9966d6671eb3f60c0d82bded2d63b48e6003dd989e84",
+    "provider_status": "done",
+    "credit_confirmation": "not_returned"
+  },
+  "prompt": {
+    "path": "prompts/clip-02-baseline-anchor-v2.txt",
+    "sha256": "60f8965da8fd21b50a9fabde410b4759391878b1fd350421f5547926858a6fa3",
+    "creative_prompt_sha256": "5b0cd96768dfd861ddd790d05de78f91c100242cb8975f7dca4a117fb19d1884"
+  },
+  "reference": {
+    "path": "artifacts/clip-01-final-frame.png",
+    "sha256": "56d6455da0310b8acce2364af99229825307b70bae8f677306496c1fa08e8a0e",
+    "bytes": 568869
+  },
+  "output": {
+    "video": {
+      "path": "artifacts/gate7/clip-02-baseline-v03.mp4",
+      "sha256": "ed329b44e77ecfaae4cdd31f77916fbbf24a3acd3fde3808a68b488d3d2ec344",
+      "bytes": 1929038,
+      "width": 1280,
+      "height": 720,
+      "fps": 24,
+      "duration_seconds": 5.041667,
+      "frames": 121
+    },
+    "first_frame": {
+      "path": "artifacts/gate7/clip-02-baseline-v03-first-frame.png",
+      "sha256": "af274b540a4a121e891760bab2e8865caa8c7490ed85d98b9b009549d282e0be",
+      "bytes": 362163
+    },
+    "final_frame": {
+      "path": "artifacts/gate7/clip-02-baseline-v03-final-frame.png",
+      "sha256": "150f9ee9688cf44e04af813a56ddb9d95ca64263aa853a0973b76039d0912896",
+      "bytes": 471429
+    }
+  },
+  "gate_decision": {
+    "eligible": false,
+    "reason": "The paired v0.3 output was 1920x1080 while this baseline was 1280x720. Gate 7 requires identical native resolution, so the pair is invalid and no blind scoring is allowed."
+  },
+  "ai_generated_disclosure_required": true,
+  "public_media_approved": false
+}

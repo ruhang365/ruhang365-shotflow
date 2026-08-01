@@ -1,7 +1,7 @@
 {
   "experiment_version": "1.0",
   "case_id": "obsidian-bloom",
-  "status": "anchor_frame_v1_shotflow_rejected",
+  "status": "gate_7_invalid_native_resolution_pair",
   "provider": {
     "adapter": "seedance-2.0",
     "model": "generate_video_seedance_v2_0",
@@ -92,7 +92,7 @@
   "rc_prompt_candidate": {
     "profile": "provider-direct-v4",
     "contract_version": "1.2",
-    "status": "gate_7_awaiting_explicit_generation_approval",
+    "status": "gate_7_closed_invalid_native_resolution_pair",
     "grammar": {
       "path": "plan/clip-02-grammar-v4.json",
       "sha256": "de12b88ef8f81a9ec4f6381989857faddd160ad7e6f107732a3ac24f3dd86ef5"
@@ -122,6 +122,27 @@
         "submission_prompt_sha256": "fc4955449de55f72111b02cb0986ce415f6a42839ff3a3f4a6382b1430005bfd"
       }
     ],
-    "reference_policy": "Both variants use the same accepted Clip 01 final frame as the only media reference under anchor-frame-v2."
+    "reference_policy": "Both variants use the same accepted Clip 01 final frame as the only media reference under anchor-frame-v2.",
+    "gate_7_result": {
+      "status": "invalid_pair",
+      "reason": "The baseline returned 1280x720 and v0.3 returned 1920x1080. The pre-registered rule requires identical native resolution, so blind scoring and Gate 8 are blocked.",
+      "attempt_ids": [
+        "obsidian-bloom-004",
+        "obsidian-bloom-005"
+      ],
+      "receipts": [
+        {
+          "path": "evidence/gate7-baseline-receipt.json",
+          "sha256": "6b92ea9c57b786f339d4deebec5683ddcfb1fe603e9bf2a9f7bd6c80a668a218"
+        },
+        {
+          "path": "evidence/gate7-shotflow-receipt.json",
+          "sha256": "1ee3de378f09751d7468f41ac7f66bbcafdbba0c8af67f71f527cb6b6b0b92b8"
+        }
+      ],
+      "blind_review": "not_run",
+      "retry_authorized": false,
+      "gate_8_authorized": false
+    }
   }
 }

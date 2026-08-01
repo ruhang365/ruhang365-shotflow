@@ -59,10 +59,13 @@ positive `provider-direct-v4` Prompt with final proof. Both variants use the
 same accepted final frame through `anchor-frame-v2`.
 
 - [Preflight contradiction review](V03_RC1_PREFLIGHT_REVIEW.md)
-- [Gate 7 — Obsidian Bloom](GATE_7_OBSIDIAN_BLOOM_V03_RC1_APPROVAL.md): frozen,
-  awaiting a separate Lovart cost confirmation
-- [Gate 8 — The Sky Mender](GATE_8_SKY_MENDER_V03_RC1_APPROVAL.md): frozen and
-  blocked unless Gate 7 receives a majority v0.3 win
+- [Gate 7 — Obsidian Bloom](GATE_7_OBSIDIAN_BLOOM_V03_RC1_APPROVAL.md): closed
+  because the baseline was 1280×720 and v0.3 was 1920×1080
+- [Gate 8 — The Sky Mender](GATE_8_SKY_MENDER_V03_RC1_APPROVAL.md): blocked;
+  Gate 7 never produced an eligible pair or majority decision
 
 Gate 7 permits one baseline job and one v0.3 job only. A loss, invalid pair,
 or failed job stops the sequence; it does not authorize retries or Gate 8.
+The two jobs completed in Lovart unlimited mode, but their unequal native
+resolutions invalidated the pair before blind scoring. Full media remains
+unpublished pending the separate media-rights approval.

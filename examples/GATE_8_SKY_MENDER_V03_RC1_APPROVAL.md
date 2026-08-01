@@ -1,10 +1,11 @@
 # Gate 8 — The Sky Mender v0.3 RC1
 
-Status: **FROZEN — BLOCKED UNTIL GATE 7 WINS**
+Status: **BLOCKED — GATE 7 CLOSED WITH AN INVALID PAIR**
 
-Gate 8 is the cross-type and flagship validation. It may start only after Gate
-7 gives ShotFlow v0.3 a majority win. It does not reopen or alter the historical
-Sky Mender attempt ledger.
+Gate 8 is the cross-type and flagship validation. Gate 7 produced unequal
+native resolutions and closed without a valid blind review, so Gate 8 is not
+authorized. It does not reopen or alter the historical Sky Mender attempt
+ledger.
 
 ## Fixed provider conditions
 

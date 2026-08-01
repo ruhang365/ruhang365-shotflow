@@ -28,6 +28,49 @@ def load_json(path: Path) -> dict[str, Any]:
     return value
 
 
+def obsidian_gate7_result() -> dict[str, Any] | None:
+    root = EXAMPLES_ROOT / "obsidian-bloom"
+    baseline_path = root / "evidence" / "gate7-baseline-receipt.json"
+    shotflow_path = root / "evidence" / "gate7-shotflow-receipt.json"
+    if not baseline_path.exists() or not shotflow_path.exists():
+        return None
+    baseline = load_json(baseline_path)
+    shotflow = load_json(shotflow_path)
+    baseline_video = baseline.get("output", {}).get("video", {})
+    shotflow_video = shotflow.get("output", {}).get("video", {})
+    baseline_size = (baseline_video.get("width"), baseline_video.get("height"))
+    shotflow_size = (shotflow_video.get("width"), shotflow_video.get("height"))
+    if baseline_size == shotflow_size:
+        return None
+    if baseline.get("gate_decision", {}).get("eligible") is not False:
+        return None
+    if shotflow.get("gate_decision", {}).get("eligible") is not False:
+        return None
+    return {
+        "status": "invalid_pair",
+        "reason": (
+            f"The baseline returned {baseline_size[0]}x{baseline_size[1]} and "
+            f"v0.3 returned {shotflow_size[0]}x{shotflow_size[1]}. The "
+            "pre-registered rule requires identical native resolution, so "
+            "blind scoring and Gate 8 are blocked."
+        ),
+        "attempt_ids": ["obsidian-bloom-004", "obsidian-bloom-005"],
+        "receipts": [
+            {
+                "path": baseline_path.relative_to(root).as_posix(),
+                "sha256": sha256(baseline_path),
+            },
+            {
+                "path": shotflow_path.relative_to(root).as_posix(),
+                "sha256": sha256(shotflow_path),
+            },
+        ],
+        "blind_review": "not_run",
+        "retry_authorized": False,
+        "gate_8_authorized": False,
+    }
+
+
 def expected_manifest(case_id: str) -> dict[str, Any]:
     root = EXAMPLES_ROOT / case_id
     project = load_json(root / "shotflow.project.json")
@@ -41,6 +84,12 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
     )
     shotflow_anchor_submission = (
         root / "prompts" / "clip-02-shotflow-anchor-v1.txt"
+    )
+    baseline_anchor_v2_submission = (
+        root / "prompts" / "clip-02-baseline-anchor-v2.txt"
+    )
+    shotflow_anchor_v2_submission = (
+        root / "prompts" / "clip-02-shotflow-anchor-v2.txt"
     )
     grammar = root / "plan" / "clip-02-grammar.json"
     grammar_v3 = root / "plan" / "clip-02-grammar-v3.json"
@@ -88,6 +137,8 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
     active_attempt_status: str | None = None
     anchor_baseline_status: str | None = None
     anchor_shotflow_status: str | None = None
+    gate7_baseline_status: str | None = None
+    gate7_shotflow_status: str | None = None
     ledger = load_json(root / "attempts.json") if observed else None
     if ledger is not None and active_shotflow.exists():
         active_hash = sha256(active_shotflow)
@@ -119,6 +170,26 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
         ]
         if shotflow_anchor_attempts:
             anchor_shotflow_status = shotflow_anchor_attempts[-1]["status"]
+    if ledger is not None and baseline_anchor_v2_submission.exists():
+        gate7_baseline_hash = sha256(baseline_anchor_v2_submission)
+        gate7_baseline_attempts = [
+            attempt
+            for attempt in ledger["attempts"]
+            if attempt["variant"] == "clip-02-baseline"
+            and attempt["prompt"]["sha256"] == gate7_baseline_hash
+        ]
+        if gate7_baseline_attempts:
+            gate7_baseline_status = gate7_baseline_attempts[-1]["status"]
+    if ledger is not None and shotflow_anchor_v2_submission.exists():
+        gate7_shotflow_hash = sha256(shotflow_anchor_v2_submission)
+        gate7_shotflow_attempts = [
+            attempt
+            for attempt in ledger["attempts"]
+            if attempt["variant"] == "clip-02-shotflow"
+            and attempt["prompt"]["sha256"] == gate7_shotflow_hash
+        ]
+        if gate7_shotflow_attempts:
+            gate7_shotflow_status = gate7_shotflow_attempts[-1]["status"]
     shotflow_prompt = (
         {
             "path": active_shotflow.relative_to(root).as_posix(),
@@ -164,7 +235,15 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
                 ),
             }
         )
+    gate7_result = obsidian_gate7_result()
     if (
+        case_id == "obsidian-bloom"
+        and gate7_result is not None
+        and gate7_baseline_status == "failed"
+        and gate7_shotflow_status == "failed"
+    ):
+        status = "gate_7_invalid_native_resolution_pair"
+    elif (
         observed
         and ledger is not None
         and len(ledger["attempts"]) >= ATTEMPT_CAPS[case_id]
@@ -280,14 +359,18 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
             },
         }
     if all(path.exists() for path in v4_files):
+        if case_id == "obsidian-bloom" and gate7_result is not None:
+            rc_status = "gate_7_closed_invalid_native_resolution_pair"
+        elif case_id == "sky-mender" and gate7_result is not None:
+            rc_status = "gate_8_blocked_gate_7_invalid_pair"
+        elif case_id == "obsidian-bloom":
+            rc_status = "gate_7_awaiting_explicit_generation_approval"
+        else:
+            rc_status = "gate_8_blocked_until_gate_7_wins"
         manifest["rc_prompt_candidate"] = {
             "profile": "provider-direct-v4",
             "contract_version": "1.2",
-            "status": (
-                "gate_7_awaiting_explicit_generation_approval"
-                if case_id == "obsidian-bloom"
-                else "gate_8_blocked_until_gate_7_wins"
-            ),
+            "status": rc_status,
             "grammar": {
                 "path": grammar_v4.relative_to(root).as_posix(),
                 "sha256": sha256(grammar_v4),
@@ -319,6 +402,8 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
                 "the only media reference under anchor-frame-v2."
             ),
         }
+        if case_id == "obsidian-bloom" and gate7_result is not None:
+            manifest["rc_prompt_candidate"]["gate_7_result"] = gate7_result
     return manifest
 
 

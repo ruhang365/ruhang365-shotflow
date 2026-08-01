@@ -52,7 +52,7 @@
   "rc_prompt_candidate": {
     "profile": "provider-direct-v4",
     "contract_version": "1.2",
-    "status": "gate_8_blocked_until_gate_7_wins",
+    "status": "gate_8_blocked_gate_7_invalid_pair",
     "grammar": {
       "path": "plan/clip-02-grammar-v4.json",
       "sha256": "8faa29c78709d20f6c9fbd7326cf8b2cae7613eb2970b136d3a6f7117b06913c"

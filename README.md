@@ -16,14 +16,15 @@ effectiveness claim**. Three real Seedance Clip 01 results have been accepted,
 observed, and hashed. Two earlier controlled Clip 02 A/B pairs were blindly
 reviewed — and **the baseline won both**. Those failures remain public evidence.
 RC1 adds causal change budgets, positive-only `anchor-frame-v2`, and the
-1800-character `provider-direct-v4` compiler. Paid Gate 7 generation still
-requires a separate approval after Lovart shows the current cost.
+1800-character `provider-direct-v4` compiler. Gate 7 later ran once per variant
+in Lovart unlimited mode, but unequal native resolutions invalidated the pair
+before blind scoring.
 
 | Case | Role | Status |
 | --- | --- | --- |
-| The Sky Mender | flagship spectacle | historical attempts rejected; v0.3 Gate 8 frozen and blocked until Gate 7 wins |
+| The Sky Mender | flagship spectacle | historical attempts rejected; v0.3 Gate 8 blocked because Gate 7 produced no eligible pair |
 | Storm Deck | physical action | Lovart Kling O1 and two Seedance 2.0 baselines rejected; corrected handoff was acknowledged but the opening still broke, so the case is closed at its attempt cap |
-| Obsidian Bloom | fictional product film | historical `anchor-frame-v1` pair lost; v0.3 Gate 7 inputs frozen, awaiting separate cost approval |
+| Obsidian Bloom | fictional product film | historical `anchor-frame-v1` pair lost; v0.3 Gate 7 closed when baseline returned 1280×720 and v0.3 returned 1920×1080 |
 
 All accepted Clip 01 originals are 1920×1080, 24fps, 5.125 seconds and retain
 the provider's container-level `AIGC Label=1`. The Lovart Gate 6 outputs are
@@ -45,8 +46,9 @@ A corrected handoff then bound the accepted final frame as the authoritative
 first attachment and filtered historical artifact hashes. Lovart acknowledged
 those roles, but the retry repeated the opening break and returned 720p instead
 of the requested 1080p. It was rejected at the fifth-attempt cap. No case is
-authorized for unattended generation. Gate 7 is registered but still requires
-a new cost-specific confirmation. See the
+authorized for unattended generation. Gate 7 used its two-attempt cap in
+Lovart unlimited mode, returned unequal native resolutions, and closed without
+blind scoring or a retry. See the
 [closed Storm Deck gate](examples/GATE_4_STORM_DECK_BASELINE_APPROVAL.md).
 The previous registered mechanism, `anchor-frame-v1`, withheld the source video
 when provider-specific reference roles are unproved. Obsidian Bloom's baseline

@@ -123,6 +123,94 @@
         }
       },
       "reason": "Opening-frame binding passed semantically (SSIM All=0.833104). Actual media is 1920x1080, 24fps, 5.061950 seconds. In the blind mapping this was Variant A. Three valid visual reviewers unanimously preferred Variant B, the baseline: ShotFlow averaged 3.33/12 versus 9.67/12. The cap tilts and hinges instead of rising vertically, the exterior droplet falls to the surface, and the amber ribbon grows from or connects to the bottle base/liquid surface before crossing the bottle body. These are P0 causal-continuity failures. Lovart returned no Premium credit confirmation. The container has no AIGC label, so public derivatives require a visible disclosure. No retry, upscale, fallback, or publication was performed."
+    },
+    {
+      "attempt_id": "obsidian-bloom-004",
+      "variant": "clip-02-baseline",
+      "status": "failed",
+      "recorded_at": "2026-08-01T12:09:55+00:00",
+      "provider": {
+        "adapter": "seedance-2.0",
+        "model": "generate_video_seedance_v2_0",
+        "verified": false,
+        "parameters": {
+          "ratio": "16:9",
+          "resolution": "1280x720",
+          "duration_seconds": 5,
+          "generation_mode": "unlimited",
+          "reasoning_mode": "thinking"
+        }
+      },
+      "prompt": {
+        "path": "prompts/clip-02-baseline-anchor-v2.txt",
+        "sha256": "60f8965da8fd21b50a9fabde410b4759391878b1fd350421f5547926858a6fa3",
+        "bytes": 1272
+      },
+      "references": {
+        "source_video": null,
+        "source_final_frame": {
+          "path": "artifacts/clip-01-final-frame.png",
+          "sha256": "56d6455da0310b8acce2364af99229825307b70bae8f677306496c1fa08e8a0e",
+          "bytes": 568869
+        }
+      },
+      "output": {
+        "video": {
+          "path": "artifacts/gate7/clip-02-baseline-v03.mp4",
+          "sha256": "ed329b44e77ecfaae4cdd31f77916fbbf24a3acd3fde3808a68b488d3d2ec344",
+          "bytes": 1929038
+        },
+        "final_frame": {
+          "path": "artifacts/gate7/clip-02-baseline-v03-final-frame.png",
+          "sha256": "150f9ee9688cf44e04af813a56ddb9d95ca64263aa853a0973b76039d0912896",
+          "bytes": 471429
+        }
+      },
+      "reason": "Gate 7 baseline generation completed at 1280x720, 24fps, 5.041667 seconds in Lovart unlimited mode with no credit confirmation. The paired v0.3 output was 1920x1080. Because Gate 7 requires identical native resolution, both attempts are ineligible for blind scoring and the pair is failed without retry. Public-safe run evidence is in evidence/gate7-baseline-receipt.json; full media is not approved for publication."
+    },
+    {
+      "attempt_id": "obsidian-bloom-005",
+      "variant": "clip-02-shotflow",
+      "status": "failed",
+      "recorded_at": "2026-08-01T12:09:55+00:00",
+      "provider": {
+        "adapter": "seedance-2.0",
+        "model": "generate_video_seedance_v2_0",
+        "verified": false,
+        "parameters": {
+          "ratio": "16:9",
+          "resolution": "1920x1080",
+          "duration_seconds": 5,
+          "generation_mode": "unlimited",
+          "reasoning_mode": "thinking"
+        }
+      },
+      "prompt": {
+        "path": "prompts/clip-02-shotflow-anchor-v2.txt",
+        "sha256": "fc4955449de55f72111b02cb0986ce415f6a42839ff3a3f4a6382b1430005bfd",
+        "bytes": 1995
+      },
+      "references": {
+        "source_video": null,
+        "source_final_frame": {
+          "path": "artifacts/clip-01-final-frame.png",
+          "sha256": "56d6455da0310b8acce2364af99229825307b70bae8f677306496c1fa08e8a0e",
+          "bytes": 568869
+        }
+      },
+      "output": {
+        "video": {
+          "path": "artifacts/gate7/clip-02-shotflow-v03.mp4",
+          "sha256": "ee580081504c82fbfd20d78528628a6da59ba78a87336d2720007c77323ce9e4",
+          "bytes": 2219748
+        },
+        "final_frame": {
+          "path": "artifacts/gate7/clip-02-shotflow-v03-final-frame.png",
+          "sha256": "a822fc2881ccd3018db88aa172227983268480acfd88dca486099bbde36afe80",
+          "bytes": 1033965
+        }
+      },
+      "reason": "Gate 7 v0.3 generation completed at 1920x1080, 24fps, 5.041667 seconds in Lovart unlimited mode with no credit confirmation. The paired baseline output was 1280x720. Because Gate 7 requires identical native resolution, both attempts are ineligible for blind scoring and the pair is failed without retry. Public-safe run evidence is in evidence/gate7-shotflow-receipt.json; full media is not approved for publication."
     }
   ]
 }

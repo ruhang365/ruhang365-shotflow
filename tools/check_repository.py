@@ -110,6 +110,13 @@ def check_evidence_receipts(paths: list[Path], failures: list[str]) -> None:
             receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
         except (UnicodeDecodeError, json.JSONDecodeError):
             continue
+        if receipt.get("public_media_approved") is False:
+            if receipt.get("ai_generated_disclosure_required") is not True:
+                failures.append(
+                    "unpublished media is missing its future disclosure requirement: "
+                    f"{receipt_path.relative_to(ROOT)}"
+                )
+            continue
         disclosure = receipt.get("aigc_disclosure", {})
         if disclosure.get("original_container_label_present") is not True:
             failures.append(

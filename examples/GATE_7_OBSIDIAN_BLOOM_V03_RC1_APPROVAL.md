@@ -1,6 +1,6 @@
 # Gate 7 — Obsidian Bloom v0.3 RC1
 
-Status: **FROZEN — NOT AUTHORIZED FOR GENERATION**
+Status: **CLOSED — INVALID NATIVE-RESOLUTION PAIR**
 
 Gate 7 tests whether the causal change budget fixes the failure recorded under
 Gate 6. It is a new pre-registered mechanism test, not a retry of the rejected
@@ -20,8 +20,9 @@ Gate 6. It is a new pre-registered mechanism test, not a retry of the rejected
 - Stop rules: no retry, upscale, downgrade, model switch, provider switch, or
   automatic confirmation
 
-Lovart must show the current credit amount before either job is confirmed. A
-new explicit user confirmation is required after the exact amount is visible.
+The user explicitly authorized Lovart unlimited mode after confirming that the
+standard Seedance 2.0 model was available there. Lovart returned no additional
+credit confirmation for either job.
 
 ## Frozen inputs
 
@@ -44,3 +45,19 @@ Three vision-capable reviewers score neutral outputs on the six public
 continuity dimensions. Gate 7 passes only if at least two of three prefer the
 v0.3 variant. A loss, tie without majority, invalid pair, or failed job closes
 Gate 7 and blocks Gate 8 without another attempt.
+
+## Execution result
+
+Both authorized jobs completed once with the same accepted final-frame upload,
+standard Seedance 2.0, `thinking`, 16:9, and five-second Prompts. The baseline
+returned 1280×720 while v0.3 returned 1920×1080. Both were 24fps and 5.041667
+seconds.
+
+The outputs therefore violate the pre-registered equal-native-resolution rule.
+They are an invalid A/B pair and were not sent to blind reviewers. No retry,
+upscale, downgrade, mode change, model switch, provider switch, Gate 8 job, or
+stable release was performed.
+
+- [Baseline receipt](obsidian-bloom/evidence/gate7-baseline-receipt.json)
+- [v0.3 receipt](obsidian-bloom/evidence/gate7-shotflow-receipt.json)
+- Full media remains local because public A/B media was not separately approved.

@@ -1,0 +1,7 @@
+OPENING-FRAME AUTHORITY:
+- Attachment 1 is the accepted previous-shot endpoint and the authoritative opening frame.
+- Generated frame 1 reproduces its subject, geometry, pose, camera, composition, lighting, and material state.
+- The creative timeline begins from this matched state.
+
+CREATIVE INSTRUCTIONS:
+Continue immediately from the previous product shot in one continuous five-second take. Preserve the same squat smoky-obsidian bottle, wider shoulders, front-left diagonal facet, asymmetrical brushed-silver collar, low black stone cap, internal amber droplet, and exterior droplet trail on the left face. Continue the silver petal ring clockwise from the front-right edge as the camera completes its slow arc toward front-center. The cap rises vertically by one centimeter without changing shape; a narrow ribbon of amber vapor escapes through the opening and curls once behind the bottle. Keep the bottle fixed in the same black liquid plane, keep the large soft source camera-left and amber underlight, and let reflections move causally across the facet. End with the petal ring behind the collar and the exterior droplet lower on the same left-face path. No new facets, no duplicated cap, no label, no logo, no extra bottle, no cut, no impossible liquid motion.
