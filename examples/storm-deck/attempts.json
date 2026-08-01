@@ -77,6 +77,157 @@
         "final_frame": null
       },
       "reason": "Provider completed the run without media because account credits were insufficient."
+    },
+    {
+      "attempt_id": "storm-deck-003",
+      "variant": "clip-02-baseline",
+      "status": "rejected",
+      "recorded_at": "2026-07-31T15:20:00+00:00",
+      "provider": {
+        "platform": "Lovart",
+        "adapter": "generic",
+        "model": "generate_video_kling_omni_v1",
+        "display_model": "Kling O1",
+        "verified": false,
+        "generation_mode": "unlimited",
+        "reasoning_mode": "thinking",
+        "parameters": {
+          "ratio": "16:9",
+          "resolution": "1080p",
+          "duration_seconds": 5
+        }
+      },
+      "prompt": {
+        "path": "prompts/clip-02-baseline-frozen.txt",
+        "sha256": "3d7e34a97bf97aaad1131deccaf9200603fd7ca56c729669b67bbddd5cc777fb",
+        "bytes": 882
+      },
+      "references": {
+        "source_video": {
+          "path": "artifacts/v03c76g10004d9l1gqq7dld7d93q9670.mp4",
+          "sha256": "d7e36d9b270a3f9280dca19d50afe856177c3426e1a12a0b3511dbc811a2a198",
+          "bytes": 8098739
+        },
+        "source_final_frame": {
+          "path": "artifacts/clip-01-final-frame.png",
+          "sha256": "5b32eb1a7519d543be037cf86c8e2079803d8f9a7be99174184c691c4faec5f6",
+          "bytes": 1389542
+        }
+      },
+      "output": {
+        "video": {
+          "path": "artifacts/clip-02-baseline-lovart/lovart_bbf130294ab3.mp4",
+          "sha256": "d31af259e41234d4c461249c974a0694191c88122e7bead114fd2cec816f037f",
+          "bytes": 8967847
+        },
+        "final_frame": {
+          "path": "artifacts/clip-02-baseline-lovart/final-frame.png",
+          "sha256": "6b045798a7fcd735991f6b06272a520468d21c362003401c993a86f3f7af042f",
+          "bytes": 1425275
+        }
+      },
+      "reason": "The output was sharp but returned to nearly the same kneeling pose and did not clearly complete the required case recovery and securing action."
+    },
+    {
+      "attempt_id": "storm-deck-004",
+      "variant": "clip-02-baseline",
+      "status": "rejected",
+      "recorded_at": "2026-07-31T15:22:32+00:00",
+      "provider": {
+        "platform": "Lovart",
+        "adapter": "seedance-2.0",
+        "model": "generate_video_seedance_v2_0",
+        "display_model": "Seedance 2.0",
+        "verified": false,
+        "generation_mode": "unlimited",
+        "reasoning_mode": "thinking",
+        "parameters": {
+          "ratio": "16:9",
+          "resolution": "1080p",
+          "duration_seconds": 5
+        }
+      },
+      "prompt": {
+        "path": "prompts/clip-02-baseline-frozen.txt",
+        "sha256": "3d7e34a97bf97aaad1131deccaf9200603fd7ca56c729669b67bbddd5cc777fb",
+        "bytes": 882
+      },
+      "references": {
+        "source_video": {
+          "path": "artifacts/v03c76g10004d9l1gqq7dld7d93q9670.mp4",
+          "sha256": "d7e36d9b270a3f9280dca19d50afe856177c3426e1a12a0b3511dbc811a2a198",
+          "bytes": 8098739
+        },
+        "source_final_frame": {
+          "path": "artifacts/clip-01-final-frame.png",
+          "sha256": "5b32eb1a7519d543be037cf86c8e2079803d8f9a7be99174184c691c4faec5f6",
+          "bytes": 1389542
+        }
+      },
+      "output": {
+        "video": {
+          "path": "artifacts/clip-02-baseline-lovart-seedance20/lovart_73cfc995dc41.mp4",
+          "sha256": "bf86855a193bec8cc1e11731cf8365c86f48093820e3e48f3b904be70fdc7330",
+          "bytes": 5650640
+        },
+        "final_frame": {
+          "path": "artifacts/clip-02-baseline-lovart-seedance20/final-frame.png",
+          "sha256": "331390639641cd1824378e01f44503e31ef7a264c3566ad2b4b750553bc00863",
+          "bytes": 1532790
+        }
+      },
+      "reason": "The later action and green-beacon ending improved, but the first frame omitted the worker and moved the case from the observed screen-right endpoint to the far left, causing a severe continuity break."
+    },
+    {
+      "attempt_id": "storm-deck-005",
+      "variant": "clip-02-baseline",
+      "status": "rejected",
+      "recorded_at": "2026-07-31T15:51:40+00:00",
+      "provider": {
+        "platform": "Lovart",
+        "adapter": "seedance-2.0",
+        "model": "generate_video_seedance_v2_0",
+        "display_model": "Seedance 2.0",
+        "verified": false,
+        "generation_mode": "unlimited",
+        "reasoning_mode": "thinking",
+        "parameters": {
+          "ratio": "16:9",
+          "resolution": "720p",
+          "requested_resolution": "1080p",
+          "duration_seconds": 5
+        }
+      },
+      "prompt": {
+        "path": "prompts/clip-02-baseline-lovart-handoff.txt",
+        "sha256": "51563429cb54ea55b0673504935ce6edda29dcdce54601448b12b4c75bb63fac",
+        "bytes": 1502
+      },
+      "references": {
+        "source_video": {
+          "path": "artifacts/v03c76g10004d9l1gqq7dld7d93q9670.mp4",
+          "sha256": "d7e36d9b270a3f9280dca19d50afe856177c3426e1a12a0b3511dbc811a2a198",
+          "bytes": 8098739
+        },
+        "source_final_frame": {
+          "path": "artifacts/clip-01-final-frame.png",
+          "sha256": "5b32eb1a7519d543be037cf86c8e2079803d8f9a7be99174184c691c4faec5f6",
+          "bytes": 1389542
+        }
+      },
+      "output": {
+        "video": {
+          "path": "artifacts/clip-02-baseline-lovart-seedance20-retry-005/lovart_4652a4a286f5.mp4",
+          "sha256": "35c1d96474d8a95b9bf83db7db2a7fa48b11b1fc7e0be514dde1100d10a6f256",
+          "bytes": 2820823
+        },
+        "final_frame": {
+          "path": "artifacts/clip-02-baseline-lovart-seedance20-retry-005/final-frame.png",
+          "sha256": "8e0becfc5205a198db9353c9dd28570f4a5b80fb54116161720360955b6d9ec4",
+          "bytes": 812582
+        }
+      },
+      "reason": "The explicit attachment-role handoff was acknowledged by the provider, but the actual first frame again omitted the worker and moved the case to the far left. The result was also 1280x720 despite the approved 1080p request. It was rejected at the opening-frame gate; no retry, upscale, or fallback was performed."
     }
   ]
 }

@@ -2,8 +2,9 @@
 
 These three original cases are pre-registered A/B experiments, not finished
 performance claims. Their real Clip 01 outputs are accepted and observed. The
-first Clip 02 pair failed the ShotFlow claim gate. Gate 4 then stopped after its
-first job returned no media because provider credits were insufficient.
+first Clip 02 pair failed the ShotFlow claim gate. A later Sky Mender v2 retry
+improved motion continuity but still failed the required visible story beat,
+so that case is rejected and frozen with no further retries.
 
 | Case | Role | Primary continuity stress | Clip 01 evidence |
 | --- | --- | --- | --- |
@@ -19,14 +20,32 @@ shared references, failed run state, and frozen v2 candidates.
 [GATE_3_STANDARD_MODEL_APPROVAL.md](GATE_3_STANDARD_MODEL_APPROVAL.md) records
 the stopped standard-model attempt.
 [GATE_4_VIP_1080P_APPROVAL.md](GATE_4_VIP_1080P_APPROVAL.md) records the
-subsequent VIP credit stop and retained Xiaoyunque queue. Google Flow is an
-additional independent portability check described in
-[GOOGLE_FLOW_VALIDATION.md](GOOGLE_FLOW_VALIDATION.md); its frozen two-output
-draft is [GATE_5_GOOGLE_FLOW_APPROVAL.md](GATE_5_GOOGLE_FLOW_APPROVAL.md).
+subsequent VIP retry and the later retirement of the remaining Xiaoyunque/Flow
+queue. Lovart Kling O1 and Seedance 2.0 Storm Deck pilots were both rejected.
+The corrected one-job retry is recorded in
+[GATE_4_STORM_DECK_BASELINE_APPROVAL.md](GATE_4_STORM_DECK_BASELINE_APPROVAL.md).
+It repeated the opening-frame failure at 720p and closed Storm Deck at its
+registered attempt cap.
 
-Provider continuity is part of the experiment contract: work already started
-on Xiaoyunque remains there, while new supplementary work may use Xiaoyunque
-and Flow under separate, pre-registered provider roles. Current Flow Browser
-automation is safe for inspection and result handling but not Prompt entry;
-paid Flow Prompts require native user paste and user-controlled submission
-until the zero-credit Browser canary passes.
+The next registered mechanism is `anchor-frame-v1` for Obsidian Bloom. It gives
+both A/B variants the same accepted final frame as their only media reference,
+so a generic attachment interface cannot restart the source video. The
+[baseline gate](GATE_6_OBSIDIAN_BLOOM_BASELINE_ANCHOR_APPROVAL.md) and separate
+[ShotFlow gate](GATE_6_OBSIDIAN_BLOOM_SHOTFLOW_ANCHOR_APPROVAL.md) are frozen,
+with separate approval boundaries. Lovart exposes no resolution selector, so
+the registered experiment uses provider-native output with a 1280×720 minimum,
+keeps the standard Seedance 2.0 model, and forbids Fast, Mini, fallback, and
+upscale. Both jobs returned 1920×1080. The separately approved ShotFlow job
+then lost a three-reviewer blind comparison because its cap hinged, droplet
+fell, and amber ribbon connected to the bottle base/liquid surface. It was
+rejected without retry. See the
+[blind review](obsidian-bloom/reviews/clip-02-blind-review-anchor-v1.md).
+The resulting `provider-direct-v3` candidate is frozen as an offline-only
+[five-checkpoint sequence](obsidian-bloom/plan/clip-02-sequence-v3.json),
+[positive grammar](obsidian-bloom/plan/clip-02-grammar-v3.json), and
+[compiled Prompt](obsidian-bloom/prompts/clip-02-shotflow-v3-offline.txt). It is
+not a generation approval.
+
+Provider continuity is part of the experiment contract. The corrected Lovart
+handoff fixes reference roles, excludes historical thread artifacts by hash,
+and requires the first generated frame to pass manual continuity review.

@@ -1,0 +1,43 @@
+{
+  "handoff_version": "1.0",
+  "project_schema_version": "1.0",
+  "profile": "anchor-frame-v1",
+  "project_id": "obsidian-bloom",
+  "variant": "clip-02-baseline",
+  "source_shot_id": "clip-01",
+  "provider": {
+    "platform": "Lovart",
+    "model_tool": "generate_video_seedance_v2_0"
+  },
+  "creative_prompt": {
+    "kind": "prompt",
+    "path": "prompts/clip-02-baseline-frozen.txt",
+    "sha256": "5b0cd96768dfd861ddd790d05de78f91c100242cb8975f7dca4a117fb19d1884",
+    "bytes": 965
+  },
+  "submission_prompt": {
+    "text": "ANCHOR-FRAME BINDING — APPLY BEFORE THE CREATIVE INSTRUCTIONS:\n- Attachment 1 is the only media reference and the authoritative opening frame from the accepted previous shot. Start directly from this exact subject, prop geometry, pose, camera side, composition, lighting, and material state.\n- No source video is attached. Treat incoming motion and unresolved forces stated in the creative instructions as observed state to continue from Attachment 1; do not invent earlier frames.\n- Do not insert an empty establishing frame, recreate the previous shot, or move any visible element before the requested continuation begins.\n\nCREATIVE INSTRUCTIONS — KEEP UNCHANGED:\nContinue immediately from the previous product shot in one continuous five-second take. Preserve the same squat smoky-obsidian bottle, wider shoulders, front-left diagonal facet, asymmetrical brushed-silver collar, low black stone cap, internal amber droplet, and exterior droplet trail on the left face. Continue the silver petal ring clockwise from the front-right edge as the camera completes its slow arc toward front-center. The cap rises vertically by one centimeter without changing shape; a narrow ribbon of amber vapor escapes through the opening and curls once behind the bottle. Keep the bottle fixed in the same black liquid plane, keep the large soft source camera-left and amber underlight, and let reflections move causally across the facet. End with the petal ring behind the collar and the exterior droplet lower on the same left-face path. No new facets, no duplicated cap, no label, no logo, no extra bottle, no cut, no impossible liquid motion.\n",
+    "sha256": "a57845e028ee38f9a20ac77943f332a68c97c01f83b6267e1f576bcf26bdc67f",
+    "creative_prompt_sha256": "5b0cd96768dfd861ddd790d05de78f91c100242cb8975f7dca4a117fb19d1884"
+  },
+  "references": [
+    {
+      "attachment_index": 1,
+      "role": "authoritative_opening_frame",
+      "authority": "accepted_observed_endpoint",
+      "artifact": {
+        "kind": "final_frame",
+        "path": "artifacts/clip-01-final-frame.png",
+        "sha256": "56d6455da0310b8acce2364af99229825307b70bae8f677306496c1fa08e8a0e",
+        "bytes": 568869
+      }
+    }
+  ],
+  "known_output_sha256": [],
+  "acceptance_gates": {
+    "new_artifact_hash_required": true,
+    "opening_frame_match_required": true,
+    "opening_frame_review": "pending",
+    "continuity_safe": false
+  }
+}

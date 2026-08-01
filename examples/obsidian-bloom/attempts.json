@@ -39,6 +39,90 @@
         }
       },
       "reason": ""
+    },
+    {
+      "attempt_id": "obsidian-bloom-002",
+      "variant": "clip-02-baseline",
+      "status": "accepted",
+      "recorded_at": "2026-07-31T16:59:29+00:00",
+      "provider": {
+        "adapter": "seedance-2.0",
+        "model": "generate_video_seedance_v2_0",
+        "verified": false,
+        "parameters": {
+          "ratio": "16:9",
+          "resolution": "provider-native",
+          "duration_seconds": 5
+        }
+      },
+      "prompt": {
+        "path": "prompts/clip-02-baseline-anchor-v1.txt",
+        "sha256": "a57845e028ee38f9a20ac77943f332a68c97c01f83b6267e1f576bcf26bdc67f",
+        "bytes": 1635
+      },
+      "references": {
+        "source_video": null,
+        "source_final_frame": {
+          "path": "artifacts/clip-01-final-frame.png",
+          "sha256": "56d6455da0310b8acce2364af99229825307b70bae8f677306496c1fa08e8a0e",
+          "bytes": 568869
+        }
+      },
+      "output": {
+        "video": {
+          "path": "artifacts/clip-02-baseline-gate6_b838048ef380.mp4",
+          "sha256": "a9f996fbeb577146fef8e0873d13d1b323f83b02be07b04d35afedf08211cf50",
+          "bytes": 3323448
+        },
+        "final_frame": {
+          "path": "artifacts/clip-02-baseline-gate6-final-frame.png",
+          "sha256": "32b583f958fc53b17b11cf4b8b04f5ba1644c7ea4c4dfdceb219d9d89294263f",
+          "bytes": 758948
+        }
+      },
+      "reason": "Opening-frame review accepted (SSIM All=0.835808). Actual media is 1920x1080, 24fps, 5.041667 seconds. The cap opens, amber vapor appears, and the exterior droplet descends. The cap rises farther than the requested one centimeter, and the petal ring's final placement behind the collar is ambiguous; retain both deviations for blind scoring. Lovart returned no Premium credit confirmation. The container has no AIGC label, so public derivatives require a visible disclosure."
+    },
+    {
+      "attempt_id": "obsidian-bloom-003",
+      "variant": "clip-02-shotflow",
+      "status": "rejected",
+      "recorded_at": "2026-07-31T17:31:08+00:00",
+      "provider": {
+        "adapter": "seedance-2.0",
+        "model": "generate_video_seedance_v2_0",
+        "verified": false,
+        "parameters": {
+          "ratio": "16:9",
+          "resolution": "provider-native",
+          "duration_seconds": 5
+        }
+      },
+      "prompt": {
+        "path": "prompts/clip-02-shotflow-anchor-v1.txt",
+        "sha256": "ac68c50fa66334579184ed9ef570a8471efafb94a5fefee95a3f5bf76cc16821",
+        "bytes": 3122
+      },
+      "references": {
+        "source_video": null,
+        "source_final_frame": {
+          "path": "artifacts/clip-01-final-frame.png",
+          "sha256": "56d6455da0310b8acce2364af99229825307b70bae8f677306496c1fa08e8a0e",
+          "bytes": 568869
+        }
+      },
+      "output": {
+        "video": {
+          "path": "artifacts/clip-02-shotflow-gate6_c23712b9666a.mp4",
+          "sha256": "4d879f234e3f20e413061a9ad5a266dbb7e7f3e8208de3901a74343bab7dfd45",
+          "bytes": 3381590
+        },
+        "final_frame": {
+          "path": "artifacts/clip-02-shotflow-gate6-final-frame.png",
+          "sha256": "868e1e526e096a5987750f24c402ebd1170b636222e5d4661a67a19a5e3dc5bf",
+          "bytes": 1180474
+        }
+      },
+      "reason": "Opening-frame binding passed semantically (SSIM All=0.833104). Actual media is 1920x1080, 24fps, 5.061950 seconds. In the blind mapping this was Variant A. Three valid visual reviewers unanimously preferred Variant B, the baseline: ShotFlow averaged 3.33/12 versus 9.67/12. The cap tilts and hinges instead of rising vertically, the exterior droplet falls to the surface, and the amber ribbon grows from or connects to the bottle base/liquid surface before crossing the bottle body. These are P0 causal-continuity failures. Lovart returned no Premium credit confirmation. The container has no AIGC label, so public derivatives require a visible disclosure. No retry, upscale, fallback, or publication was performed."
     }
   ]
 }

@@ -1,11 +1,11 @@
 {
   "experiment_version": "1.0",
   "case_id": "storm-deck",
-  "status": "mechanism_v2_awaiting_generation_approval",
+  "status": "attempt_cap_reached_no_valid_ab",
   "provider": {
     "adapter": "seedance-2.0",
-    "model": "seedance2.0_vision",
-    "verified": true,
+    "model": "generate_video_seedance_v2_0",
+    "verified": false,
     "parameters": {
       "ratio": "16:9",
       "resolution": "1080p",
@@ -48,5 +48,9 @@
       "status": "superseded_before_generation"
     }
   ],
-  "ai_generated_disclosure_required": true
+  "ai_generated_disclosure_required": true,
+  "provider_handoff": {
+    "path": "evidence/provider-handoff.json",
+    "sha256": "fc98b6accb5914963a6e0f5616710b5bf9561b2bc50343de76c827555f1d0880"
+  }
 }

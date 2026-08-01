@@ -207,6 +207,52 @@
         "final_frame": null
       },
       "reason": "Provider completed the Gate 4 submission without media because account credits were insufficient. The remaining four Xiaoyunque jobs were not submitted."
+    },
+    {
+      "attempt_id": "sky-mender-006",
+      "variant": "clip-02-shotflow",
+      "status": "rejected",
+      "recorded_at": "2026-07-31T05:01:57+00:00",
+      "provider": {
+        "adapter": "seedance-2.0",
+        "model": "seedance2.0_vision",
+        "verified": true,
+        "parameters": {
+          "ratio": "16:9",
+          "resolution": "1080p",
+          "duration_seconds": 5
+        }
+      },
+      "prompt": {
+        "path": "prompts/clip-02-shotflow-v2.txt",
+        "sha256": "8b4654143c531b237c4797aac666a7cde70b9f184b5327c92f61fcc2b36b1201",
+        "bytes": 2371
+      },
+      "references": {
+        "source_video": {
+          "path": "artifacts/v02c76g10004d9l1fua7dld9270q0lag.mp4",
+          "sha256": "09564c755fc4b845f501e5bcf68e4192b65bc00e8a2be395159a05c831c99243",
+          "bytes": 8130438
+        },
+        "source_final_frame": {
+          "path": "artifacts/clip-01-final-frame.png",
+          "sha256": "f05efcff94c047cdf46f681daf8996896e257ea3e9a6e54f1d36944b81bba1cd",
+          "bytes": 1099668
+        }
+      },
+      "output": {
+        "video": {
+          "path": "artifacts/clip-02-shotflow-v2/v03c76g10004d9m1u7a7dldf56skhimg.mp4",
+          "sha256": "ff9be55e5b7f678d18d3c5067f152b8197877e082b0bcb7f2324494c5f9af0dc",
+          "bytes": 8077852
+        },
+        "final_frame": {
+          "path": "artifacts/clip-02-shotflow-v2/final-frame.png",
+          "sha256": "1a6bf8042a9631e6a78785d1d9ff343db1a0489576e7668b7ad7cb364d06f71e",
+          "bytes": 926554
+        }
+      },
+      "reason": "Motion continuity improved and the worker regained tower contact, but the fissure did not visibly seal and no restrained dawn appeared after repair. The user accepted the recommendation to freeze The Sky Mender and stop further retries."
     }
   ]
 }
