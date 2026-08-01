@@ -1,5 +1,10 @@
 # ShotFlow evidence cases
 
+The current public example is the
+[single Obsidian Bloom Showcase](SHOWCASE_OBSIDIAN_BLOOM.md): one accepted final
+frame plus one sentence produces one frozen Seedance-ready Prompt. It is not an
+A/B claim, and its one proposed generation has not been submitted.
+
 These three original cases are pre-registered A/B experiments, not finished
 performance claims. Their real Clip 01 outputs are accepted and observed. The
 first Clip 02 pair failed the ShotFlow claim gate. A later Sky Mender v2 retry
@@ -70,9 +75,10 @@ The two jobs completed in Lovart unlimited mode, but their unequal native
 resolutions invalidated the pair before blind scoring. Full media remains
 unpublished pending the separate media-rights approval.
 
-## v0.4 RC1 preregistered gates
+## v0.4 RC1 preregistered gates — deferred
 
-v0.4 is a new forward experiment, not a retry of Gate 7 or Gate 8. Ordered
+These inputs are retained as history, not an active generation plan. On
+2026-08-01 the user stopped Gate 9/10 before any job was submitted. Ordered
 Sequence `1.2` limits each checkpoint to one active change and compiles contract
 `1.3` with `provider-direct-v5`. Both variants use the same accepted endpoint
 through positive-only `anchor-frame-v3`. Native Provider files are retained as
@@ -81,12 +87,13 @@ five seconds for blinded review.
 
 - [Evaluation protocol](V04_EVALUATION_PROTOCOL.md)
 - [Three-lane preregistration review](V04_RC1_PREFLIGHT_REVIEW.md)
-- [Gate 9 — Obsidian Bloom](GATE_9_OBSIDIAN_BLOOM_V04_RC1_APPROVAL.md): six
-  inputs frozen; no Provider job submitted
+- [Gate 9 — Obsidian Bloom](GATE_9_OBSIDIAN_BLOOM_V04_RC1_APPROVAL.md): stopped;
+  six inputs frozen and no Provider job submitted
 - [Gate 10 — The Sky Mender](GATE_10_SKY_MENDER_V04_RC1_APPROVAL.md): inputs
-  frozen and blocked until Gate 9 passes
+  frozen, stopped, and never submitted
 
-Each case requires two ShotFlow pair wins out of three, a normalized mean lift
+If a future user decision reactivates the benchmark, each case requires two
+ShotFlow pair wins out of three, a normalized mean lift
 of at least 20 points, and opening-match passage in at least two ShotFlow
 variants. Generation approval and full-media publication approval remain
 separate.

@@ -1,37 +1,71 @@
-# ShotFlow — AI Video Continuity Compiler & Benchmark
+# ShotFlow — Final Frame to Next-Shot Prompt
 
-**Compile the next shot from what actually happened, then benchmark whether it
-really continued.**
+**Upload the accepted final frame. Describe the next shot in one sentence. Get
+one continuity Prompt ready to submit to Seedance.**
 
-> Your model says it continued. ShotFlow checks whether it actually did.
+> The next shot starts from what is visibly true, not from what the old Prompt
+> hoped would happen.
 
 [中文说明](README.zh-CN.md) · [Examples](examples/) · [Skill](skills/shotflow/) · [Schemas](schemas/) · [Pro boundary](PRO.md)
 
-![The Sky Mender accepted Clip 01, generated with Xiaoyunque / Seedance 2.0](examples/sky-mender/evidence/clip-01-preview.gif)
+![Obsidian Bloom accepted final frame](examples/obsidian-bloom/evidence/clip-01-final-frame.jpg)
+
+## 30-second workflow
+
+Attach your accepted final frame to a visual-capable agent with the ShotFlow
+Skill, then write:
+
+```text
+Use $shotflow on this accepted final frame.
+Next-shot intent: The black cap rises straight up by one centimeter,
+reveals the silver neck, and holds level.
+```
+
+ShotFlow reads the actual pixels, locks the visible subject, props, camera,
+space, light, and materials, budgets only the requested change, and returns:
+
+```text
+SEEDANCE PROMPT
+[one positive Prompt, 1,200 characters or fewer]
+
+SUBMIT WITH
+- Attachment 1: this final frame, as the only media reference
+- Duration: 5 seconds
+- Ratio: preserve the frame ratio
+- Generation submitted: no
+```
+
+No source video, project file, JSON, CLI, provider account, API Key, or paid
+generation is required. See the [quick-entry contract](skills/shotflow/references/quick-entry.md)
+and the frozen [Obsidian Bloom single-Prompt showcase](examples/SHOWCASE_OBSIDIAN_BLOOM.md).
+
+Install the Skill once for Codex:
+
+```bash
+git clone --depth 1 https://github.com/ruhang365/ruhang365-shotflow.git
+mkdir -p ~/.codex/skills
+cp -R ruhang365-shotflow/skills/shotflow ~/.codex/skills/shotflow
+```
 
 ## Evidence status
 
-ShotFlow `v0.4.0-rc1` is a software and preregistered-evidence release with **no
-effectiveness claim**. Historical evidence remains unchanged: two earlier
-controlled Clip 02 A/B pairs were blindly reviewed and the baseline won both;
-Gate 7 then returned unequal native resolutions and was invalid before scoring.
-RC1 adds Ordered Sequence `1.2`, contract `1.3`, the shorter
-`provider-direct-v5`, `anchor-frame-v3`, deterministic 720p blind-review media,
-and an account-free `shotflow demo`. No v0.4 provider job has been submitted.
+ShotFlow `v0.4.0-rc1` is public with **no effectiveness claim**. The six-job
+Gate 9/10 benchmark was stopped before submission and is now deferred. Its
+frozen contracts and all older failures remain public evidence; none has been
+deleted, rescored, or turned into a marketing win.
 
 | Case | Role | Status |
 | --- | --- | --- |
-| The Sky Mender | flagship spectacle | v0.4 Gate 10 inputs frozen; blocked until Gate 9 passes |
+| The Sky Mender | flagship spectacle | Gate 10 frozen and deferred; no v0.4 job submitted |
 | Storm Deck | physical action | Lovart Kling O1 and two Seedance 2.0 baselines rejected; corrected handoff was acknowledged but the opening still broke, so the case is closed at its attempt cap |
-| Obsidian Bloom | fictional product film | v0.4 Gate 9 inputs frozen; awaiting a separate six-job generation approval |
+| Obsidian Bloom | fictional product film | single Showcase Prompt frozen; one quality-first generation awaits separate approval |
 
-The v0.4 experiment prospectively separates native Provider evidence from
-canonical review media. Every native result must be at least 1280×720 and is
-hashed unchanged; both sides are then symmetrically encoded to 1280×720 for
-blind review, never cropped or upscaled. Gate 9 runs three Obsidian Bloom pairs
-with one authorized cap lift. Gate 10 runs three Sky Mender pairs with two
-sequential changes and starts only after Gate 9 passes. See the
-[protocol](examples/V04_EVALUATION_PROTOCOL.md),
+The current product validation path is one high-quality Obsidian Bloom
+Showcase, then five new testers using only a final frame and one sentence — no
+generation required. Strict A/B remains available as a deferred advanced path.
+See the [Showcase](examples/SHOWCASE_OBSIDIAN_BLOOM.md),
+[tester sprint](FOUNDING_TESTER_SPRINT.md),
+[deferred protocol](examples/V04_EVALUATION_PROTOCOL.md),
 [preflight review](examples/V04_RC1_PREFLIGHT_REVIEW.md),
 [Gate 9](examples/GATE_9_OBSIDIAN_BLOOM_V04_RC1_APPROVAL.md), and
 [Gate 10](examples/GATE_10_SKY_MENDER_V04_RC1_APPROVAL.md).
@@ -40,33 +74,31 @@ All prior failed or invalid evidence remains public: the
 [Sky Mender review](examples/sky-mender/reviews/clip-02-blind-review-v1.md),
 [Obsidian Bloom review](examples/obsidian-bloom/reviews/clip-02-blind-review-anchor-v1.md),
 and [closed Gate 7](examples/GATE_7_OBSIDIAN_BLOOM_V03_RC1_APPROVAL.md).
-Generated media keeps its required AI disclosure; full v0.4 A/B media requires
-a separate publication approval.
+Generated media keeps its required AI disclosure. Any Showcase generation and
+any full-media publication require separate approval.
 
 ## The problem
 
-Most multi-shot AI video workflows write Clip 02 from the original plan. But Clip 01 rarely ends exactly as planned: a prop changes hands, a cape tears, the camera crosses the axis, or an unfinished motion lands somewhere unexpected.
+Most multi-shot AI video workflows write Clip 02 from the original plan. But
+Clip 01 rarely ends exactly as planned: a prop changes hands, a cape tears, the
+camera crosses the axis, or motion lands somewhere unexpected.
 
 ShotFlow makes the accepted output authoritative:
 
 ```text
-plan Clip 01
-    ↓
-generate and accept a real result
-    ↓
-observe identity · props · space · motion · light · story
-    ↓
-diff planned vs observed
-    ↓
-compile Clip 02 from the real endpoint
-    ↓
-score the handoff
+accepted final frame + one next-shot sentence
+                     ↓
+        visible continuity locks
+                     ↓
+        one causal change budget
+                     ↓
+        Seedance-ready Prompt
 ```
 
-It is a continuity compiler and an evidence-first benchmark, not another
-collection of cinematic adjectives.
+The project/CLI compiler and benchmark tools remain available below for teams
+that need manifests, audit trails, or scoring.
 
-## 60-second start
+## Advanced: local compiler
 
 Requirements: Python 3.10+; no runtime dependencies.
 
@@ -91,16 +123,9 @@ Run directly from a clone without installation:
 python3 skills/shotflow/scripts/shotflow.py --help
 ```
 
-Install the Skill in Codex:
-
-```bash
-mkdir -p ~/.codex/skills
-cp -R skills/shotflow ~/.codex/skills/shotflow
-```
-
 Other directory-based agent hosts can use the same Skill folder, but their discovery path may differ.
 
-## Core workflow
+## Advanced project workflow
 
 Plan the current shot from a JSON specification:
 
@@ -169,9 +194,10 @@ only opening match, stable facts, sequential changes, and final proof. The
 `anchor-frame-v3` submission is capped at 1,200 characters. Sequence 1.0/1.1
 retain frozen byte-compatible output.
 
-## Fair A/B protocol
+## Deferred advanced path: strict A/B
 
-For every case:
+The following protocol is preserved but inactive. Gate 9/10 cannot be submitted
+without a new explicit benchmark decision. For every case:
 
 1. freeze the baseline Clip 02 prompt before Clip 01 generation;
 2. generate and accept one Clip 01;

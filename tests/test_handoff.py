@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import tempfile
 import unittest
@@ -246,6 +247,23 @@ class HandoffTests(unittest.TestCase):
                         "known_output_sha256"
                     ]
                     self.assertEqual(regenerated, frozen)
+
+    def test_obsidian_showcase_is_exact_frozen_submission(self) -> None:
+        repository = Path(__file__).resolve().parents[1]
+        root = repository / "examples" / "obsidian-bloom"
+        prompt = (root / "prompts" / "clip-02-showcase-v04.txt").read_text(
+            encoding="utf-8"
+        )
+        handoff = json.loads(
+            (root / "evidence" / "provider-handoff-shotflow-v04.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual(prompt, handoff["submission_prompt"]["text"])
+        self.assertEqual(
+            hashlib.sha256(prompt.encode("utf-8")).hexdigest(),
+            handoff["submission_prompt"]["sha256"],
+        )
 
     def test_handoff_rejects_unobserved_source(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

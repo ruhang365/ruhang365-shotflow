@@ -102,6 +102,7 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
     grammar_v5 = root / "plan" / "clip-02-grammar-v5.json"
     sequence_v5 = root / "plan" / "clip-02-sequence-v5.json"
     prompt_v5 = root / "prompts" / "clip-02-shotflow-v5-rc1.txt"
+    showcase_v04 = root / "prompts" / "clip-02-showcase-v04.txt"
     provider_handoff = root / "evidence" / "provider-handoff.json"
     anchor_handoffs = sorted(
         (root / "evidence").glob("provider-handoff-*-anchor-v1.json")
@@ -148,6 +149,18 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
         raise ValueError(
             f"{case_id}: provider-direct-v5 requires exactly two v0.4 handoffs"
         )
+    if showcase_v04.exists() and case_id != "obsidian-bloom":
+        raise ValueError(f"{case_id}: the v0.4 showcase is registered only for Obsidian Bloom")
+    if showcase_v04.exists():
+        shotflow_handoff = next(
+            load_json(path)
+            for path in evidence_handoffs
+            if "shotflow" in path.name
+        )
+        if sha256(showcase_v04) != shotflow_handoff["submission_prompt"]["sha256"]:
+            raise ValueError(
+                f"{case_id}: showcase Prompt must exactly match the frozen ShotFlow submission"
+            )
     observed = source_shot.get("observed")
     if observed and not shotflow.exists():
         raise ValueError(f"{case_id}: accepted Clip 01 is missing its ShotFlow prompt")
@@ -428,11 +441,8 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
             "contract_version": "1.3",
             "sequence_version": "1.2",
             "handoff_profile": "anchor-frame-v3",
-            "status": (
-                "gate_9_awaiting_separate_generation_approval"
-                if case_id == "obsidian-bloom"
-                else "gate_10_blocked_until_gate_9_passes"
-            ),
+            "status": "strict_benchmark_deferred_by_user_no_generation",
+            "execution_authorized": False,
             "baseline_prompt": {
                 "path": baseline_v5.relative_to(root).as_posix(),
                 "sha256": sha256(baseline_v5),
@@ -479,6 +489,14 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
             ],
             "canonical_review_raster": "1280x720",
         }
+        if showcase_v04.exists():
+            manifest["v04_prompt_candidate"]["single_showcase"] = {
+                "path": showcase_v04.relative_to(root).as_posix(),
+                "sha256": sha256(showcase_v04),
+                "bytes": showcase_v04.stat().st_size,
+                "status": "prompt_frozen_one_generation_not_authorized",
+                "effectiveness_claim": False,
+            }
     return manifest
 
 

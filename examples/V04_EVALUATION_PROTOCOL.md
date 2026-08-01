@@ -1,11 +1,15 @@
 # ShotFlow v0.4 preregistered evaluation protocol
 
-Status: **SOFTWARE AND INPUTS ONLY — NO V0.4 GENERATION SUBMITTED**
+Status: **STRICT BENCHMARK DEFERRED BY USER — NO V0.4 GENERATION SUBMITTED**
 
 This protocol is prospective. It does not reopen, rescore, or reinterpret Gate
 7 or Gate 8. Native-resolution variance is recorded as provider behavior. A/B
 review uses separately encoded canonical copies so resolution cannot reveal a
 variant or invalidate an otherwise decodable pair.
+
+The six-job Gate 9/10 plan was stopped on 2026-08-01. Keep this protocol and its
+hashes as preregistration history; do not execute it unless the user explicitly
+reactivates a new benchmark round.
 
 ## Fixed generation conditions
 

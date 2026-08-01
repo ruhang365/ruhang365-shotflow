@@ -179,6 +179,9 @@ def main() -> int:
         "schemas/ordered-sequence.schema.json",
         "schemas/provider-handoff.schema.json",
         "schemas/evaluation-pair.schema.json",
+        "skills/shotflow/references/quick-entry.md",
+        "examples/SHOWCASE_OBSIDIAN_BLOOM.md",
+        "FOUNDING_TESTER_SPRINT.md",
     )
     for relative in required:
         if not (ROOT / relative).is_file():

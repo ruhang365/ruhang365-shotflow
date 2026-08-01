@@ -4,11 +4,18 @@
 
 The accepted observed shot is the highest authority. Never mark a next shot continuity-safe when the source shot has no complete accepted observation.
 
+The primary public path is final-frame-first: one accepted final frame plus one
+sentence of next-shot intent should produce one directly submittable Seedance
+continuity Prompt. Project manifests, CLI evidence, and strict benchmarks remain
+available as advanced paths, not onboarding requirements.
+
 ## Scope
 
 - Keep Core local, account-free, and fully usable with human observations.
 - Keep Pro automation outside this repository until the activation gate is met.
 - Keep provider submission outside the Core CLI.
+- Keep the quick path free of account, API key, source-video, JSON, and CLI requirements.
+- Keep Gate 9/10 deferred unless the user explicitly reactivates the benchmark.
 - Treat only `seedance2.0_vision` as forward-tested in v0.1.
 
 ## Generation boundary

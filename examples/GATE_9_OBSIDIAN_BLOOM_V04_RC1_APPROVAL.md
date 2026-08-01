@@ -1,11 +1,15 @@
 # Gate 9 — Obsidian Bloom v0.4 minimum-causality benchmark
 
-Status: **INPUTS FROZEN — AWAITING SEPARATE SIX-JOB GENERATION APPROVAL**
+Status: **DEFERRED BY USER — SIX-JOB PLAN STOPPED, NO JOB SUBMITTED**
 
 Gate 9 is a new forward experiment. It does not reopen the closed Gate 7 pair.
 The only authorized change is a one-centimeter vertical lift of the unchanged,
 level black cap. Bottle geometry, silver collar, attached upper-left droplet,
 camera, liquid horizon, light, and material response remain protected.
+
+On 2026-08-01 the user stopped the six-job A/B plan and moved the product to a
+single-Prompt showcase plus no-generation usability testing. These inputs remain
+frozen as preregistration history. This file is not an active generation gate.
 
 ## Fixed inputs
 
@@ -31,7 +35,8 @@ same accepted PNG as their only attachment.
 
 Every cell uses a new isolated Lovart thread, standard Seedance 2.0,
 `unlimited`, `thinking`, 16:9, and five seconds. The normal cap is six jobs.
-No job is currently submitted. Before submission, display the exact two
+No job was submitted. Reactivation requires a new explicit benchmark decision;
+the prior approval path does not carry forward. If reactivated, display the exact two
 submission Prompts, hashes, shared reference, current account mode, any visible
 cost, and this job order, then obtain one explicit approval covering all six.
 

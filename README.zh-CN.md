@@ -1,33 +1,67 @@
-# ShotFlow — AI 视频连续性编译器与 Benchmark
+# ShotFlow — 从最终帧到下一镜头 Prompt
 
-**从真实结果编译下一镜头，再验证它是否真的接上了。**
+**上传已接受的最终帧，用一句话描述下一镜头，得到一条可直接提交给
+Seedance 的连续性 Prompt。**
 
-> 模型说它续上了，ShotFlow 负责检查它是否真的续上。
+> 下一镜头从画面中真实存在的状态出发，而不是从旧 Prompt 原本希望发生的
+> 状态出发。
 
 [English](README.md) · [案例](examples/) · [Skill](skills/shotflow/) · [Schema](schemas/) · [Pro 边界](PRO.md)
 
-![《天幕修补师》已接受的 Clip 01，由小云雀 / Seedance 2.0 生成](examples/sky-mender/evidence/clip-01-preview.gif)
+![《黑曜之息》已接受最终帧](examples/obsidian-bloom/evidence/clip-01-final-frame.jpg)
+
+## 30 秒工作流
+
+把已接受的最终帧附给具备视觉能力、已安装 ShotFlow Skill 的 Agent，然后输入：
+
+```text
+使用 $shotflow 读取这张已接受的最终帧。
+下一镜头意图：黑色瓶盖垂直升起一厘米，露出银色瓶颈并保持水平。
+```
+
+ShotFlow 会读取真实像素，锁定可见主体、道具、机位、空间、光线和材质，只为
+用户要求的变化分配时间，最后返回：
+
+```text
+SEEDANCE PROMPT
+[一条纯正向、最长 1200 字符的完整 Prompt]
+
+提交方式
+- 附件 1：这张最终帧，并作为唯一媒体参考
+- 时长：5 秒
+- 比例：保持最终帧比例
+- 已提交生成：否
+```
+
+不需要源视频、项目文件、JSON、CLI、服务商账号、API Key 或付费生成。见
+[快速入口契约](skills/shotflow/references/quick-entry.md)和已冻结的
+[《黑曜之息》单条 Showcase](examples/SHOWCASE_OBSIDIAN_BLOOM.md)。
+
+在 Codex 中只需安装一次：
+
+```bash
+git clone --depth 1 https://github.com/ruhang365/ruhang365-shotflow.git
+mkdir -p ~/.codex/skills
+cp -R ruhang365-shotflow/skills/shotflow ~/.codex/skills/shotflow
+```
 
 ## 当前证据状态
 
-ShotFlow `v0.4.0-rc1` 是软件与预注册证据版本，**不包含效果改善声明**。
-历史失败证据保持原样：此前两组受控 Clip 02 A/B 均由普通组获胜，Gate 7
-又因两组原生分辨率不同而在评分前失效。RC1 新增 Ordered Sequence `1.2`、
-contract `1.3`、更短的 `provider-direct-v5`、`anchor-frame-v3`、确定性的
-720p 盲评素材准备工具，以及无需账号的 `shotflow demo`。尚未提交任何 v0.4
-服务商任务。
+ShotFlow `v0.4.0-rc1` 已公开，**不包含效果改善声明**。Gate 9/10 的六条 A/B
+计划在提交前被停止，严格 Benchmark 现已延期。其冻结合同和所有历史失败证据
+继续公开，没有删除、补评分或改写成营销胜利。
 
 | 案例 | 作用 | 当前状态 |
 | --- | --- | --- |
-| 天幕修补师 | 旗舰视觉奇观 | v0.4 Gate 10 输入已冻结；仅在 Gate 9 通过后启动 |
+| 天幕修补师 | 旗舰视觉奇观 | Gate 10 已冻结并延期；没有提交 v0.4 任务 |
 | 暴风甲板 | 现实动作 | Lovart 的 Kling O1 与两条 Seedance 2.0 普通组均被拒绝；修正交接仍发生首帧断裂，案例在尝试上限处关闭 |
-| 黑曜之息 | 虚构产品广告 | v0.4 Gate 9 输入已冻结；等待六条任务的单独生成批准 |
+| 黑曜之息 | 虚构产品广告 | 单条 Showcase Prompt 已冻结；一次质量优先生成等待单独批准 |
 
-v0.4 前瞻实验把服务商原生证据与统一评审素材分开：每条原生结果必须至少
-1280×720，并原样记录哈希；A/B 两侧再对称编码为 1280×720、24fps、5 秒，
-不裁切、不放大。Gate 9 用一个获准的瓶盖变化执行三对《黑曜之息》A/B；
-Gate 10 仅在 Gate 9 通过后，用两个严格顺序变化执行三对《天幕修补师》A/B。
-见 [v0.4 评审协议](examples/V04_EVALUATION_PROTOCOL.md)、
+当前产品验证路径改为：一条高质量《黑曜之息》Showcase，然后由 5 名新用户只用
+最终帧和一句话完成无生成测试。严格 A/B 保留为延期的高级路径。见
+[Showcase](examples/SHOWCASE_OBSIDIAN_BLOOM.md)、
+[5 人测试](FOUNDING_TESTER_SPRINT.md)、
+[延期的 v0.4 评审协议](examples/V04_EVALUATION_PROTOCOL.md)、
 [三方预注册审查](examples/V04_RC1_PREFLIGHT_REVIEW.md)、
 [Gate 9](examples/GATE_9_OBSIDIAN_BLOOM_V04_RC1_APPROVAL.md) 与
 [Gate 10](examples/GATE_10_SKY_MENDER_V04_RC1_APPROVAL.md)。
@@ -66,26 +100,21 @@ Gate 8 也未启动。见
 
 常见工作流会根据原始计划预写 Clip 02。但 Clip 01 的真实结果经常偏离计划：道具换手、衣服破损、机位越轴、光源变化，或者动作停在意料之外的位置。
 
-ShotFlow 把已接受的视频当作事实源：
+ShotFlow 把已接受最终帧当作事实源：
 
 ```text
-计划 Clip 01
-    ↓
-生成并接受真实结果
-    ↓
-观察人物 · 道具 · 空间 · 动作 · 光线 · 剧情
-    ↓
-比较计划与真实状态
-    ↓
-从真实终点编译 Clip 02
-    ↓
-验收动作承接与连续性
+已接受最终帧 + 一句下一镜头意图
+                 ↓
+            可见连续性锁
+                 ↓
+            单一因果变化
+                 ↓
+       可直接提交 Seedance 的 Prompt
 ```
 
-它不是电影感形容词或导演姓名合集，而是一套连续性编译器与证据优先的
-Benchmark。
+项目/CLI 编译器与 Benchmark 工具继续保留，供需要清单、审计和评分的团队使用。
 
-## 60 秒开始
+## 高级：本地编译器
 
 需要 Python 3.10+，运行时零第三方依赖。
 
@@ -110,16 +139,9 @@ shotflow demo shotflow-offline-demo
 python3 skills/shotflow/scripts/shotflow.py --help
 ```
 
-安装到 Codex：
-
-```bash
-mkdir -p ~/.codex/skills
-cp -R skills/shotflow ~/.codex/skills/shotflow
-```
-
 其他使用目录式 Skill 的 Agent 也能复用，但发现路径可能不同。
 
-## 核心命令
+## 高级项目命令
 
 ```text
 shotflow init
@@ -157,7 +179,10 @@ Sequence `1.2` 使用 contract `1.3` 与 `provider-direct-v5`：JSON 保留完�
 匹配、稳定事实、顺序变化和最终可见证明；`anchor-frame-v3` 提交文本最长
 1200 字符。Sequence `1.0/1.1` 继续生成字节兼容的旧输出。
 
-## 公平 A/B
+## 延期的高级路径：严格 A/B
+
+以下协议继续保留但当前不执行。没有新的明确 Benchmark 决定，不得提交
+Gate 9/10。
 
 每组案例都遵守：
 

@@ -89,7 +89,8 @@
     "contract_version": "1.3",
     "sequence_version": "1.2",
     "handoff_profile": "anchor-frame-v3",
-    "status": "gate_10_blocked_until_gate_9_passes",
+    "status": "strict_benchmark_deferred_by_user_no_generation",
+    "execution_authorized": false,
     "baseline_prompt": {
       "path": "prompts/clip-02-baseline-v04.txt",
       "sha256": "c5b0154434330a47cd7c398d821d18564bc9227bf1fc8c9f01abb6841948735e",

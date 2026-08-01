@@ -150,7 +150,8 @@
     "contract_version": "1.3",
     "sequence_version": "1.2",
     "handoff_profile": "anchor-frame-v3",
-    "status": "gate_9_awaiting_separate_generation_approval",
+    "status": "strict_benchmark_deferred_by_user_no_generation",
+    "execution_authorized": false,
     "baseline_prompt": {
       "path": "prompts/clip-02-baseline-v04.txt",
       "sha256": "8736e9840ef88178a53c85e5db757a2e07f00a6228fc50612d3759b854ea0c6d",
@@ -203,6 +204,13 @@
         "shotflow"
       ]
     ],
-    "canonical_review_raster": "1280x720"
+    "canonical_review_raster": "1280x720",
+    "single_showcase": {
+      "path": "prompts/clip-02-showcase-v04.txt",
+      "sha256": "dc35090179d9326d6f054c997fadb44282fec6fdffe626909cb14c742f7f5307",
+      "bytes": 1020,
+      "status": "prompt_frozen_one_generation_not_authorized",
+      "effectiveness_claim": false
+    }
   }
 }

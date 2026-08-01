@@ -70,5 +70,6 @@ account-free demo passed.
 | baseline Handoff 1.2 | `e04db8d044feed2b9a2daaae753e3794bff568b31cb724bbd67777e1ff2e41a4` | `0a173902c7a379edd360e2bd36f5edcc05047d0dc882e784aae8829a5529a94e` |
 | ShotFlow Handoff 1.2 | `feed940ad552a1b07a67222490a9f76aad4003b70f3a98fb03803ad7c6166c30` | `ce1fc9d9f592f6d7133cfb52b55d68f0cd443101053b9a51974626441c72b87f` |
 
-Decision: **READY FOR `v0.4.0-rc1` SOFTWARE RELEASE.** Gate 9 generation remains
-unauthorized until its separate six-job approval is presented and accepted.
+Decision: **READY FOR `v0.4.0-rc1` SOFTWARE RELEASE.** The RC was released
+without an effectiveness claim. Gate 9/10 were subsequently stopped by user
+decision; their frozen inputs remain evidence, not active generation approval.

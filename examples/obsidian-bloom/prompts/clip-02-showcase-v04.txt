@@ -1,0 +1,20 @@
+FRAME 1 AUTHORITY:
+Attachment 1 is the accepted endpoint. Frame 1 matches its subject, geometry, camera, composition, light, and material state. Then execute the timeline.
+
+TIMELINE:
+CONTINUE FROM THE ACCEPTED FINAL FRAME.
+
+MATCH | 0.00-0.50s
+The opening matches the accepted bottle, closed level cap, asymmetric collar, attached droplet, camera, horizon, and light.
+
+KEEP STABLE
+- The bottle body, front-right facet, hovering height, and attached upper-left droplet remain stable.
+- The asymmetric silver collar retains its accepted shape and alignment.
+- The locked near-frontal camera, low liquid horizon, cool reflection, and amber underlight remain stable.
+
+CHANGE IN ORDER
+1. 1.25-4.25s | the rigid cap rises straight upward by one centimeter -> the level unchanged cap holds one centimeter above the exposed silver neck
+
+FINAL PROOF | 4.25-5.00s
+- a clear vertical gap remains beneath the level unchanged cap
+- The level unchanged cap holds above the exposed neck while the complete product state remains stable.

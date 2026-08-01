@@ -1,11 +1,15 @@
 # Gate 10 — The Sky Mender v0.4 flagship benchmark
 
-Status: **INPUTS FROZEN — BLOCKED UNTIL GATE 9 PASSES**
+Status: **DEFERRED BY USER — BLOCKED, NO JOB SUBMITTED**
 
 Gate 10 is a new forward experiment and does not execute the blocked Gate 8
 contract. It keeps two sequential changes: cable tension returns the worker to
 two-boot tower contact, then the amber hand light closes the visible fissure.
 The previous dawn transition is removed.
+
+On 2026-08-01 the user stopped Gate 9/10 and deferred strict benchmarking.
+These inputs remain frozen as historical preregistration evidence. This file
+does not authorize generation.
 
 ## Fixed inputs
 
