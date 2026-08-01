@@ -1,0 +1,43 @@
+{
+  "handoff_version": "1.0",
+  "project_schema_version": "1.0",
+  "profile": "anchor-frame-v1",
+  "project_id": "obsidian-bloom",
+  "variant": "clip-02-shotflow",
+  "source_shot_id": "clip-01",
+  "provider": {
+    "platform": "Lovart",
+    "model_tool": "generate_video_seedance_v2_0"
+  },
+  "creative_prompt": {
+    "kind": "prompt",
+    "path": "prompts/clip-02-shotflow-anchor-creative-v1.txt",
+    "sha256": "b1077b7e9ed15dc651680089dbf3031b6d37c02f73c2d2e8aadb96c5da263354",
+    "bytes": 2452
+  },
+  "submission_prompt": {
+    "text": "ANCHOR-FRAME BINDING — APPLY BEFORE THE CREATIVE INSTRUCTIONS:\n- Attachment 1 is the only media reference and the authoritative opening frame from the accepted previous shot. Start directly from this exact subject, prop geometry, pose, camera side, composition, lighting, and material state.\n- No source video is attached. Treat incoming motion and unresolved forces stated in the creative instructions as observed state to continue from Attachment 1; do not invent earlier frames.\n- Do not insert an empty establishing frame, recreate the previous shot, or move any visible element before the requested continuation begins.\n\nCREATIVE INSTRUCTIONS — KEEP UNCHANGED:\nCONTINUE FROM THE PROVIDED FINAL FRAME.\n\nRequired visible action:\n- The collar keeps rotating and the exterior droplet keeps descending; then the existing rounded cap visibly opens without changing shape and releases one narrow amber vapor ribbon.\n- Physical order: Continue the accepted ring and droplet motion before allowing the real cap geometry to open.\n- The final seconds must visibly prove the required action. Do not stop at setup.\n\nOpening continuity locks — match before advancing the action:\n- motion: The bottle rises out of the liquid and ends visibly hovering above the surface. The collar elements retain unresolved rotational displacement, the exterior droplet remains suspended in a downward path, expanding ripples remain below, and the cap stays closed.\n- space: The bottle ends centered in a near-frontal view above a low black-liquid horizon. The dominant silver petal crosses the collar from center toward upper-right, and the left face and front-right facet remain readable.\n- subject: One centered squat rectangular perfume bottle remains, made from dark translucent smoky glass with broad shoulders and a pronounced asymmetric front-right facet; no label is present.\n- props and wardrobe: The bottle has a glossy rounded black cap and overlapping curved silver collar elements. A large amber droplet hangs on the exterior upper-left face. A separate internal droplet is not clearly discernible in the accepted final frame.\n- light and material: A large cool soft source creates broad white glass and metal reflections from camera-left, while a narrow amber underlight glows through the bottle base and liquid. The glass reads dense and transparent, the collar polished metal, the cap glossy black, and the liquid viscous.\n\nShot execution:\n- camera: Continue from the accepted camera position, arc direction, focal behavior, and bottle scale without a reset.\n- composition: Keep the accepted silhouette, facet orientation, collar asymmetry, liquid horizon, and petal position as anchors.\n- lighting: Preserve actual source positions, reflection paths, transparency, internal amber state, and black-liquid exposure.\n- physics: Continue actual ring velocity, exterior droplet gravity, liquid ripples, glass density, and cap contact before vapor release.\n\nHard rule: continue the accepted action from its real endpoint. Do not reset pose, prop ownership, screen direction, lighting source, material state, or spatial geography.\n",
+    "sha256": "ac68c50fa66334579184ed9ef570a8471efafb94a5fefee95a3f5bf76cc16821",
+    "creative_prompt_sha256": "b1077b7e9ed15dc651680089dbf3031b6d37c02f73c2d2e8aadb96c5da263354"
+  },
+  "references": [
+    {
+      "attachment_index": 1,
+      "role": "authoritative_opening_frame",
+      "authority": "accepted_observed_endpoint",
+      "artifact": {
+        "kind": "final_frame",
+        "path": "artifacts/clip-01-final-frame.png",
+        "sha256": "56d6455da0310b8acce2364af99229825307b70bae8f677306496c1fa08e8a0e",
+        "bytes": 568869
+      }
+    }
+  ],
+  "known_output_sha256": [],
+  "acceptance_gates": {
+    "new_artifact_hash_required": true,
+    "opening_frame_match_required": true,
+    "opening_frame_review": "pending",
+    "continuity_safe": false
+  }
+}

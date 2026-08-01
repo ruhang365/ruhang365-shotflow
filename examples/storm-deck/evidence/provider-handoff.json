@@ -1,0 +1,58 @@
+{
+  "handoff_version": "1.0",
+  "project_schema_version": "1.0",
+  "profile": "video-context-v1",
+  "project_id": "storm-deck",
+  "variant": "clip-02-baseline",
+  "source_shot_id": "clip-01",
+  "provider": {
+    "platform": "Lovart",
+    "model_tool": "generate_video_seedance_v2_0"
+  },
+  "creative_prompt": {
+    "kind": "prompt",
+    "path": "prompts/clip-02-baseline-frozen.txt",
+    "sha256": "3d7e34a97bf97aaad1131deccaf9200603fd7ca56c729669b67bbddd5cc777fb",
+    "bytes": 882
+  },
+  "submission_prompt": {
+    "text": "REFERENCE BINDING — APPLY BEFORE THE CREATIVE INSTRUCTIONS:\n- Attachment 1 is the authoritative opening frame from the accepted previous shot. The first generated frame must match its subject, prop placement, pose, camera side, and spatial geography before the action advances.\n- Attachment 2 is the accepted previous-shot video. Use it only for identity, material, lighting, and incoming-motion context; do not restart from its opening or insert an empty establishing frame.\n- If the two references appear to conflict, Attachment 1 wins because it is the observed endpoint.\n\nCREATIVE INSTRUCTIONS — KEEP UNCHANGED:\nContinue immediately from the previous shot in one continuous five-second take. The same rescue worker in the yellow storm suit keeps the left hand on the red emergency case's black strap while both continue sliding screen-right. The taut safety line arrests the worker first; the case pivots around the caught strap, stops short of the railing, and the worker pulls it back toward the fixed blue container row. Keep the worker on the right knee until the case changes direction. Keep both silver latches, the plain white helmet, upper-left safety anchor, downhill water flow, overhead blue work lights, and the same camera side. End as the worker secures the case against a deck cleat and its small green status beacon activates. Real inertia, friction, rain, line tension, and hand contact; no reset pose, no prop duplication, no cut, no orbit, no text, no real company markings.\n",
+    "sha256": "51563429cb54ea55b0673504935ce6edda29dcdce54601448b12b4c75bb63fac",
+    "creative_prompt_sha256": "3d7e34a97bf97aaad1131deccaf9200603fd7ca56c729669b67bbddd5cc777fb"
+  },
+  "references": [
+    {
+      "attachment_index": 1,
+      "role": "authoritative_opening_frame",
+      "authority": "accepted_observed_endpoint",
+      "artifact": {
+        "kind": "final_frame",
+        "path": "artifacts/clip-01-final-frame.png",
+        "sha256": "5b32eb1a7519d543be037cf86c8e2079803d8f9a7be99174184c691c4faec5f6",
+        "bytes": 1389542
+      }
+    },
+    {
+      "attachment_index": 2,
+      "role": "motion_context_video",
+      "authority": "context_only",
+      "artifact": {
+        "kind": "video",
+        "path": "artifacts/v03c76g10004d9l1gqq7dld7d93q9670.mp4",
+        "sha256": "d7e36d9b270a3f9280dca19d50afe856177c3426e1a12a0b3511dbc811a2a198",
+        "bytes": 8098739
+      }
+    }
+  ],
+  "known_output_sha256": [
+    "35c1d96474d8a95b9bf83db7db2a7fa48b11b1fc7e0be514dde1100d10a6f256",
+    "bf86855a193bec8cc1e11731cf8365c86f48093820e3e48f3b904be70fdc7330",
+    "d31af259e41234d4c461249c974a0694191c88122e7bead114fd2cec816f037f"
+  ],
+  "acceptance_gates": {
+    "new_artifact_hash_required": true,
+    "opening_frame_match_required": true,
+    "opening_frame_review": "rejected",
+    "continuity_safe": false
+  }
+}

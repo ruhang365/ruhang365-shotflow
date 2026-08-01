@@ -1,14 +1,14 @@
 {
   "experiment_version": "1.0",
   "case_id": "obsidian-bloom",
-  "status": "mechanism_v2_awaiting_generation_approval",
+  "status": "anchor_frame_v1_shotflow_rejected",
   "provider": {
     "adapter": "seedance-2.0",
-    "model": "seedance2.0_vision",
-    "verified": true,
+    "model": "generate_video_seedance_v2_0",
+    "verified": false,
     "parameters": {
       "ratio": "16:9",
-      "resolution": "1080p",
+      "resolution": "provider-native",
       "duration_seconds": 5
     }
   },
@@ -29,13 +29,20 @@
       "frozen": true,
       "requires_accepted_clip_01": true,
       "profile": "provider-direct-v2"
+    },
+    "clip_02_shotflow_anchor": {
+      "path": "prompts/clip-02-shotflow-anchor-creative-v1.txt",
+      "sha256": "b1077b7e9ed15dc651680089dbf3031b6d37c02f73c2d2e8aadb96c5da263354",
+      "frozen": true,
+      "requires_accepted_clip_01": true,
+      "profile": "anchor-frame-v1"
     }
   },
   "next_shot_grammar": {
     "path": "plan/clip-02-grammar.json",
     "sha256": "634428be6b5288ff57afa8bfbf55a35a45e2ee3656a3ecca993ace5e84954668"
   },
-  "reference_policy": "Use the same accepted Clip 01 video and final frame for baseline and ShotFlow Clip 02.",
+  "reference_policy": "Use the same accepted Clip 01 final frame as the only media reference for baseline and ShotFlow Clip 02. The source video is intentionally withheld under anchor-frame-v1.",
   "accepted_reference_hashes": {
     "video_sha256": "af845de5b3eff841f1b142b6ae03bf66e0585d073129da7856f6ebfb9180d827",
     "final_frame_sha256": "56d6455da0310b8acce2364af99229825307b70bae8f677306496c1fa08e8a0e"
@@ -48,5 +55,38 @@
       "status": "superseded_before_generation"
     }
   ],
-  "ai_generated_disclosure_required": true
+  "ai_generated_disclosure_required": true,
+  "provider_handoffs": [
+    {
+      "variant": "clip-02-baseline",
+      "profile": "anchor-frame-v1",
+      "path": "evidence/provider-handoff-baseline-anchor-v1.json",
+      "sha256": "49b20665c3b4e4a96bc8420e577a1ad3a898f986eee1b4856261496d4ed3094b",
+      "submission_prompt_sha256": "a57845e028ee38f9a20ac77943f332a68c97c01f83b6267e1f576bcf26bdc67f"
+    },
+    {
+      "variant": "clip-02-shotflow",
+      "profile": "anchor-frame-v1",
+      "path": "evidence/provider-handoff-shotflow-anchor-v1.json",
+      "sha256": "a085fcb4c471e52d99ae3161292d863f95922a38e4b9902a09963e08cb0feb7d",
+      "submission_prompt_sha256": "ac68c50fa66334579184ed9ef570a8471efafb94a5fefee95a3f5bf76cc16821"
+    }
+  ],
+  "offline_prompt_candidate": {
+    "profile": "provider-direct-v3",
+    "status": "offline_only_not_authorized_for_generation",
+    "grammar": {
+      "path": "plan/clip-02-grammar-v3.json",
+      "sha256": "6a009f3729ffdd7aecde4711908cc1f65f4c8ffc0e4d2b11ea145c3504af6e9e"
+    },
+    "ordered_sequence": {
+      "path": "plan/clip-02-sequence-v3.json",
+      "sha256": "e14f5e70afaa137a09c3e6f132529880093fe1ded44fd3d03cd00ca3aa6854b0"
+    },
+    "compiled_prompt": {
+      "path": "prompts/clip-02-shotflow-v3-offline.txt",
+      "sha256": "d824044e452a4d1b59da6e4da4969e88ea13f120d5f1f4354abef31fac3fa3cc",
+      "bytes": 1887
+    }
+  }
 }

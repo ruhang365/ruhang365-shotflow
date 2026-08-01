@@ -12,32 +12,52 @@ really continued.**
 ## Evidence status
 
 ShotFlow v0.2 Core is implemented and testable. Three real Seedance Clip 01
-results have been accepted, observed, and hashed. The first controlled Clip 02
-A/B pair was generated and blindly reviewed — and **the baseline won**. ShotFlow
-v1 scored 83.34 average versus 100 for the baseline, so no improvement claim is
-made. The failed result remains public evidence and drove a prompt-compiler
-revision.
+results have been accepted, observed, and hashed. Two controlled Clip 02 A/B
+pairs have now been blindly reviewed — and **the baseline won both**. No
+improvement claim is made. The failed results remain evidence and drive the
+`provider-direct-v3` compiler revision, which is validated offline and not yet
+authorized for paid generation.
 
 | Case | Role | Status |
 | --- | --- | --- |
-| The Sky Mender | flagship spectacle | Clip 02 v1 blind review lost; v2 VIP retry retained in Xiaoyunque queue |
-| Storm Deck | physical action | earlier baseline ended without media; Gate 4 variants retained in Xiaoyunque queue |
-| Obsidian Bloom | fictional product film | Gate 4 variants retained in Xiaoyunque queue |
+| The Sky Mender | flagship spectacle | Clip 02 v1 lost; v2 improved motion continuity but missed the required ending; case rejected and frozen |
+| Storm Deck | physical action | Lovart Kling O1 and two Seedance 2.0 baselines rejected; corrected handoff was acknowledged but the opening still broke, so the case is closed at its attempt cap |
+| Obsidian Bloom | fictional product film | both `anchor-frame-v1` variants returned 1920×1080; three blind reviewers unanimously preferred the baseline, so ShotFlow was rejected without retry |
 
-All accepted originals are 1920×1080, 24fps, 5.125 seconds and retain the
-provider's container-level `AIGC Label=1`. Public derivatives add a visible
-disclosure. See the [blind review](examples/sky-mender/reviews/clip-02-blind-review-v1.md)
-and [closed Gate 2 ledger](examples/GATE_2_APPROVAL.md).
+All accepted Clip 01 originals are 1920×1080, 24fps, 5.125 seconds and retain
+the provider's container-level `AIGC Label=1`. The Lovart Gate 6 outputs are
+also 1920×1080 but have no container AIGC label, so any public derivative must
+add a visible disclosure. See the [Sky Mender blind review](examples/sky-mender/reviews/clip-02-blind-review-v1.md),
+the [Obsidian Bloom blind review](examples/obsidian-bloom/reviews/clip-02-blind-review-anchor-v1.md),
+and the [closed Gate 2 ledger](examples/GATE_2_APPROVAL.md).
 
 The standard non-VIP `seedance2.0_direct` run stopped because that model rejects
 `1080p`. Gate 4 then used the user-selected `seedance2.0_vision` VIP model at
-`1080p`, but its first job returned no media because the account had
-insufficient credits. The other four Xiaoyunque jobs were not submitted. The
-user reports a daily credit refresh, so all five required successful outputs
-remain in the Xiaoyunque queue. Google Flow is assigned additional portability
-work and will be reported separately because its model, reference, and duration
-contracts differ. See [Gate 4](examples/GATE_4_VIP_1080P_APPROVAL.md) and the
-[Flow validation protocol](examples/GOOGLE_FLOW_VALIDATION.md).
+`1080p`. Its first job returned no media because the account had insufficient
+credits. One explicitly approved retry later returned a valid video, but the
+fissure remained visibly open and dawn did not appear after repair. The result
+was rejected and The Sky Mender was frozen rather than retried again. Later
+generation moved to Lovart without treating the platform as the model.
+A Kling O1 pilot was rejected for weak story progression. A Lovart-routed
+Seedance 2.0 pilot reached the ending but began from the wrong spatial state.
+A corrected handoff then bound the accepted final frame as the authoritative
+first attachment and filtered historical artifact hashes. Lovart acknowledged
+those roles, but the retry repeated the opening break and returned 720p instead
+of the requested 1080p. It was rejected at the fifth-attempt cap. No remaining
+case is authorized for unattended generation. See the
+[closed Storm Deck gate](examples/GATE_4_STORM_DECK_BASELINE_APPROVAL.md).
+The next registered mechanism, `anchor-frame-v1`, withholds the source video
+when provider-specific reference roles are unproved. Obsidian Bloom's baseline
+and ShotFlow handoffs now use the same accepted final frame as their sole media
+reference. Lovart exposes no resolution selector, so both gates register
+provider-native output with a 1280×720 minimum and no upscale. The standard
+Seedance 2.0 model remains fixed for quality; Fast and Mini are excluded. The
+baseline then returned 1920×1080 and passed its opening-frame gate. The
+separately approved ShotFlow job also returned 1920×1080, but its cap hinged,
+the exterior droplet fell, and its amber ribbon connected to the base/liquid
+surface. Three blind visual reviewers unanimously preferred the baseline
+(`9.67/12` versus `3.33/12`), so the ShotFlow attempt was rejected without a
+retry.
 
 ## The problem
 

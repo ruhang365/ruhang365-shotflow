@@ -1,7 +1,7 @@
 {
   "experiment_version": "1.0",
   "case_id": "sky-mender",
-  "status": "mechanism_v2_awaiting_generation_approval",
+  "status": "mechanism_v2_rejected",
   "provider": {
     "adapter": "seedance-2.0",
     "model": "seedance2.0_vision",
