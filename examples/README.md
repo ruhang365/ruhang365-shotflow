@@ -49,3 +49,20 @@ not a generation approval.
 Provider continuity is part of the experiment contract. The corrected Lovart
 handoff fixes reference roles, excludes historical thread artifacts by hash,
 and requires the first generated frame to pass manual continuity review.
+
+## v0.3 RC1 causal-budget gates
+
+RC1 freezes a new mechanism without claiming that it works better. Ordered
+Sequence `1.1` separates stable `protected` facts from one to three authorized
+`transitions`, binds them to checkpoint `active_changes`, and compiles a
+positive `provider-direct-v4` Prompt with final proof. Both variants use the
+same accepted final frame through `anchor-frame-v2`.
+
+- [Preflight contradiction review](V03_RC1_PREFLIGHT_REVIEW.md)
+- [Gate 7 — Obsidian Bloom](GATE_7_OBSIDIAN_BLOOM_V03_RC1_APPROVAL.md): frozen,
+  awaiting a separate Lovart cost confirmation
+- [Gate 8 — The Sky Mender](GATE_8_SKY_MENDER_V03_RC1_APPROVAL.md): frozen and
+  blocked unless Gate 7 receives a majority v0.3 win
+
+Gate 7 permits one baseline job and one v0.3 job only. A loss, invalid pair,
+or failed job stops the sequence; it does not authorize retries or Gate 8.

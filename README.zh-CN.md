@@ -10,17 +10,17 @@
 
 ## 当前证据状态
 
-ShotFlow v0.2 Core 已实现并可测试。三组真实 Seedance Clip 01 已经生成、
-接受、观察并记录哈希。两组受控 Clip 02 A/B 已完成盲评，结果都是
-**普通组获胜**。因此目前不宣称 ShotFlow 已提升连续性；失败结果保留为证据，
-并已推动 `provider-direct-v3` 编译器修订。v3 目前仅完成离线验证，尚未授权
-付费生成。
+ShotFlow `v0.3.0-rc1` 是软件与离线候选案例版本，**不包含效果改善声明**。
+三组真实 Seedance Clip 01 已经生成、接受、观察并记录哈希。此前两组受控
+Clip 02 A/B 均由普通组获胜，失败证据继续公开保留。RC1 新增因果变化预算、
+纯正向 `anchor-frame-v2` 与最长 1800 字符的 `provider-direct-v4`。
+Gate 7 仍须等 Lovart 展示当前成本后，由用户另行明确批准。
 
 | 案例 | 作用 | 当前状态 |
 | --- | --- | --- |
-| 天幕修补师 | 旗舰视觉奇观 | Clip 02 v1 落败；v2 改善动作连续性但未完成关键结尾，案例已拒绝并冻结 |
+| 天幕修补师 | 旗舰视觉奇观 | 历史尝试已拒绝；v0.3 Gate 8 已冻结，等待 Gate 7 胜出后才解锁 |
 | 暴风甲板 | 现实动作 | Lovart 的 Kling O1 与两条 Seedance 2.0 普通组均被拒绝；修正交接仍发生首帧断裂，案例在尝试上限处关闭 |
-| 黑曜之息 | 虚构产品广告 | `anchor-frame-v1` 两组均返回 1920×1080；三名盲评一致选择普通组，ShotFlow 组拒绝且不重试 |
+| 黑曜之息 | 虚构产品广告 | 历史 `anchor-frame-v1` A/B 落败；v0.3 Gate 7 已冻结，等待独立成本批准 |
 
 所有已接受 Clip 01 原始视频均为 1920×1080、24fps、5.125 秒，并保留平台
 容器级 `AIGC Label=1`。Lovart Gate 6 两个输出同为 1920×1080，但容器没有
@@ -38,9 +38,10 @@ AIGC 标识，因此任何公开衍生版本都必须增加可见披露。见
 首帧却丢失人物并把箱子放到错误一侧，同样被拒绝。修正后的交接合同把已接受
 最终帧固定为第一个权威附件并排除线程历史产物；Lovart 在文字中确认了角色，
 但重试仍重复首帧断裂，实际分辨率也只有 720p，而不是批准的 1080p。该结果在
-第 5 次尝试上限处被拒绝。当前没有任何剩余案例获得无人值守生成授权。见
+第 5 次尝试上限处被拒绝。当前没有任何案例获得无人值守生成授权；Gate 7
+虽已登记，仍须取得一次与当前成本绑定的新确认。见
 [已关闭的《暴风甲板》定向重试闸门](examples/GATE_4_STORM_DECK_BASELINE_APPROVAL.md)。
-下一套已登记机制是 `anchor-frame-v1`：Provider 尚未证明引用角色可靠时，
+上一套已登记机制是 `anchor-frame-v1`：Provider 尚未证明引用角色可靠时，
 只提交已接受的最终帧，不提交源视频。《黑曜之息》普通组与 ShotFlow 组已冻结
 相同的唯一媒体参考。Lovart 不提供分辨率选项，因此两组如实记录平台原生输出，
 最低接受 1280×720，不做超分；质量优先继续固定标准 Seedance 2.0，排除 Fast
@@ -124,16 +125,17 @@ shotflow score
 - [`shotflow.project.json` v1](schemas/shotflow.project.schema.json)：项目、模型、实体、道具、镜头、观察、连续性锁、素材哈希、Prompt 和评分。
 - [`ObservationPatch` v1](schemas/observation-patch.schema.json)：Core 人工观察与未来 Pro 自动分析共用的输出格式。
 - [`Generation Attempt Ledger` v1](schemas/generation-attempt.schema.json)：记录每次提交、接受、拒绝和失败，不写入服务商私密标识。
-- [`Ordered Sequence` v1](schemas/ordered-sequence.schema.json)：定义五个连续计时的正向状态、精简观察锚点和逐阶段视觉验收条件。
-- [`Provider Handoff` v1](schemas/provider-handoff.schema.json)：固定参考素材角色、提交 Prompt 哈希、历史产物排除规则和首帧门禁。`anchor-frame-v1` 只使用已接受终点；只有 Provider 已证明能可靠绑定“仅作上下文”的源视频时，才使用 `video-context-v1`。
+- [`Ordered Sequence` 1.0/1.1](schemas/ordered-sequence.schema.json)：1.0 保持字节兼容；1.1 新增稳定状态、1–3 个获准变化、checkpoint `active_changes` 与最终证据。
+- [`Provider Handoff` v1](schemas/provider-handoff.schema.json)：固定参考素材角色、提交 Prompt 哈希、历史产物排除规则和首帧门禁。纯正向 `anchor-frame-v2` 只使用已接受终点，旧 profile 继续兼容。
 - 五轴电影语法：叙事时刻、镜头运动、光线色彩、空间构图、材质物理。
 - 六项连续性量表：人物身份、服装道具、空间方向、动作承接、光线材质、故事节拍。
 
 真实观察始终覆盖计划状态。没有完整观察，不得输出 `continuity_safe=true`。
 
-新的 `compile-next` 默认使用 `provider-direct-v3`：JSON 合同保留完整观察和
-五项 `visual_test`，服务商 Prompt 只发送
-`match → continue → initiate → resolve → hold` 五个正向状态、精简锚点和完整五轴电影语法，并强制不超过 2400 字符。
+Sequence `1.1` 使用 contract `1.2` 与 `provider-direct-v4`：JSON 保留完整
+观察、五轴电影语法和全部 `visual_test`，服务商 Prompt 只发送首帧匹配、
+稳定状态、获准变化、五阶段时间线和最终证据，最长 1800 字符。Sequence
+`1.0` 继续生成字节兼容的 contract `1.1` / `provider-direct-v3`。
 
 ## 公平 A/B
 

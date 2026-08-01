@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ruhang365-shotflow"
-version = "0.2.0"
+version = "0.3.0rc1"
 description = "Cinematic continuity contracts compiled from real AI video shot outcomes."
 readme = "README.md"
 requires-python = ">=3.10"

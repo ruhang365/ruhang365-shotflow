@@ -1,0 +1,94 @@
+{
+  "sequence_version": "1.1",
+  "duration_seconds": 5,
+  "anchors": {
+    "identity": "One squat smoky-glass perfume bottle keeps its broad shoulders and asymmetric front-right facet.",
+    "wardrobe_props": "The rounded black cap, silver collar, and upper-left amber droplet retain their accepted geometry.",
+    "space_direction": "The near-frontal bottle stays centered above the low liquid horizon at constant scale.",
+    "light_material": "Cool camera-left light and amber underlight preserve the accepted glass, metal, cap, and liquid response."
+  },
+  "change_budget": {
+    "protected": [
+      {
+        "id": "bottle-body",
+        "state": "The centered smoky-glass bottle, shoulder width, front-right facet, and hovering height remain stable."
+      },
+      {
+        "id": "exterior-droplet",
+        "state": "The amber droplet stays attached to the upper-left bottle face."
+      },
+      {
+        "id": "studio-geometry",
+        "state": "The near-frontal camera, low liquid horizon, cool left reflection, and amber underlight remain stable."
+      }
+    ],
+    "transitions": [
+      {
+        "id": "collar-settle",
+        "subject": "the displaced silver collar",
+        "from_state": "residual rotational displacement remains visible",
+        "transition": "the collar advances through one small slowing arc",
+        "to_state": "the collar rests in its accepted asymmetric alignment",
+        "proof": "the silver elements stop cleanly while their asymmetry remains readable"
+      },
+      {
+        "id": "cap-lift",
+        "subject": "the level rounded black cap",
+        "from_state": "the cap rests closed on the silver collar",
+        "transition": "the rigid cap rises straight vertically",
+        "to_state": "the cap hovers level above the exposed silver neck",
+        "proof": "a clear vertical gap reveals the neck beneath a level unchanged cap"
+      },
+      {
+        "id": "neck-orbit",
+        "subject": "one thin amber vapor ribbon",
+        "from_state": "the exposed silver neck is clearly visible",
+        "transition": "the ribbon emerges at the neck and traces one tight clockwise orbit",
+        "to_state": "one narrow amber ring settles around the collar",
+        "proof": "the complete amber ring stays localized above the bottle shoulders"
+      }
+    ]
+  },
+  "checkpoints": [
+    {
+      "phase": "match",
+      "start_seconds": 0,
+      "end_seconds": 0.5,
+      "state": "The opening matches the centered hovering bottle, level closed cap, displaced collar, and attached upper-left droplet.",
+      "visual_test": "Bottle silhouette, cap alignment, collar asymmetry, droplet position, horizon, and reflections match the accepted frame.",
+      "active_changes": []
+    },
+    {
+      "phase": "continue",
+      "start_seconds": 0.5,
+      "end_seconds": 1.25,
+      "state": "The silver collar advances through one small slowing arc while the bottle and attached droplet hold.",
+      "visual_test": "The collar moves a short visible distance while bottle scale, droplet attachment, and horizon remain fixed.",
+      "active_changes": ["collar-settle"]
+    },
+    {
+      "phase": "initiate",
+      "start_seconds": 1.25,
+      "end_seconds": 2.25,
+      "state": "The level rigid cap rises straight vertically and clearly exposes the silver neck.",
+      "visual_test": "A visible vertical gap separates the level cap from the collar and the neck reads cleanly.",
+      "active_changes": ["cap-lift"]
+    },
+    {
+      "phase": "resolve",
+      "start_seconds": 2.25,
+      "end_seconds": 4.25,
+      "state": "One thin amber ribbon emerges at the exposed neck and completes one tight clockwise orbit.",
+      "visual_test": "The ribbon source stays at the neck and its complete circular path remains above the bottle shoulders.",
+      "active_changes": ["neck-orbit"]
+    },
+    {
+      "phase": "hold",
+      "start_seconds": 4.25,
+      "end_seconds": 5,
+      "state": "The level cap hovers above the exposed neck, one amber ring rests around the collar, and the droplet remains attached.",
+      "visual_test": "The final frame shows the hovering cap, exposed neck, localized amber ring, attached droplet, and stable reflections.",
+      "active_changes": []
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "handoff_version": "1.1",
+  "project_schema_version": "1.0",
+  "profile": "anchor-frame-v2",
+  "project_id": "obsidian-bloom",
+  "variant": "clip-02-shotflow-v4-rc1",
+  "source_shot_id": "clip-01",
+  "provider": {
+    "platform": "Lovart",
+    "model_tool": "generate_video_seedance_v2_0"
+  },
+  "creative_prompt": {
+    "kind": "prompt",
+    "path": "prompts/clip-02-shotflow-v4-rc1.txt",
+    "sha256": "e6b1186422b6422fd5048f1ee3bff4aad1f6b87cac0a68fe27068cf24c2f3cad",
+    "bytes": 1688
+  },
+  "submission_prompt": {
+    "text": "OPENING-FRAME AUTHORITY:\n- Attachment 1 is the accepted previous-shot endpoint and the authoritative opening frame.\n- Generated frame 1 reproduces its subject, geometry, pose, camera, composition, lighting, and material state.\n- The creative timeline begins from this matched state.\n\nCREATIVE INSTRUCTIONS:\nCONTINUE FROM THE ACCEPTED FINAL FRAME.\n\nOPENING MATCH\nThe opening matches the centered hovering bottle, level closed cap, displaced collar, and attached upper-left droplet.\n\nPROTECTED THROUGHOUT\n- The centered smoky-glass bottle, shoulder width, front-right facet, and hovering height remain stable.\n- The amber droplet stays attached to the upper-left bottle face.\n- The near-frontal camera, low liquid horizon, cool left reflection, and amber underlight remain stable.\n\nAUTHORIZED CHANGES IN ORDER\n1. the collar advances through one small slowing arc -> the collar rests in its accepted asymmetric alignment\n2. the rigid cap rises straight vertically -> the cap hovers level above the exposed silver neck\n3. the ribbon emerges at the neck and traces one tight clockwise orbit -> one narrow amber ring settles around the collar\n\nFIVE VISIBLE CHECKPOINTS\n1. MATCH | 0.00-0.50s — The opening match above holds.\n2. CONTINUE | 0.50-1.25s — The silver collar advances through one small slowing arc while the bottle and attached droplet hold.\n3. INITIATE | 1.25-2.25s — The level rigid cap rises straight vertically and clearly exposes the silver neck.\n4. RESOLVE | 2.25-4.25s — One thin amber ribbon emerges at the exposed neck and completes one tight clockwise orbit.\n5. HOLD | 4.25-5.00s — The level cap hovers above the exposed neck, one amber ring rests around the collar, and the droplet remains attached.\n\nFINAL PROOF\n- the silver elements stop cleanly while their asymmetry remains readable\n- a clear vertical gap reveals the neck beneath a level unchanged cap\n- the complete amber ring stays localized above the bottle shoulders\n- hold: Checkpoint 5 stays clearly visible.\n",
+    "sha256": "fc4955449de55f72111b02cb0986ce415f6a42839ff3a3f4a6382b1430005bfd",
+    "creative_prompt_sha256": "e6b1186422b6422fd5048f1ee3bff4aad1f6b87cac0a68fe27068cf24c2f3cad"
+  },
+  "references": [
+    {
+      "attachment_index": 1,
+      "role": "authoritative_opening_frame",
+      "authority": "accepted_observed_endpoint",
+      "artifact": {
+        "kind": "final_frame",
+        "path": "artifacts/clip-01-final-frame.png",
+        "sha256": "56d6455da0310b8acce2364af99229825307b70bae8f677306496c1fa08e8a0e",
+        "bytes": 568869
+      }
+    }
+  ],
+  "known_output_sha256": [
+    "4d879f234e3f20e413061a9ad5a266dbb7e7f3e8208de3901a74343bab7dfd45",
+    "a9f996fbeb577146fef8e0873d13d1b323f83b02be07b04d35afedf08211cf50"
+  ],
+  "acceptance_gates": {
+    "new_artifact_hash_required": true,
+    "opening_frame_match_required": true,
+    "opening_frame_review": "pending",
+    "continuity_safe": false
+  }
+}

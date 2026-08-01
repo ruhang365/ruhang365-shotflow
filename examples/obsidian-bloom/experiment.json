@@ -88,5 +88,40 @@
       "sha256": "d824044e452a4d1b59da6e4da4969e88ea13f120d5f1f4354abef31fac3fa3cc",
       "bytes": 1887
     }
+  },
+  "rc_prompt_candidate": {
+    "profile": "provider-direct-v4",
+    "contract_version": "1.2",
+    "status": "gate_7_awaiting_explicit_generation_approval",
+    "grammar": {
+      "path": "plan/clip-02-grammar-v4.json",
+      "sha256": "de12b88ef8f81a9ec4f6381989857faddd160ad7e6f107732a3ac24f3dd86ef5"
+    },
+    "ordered_sequence": {
+      "path": "plan/clip-02-sequence-v4.json",
+      "sha256": "fc86ff2b80c976229436769301645830bb87cf4d6eb977b9fccb2a8c08627d46"
+    },
+    "compiled_prompt": {
+      "path": "prompts/clip-02-shotflow-v4-rc1.txt",
+      "sha256": "e6b1186422b6422fd5048f1ee3bff4aad1f6b87cac0a68fe27068cf24c2f3cad",
+      "bytes": 1688
+    },
+    "provider_handoffs": [
+      {
+        "variant": "clip-02-baseline-v03-gate7",
+        "profile": "anchor-frame-v2",
+        "path": "evidence/provider-handoff-baseline-v03-gate7.json",
+        "sha256": "cf5eea04570bd6f6a29786e15925ad9025ed18286abc48e9b57f136f01dbcc8c",
+        "submission_prompt_sha256": "60f8965da8fd21b50a9fabde410b4759391878b1fd350421f5547926858a6fa3"
+      },
+      {
+        "variant": "clip-02-shotflow-v4-rc1",
+        "profile": "anchor-frame-v2",
+        "path": "evidence/provider-handoff-shotflow-v4-rc1-gate7.json",
+        "sha256": "e551e3cf37ba7a0a651b53473881a1d8b855c416c363abd9b67727b0020d6581",
+        "submission_prompt_sha256": "fc4955449de55f72111b02cb0986ce415f6a42839ff3a3f4a6382b1430005bfd"
+      }
+    ],
+    "reference_policy": "Both variants use the same accepted Clip 01 final frame as the only media reference under anchor-frame-v2."
   }
 }

@@ -2,11 +2,11 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/ruhang365/ruhang365-shotflow/main/schemas/ordered-sequence.schema.json",
   "title": "ShotFlow Ordered Sequence v1",
-  "type": "object",
-  "required": ["sequence_version", "duration_seconds", "anchors", "checkpoints"],
-  "properties": {
-    "sequence_version": {"const": "1.0"},
-    "duration_seconds": {"type": "number", "exclusiveMinimum": 0},
+  "oneOf": [
+    {"$ref": "#/$defs/sequenceV10"},
+    {"$ref": "#/$defs/sequenceV11"}
+  ],
+  "$defs": {
     "anchors": {
       "type": "object",
       "required": ["identity", "wardrobe_props", "space_direction", "light_material"],
@@ -18,22 +18,53 @@
       },
       "additionalProperties": false
     },
-    "checkpoints": {
-      "type": "array",
-      "minItems": 5,
-      "maxItems": 5,
-      "prefixItems": [
-        {"$ref": "#/$defs/matchCheckpoint"},
-        {"$ref": "#/$defs/continueCheckpoint"},
-        {"$ref": "#/$defs/initiateCheckpoint"},
-        {"$ref": "#/$defs/resolveCheckpoint"},
-        {"$ref": "#/$defs/holdCheckpoint"}
-      ],
-      "items": false
-    }
-  },
-  "$defs": {
-    "checkpoint": {
+    "changeId": {
+      "type": "string",
+      "maxLength": 64,
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "protectedState": {
+      "type": "object",
+      "required": ["id", "state"],
+      "properties": {
+        "id": {"$ref": "#/$defs/changeId"},
+        "state": {"type": "string", "minLength": 1, "maxLength": 240}
+      },
+      "additionalProperties": false
+    },
+    "transition": {
+      "type": "object",
+      "required": ["id", "subject", "from_state", "transition", "to_state", "proof"],
+      "properties": {
+        "id": {"$ref": "#/$defs/changeId"},
+        "subject": {"type": "string", "minLength": 1, "maxLength": 240},
+        "from_state": {"type": "string", "minLength": 1, "maxLength": 240},
+        "transition": {"type": "string", "minLength": 1, "maxLength": 240},
+        "to_state": {"type": "string", "minLength": 1, "maxLength": 240},
+        "proof": {"type": "string", "minLength": 1, "maxLength": 240}
+      },
+      "additionalProperties": false
+    },
+    "changeBudget": {
+      "type": "object",
+      "required": ["protected", "transitions"],
+      "properties": {
+        "protected": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 6,
+          "items": {"$ref": "#/$defs/protectedState"}
+        },
+        "transitions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {"$ref": "#/$defs/transition"}
+        }
+      },
+      "additionalProperties": false
+    },
+    "checkpointV10": {
       "type": "object",
       "required": ["phase", "start_seconds", "end_seconds", "state", "visual_test"],
       "properties": {
@@ -45,36 +76,71 @@
       },
       "additionalProperties": false
     },
-    "matchCheckpoint": {
-      "allOf": [
-        {"$ref": "#/$defs/checkpoint"},
-        {"properties": {"phase": {"const": "match"}}}
-      ]
+    "checkpointV11": {
+      "type": "object",
+      "required": ["phase", "start_seconds", "end_seconds", "state", "visual_test", "active_changes"],
+      "properties": {
+        "phase": {"type": "string"},
+        "start_seconds": {"type": "number", "minimum": 0},
+        "end_seconds": {"type": "number", "exclusiveMinimum": 0},
+        "state": {"type": "string", "minLength": 1, "maxLength": 360},
+        "visual_test": {"type": "string", "minLength": 1, "maxLength": 240},
+        "active_changes": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/changeId"},
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
     },
-    "continueCheckpoint": {
-      "allOf": [
-        {"$ref": "#/$defs/checkpoint"},
-        {"properties": {"phase": {"const": "continue"}}}
-      ]
+    "checkpointsV10": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "prefixItems": [
+        {"allOf": [{"$ref": "#/$defs/checkpointV10"}, {"properties": {"phase": {"const": "match"}}}]},
+        {"allOf": [{"$ref": "#/$defs/checkpointV10"}, {"properties": {"phase": {"const": "continue"}}}]},
+        {"allOf": [{"$ref": "#/$defs/checkpointV10"}, {"properties": {"phase": {"const": "initiate"}}}]},
+        {"allOf": [{"$ref": "#/$defs/checkpointV10"}, {"properties": {"phase": {"const": "resolve"}}}]},
+        {"allOf": [{"$ref": "#/$defs/checkpointV10"}, {"properties": {"phase": {"const": "hold"}}}]}
+      ],
+      "items": false
     },
-    "initiateCheckpoint": {
-      "allOf": [
-        {"$ref": "#/$defs/checkpoint"},
-        {"properties": {"phase": {"const": "initiate"}}}
-      ]
+    "checkpointsV11": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "prefixItems": [
+        {"allOf": [{"$ref": "#/$defs/checkpointV11"}, {"properties": {"phase": {"const": "match"}}}]},
+        {"allOf": [{"$ref": "#/$defs/checkpointV11"}, {"properties": {"phase": {"const": "continue"}}}]},
+        {"allOf": [{"$ref": "#/$defs/checkpointV11"}, {"properties": {"phase": {"const": "initiate"}}}]},
+        {"allOf": [{"$ref": "#/$defs/checkpointV11"}, {"properties": {"phase": {"const": "resolve"}}}]},
+        {"allOf": [{"$ref": "#/$defs/checkpointV11"}, {"properties": {"phase": {"const": "hold"}}}]}
+      ],
+      "items": false
     },
-    "resolveCheckpoint": {
-      "allOf": [
-        {"$ref": "#/$defs/checkpoint"},
-        {"properties": {"phase": {"const": "resolve"}}}
-      ]
+    "sequenceV10": {
+      "type": "object",
+      "required": ["sequence_version", "duration_seconds", "anchors", "checkpoints"],
+      "properties": {
+        "sequence_version": {"const": "1.0"},
+        "duration_seconds": {"type": "number", "exclusiveMinimum": 0},
+        "anchors": {"$ref": "#/$defs/anchors"},
+        "checkpoints": {"$ref": "#/$defs/checkpointsV10"}
+      },
+      "additionalProperties": false
     },
-    "holdCheckpoint": {
-      "allOf": [
-        {"$ref": "#/$defs/checkpoint"},
-        {"properties": {"phase": {"const": "hold"}}}
-      ]
+    "sequenceV11": {
+      "type": "object",
+      "required": ["sequence_version", "duration_seconds", "anchors", "change_budget", "checkpoints"],
+      "properties": {
+        "sequence_version": {"const": "1.1"},
+        "duration_seconds": {"type": "number", "exclusiveMinimum": 0},
+        "anchors": {"$ref": "#/$defs/anchors"},
+        "change_budget": {"$ref": "#/$defs/changeBudget"},
+        "checkpoints": {"$ref": "#/$defs/checkpointsV11"}
+      },
+      "additionalProperties": false
     }
-  },
-  "additionalProperties": false
+  }
 }

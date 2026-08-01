@@ -14,6 +14,7 @@ from shotflow.core import (
     diff_states,
     new_project,
     observe_shot,
+    render_prompt,
     score_evaluation,
     validate_ordered_sequence,
     validate_project,
@@ -107,6 +108,83 @@ SEQUENCE = {
             "end_seconds": 5,
             "state": "The worker holds beside the sealed seam as restrained dawn light appears behind it.",
             "visual_test": "The final frame shows contact, a sealed seam, stable cable tension, and dawn proof.",
+        },
+    ],
+}
+
+CAUSAL_SEQUENCE = {
+    "sequence_version": "1.1",
+    "duration_seconds": 5,
+    "anchors": {
+        "identity": "One worker in the torn red cape remains visible.",
+        "wardrobe_props": "The repair tool remains in the left hand.",
+        "space_direction": "The worker remains right of the fissure.",
+        "light_material": "Cold storm light remains on wet metal.",
+    },
+    "change_budget": {
+        "protected": [
+            {"id": "worker-identity", "state": "The same worker and torn red cape remain visible."},
+            {"id": "camera-side", "state": "The camera side and fixed horizon remain stable."},
+        ],
+        "transitions": [
+            {
+                "id": "swing-settle",
+                "subject": "the worker and cable",
+                "from_state": "the body swings right on a taut cable",
+                "transition": "the swing reaches the fissure and slows",
+                "to_state": "the worker holds beside the fissure",
+                "proof": "the cable stays taut while the body reaches the tower",
+            },
+            {
+                "id": "seam-repair",
+                "subject": "the visible fissure",
+                "from_state": "the amber seam remains open",
+                "transition": "repair light travels from the tool contact point",
+                "to_state": "one continuous repaired edge remains",
+                "proof": "the final frame shows a closed metal edge",
+            },
+        ],
+    },
+    "checkpoints": [
+        {
+            "phase": "match",
+            "start_seconds": 0,
+            "end_seconds": 0.5,
+            "state": "The opening matches the suspended worker and taut cable.",
+            "visual_test": "Worker, cable, tool hand, fissure side, and horizon match.",
+            "active_changes": [],
+        },
+        {
+            "phase": "continue",
+            "start_seconds": 0.5,
+            "end_seconds": 1.5,
+            "state": "The existing swing carries the worker toward the fissure.",
+            "visual_test": "The incoming arc and cable tension remain readable.",
+            "active_changes": ["swing-settle"],
+        },
+        {
+            "phase": "initiate",
+            "start_seconds": 1.5,
+            "end_seconds": 2.5,
+            "state": "The repair tool touches the fissure at one clear point.",
+            "visual_test": "Hand, tool, and fissure share one contact point.",
+            "active_changes": ["seam-repair"],
+        },
+        {
+            "phase": "resolve",
+            "start_seconds": 2.5,
+            "end_seconds": 4.25,
+            "state": "Amber repair light closes the visible seam from the contact point.",
+            "visual_test": "The open seam becomes one repaired metal edge.",
+            "active_changes": ["seam-repair"],
+        },
+        {
+            "phase": "hold",
+            "start_seconds": 4.25,
+            "end_seconds": 5,
+            "state": "The worker holds beside the sealed seam and taut cable.",
+            "visual_test": "The final frame proves the sealed seam and stable worker.",
+            "active_changes": [],
         },
     ],
 }
@@ -311,6 +389,70 @@ class CoreTests(unittest.TestCase):
         with self.assertRaisesRegex(ShotFlowError, "provider duration"):
             validate_ordered_sequence(duration, 5)
 
+    def test_causal_sequence_compiles_change_budget_prompt(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            project_file = root / "shotflow.project.json"
+            project = new_project("Causal compiler")
+            add_or_replace_plan(project, "clip-01", "Begin repair", PLAN)
+            media = root / "clip-01.mp4"
+            frame = root / "clip-01-final.png"
+            media.write_bytes(MP4_BYTES + b"accepted")
+            frame.write_bytes(PNG_BYTES + b"accepted")
+            observe_shot(project_file, project, "clip-01", OBSERVED, media, frame)
+            contract = compile_next_shot(
+                project,
+                "clip-01",
+                "clip-02-v4",
+                "The worker seals the fissure and holds beside it.",
+                GRAMMAR,
+                CAUSAL_SEQUENCE,
+            )
+        prompt = contract["compiled_prompt"]["text"]
+        self.assertEqual(contract["contract_version"], "1.2")
+        self.assertEqual(contract["compiled_prompt"]["profile"], "provider-direct-v4")
+        self.assertIn("PROTECTED THROUGHOUT", prompt)
+        self.assertIn("AUTHORIZED CHANGES IN ORDER", prompt)
+        self.assertIn("FINAL PROOF", prompt)
+        self.assertLessEqual(len(prompt), 1800)
+        self.assertNotRegex(prompt, r"(?i)do not|must not|without|avoid|hard rule")
+
+    def test_causal_sequence_rejects_change_budget_conflicts(self) -> None:
+        duplicate = deepcopy(CAUSAL_SEQUENCE)
+        duplicate["change_budget"]["transitions"][0]["id"] = "worker-identity"
+        with self.assertRaisesRegex(ShotFlowError, "Duplicate change budget id"):
+            validate_ordered_sequence(duplicate, 5)
+
+        unknown = deepcopy(CAUSAL_SEQUENCE)
+        unknown["checkpoints"][1]["active_changes"] = ["unknown-change"]
+        with self.assertRaisesRegex(ShotFlowError, "unknown transitions"):
+            validate_ordered_sequence(unknown, 5)
+
+        unused = deepcopy(CAUSAL_SEQUENCE)
+        for checkpoint in unused["checkpoints"]:
+            checkpoint["active_changes"] = []
+        with self.assertRaisesRegex(ShotFlowError, "unused transitions"):
+            validate_ordered_sequence(unused, 5)
+
+    def test_causal_sequence_rejects_invalid_active_and_negative_text(self) -> None:
+        match_change = deepcopy(CAUSAL_SEQUENCE)
+        match_change["checkpoints"][0]["active_changes"] = ["swing-settle"]
+        with self.assertRaisesRegex(ShotFlowError, "cannot have active changes"):
+            validate_ordered_sequence(match_change, 5)
+
+        negative = deepcopy(CAUSAL_SEQUENCE)
+        negative["change_budget"]["protected"][0]["state"] = "Do not change the worker."
+        with self.assertRaisesRegex(ShotFlowError, "visible positive state"):
+            validate_ordered_sequence(negative, 5)
+
+    def test_causal_provider_prompt_rejects_over_1800_characters(self) -> None:
+        overlong = deepcopy(CAUSAL_SEQUENCE)
+        for checkpoint in overlong["checkpoints"]:
+            checkpoint["state"] = "Visible continuous state " + ("x" * 320)
+        validate_ordered_sequence(overlong, 5)
+        with self.assertRaisesRegex(ShotFlowError, "exceeds 1800"):
+            render_prompt("The repair completes visibly.", GRAMMAR, overlong)
+
     def test_obsidian_v3_regression_compiles_short_ordered_prompt(self) -> None:
         repository = Path(__file__).resolve().parents[1]
         case = repository / "examples" / "obsidian-bloom"
@@ -356,6 +498,42 @@ class CoreTests(unittest.TestCase):
         self.assertIn("begins at the exposed neck", prompt)
         self.assertIn("attached droplet remains visible", prompt)
         self.assertNotRegex(prompt, r"(?i)do not|must not|without|avoid|hard rule")
+
+    def test_v4_rc1_examples_match_frozen_compiler_output(self) -> None:
+        repository = Path(__file__).resolve().parents[1]
+        for case_id in ("obsidian-bloom", "sky-mender"):
+            with self.subTest(case=case_id):
+                case = repository / "examples" / case_id
+                project = json.loads(
+                    (case / "shotflow.project.json").read_text(encoding="utf-8")
+                )
+                grammar = json.loads(
+                    (case / "plan" / "clip-02-grammar-v4.json").read_text(
+                        encoding="utf-8"
+                    )
+                )
+                sequence = json.loads(
+                    (case / "plan" / "clip-02-sequence-v4.json").read_text(
+                        encoding="utf-8"
+                    )
+                )
+                contract = compile_next_shot(
+                    project,
+                    "clip-01",
+                    "clip-02-v4-rc1-regression",
+                    "The registered story outcome completes and holds visibly.",
+                    grammar,
+                    sequence,
+                )
+                frozen = (
+                    case / "prompts" / "clip-02-shotflow-v4-rc1.txt"
+                ).read_text(encoding="utf-8")
+                self.assertEqual(contract["contract_version"], "1.2")
+                self.assertEqual(
+                    contract["compiled_prompt"]["profile"], "provider-direct-v4"
+                )
+                self.assertEqual(contract["compiled_prompt"]["text"], frozen)
+                self.assertLessEqual(len(frozen), 1800)
 
 
 if __name__ == "__main__":
