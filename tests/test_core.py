@@ -314,12 +314,18 @@ class CoreTests(unittest.TestCase):
     def test_obsidian_v3_regression_compiles_short_ordered_prompt(self) -> None:
         repository = Path(__file__).resolve().parents[1]
         case = repository / "examples" / "obsidian-bloom"
-        project = json.loads((case / "shotflow.project.json").read_text())
+        project = json.loads(
+            (case / "shotflow.project.json").read_text(encoding="utf-8")
+        )
         grammar = json.loads(
-            (case / "plan" / "clip-02-grammar-v3.json").read_text()
+            (case / "plan" / "clip-02-grammar-v3.json").read_text(
+                encoding="utf-8"
+            )
         )
         sequence = json.loads(
-            (case / "plan" / "clip-02-sequence-v3.json").read_text()
+            (case / "plan" / "clip-02-sequence-v3.json").read_text(
+                encoding="utf-8"
+            )
         )
         contract = compile_next_shot(
             project,
@@ -330,10 +336,12 @@ class CoreTests(unittest.TestCase):
             sequence,
         )
         prompt = contract["compiled_prompt"]["text"]
-        legacy = (case / "prompts" / "clip-02-shotflow-v2.txt").read_text()
+        legacy = (case / "prompts" / "clip-02-shotflow-v2.txt").read_text(
+            encoding="utf-8"
+        )
         frozen = (
             case / "prompts" / "clip-02-shotflow-v3-offline.txt"
-        ).read_text()
+        ).read_text(encoding="utf-8")
         self.assertEqual(contract["contract_version"], "1.1")
         self.assertEqual(contract["compiled_prompt"]["profile"], "provider-direct-v3")
         self.assertEqual(len(contract["ordered_sequence"]["checkpoints"]), 5)
