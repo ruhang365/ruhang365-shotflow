@@ -18,11 +18,11 @@
     "acceptance_gates"
   ],
   "properties": {
-    "handoff_version": {"const": "1.0"},
+    "handoff_version": {"enum": ["1.0", "1.1"]},
     "project_schema_version": {"const": "1.0"},
     "profile": {
       "type": "string",
-      "enum": ["video-context-v1", "anchor-frame-v1"]
+      "enum": ["video-context-v1", "anchor-frame-v1", "anchor-frame-v2"]
     },
     "project_id": {"type": "string", "minLength": 1},
     "variant": {"type": "string", "minLength": 1},
@@ -94,8 +94,25 @@
       "then": {"properties": {"references": {"minItems": 1, "maxItems": 1}}}
     },
     {
+      "if": {"properties": {"profile": {"const": "anchor-frame-v2"}}},
+      "then": {
+        "properties": {
+          "handoff_version": {"const": "1.1"},
+          "references": {"minItems": 1, "maxItems": 1}
+        }
+      }
+    },
+    {
       "if": {"properties": {"profile": {"const": "video-context-v1"}}},
       "then": {"properties": {"references": {"minItems": 2, "maxItems": 2}}}
+    },
+    {
+      "if": {
+        "properties": {
+          "profile": {"enum": ["video-context-v1", "anchor-frame-v1"]}
+        }
+      },
+      "then": {"properties": {"handoff_version": {"const": "1.0"}}}
     }
   ],
   "$defs": {

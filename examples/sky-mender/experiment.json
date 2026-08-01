@@ -48,5 +48,40 @@
       "status": "rejected"
     }
   ],
-  "ai_generated_disclosure_required": true
+  "ai_generated_disclosure_required": true,
+  "rc_prompt_candidate": {
+    "profile": "provider-direct-v4",
+    "contract_version": "1.2",
+    "status": "gate_8_blocked_until_gate_7_wins",
+    "grammar": {
+      "path": "plan/clip-02-grammar-v4.json",
+      "sha256": "8faa29c78709d20f6c9fbd7326cf8b2cae7613eb2970b136d3a6f7117b06913c"
+    },
+    "ordered_sequence": {
+      "path": "plan/clip-02-sequence-v4.json",
+      "sha256": "6ebf0e6c16fd3756d117b697a2d677441484a753fd04ca6617349cd8d76723e8"
+    },
+    "compiled_prompt": {
+      "path": "prompts/clip-02-shotflow-v4-rc1.txt",
+      "sha256": "5d22afd7c083e7abb94b201e2f1f331ee37cf7b5110b6462b563bee4b08a7951",
+      "bytes": 1802
+    },
+    "provider_handoffs": [
+      {
+        "variant": "clip-02-baseline-v03-gate8",
+        "profile": "anchor-frame-v2",
+        "path": "evidence/provider-handoff-baseline-v03-gate8.json",
+        "sha256": "97b50ccf9155bbcedb7805670be018e9ddbb18d86e4bd814015cc6e317d456a9",
+        "submission_prompt_sha256": "39a9e5a9214c1596df4b4f3cedafe7c820ca53f72293b4a2e178108401e5daf2"
+      },
+      {
+        "variant": "clip-02-shotflow-v4-rc1",
+        "profile": "anchor-frame-v2",
+        "path": "evidence/provider-handoff-shotflow-v4-rc1-gate8.json",
+        "sha256": "0d904a2ae87f5c1bf8cf50c192dacc7a9499feb95b87a451957db6526cf72aba",
+        "submission_prompt_sha256": "258e4d8e4c2d604830a5154b5aab56e3021660a8d9615a200da9c452fbf9b6dd"
+      }
+    ],
+    "reference_policy": "Both variants use the same accepted Clip 01 final frame as the only media reference under anchor-frame-v2."
+  }
 }

@@ -22,9 +22,15 @@ from .core import (
 
 
 HANDOFF_VERSION = "1.0"
+CAUSAL_HANDOFF_VERSION = "1.1"
 VIDEO_CONTEXT_PROFILE = "video-context-v1"
 ANCHOR_FRAME_PROFILE = "anchor-frame-v1"
-HANDOFF_PROFILES = (VIDEO_CONTEXT_PROFILE, ANCHOR_FRAME_PROFILE)
+ANCHOR_FRAME_V2_PROFILE = "anchor-frame-v2"
+HANDOFF_PROFILES = (
+    VIDEO_CONTEXT_PROFILE,
+    ANCHOR_FRAME_PROFILE,
+    ANCHOR_FRAME_V2_PROFILE,
+)
 
 VIDEO_CONTEXT_DIRECTIVE = """REFERENCE BINDING — APPLY BEFORE THE CREATIVE INSTRUCTIONS:
 - Attachment 1 is the authoritative opening frame from the accepted previous shot. The first generated frame must match its subject, prop placement, pose, camera side, and spatial geography before the action advances.
@@ -42,6 +48,14 @@ ANCHOR_FRAME_DIRECTIVE = """ANCHOR-FRAME BINDING — APPLY BEFORE THE CREATIVE I
 CREATIVE INSTRUCTIONS — KEEP UNCHANGED:
 """
 
+ANCHOR_FRAME_V2_DIRECTIVE = """OPENING-FRAME AUTHORITY:
+- Attachment 1 is the accepted previous-shot endpoint and the authoritative opening frame.
+- Generated frame 1 reproduces its subject, geometry, pose, camera, composition, lighting, and material state.
+- The creative timeline begins from this matched state.
+
+CREATIVE INSTRUCTIONS:
+"""
+
 
 def compile_submission_prompt(
     creative_prompt: str,
@@ -53,11 +67,12 @@ def compile_submission_prompt(
         raise ShotFlowError("Creative prompt must not be empty")
     if profile not in HANDOFF_PROFILES:
         raise ShotFlowError(f"Unknown provider handoff profile {profile!r}")
-    directive = (
-        ANCHOR_FRAME_DIRECTIVE
-        if profile == ANCHOR_FRAME_PROFILE
-        else VIDEO_CONTEXT_DIRECTIVE
-    )
+    if profile == ANCHOR_FRAME_V2_PROFILE:
+        directive = ANCHOR_FRAME_V2_DIRECTIVE
+    elif profile == ANCHOR_FRAME_PROFILE:
+        directive = ANCHOR_FRAME_DIRECTIVE
+    else:
+        directive = VIDEO_CONTEXT_DIRECTIVE
     return directive + creative_prompt.rstrip() + "\n"
 
 
@@ -120,7 +135,11 @@ def prepare_provider_handoff(
             }
         )
     return {
-        "handoff_version": HANDOFF_VERSION,
+        "handoff_version": (
+            CAUSAL_HANDOFF_VERSION
+            if profile == ANCHOR_FRAME_V2_PROFILE
+            else HANDOFF_VERSION
+        ),
         "project_schema_version": SCHEMA_VERSION,
         "profile": profile,
         "project_id": project["project"]["id"],

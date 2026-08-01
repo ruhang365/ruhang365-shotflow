@@ -46,9 +46,15 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
     grammar_v3 = root / "plan" / "clip-02-grammar-v3.json"
     sequence_v3 = root / "plan" / "clip-02-sequence-v3.json"
     prompt_v3 = root / "prompts" / "clip-02-shotflow-v3-offline.txt"
+    grammar_v4 = root / "plan" / "clip-02-grammar-v4.json"
+    sequence_v4 = root / "plan" / "clip-02-sequence-v4.json"
+    prompt_v4 = root / "prompts" / "clip-02-shotflow-v4-rc1.txt"
     provider_handoff = root / "evidence" / "provider-handoff.json"
     anchor_handoffs = sorted(
         (root / "evidence").glob("provider-handoff-*-anchor-v1.json")
+    )
+    causal_handoffs = sorted(
+        (root / "evidence").glob("provider-handoff-*-gate[78].json")
     )
     source_shot = project["shots"][0]
     recorded = source_shot["prompt"]["sha256"]
@@ -63,6 +69,17 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
     ):
         raise ValueError(
             f"{case_id}: provider-direct-v3 grammar, sequence, and prompt must be frozen together"
+        )
+    v4_files = (grammar_v4, sequence_v4, prompt_v4)
+    if any(path.exists() for path in v4_files) and not all(
+        path.exists() for path in v4_files
+    ):
+        raise ValueError(
+            f"{case_id}: provider-direct-v4 grammar, sequence, and prompt must be frozen together"
+        )
+    if all(path.exists() for path in v4_files) and len(causal_handoffs) != 2:
+        raise ValueError(
+            f"{case_id}: provider-direct-v4 requires exactly two Gate handoffs"
         )
     observed = source_shot.get("observed")
     if observed and not shotflow.exists():
@@ -261,6 +278,46 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
                 "sha256": sha256(prompt_v3),
                 "bytes": prompt_v3.stat().st_size,
             },
+        }
+    if all(path.exists() for path in v4_files):
+        manifest["rc_prompt_candidate"] = {
+            "profile": "provider-direct-v4",
+            "contract_version": "1.2",
+            "status": (
+                "gate_7_awaiting_explicit_generation_approval"
+                if case_id == "obsidian-bloom"
+                else "gate_8_blocked_until_gate_7_wins"
+            ),
+            "grammar": {
+                "path": grammar_v4.relative_to(root).as_posix(),
+                "sha256": sha256(grammar_v4),
+            },
+            "ordered_sequence": {
+                "path": sequence_v4.relative_to(root).as_posix(),
+                "sha256": sha256(sequence_v4),
+            },
+            "compiled_prompt": {
+                "path": prompt_v4.relative_to(root).as_posix(),
+                "sha256": sha256(prompt_v4),
+                "bytes": prompt_v4.stat().st_size,
+            },
+            "provider_handoffs": [
+                {
+                    "variant": handoff["variant"],
+                    "profile": handoff["profile"],
+                    "path": handoff_path.relative_to(root).as_posix(),
+                    "sha256": sha256(handoff_path),
+                    "submission_prompt_sha256": handoff["submission_prompt"][
+                        "sha256"
+                    ],
+                }
+                for handoff_path in causal_handoffs
+                for handoff in [load_json(handoff_path)]
+            ],
+            "reference_policy": (
+                "Both variants use the same accepted Clip 01 final frame as "
+                "the only media reference under anchor-frame-v2."
+            ),
         }
     return manifest
 

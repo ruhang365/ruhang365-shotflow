@@ -11,18 +11,19 @@ really continued.**
 
 ## Evidence status
 
-ShotFlow v0.2 Core is implemented and testable. Three real Seedance Clip 01
-results have been accepted, observed, and hashed. Two controlled Clip 02 A/B
-pairs have now been blindly reviewed — and **the baseline won both**. No
-improvement claim is made. The failed results remain evidence and drive the
-`provider-direct-v3` compiler revision, which is validated offline and not yet
-authorized for paid generation.
+ShotFlow `v0.3.0-rc1` is a software and offline-candidate release with **no
+effectiveness claim**. Three real Seedance Clip 01 results have been accepted,
+observed, and hashed. Two earlier controlled Clip 02 A/B pairs were blindly
+reviewed — and **the baseline won both**. Those failures remain public evidence.
+RC1 adds causal change budgets, positive-only `anchor-frame-v2`, and the
+1800-character `provider-direct-v4` compiler. Paid Gate 7 generation still
+requires a separate approval after Lovart shows the current cost.
 
 | Case | Role | Status |
 | --- | --- | --- |
-| The Sky Mender | flagship spectacle | Clip 02 v1 lost; v2 improved motion continuity but missed the required ending; case rejected and frozen |
+| The Sky Mender | flagship spectacle | historical attempts rejected; v0.3 Gate 8 frozen and blocked until Gate 7 wins |
 | Storm Deck | physical action | Lovart Kling O1 and two Seedance 2.0 baselines rejected; corrected handoff was acknowledged but the opening still broke, so the case is closed at its attempt cap |
-| Obsidian Bloom | fictional product film | both `anchor-frame-v1` variants returned 1920×1080; three blind reviewers unanimously preferred the baseline, so ShotFlow was rejected without retry |
+| Obsidian Bloom | fictional product film | historical `anchor-frame-v1` pair lost; v0.3 Gate 7 inputs frozen, awaiting separate cost approval |
 
 All accepted Clip 01 originals are 1920×1080, 24fps, 5.125 seconds and retain
 the provider's container-level `AIGC Label=1`. The Lovart Gate 6 outputs are
@@ -43,10 +44,11 @@ Seedance 2.0 pilot reached the ending but began from the wrong spatial state.
 A corrected handoff then bound the accepted final frame as the authoritative
 first attachment and filtered historical artifact hashes. Lovart acknowledged
 those roles, but the retry repeated the opening break and returned 720p instead
-of the requested 1080p. It was rejected at the fifth-attempt cap. No remaining
-case is authorized for unattended generation. See the
+of the requested 1080p. It was rejected at the fifth-attempt cap. No case is
+authorized for unattended generation. Gate 7 is registered but still requires
+a new cost-specific confirmation. See the
 [closed Storm Deck gate](examples/GATE_4_STORM_DECK_BASELINE_APPROVAL.md).
-The next registered mechanism, `anchor-frame-v1`, withholds the source video
+The previous registered mechanism, `anchor-frame-v1`, withheld the source video
 when provider-specific reference roles are unproved. Obsidian Bloom's baseline
 and ShotFlow handoffs now use the same accepted final frame as their sole media
 reference. Lovart exposes no resolution selector, so both gates register
@@ -164,18 +166,20 @@ shotflow score \
 - [`shotflow.project.json` v1](schemas/shotflow.project.schema.json) stores provider settings, entities, props, planned shots, observations, locks, artifact hashes, prompts, and evaluations.
 - [`ObservationPatch` v1](schemas/observation-patch.schema.json) is the shared human/Core and future Pro analyzer output.
 - [`Generation Attempt Ledger` v1](schemas/generation-attempt.schema.json) records every submitted, accepted, rejected, or failed run without private provider identifiers.
-- [`Ordered Sequence` v1](schemas/ordered-sequence.schema.json) defines five contiguous, timed, positive checkpoints plus compact observed-state anchors and per-checkpoint visual tests.
-- [`Provider Handoff` v1](schemas/provider-handoff.schema.json) binds reference roles, submission Prompt hashes, historical artifact exclusion, and the opening-frame gate. `anchor-frame-v1` uses only the accepted endpoint; `video-context-v1` adds the source video only when context-only binding is proved.
-- Provider adapters describe portable settings. v0.2 marks only `seedance2.0_vision` through Xiaoyunque as forward-tested; Lovart-routed models remain separate evidence until accepted.
+- [`Ordered Sequence` 1.0/1.1](schemas/ordered-sequence.schema.json) keeps 1.0 byte-compatible and adds protected states, one to three authorized transitions, checkpoint `active_changes`, and final proof in 1.1.
+- [`Provider Handoff` v1](schemas/provider-handoff.schema.json) binds reference roles, submission Prompt hashes, historical artifact exclusion, and the opening-frame gate. Positive-only `anchor-frame-v2` uses only the accepted endpoint; legacy profiles remain supported.
+- Provider adapters describe portable settings. RC1 still marks only `seedance2.0_vision` through Xiaoyunque as forward-tested; Lovart-routed models remain separate evidence until accepted.
 - The five-axis grammar covers narrative moment, camera movement, light/color, space/composition, and material/physics.
 - The six-dimension rubric covers identity, wardrobe/props, space, motion, light/material, and story beat.
 
 Observed state always overrides planned state. Missing observations cannot produce a continuity-safe contract.
 
-New `compile-next` calls use `provider-direct-v3`: the complete observation and
-five visual tests remain in the JSON contract, while the provider Prompt carries
-only the five positive `match → continue → initiate → resolve → hold` states,
-compact anchors, and cinematic execution.
+Sequence `1.1` compiles contract `1.2` with `provider-direct-v4`: the complete
+observation, five-axis grammar, and visual tests remain in JSON, while the
+provider Prompt carries only the opening match, protected states, authorized
+changes, five checkpoints, and final proof. Its limit is 1800 characters.
+Sequence `1.0` continues to emit contract `1.1` / `provider-direct-v3` with
+frozen byte-compatible output.
 
 ## Fair A/B protocol
 

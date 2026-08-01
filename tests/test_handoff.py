@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -15,6 +16,7 @@ from shotflow.core import (
 )
 from shotflow.handoff import (
     ANCHOR_FRAME_PROFILE,
+    ANCHOR_FRAME_V2_PROFILE,
     prepare_provider_handoff,
     select_single_new_output,
 )
@@ -108,6 +110,69 @@ class HandoffTests(unittest.TestCase):
                 "No source video is attached",
                 manifest["submission_prompt"]["text"],
             )
+
+    def test_anchor_frame_v2_uses_positive_opening_authority(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            project, prompt = self.create_project(temporary)
+            manifest = prepare_provider_handoff(
+                project,
+                source_shot_id="clip-01",
+                variant="clip-02-shotflow-v4",
+                creative_prompt_path=prompt,
+                platform="Lovart",
+                model_tool="generate_video_seedance_v2_0",
+                profile=ANCHOR_FRAME_V2_PROFILE,
+            )
+            submission = manifest["submission_prompt"]["text"]
+            self.assertEqual(manifest["handoff_version"], "1.1")
+            self.assertEqual(manifest["profile"], "anchor-frame-v2")
+            self.assertEqual(len(manifest["references"]), 1)
+            self.assertIn("Generated frame 1 reproduces", submission)
+            self.assertNotRegex(
+                submission,
+                r"(?i)do not|must not|without|avoid|hard rule",
+            )
+
+    def test_v03_gate_handoffs_match_frozen_inputs(self) -> None:
+        repository = Path(__file__).resolve().parents[1]
+        cases = {
+            "obsidian-bloom": ("gate7", "clip-02-baseline-v03-gate7"),
+            "sky-mender": ("gate8", "clip-02-baseline-v03-gate8"),
+        }
+        for case_id, (gate, baseline_variant) in cases.items():
+            root = repository / "examples" / case_id
+            fixtures = (
+                (
+                    f"provider-handoff-baseline-v03-{gate}.json",
+                    baseline_variant,
+                    "clip-02-baseline-frozen.txt",
+                ),
+                (
+                    f"provider-handoff-shotflow-v4-rc1-{gate}.json",
+                    "clip-02-shotflow-v4-rc1",
+                    "clip-02-shotflow-v4-rc1.txt",
+                ),
+            )
+            for manifest_name, variant, prompt_name in fixtures:
+                with self.subTest(case=case_id, variant=variant):
+                    frozen = json.loads(
+                        (root / "evidence" / manifest_name).read_text(
+                            encoding="utf-8"
+                        )
+                    )
+                    regenerated = prepare_provider_handoff(
+                        root / "shotflow.project.json",
+                        source_shot_id="clip-01",
+                        variant=variant,
+                        creative_prompt_path=root / "prompts" / prompt_name,
+                        platform="Lovart",
+                        model_tool="generate_video_seedance_v2_0",
+                        profile=ANCHOR_FRAME_V2_PROFILE,
+                    )
+                    regenerated["known_output_sha256"] = frozen[
+                        "known_output_sha256"
+                    ]
+                    self.assertEqual(regenerated, frozen)
 
     def test_handoff_rejects_unobserved_source(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

@@ -1,0 +1,47 @@
+{
+  "handoff_version": "1.1",
+  "project_schema_version": "1.0",
+  "profile": "anchor-frame-v2",
+  "project_id": "the-sky-mender",
+  "variant": "clip-02-shotflow-v4-rc1",
+  "source_shot_id": "clip-01",
+  "provider": {
+    "platform": "Lovart",
+    "model_tool": "generate_video_seedance_v2_0"
+  },
+  "creative_prompt": {
+    "kind": "prompt",
+    "path": "prompts/clip-02-shotflow-v4-rc1.txt",
+    "sha256": "5d22afd7c083e7abb94b201e2f1f331ee37cf7b5110b6462b563bee4b08a7951",
+    "bytes": 1802
+  },
+  "submission_prompt": {
+    "text": "OPENING-FRAME AUTHORITY:\n- Attachment 1 is the accepted previous-shot endpoint and the authoritative opening frame.\n- Generated frame 1 reproduces its subject, geometry, pose, camera, composition, lighting, and material state.\n- The creative timeline begins from this matched state.\n\nCREATIVE INSTRUCTIONS:\nCONTINUE FROM THE ACCEPTED FINAL FRAME.\n\nOPENING MATCH\nThe opening matches the horizontal worker screen-right of the tower, taut lower cable, trailing cape, amber hand light, and open fissure.\n\nPROTECTED THROUGHOUT\n- The same dark climbing silhouette, attached long red cape, amber hand light, and torso cable remain visible.\n- The tower stays left, storm sky stays right, and the exterior camera side remains stable.\n- Dull wet steel, the heavy cape, and cold camera-left storm light remain stable.\n\nAUTHORIZED CHANGES IN ORDER\n1. taut cable tension curves the body back as both boots reach the outer rib -> both boots plant on the tower while the cable remains taut\n2. the hand light contacts the seam and amber closure travels upward -> one continuous repaired steel edge replaces the opening\n3. the completed repair motivates a restrained pale brightening -> pale dawn rests behind the sealed tower edge\n\nFIVE VISIBLE CHECKPOINTS\n1. MATCH | 0.00-0.50s — The opening match above holds.\n2. CONTINUE | 0.50-1.50s — The accepted screen-right swing continues briefly as cable tension curves the worker back toward the tower.\n3. INITIATE | 1.50-2.50s — Both boots plant on the outer rib and the amber hand light touches the vertical fissure.\n4. RESOLVE | 2.50-4.25s — Amber closure travels upward from the contact point until one repaired steel edge remains and pale dawn appears behind it.\n5. HOLD | 4.25-5.00s — The worker holds both boots on the tower beside the sealed seam as restrained pale dawn rests behind it.\n\nFINAL PROOF\n- both boots visibly contact the outer rib before the repair begins\n- the visible fissure closes from the contact point into one uninterrupted edge\n- the final frame shows both the sealed seam and restrained pale dawn\n- hold: Checkpoint 5 stays clearly visible.\n",
+    "sha256": "258e4d8e4c2d604830a5154b5aab56e3021660a8d9615a200da9c452fbf9b6dd",
+    "creative_prompt_sha256": "5d22afd7c083e7abb94b201e2f1f331ee37cf7b5110b6462b563bee4b08a7951"
+  },
+  "references": [
+    {
+      "attachment_index": 1,
+      "role": "authoritative_opening_frame",
+      "authority": "accepted_observed_endpoint",
+      "artifact": {
+        "kind": "final_frame",
+        "path": "artifacts/clip-01-final-frame.png",
+        "sha256": "f05efcff94c047cdf46f681daf8996896e257ea3e9a6e54f1d36944b81bba1cd",
+        "bytes": 1099668
+      }
+    }
+  ],
+  "known_output_sha256": [
+    "7361c6a3fbb8090c58514a1698a1ea90e56bb5349b2766d7a12c8c2605dcc51f",
+    "ef3cc89397ea41734b7a908056ffb08c0a9a6be57827ab68da9779f50f18c824",
+    "ff9be55e5b7f678d18d3c5067f152b8197877e082b0bcb7f2324494c5f9af0dc"
+  ],
+  "acceptance_gates": {
+    "new_artifact_hash_required": true,
+    "opening_frame_match_required": true,
+    "opening_frame_review": "pending",
+    "continuity_safe": false
+  }
+}

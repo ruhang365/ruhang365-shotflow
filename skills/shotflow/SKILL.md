@@ -71,20 +71,24 @@ Read [continuity-contract.md](references/continuity-contract.md) before observin
 
 Use `compile-next` only after `observe`. Preserve the exact observed endpoint, prop ownership, screen direction, light source, material state, and geography. Change only what the new story beat requires.
 
-Before compiling, author an Ordered Sequence v1 JSON file with exactly five
-contiguous phases: `match`, `continue`, `initiate`, `resolve`, and `hold`. Give
-each phase a visible positive state and a separate `visual_test`. Keep all four
-anchor summaries grounded in the accepted observation. Read
+Before compiling, prefer an Ordered Sequence `1.1` JSON file with exactly five
+contiguous phases: `match`, `continue`, `initiate`, `resolve`, and `hold`.
+Separate `protected` facts from one to three authorized `transitions`, then
+list their IDs in each checkpoint's `active_changes`. Give every phase a
+visible positive state and a separate `visual_test`. Keep all four anchor
+summaries grounded in the accepted observation. Sequence `1.0` remains
+supported for byte-stable `provider-direct-v3` output. Read
 [continuity-contract.md](references/continuity-contract.md) for the complete
 rules and [ordered-sequence.md](references/ordered-sequence.md) for the input
 shape and concise example.
 
 Run `compile-next` with `--sequence`. The CLI rejects gaps, overlaps, duration
 mismatches, missing phases, negative directives, and overlong provider prompts.
-The frozen provider Prompt has a hard limit of 2400 characters.
-It keeps the complete observed state and all five `visual_test` values in the
-JSON contract, while the frozen `provider-direct-v3` Prompt sends only the five
-ordered states, compact positive anchors, and cinematic execution decisions.
+The Sequence `1.1` provider Prompt has a hard limit of 1800 characters.
+It keeps the complete observed state, five-axis grammar, and all five
+`visual_test` values in contract `1.2`, while the frozen
+`provider-direct-v4` Prompt sends the opening match, protected states,
+authorized changes, five ordered states, and final proof.
 Present that exact Prompt, settings, references, and attempt budget before any
 paid or credit-consuming generation. Submit it unchanged after approval.
 
@@ -92,16 +96,17 @@ paid or credit-consuming generation. Submit it unchanged after approval.
 
 Read [seedance-2.0.md](references/seedance-2.0.md) when the chosen model family
 is Seedance 2.0. Treat only `seedance2.0_vision` through Xiaoyunque as
-forward-tested in v0.2. A Lovart-routed Seedance 2.0 result is separate provider
+forward-tested in RC1. A Lovart-routed Seedance 2.0 result is separate provider
 evidence and remains unverified until it passes the continuity gates. Keep every
 A/B model, parameter, platform, and reference identical.
 
 Before any external provider submission, read
 [provider-handoff.md](references/provider-handoff.md). Freeze one Handoff
-profile for both A/B variants. Prefer `anchor-frame-v1` when the provider cannot
-guarantee context-only source-video binding; use `video-context-v1` only after
-those roles are proved. Always bind the accepted final frame as authoritative,
-exclude historical artifact hashes, and require a manual opening-frame review.
+profile for both A/B variants. Prefer positive-only `anchor-frame-v2` for
+Sequence `1.1`; it submits the accepted final frame as the sole authoritative
+media reference. Legacy `anchor-frame-v1` remains supported. Use
+`video-context-v1` only after context-only video roles are proved. Always
+exclude historical artifact hashes and require a manual opening-frame review.
 
 Default new projects to the full standard, non-VIP Seedance 2.0 channel
 `seedance2.0_direct` at `720p`, with `verified=false` until its real forward test

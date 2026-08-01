@@ -1,0 +1,46 @@
+{
+  "handoff_version": "1.1",
+  "project_schema_version": "1.0",
+  "profile": "anchor-frame-v2",
+  "project_id": "obsidian-bloom",
+  "variant": "clip-02-baseline-v03-gate7",
+  "source_shot_id": "clip-01",
+  "provider": {
+    "platform": "Lovart",
+    "model_tool": "generate_video_seedance_v2_0"
+  },
+  "creative_prompt": {
+    "kind": "prompt",
+    "path": "prompts/clip-02-baseline-frozen.txt",
+    "sha256": "5b0cd96768dfd861ddd790d05de78f91c100242cb8975f7dca4a117fb19d1884",
+    "bytes": 965
+  },
+  "submission_prompt": {
+    "text": "OPENING-FRAME AUTHORITY:\n- Attachment 1 is the accepted previous-shot endpoint and the authoritative opening frame.\n- Generated frame 1 reproduces its subject, geometry, pose, camera, composition, lighting, and material state.\n- The creative timeline begins from this matched state.\n\nCREATIVE INSTRUCTIONS:\nContinue immediately from the previous product shot in one continuous five-second take. Preserve the same squat smoky-obsidian bottle, wider shoulders, front-left diagonal facet, asymmetrical brushed-silver collar, low black stone cap, internal amber droplet, and exterior droplet trail on the left face. Continue the silver petal ring clockwise from the front-right edge as the camera completes its slow arc toward front-center. The cap rises vertically by one centimeter without changing shape; a narrow ribbon of amber vapor escapes through the opening and curls once behind the bottle. Keep the bottle fixed in the same black liquid plane, keep the large soft source camera-left and amber underlight, and let reflections move causally across the facet. End with the petal ring behind the collar and the exterior droplet lower on the same left-face path. No new facets, no duplicated cap, no label, no logo, no extra bottle, no cut, no impossible liquid motion.\n",
+    "sha256": "60f8965da8fd21b50a9fabde410b4759391878b1fd350421f5547926858a6fa3",
+    "creative_prompt_sha256": "5b0cd96768dfd861ddd790d05de78f91c100242cb8975f7dca4a117fb19d1884"
+  },
+  "references": [
+    {
+      "attachment_index": 1,
+      "role": "authoritative_opening_frame",
+      "authority": "accepted_observed_endpoint",
+      "artifact": {
+        "kind": "final_frame",
+        "path": "artifacts/clip-01-final-frame.png",
+        "sha256": "56d6455da0310b8acce2364af99229825307b70bae8f677306496c1fa08e8a0e",
+        "bytes": 568869
+      }
+    }
+  ],
+  "known_output_sha256": [
+    "4d879f234e3f20e413061a9ad5a266dbb7e7f3e8208de3901a74343bab7dfd45",
+    "a9f996fbeb577146fef8e0873d13d1b323f83b02be07b04d35afedf08211cf50"
+  ],
+  "acceptance_gates": {
+    "new_artifact_hash_required": true,
+    "opening_frame_match_required": true,
+    "opening_frame_review": "pending",
+    "continuity_safe": false
+  }
+}

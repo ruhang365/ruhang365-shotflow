@@ -1,0 +1,47 @@
+{
+  "handoff_version": "1.1",
+  "project_schema_version": "1.0",
+  "profile": "anchor-frame-v2",
+  "project_id": "the-sky-mender",
+  "variant": "clip-02-baseline-v03-gate8",
+  "source_shot_id": "clip-01",
+  "provider": {
+    "platform": "Lovart",
+    "model_tool": "generate_video_seedance_v2_0"
+  },
+  "creative_prompt": {
+    "kind": "prompt",
+    "path": "prompts/clip-02-baseline-frozen.txt",
+    "sha256": "065e32b4788d3e86faec7226b451f843227d6b32f0f941ddff73ee9161288e35",
+    "bytes": 820
+  },
+  "submission_prompt": {
+    "text": "OPENING-FRAME AUTHORITY:\n- Attachment 1 is the accepted previous-shot endpoint and the authoritative opening frame.\n- Generated frame 1 reproduces its subject, geometry, pose, camera, composition, lighting, and material state.\n- The creative timeline begins from this matched state.\n\nCREATIVE INSTRUCTIONS:\nContinue immediately from the previous shot in one continuous five-second take. The same sky-repair worker in the red oilcloth cape swings screen-right on the taut safety cable, keeps the amber repair torch in the right hand, plants both boots on the outer rib, and drags the torch upward along the luminous fissure until the opening seals. Track closer beside the worker without crossing the tower axis. Keep the cable anchored lower-left, keep cold storm daylight from upper camera-left, and let the amber seam reflect on wet brass and cloth. The sealed sky opens into a restrained pale dawn behind the worker. Preserve the worker, cape shape, tower geography, screen direction, tool, cable tension, wet material response, and physically causal motion. No reset pose, no new tools, no cut, no orbit, no text, no logo.\n",
+    "sha256": "39a9e5a9214c1596df4b4f3cedafe7c820ca53f72293b4a2e178108401e5daf2",
+    "creative_prompt_sha256": "065e32b4788d3e86faec7226b451f843227d6b32f0f941ddff73ee9161288e35"
+  },
+  "references": [
+    {
+      "attachment_index": 1,
+      "role": "authoritative_opening_frame",
+      "authority": "accepted_observed_endpoint",
+      "artifact": {
+        "kind": "final_frame",
+        "path": "artifacts/clip-01-final-frame.png",
+        "sha256": "f05efcff94c047cdf46f681daf8996896e257ea3e9a6e54f1d36944b81bba1cd",
+        "bytes": 1099668
+      }
+    }
+  ],
+  "known_output_sha256": [
+    "7361c6a3fbb8090c58514a1698a1ea90e56bb5349b2766d7a12c8c2605dcc51f",
+    "ef3cc89397ea41734b7a908056ffb08c0a9a6be57827ab68da9779f50f18c824",
+    "ff9be55e5b7f678d18d3c5067f152b8197877e082b0bcb7f2324494c5f9af0dc"
+  ],
+  "acceptance_gates": {
+    "new_artifact_hash_required": true,
+    "opening_frame_match_required": true,
+    "opening_frame_review": "pending",
+    "continuity_safe": false
+  }
+}

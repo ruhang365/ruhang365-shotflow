@@ -34,11 +34,26 @@ Prefer an endpoint with unfinished causal energy:
 
 Start the next shot by continuing that exact action. Do not reset the subject into a neutral pose.
 
+## Stable facts and authorized changes
+
+For Sequence `1.1`, classify visible facts before writing timing:
+
+- `protected`: visible objects or states that remain stable throughout;
+- `transitions`: one to three state changes that are explicitly allowed;
+- `active_changes`: transition IDs active in each middle checkpoint;
+- `proof`: a positive final-frame condition proving each change completed.
+
+Do not describe the same state as both protected and changing. Protect stable
+identity or geometry while authorizing only the specific motion or state
+transition required by the beat.
+
 ## Provider-facing prompt
 
 Keep the complete observed state in the JSON contract for audit. Render the
-provider-facing prompt with the `provider-direct-v3` profile. Give it exactly
-five timed visible states in this order:
+provider-facing prompt with the `provider-direct-v4` profile. Its section order
+is fixed: opening match, protected states, authorized changes, five timed
+checkpoints, and final proof. Give it exactly five timed visible states in this
+order:
 
 1. `match`: reproduce the accepted endpoint as the opening state;
 2. `continue`: carry the unresolved observed motion or force forward;
@@ -53,8 +68,9 @@ should be visible instead.
 
 Give every checkpoint a `visual_test` in the Ordered Sequence JSON. Keep those
 tests and the complete observation in the contract for human or Pro evaluation;
-send only the five checkpoint states and compact anchors to the provider. This
-keeps the creative Prompt shorter than the evidence contract.
+send only the concise positive execution contract to the provider. The v4
+provider Prompt cannot exceed 1800 characters. Sequence `1.0` retains the
+legacy byte-stable `provider-direct-v3` rendering and 2400-character limit.
 
 The five time ranges must be contiguous, begin at zero, and end at the provider
 duration. Keep `match` brief, give the causal action enough time in `initiate`

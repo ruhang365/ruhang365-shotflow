@@ -1,0 +1,27 @@
+CONTINUE FROM THE ACCEPTED FINAL FRAME.
+
+OPENING MATCH
+The opening matches the centered hovering bottle, level closed cap, displaced collar, and attached upper-left droplet.
+
+PROTECTED THROUGHOUT
+- The centered smoky-glass bottle, shoulder width, front-right facet, and hovering height remain stable.
+- The amber droplet stays attached to the upper-left bottle face.
+- The near-frontal camera, low liquid horizon, cool left reflection, and amber underlight remain stable.
+
+AUTHORIZED CHANGES IN ORDER
+1. the collar advances through one small slowing arc -> the collar rests in its accepted asymmetric alignment
+2. the rigid cap rises straight vertically -> the cap hovers level above the exposed silver neck
+3. the ribbon emerges at the neck and traces one tight clockwise orbit -> one narrow amber ring settles around the collar
+
+FIVE VISIBLE CHECKPOINTS
+1. MATCH | 0.00-0.50s — The opening match above holds.
+2. CONTINUE | 0.50-1.25s — The silver collar advances through one small slowing arc while the bottle and attached droplet hold.
+3. INITIATE | 1.25-2.25s — The level rigid cap rises straight vertically and clearly exposes the silver neck.
+4. RESOLVE | 2.25-4.25s — One thin amber ribbon emerges at the exposed neck and completes one tight clockwise orbit.
+5. HOLD | 4.25-5.00s — The level cap hovers above the exposed neck, one amber ring rests around the collar, and the droplet remains attached.
+
+FINAL PROOF
+- the silver elements stop cleanly while their asymmetry remains readable
+- a clear vertical gap reveals the neck beneath a level unchanged cap
+- the complete amber ring stays localized above the bottle shoulders
+- hold: Checkpoint 5 stays clearly visible.
