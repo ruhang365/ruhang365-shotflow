@@ -28,10 +28,17 @@ underlight. The only change is the vertical cap lift.
 
 - Provider: Lovart
 - Model tool: standard Seedance 2.0, `generate_video_seedance_v2_0`
-- Account mode: `unlimited`
+- Account mode: `fast` credit channel; this is not the Fast model
 - Reasoning mode: `thinking`
 - Ratio and duration: 16:9, five seconds
 - Attempt budget: one job; no retry, upscale, downgrade, fallback, or A/B mate
+
+Read-only preflight on 2026-08-01 found the account currently set to
+`unlimited`, but its visible unlimited-model list included Seedance 1.5 Pro and
+did not include standard Seedance 2.0. Preserve the standard Seedance 2.0 model
+for quality; switch the account channel to `fast` only as part of a separately
+approved generation. Start a new `thinking` thread because this Showcase is a
+new product workflow after the old A/B benchmark was stopped.
 
 Accept only when the opening visibly matches the reference, the cap translates
 vertically while staying level, the bottle/collar/droplet remain stable, and the
