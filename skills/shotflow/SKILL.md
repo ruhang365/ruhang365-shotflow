@@ -42,6 +42,10 @@ shotflow compile-next
 shotflow score
 ```
 
+For a zero-account first run, use `shotflow demo <directory>`. It creates a
+small offline project, observed-state diff, contract `1.3`, and
+`provider-direct-v5` Prompt without submitting a generation.
+
 Keep generated video and frames under the project directory before binding them. The CLI rejects external paths and unrecognized media signatures, then records relative paths plus SHA-256 hashes. This signature gate rejects obvious fake files; it does not prove that a file fully decodes or came from the named provider.
 
 ## Plan a shot
@@ -71,24 +75,24 @@ Read [continuity-contract.md](references/continuity-contract.md) before observin
 
 Use `compile-next` only after `observe`. Preserve the exact observed endpoint, prop ownership, screen direction, light source, material state, and geography. Change only what the new story beat requires.
 
-Before compiling, prefer an Ordered Sequence `1.1` JSON file with exactly five
+Before compiling a new evidence candidate, prefer Ordered Sequence `1.2` with exactly five
 contiguous phases: `match`, `continue`, `initiate`, `resolve`, and `hold`.
-Separate `protected` facts from one to three authorized `transitions`, then
-list their IDs in each checkpoint's `active_changes`. Give every phase a
-visible positive state and a separate `visual_test`. Keep all four anchor
-summaries grounded in the accepted observation. Sequence `1.0` remains
-supported for byte-stable `provider-direct-v3` output. Read
+Separate one to four `protected` facts from one or two sequential authorized
+`transitions`. Each checkpoint may activate at most one transition. Keep the
+opening match for at least 0.5 seconds and final proof for at least 0.75
+seconds. Give every phase a positive state and `visual_test`. Sequence `1.0`
+and `1.1` remain supported with frozen output. Read
 [continuity-contract.md](references/continuity-contract.md) for the complete
 rules and [ordered-sequence.md](references/ordered-sequence.md) for the input
 shape and concise example.
 
 Run `compile-next` with `--sequence`. The CLI rejects gaps, overlaps, duration
 mismatches, missing phases, negative directives, and overlong provider prompts.
-The Sequence `1.1` provider Prompt has a hard limit of 1800 characters.
-It keeps the complete observed state, five-axis grammar, and all five
-`visual_test` values in contract `1.2`, while the frozen
-`provider-direct-v4` Prompt sends the opening match, protected states,
-authorized changes, five ordered states, and final proof.
+Sequence `1.2` keeps the complete observation, grammar, and visual tests in
+contract `1.3`. Its `provider-direct-v5` Prompt sends only the opening match,
+stable facts, sequential changes, and final proof. The creative Prompt is
+limited to 1,100 characters; the `anchor-frame-v3` submission is limited to
+1,200.
 Present that exact Prompt, settings, references, and attempt budget before any
 paid or credit-consuming generation. Submit it unchanged after approval.
 
@@ -102,9 +106,9 @@ A/B model, parameter, platform, and reference identical.
 
 Before any external provider submission, read
 [provider-handoff.md](references/provider-handoff.md). Freeze one Handoff
-profile for both A/B variants. Prefer positive-only `anchor-frame-v2` for
-Sequence `1.1`; it submits the accepted final frame as the sole authoritative
-media reference. Legacy `anchor-frame-v1` remains supported. Use
+profile for both A/B variants. Prefer positive-only `anchor-frame-v3` for
+Sequence `1.2`; it submits the accepted final frame as the sole authoritative
+media reference. Legacy anchor profiles remain supported. Use
 `video-context-v1` only after context-only video roles are proved. Always
 exclude historical artifact hashes and require a manual opening-frame review.
 
@@ -131,6 +135,12 @@ Do not hide applicable dimensions with `n/a`. A score is evidence from the suppl
 If a blinded result loses, preserve the attempt and review. Do not select only
 the attractive output or claim a win. Revise the mechanism under a new prompt
 profile, freeze it before another run, and require new credit approval.
+
+When native resolutions differ, preserve both native receipts and use the
+preregistered canonical review path in
+[evaluation-pair.md](references/evaluation-pair.md). Canonical copies are
+1280×720, 24fps, five seconds, H.264 CRF 18, Lanczos downscale only. Never crop
+or upscale. Keep the A/B mapping hidden until every valid review is frozen.
 
 ## Safety and provenance
 

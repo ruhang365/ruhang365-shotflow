@@ -178,6 +178,7 @@ def main() -> int:
         "schemas/generation-attempt.schema.json",
         "schemas/ordered-sequence.schema.json",
         "schemas/provider-handoff.schema.json",
+        "schemas/evaluation-pair.schema.json",
     )
     for relative in required:
         if not (ROOT / relative).is_file():

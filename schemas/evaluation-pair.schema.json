@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/ruhang365/ruhang365-shotflow/main/schemas/evaluation-pair.schema.json",
+  "title": "ShotFlow Evaluation Pair v1",
+  "type": "object",
+  "required": [
+    "evaluation_pair_version",
+    "case_id",
+    "pair_id",
+    "status",
+    "prepared_at",
+    "generation_order",
+    "blind_mapping",
+    "provider",
+    "jobs",
+    "reference",
+    "prompts",
+    "native",
+    "canonicalization",
+    "canonical",
+    "review_assets",
+    "review"
+  ],
+  "properties": {
+    "evaluation_pair_version": {"const": "1.0"},
+    "case_id": {"type": "string", "minLength": 1},
+    "pair_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["ready_for_blind_review", "invalid", "scored"]},
+    "prepared_at": {"type": "string", "minLength": 1},
+    "generation_order": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {"enum": ["baseline", "shotflow"]}
+    },
+    "blind_mapping": {
+      "type": "object",
+      "required": ["A", "B"],
+      "properties": {
+        "A": {"enum": ["baseline", "shotflow"]},
+        "B": {"enum": ["baseline", "shotflow"]}
+      },
+      "additionalProperties": false
+    },
+    "provider": {
+      "type": "object",
+      "required": ["platform", "model_tool", "generation_mode", "reasoning_mode", "ratio", "requested_duration_seconds"],
+      "properties": {
+        "platform": {"type": "string", "minLength": 1},
+        "model_tool": {"type": "string", "minLength": 1},
+        "generation_mode": {"type": "string", "minLength": 1},
+        "reasoning_mode": {"type": "string", "minLength": 1},
+        "ratio": {"const": "16:9"},
+        "requested_duration_seconds": {"const": 5}
+      },
+      "additionalProperties": false
+    },
+    "jobs": {
+      "type": "object",
+      "required": ["baseline", "shotflow"],
+      "properties": {
+        "baseline": {"$ref": "#/$defs/job"},
+        "shotflow": {"$ref": "#/$defs/job"}
+      },
+      "additionalProperties": false
+    },
+    "reference": {"$ref": "#/$defs/artifact"},
+    "prompts": {"$ref": "#/$defs/variantArtifacts"},
+    "native": {"$ref": "#/$defs/variantVideos"},
+    "canonicalization": {
+      "type": "object",
+      "required": ["width", "height", "fps", "duration_seconds", "video_codec", "crf", "scale_filter", "crop", "upscale", "audio", "contact_times_seconds"],
+      "properties": {
+        "width": {"const": 1280},
+        "height": {"const": 720},
+        "fps": {"const": 24},
+        "duration_seconds": {"const": 5.0},
+        "video_codec": {"const": "h264"},
+        "crf": {"const": 18},
+        "scale_filter": {"const": "lanczos"},
+        "crop": {"const": false},
+        "upscale": {"const": false},
+        "audio": {"const": false},
+        "contact_times_seconds": {"type": "array", "minItems": 9, "maxItems": 9, "items": {"type": "number"}}
+      },
+      "additionalProperties": false
+    },
+    "canonical": {"$ref": "#/$defs/variantVideos"},
+    "review_assets": {
+      "type": "object",
+      "required": ["A", "B"],
+      "properties": {
+        "A": {"$ref": "#/$defs/reviewArtifacts"},
+        "B": {"$ref": "#/$defs/reviewArtifacts"}
+      },
+      "additionalProperties": false
+    },
+    "review": {"type": ["object", "null"]}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "job": {
+      "type": "object",
+      "required": ["status", "visible_cost", "thread_id_sha256"],
+      "properties": {
+        "status": {"enum": ["completed_media_supplied", "failed", "pending_confirmation"]},
+        "visible_cost": {"type": ["number", "string", "null"]},
+        "thread_id_sha256": {"anyOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]}
+      },
+      "additionalProperties": false
+    },
+    "artifact": {
+      "type": "object",
+      "required": ["name", "sha256", "bytes"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "bytes": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    },
+    "video": {
+      "type": "object",
+      "required": ["name", "sha256", "bytes", "width", "height", "fps", "duration_seconds", "frames", "codec", "pixel_format"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "bytes": {"type": "integer", "minimum": 1},
+        "width": {"type": "integer", "minimum": 1},
+        "height": {"type": "integer", "minimum": 1},
+        "fps": {"type": "number", "exclusiveMinimum": 0},
+        "duration_seconds": {"type": "number", "exclusiveMinimum": 0},
+        "frames": {"type": ["integer", "null"], "minimum": 1},
+        "codec": {"type": ["string", "null"]},
+        "pixel_format": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    },
+    "variantArtifacts": {
+      "type": "object",
+      "required": ["baseline", "shotflow"],
+      "properties": {
+        "baseline": {"$ref": "#/$defs/artifact"},
+        "shotflow": {"$ref": "#/$defs/artifact"}
+      },
+      "additionalProperties": false
+    },
+    "variantVideos": {
+      "type": "object",
+      "required": ["baseline", "shotflow"],
+      "properties": {
+        "baseline": {"$ref": "#/$defs/video"},
+        "shotflow": {"$ref": "#/$defs/video"}
+      },
+      "additionalProperties": false
+    },
+    "reviewArtifacts": {
+      "type": "object",
+      "required": ["video", "first_frame", "final_frame", "contact_sheet"],
+      "properties": {
+        "video": {"$ref": "#/$defs/artifact"},
+        "first_frame": {"$ref": "#/$defs/artifact"},
+        "final_frame": {"$ref": "#/$defs/artifact"},
+        "contact_sheet": {"$ref": "#/$defs/artifact"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

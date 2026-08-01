@@ -215,6 +215,22 @@ class CliTests(unittest.TestCase):
             )
             self.assertEqual(json.loads(scored.stdout)["score"], 100)
 
+    def test_demo_builds_account_free_v5_project(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            destination = Path(temporary) / "offline-demo"
+            result = self.run_cli("demo", str(destination))
+            summary = json.loads(result.stdout)
+            self.assertEqual(summary["contract_version"], "1.3")
+            self.assertEqual(summary["prompt_profile"], "provider-direct-v5")
+            self.assertTrue(summary["continuity_safe"])
+            self.assertFalse(summary["generation_submitted"])
+            self.assertTrue((destination / "shotflow.project.json").is_file())
+            self.assertTrue((destination / "clip-01-diff.json").is_file())
+            self.assertTrue((destination / "clip-02-contract.json").is_file())
+            self.assertTrue(
+                (destination / "prompts" / "clip-02-shotflow.txt").is_file()
+            )
+
     def test_invalid_json_returns_validation_exit_code(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

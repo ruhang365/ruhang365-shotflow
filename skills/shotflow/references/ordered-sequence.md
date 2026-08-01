@@ -1,10 +1,10 @@
-# Ordered Sequence 1.1
+# Ordered Sequence 1.2
 
 Supply this object to `shotflow compile-next --sequence sequence.json`.
 
 ```json
 {
-  "sequence_version": "1.1",
+  "sequence_version": "1.2",
   "duration_seconds": 5,
   "anchors": {
     "identity": "One observed subject remains visible.",
@@ -38,23 +38,28 @@ Supply this object to `shotflow compile-next --sequence sequence.json`.
 }
 ```
 
-`protected` contains one to six stable visible states. `transitions` contains
-one to three authorized changes with unique IDs and complete
+`protected` contains one to four stable visible states. `transitions` contains
+one or two authorized changes with unique IDs and complete
 `from_state → transition → to_state → proof` causality. Every transition ID
 must appear in at least one non-`match`, non-`hold` `active_changes` list, and
 every reference must resolve to a registered transition.
+
+Only one transition may be active in a checkpoint. Its active checkpoints must
+be contiguous, and multiple transitions activate in registered order. Keep
+`match` at least 0.5 seconds and `hold` at least 0.75 seconds.
 
 Use exactly the five phase names shown above and keep their ranges contiguous
 from zero to the provider duration. Write positive visible states. Put
 evaluation criteria in `visual_test`; the compiler retains them in the JSON
 contract and omits them from the provider Prompt. Negative directives are
 invalid in anchors, protected states, transitions, checkpoints, and visual
-tests. The compiled `provider-direct-v4` Prompt must stay within 1800
-characters.
+tests. The compiled `provider-direct-v5` creative Prompt must stay within
+1,100 characters; `anchor-frame-v3` keeps the submission within 1,200.
 
 Keep anchors concise and grounded in the accepted observation. The contract
 retains the complete observed state, its hash, the five-axis grammar, complete
 sequence, and sequence hash.
 
-Sequence `1.0` remains accepted and continues to compile to contract `1.1`
-with byte-stable `provider-direct-v3` output and its 2400-character limit.
+Sequence `1.2` compiles to contract `1.3`. Sequence `1.0` and `1.1` remain
+accepted and retain byte-stable `provider-direct-v3` and `provider-direct-v4`
+output.

@@ -69,3 +69,24 @@ or failed job stops the sequence; it does not authorize retries or Gate 8.
 The two jobs completed in Lovart unlimited mode, but their unequal native
 resolutions invalidated the pair before blind scoring. Full media remains
 unpublished pending the separate media-rights approval.
+
+## v0.4 RC1 preregistered gates
+
+v0.4 is a new forward experiment, not a retry of Gate 7 or Gate 8. Ordered
+Sequence `1.2` limits each checkpoint to one active change and compiles contract
+`1.3` with `provider-direct-v5`. Both variants use the same accepted endpoint
+through positive-only `anchor-frame-v3`. Native Provider files are retained as
+evidence, while both sides are symmetrically normalized to 1280×720, 24fps,
+five seconds for blinded review.
+
+- [Evaluation protocol](V04_EVALUATION_PROTOCOL.md)
+- [Three-lane preregistration review](V04_RC1_PREFLIGHT_REVIEW.md)
+- [Gate 9 — Obsidian Bloom](GATE_9_OBSIDIAN_BLOOM_V04_RC1_APPROVAL.md): six
+  inputs frozen; no Provider job submitted
+- [Gate 10 — The Sky Mender](GATE_10_SKY_MENDER_V04_RC1_APPROVAL.md): inputs
+  frozen and blocked until Gate 9 passes
+
+Each case requires two ShotFlow pair wins out of three, a normalized mean lift
+of at least 20 points, and opening-match passage in at least two ShotFlow
+variants. Generation approval and full-media publication approval remain
+separate.

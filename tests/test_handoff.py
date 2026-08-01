@@ -17,6 +17,7 @@ from shotflow.core import (
 from shotflow.handoff import (
     ANCHOR_FRAME_PROFILE,
     ANCHOR_FRAME_V2_PROFILE,
+    ANCHOR_FRAME_V3_PROFILE,
     prepare_provider_handoff,
     select_single_new_output,
 )
@@ -133,6 +134,41 @@ class HandoffTests(unittest.TestCase):
                 r"(?i)do not|must not|without|avoid|hard rule",
             )
 
+    def test_anchor_frame_v3_is_short_positive_and_versioned(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            project, prompt = self.create_project(temporary)
+            manifest = prepare_provider_handoff(
+                project,
+                source_shot_id="clip-01",
+                variant="clip-02-shotflow-v5",
+                creative_prompt_path=prompt,
+                platform="Lovart",
+                model_tool="generate_video_seedance_v2_0",
+                profile=ANCHOR_FRAME_V3_PROFILE,
+            )
+            submission = manifest["submission_prompt"]["text"]
+            self.assertEqual(manifest["handoff_version"], "1.2")
+            self.assertEqual(manifest["profile"], "anchor-frame-v3")
+            self.assertEqual(len(manifest["references"]), 1)
+            self.assertLessEqual(len(submission), 1200)
+            self.assertIn("Frame 1 matches", submission)
+            self.assertNotRegex(submission, r"(?i)do not|must not|without|avoid")
+
+    def test_anchor_frame_v3_rejects_overlong_submission(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            project, prompt = self.create_project(temporary)
+            prompt.write_text("Visible state " + ("x" * 1200), encoding="utf-8")
+            with self.assertRaisesRegex(ShotFlowError, "exceeds 1200"):
+                prepare_provider_handoff(
+                    project,
+                    source_shot_id="clip-01",
+                    variant="clip-02-shotflow-v5",
+                    creative_prompt_path=prompt,
+                    platform="Lovart",
+                    model_tool="generate_video_seedance_v2_0",
+                    profile=ANCHOR_FRAME_V3_PROFILE,
+                )
+
     def test_v03_gate_handoffs_match_frozen_inputs(self) -> None:
         repository = Path(__file__).resolve().parents[1]
         cases = {
@@ -168,6 +204,43 @@ class HandoffTests(unittest.TestCase):
                         platform="Lovart",
                         model_tool="generate_video_seedance_v2_0",
                         profile=ANCHOR_FRAME_V2_PROFILE,
+                    )
+                    regenerated["known_output_sha256"] = frozen[
+                        "known_output_sha256"
+                    ]
+                    self.assertEqual(regenerated, frozen)
+
+    def test_v04_gate_handoffs_match_frozen_inputs(self) -> None:
+        repository = Path(__file__).resolve().parents[1]
+        for case_id in ("obsidian-bloom", "sky-mender"):
+            root = repository / "examples" / case_id
+            fixtures = (
+                (
+                    "provider-handoff-baseline-v04.json",
+                    "clip-02-baseline-v04",
+                    "clip-02-baseline-v04.txt",
+                ),
+                (
+                    "provider-handoff-shotflow-v04.json",
+                    "clip-02-shotflow-v5-rc1",
+                    "clip-02-shotflow-v5-rc1.txt",
+                ),
+            )
+            for manifest_name, variant, prompt_name in fixtures:
+                with self.subTest(case=case_id, variant=variant):
+                    frozen = json.loads(
+                        (root / "evidence" / manifest_name).read_text(
+                            encoding="utf-8"
+                        )
+                    )
+                    regenerated = prepare_provider_handoff(
+                        root / "shotflow.project.json",
+                        source_shot_id="clip-01",
+                        variant=variant,
+                        creative_prompt_path=root / "prompts" / prompt_name,
+                        platform="Lovart",
+                        model_tool="generate_video_seedance_v2_0",
+                        profile=ANCHOR_FRAME_V3_PROFILE,
                     )
                     regenerated["known_output_sha256"] = frozen[
                         "known_output_sha256"

@@ -1,0 +1,43 @@
+{
+  "handoff_version": "1.2",
+  "project_schema_version": "1.0",
+  "profile": "anchor-frame-v3",
+  "project_id": "obsidian-bloom",
+  "variant": "clip-02-baseline-v04",
+  "source_shot_id": "clip-01",
+  "provider": {
+    "platform": "Lovart",
+    "model_tool": "generate_video_seedance_v2_0"
+  },
+  "creative_prompt": {
+    "kind": "prompt",
+    "path": "prompts/clip-02-baseline-v04.txt",
+    "sha256": "8736e9840ef88178a53c85e5db757a2e07f00a6228fc50612d3759b854ea0c6d",
+    "bytes": 624
+  },
+  "submission_prompt": {
+    "text": "FRAME 1 AUTHORITY:\nAttachment 1 is the accepted endpoint. Frame 1 matches its subject, geometry, camera, composition, light, and material state. Then execute the timeline.\n\nTIMELINE:\nContinue from the attached final frame in one continuous five-second product shot. Match the accepted bottle, cap, collar, droplet, composition, horizon, and lighting for the opening half-second. Hold the near-frontal camera and centered bottle steady. From 1.25 seconds, the glossy black cap retains its level shape, rises straight upward by one centimeter, exposes the silver neck, settles, and remains level through the final 0.75 seconds. The smoky-glass bottle, asymmetric silver collar, attached upper-left amber droplet, black-liquid horizon, cool camera-left reflection, and amber underlight remain visually stable.\n",
+    "sha256": "1c9bdde42e5c2b96a90cf52728a85e0d1bb05c85bfa5cb0268e11320980965ee",
+    "creative_prompt_sha256": "8736e9840ef88178a53c85e5db757a2e07f00a6228fc50612d3759b854ea0c6d"
+  },
+  "references": [
+    {
+      "attachment_index": 1,
+      "role": "authoritative_opening_frame",
+      "authority": "accepted_observed_endpoint",
+      "artifact": {
+        "kind": "final_frame",
+        "path": "artifacts/clip-01-final-frame.png",
+        "sha256": "56d6455da0310b8acce2364af99229825307b70bae8f677306496c1fa08e8a0e",
+        "bytes": 568869
+      }
+    }
+  ],
+  "known_output_sha256": [],
+  "acceptance_gates": {
+    "new_artifact_hash_required": true,
+    "opening_frame_match_required": true,
+    "opening_frame_review": "pending",
+    "continuity_safe": false
+  }
+}

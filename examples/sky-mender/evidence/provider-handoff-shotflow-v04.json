@@ -1,0 +1,43 @@
+{
+  "handoff_version": "1.2",
+  "project_schema_version": "1.0",
+  "profile": "anchor-frame-v3",
+  "project_id": "the-sky-mender",
+  "variant": "clip-02-shotflow-v5-rc1",
+  "source_shot_id": "clip-01",
+  "provider": {
+    "platform": "Lovart",
+    "model_tool": "generate_video_seedance_v2_0"
+  },
+  "creative_prompt": {
+    "kind": "prompt",
+    "path": "prompts/clip-02-shotflow-v5-rc1.txt",
+    "sha256": "c645f7633aaefeb122ed793c84d0224af31cbfa4cc852c0f315567311ec2fe37",
+    "bytes": 1000
+  },
+  "submission_prompt": {
+    "text": "FRAME 1 AUTHORITY:\nAttachment 1 is the accepted endpoint. Frame 1 matches its subject, geometry, camera, composition, light, and material state. Then execute the timeline.\n\nTIMELINE:\nCONTINUE FROM THE ACCEPTED FINAL FRAME.\n\nMATCH | 0.00-0.50s\nThe opening matches the horizontal worker screen-right of the tower, taut cable, red cape, amber hand light, and open fissure.\n\nKEEP STABLE\n- The same dark worker, attached red cape, amber hand light, and torso cable remain visible.\n- The tower stays left, storm sky stays right, and the exterior camera remains stable.\n- Wet steel, weighted red cloth, cold storm light, and amber edge light remain stable.\n\nCHANGE IN ORDER\n1. 0.50-2.50s | taut cable tension curves the body back until both boots plant on the outer rib -> both boots hold on the tower with the cable taut\n2. 2.50-4.25s | the hand light touches the seam and amber closure travels upward -> one repaired steel edge replaces the opening\n\nFINAL PROOF | 4.25-5.00s\n- both boots remain visibly planted on the outer rib\n- one uninterrupted repaired edge remains beside the planted worker\n- The worker holds both boots beside the sealed seam with the cable taut and cape attached.\n",
+    "sha256": "d75d2d16e78436d0f4e6589e2aa2a20ffa4d7ba0b4e725107ade45508b9a6874",
+    "creative_prompt_sha256": "c645f7633aaefeb122ed793c84d0224af31cbfa4cc852c0f315567311ec2fe37"
+  },
+  "references": [
+    {
+      "attachment_index": 1,
+      "role": "authoritative_opening_frame",
+      "authority": "accepted_observed_endpoint",
+      "artifact": {
+        "kind": "final_frame",
+        "path": "artifacts/clip-01-final-frame.png",
+        "sha256": "f05efcff94c047cdf46f681daf8996896e257ea3e9a6e54f1d36944b81bba1cd",
+        "bytes": 1099668
+      }
+    }
+  ],
+  "known_output_sha256": [],
+  "acceptance_gates": {
+    "new_artifact_hash_required": true,
+    "opening_frame_match_required": true,
+    "opening_frame_review": "pending",
+    "continuity_safe": false
+  }
+}

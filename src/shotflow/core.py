@@ -16,11 +16,14 @@ from .providers import get_adapter
 SCHEMA_VERSION = "1.0"
 CONTRACT_VERSION = "1.1"
 CAUSAL_CONTRACT_VERSION = "1.2"
+EVIDENCE_CONTRACT_VERSION = "1.3"
 PATCH_VERSION = "1.0"
 SEQUENCE_VERSION = "1.0"
 CAUSAL_SEQUENCE_VERSION = "1.1"
+EVIDENCE_SEQUENCE_VERSION = "1.2"
 PROMPT_PROFILE = "provider-direct-v3"
 CAUSAL_PROMPT_PROFILE = "provider-direct-v4"
+EVIDENCE_PROMPT_PROFILE = "provider-direct-v5"
 
 CHECKPOINT_PHASES = ("match", "continue", "initiate", "resolve", "hold")
 SEQUENCE_ANCHORS = (
@@ -36,6 +39,7 @@ NEGATIVE_DIRECTIVE = re.compile(
 )
 MAX_SEQUENCE_PROMPT_CHARS = 2400
 MAX_CAUSAL_PROMPT_CHARS = 1800
+MAX_EVIDENCE_PROMPT_CHARS = 1100
 CHANGE_ID = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
 GRAMMAR_AXES = (
@@ -268,10 +272,14 @@ def validate_ordered_sequence(
     if not isinstance(sequence, dict):
         raise ShotFlowError("Ordered sequence must be an object")
     version = sequence.get("sequence_version")
-    if version not in {SEQUENCE_VERSION, CAUSAL_SEQUENCE_VERSION}:
+    if version not in {
+        SEQUENCE_VERSION,
+        CAUSAL_SEQUENCE_VERSION,
+        EVIDENCE_SEQUENCE_VERSION,
+    }:
         raise ShotFlowError(f"Unsupported sequence_version {version!r}")
     required = {"sequence_version", "duration_seconds", "anchors", "checkpoints"}
-    if version == CAUSAL_SEQUENCE_VERSION:
+    if version in {CAUSAL_SEQUENCE_VERSION, EVIDENCE_SEQUENCE_VERSION}:
         required.add("change_budget")
     missing = sorted(required - set(sequence))
     unknown = sorted(set(sequence) - required)
@@ -310,8 +318,10 @@ def validate_ordered_sequence(
         _validate_positive_text(anchors[category], f"anchors.{category}", 320)
 
     transition_ids: set[str] = set()
-    if version == CAUSAL_SEQUENCE_VERSION:
-        transition_ids = _validate_change_budget(sequence["change_budget"])
+    if version in {CAUSAL_SEQUENCE_VERSION, EVIDENCE_SEQUENCE_VERSION}:
+        transition_ids = _validate_change_budget(
+            sequence["change_budget"], evidence_profile=version == EVIDENCE_SEQUENCE_VERSION
+        )
 
     checkpoints = sequence["checkpoints"]
     if not isinstance(checkpoints, list) or len(checkpoints) != len(CHECKPOINT_PHASES):
@@ -324,7 +334,7 @@ def validate_ordered_sequence(
         "state",
         "visual_test",
     }
-    if version == CAUSAL_SEQUENCE_VERSION:
+    if version in {CAUSAL_SEQUENCE_VERSION, EVIDENCE_SEQUENCE_VERSION}:
         checkpoint_fields.add("active_changes")
     used_transitions: set[str] = set()
     for index, (checkpoint, expected_phase) in enumerate(
@@ -373,7 +383,7 @@ def validate_ordered_sequence(
         _validate_positive_text(
             checkpoint["visual_test"], f"checkpoints[{index}].visual_test", 240
         )
-        if version == CAUSAL_SEQUENCE_VERSION:
+        if version in {CAUSAL_SEQUENCE_VERSION, EVIDENCE_SEQUENCE_VERSION}:
             active_changes = checkpoint["active_changes"]
             if not isinstance(active_changes, list) or any(
                 not isinstance(item, str) for item in active_changes
@@ -395,6 +405,10 @@ def validate_ordered_sequence(
                 raise ShotFlowError(
                     f"Checkpoint phase {expected_phase!r} cannot have active changes"
                 )
+            if version == EVIDENCE_SEQUENCE_VERSION and len(active_changes) > 1:
+                raise ShotFlowError(
+                    "Sequence 1.2 allows at most one active change per checkpoint"
+                )
             used_transitions.update(active_changes)
         previous_end = end_value
     if not math.isclose(previous_end, float(duration_seconds), abs_tol=1e-6):
@@ -406,6 +420,34 @@ def validate_ordered_sequence(
         raise ShotFlowError(
             "Ordered sequence has unused transitions: " + ", ".join(unused_transitions)
         )
+    if version == EVIDENCE_SEQUENCE_VERSION:
+        opening = checkpoints[0]
+        hold = checkpoints[-1]
+        if float(opening["end_seconds"]) - float(opening["start_seconds"]) < 0.5:
+            raise ShotFlowError("Sequence 1.2 opening match must hold for at least 0.5 seconds")
+        if float(hold["end_seconds"]) - float(hold["start_seconds"]) < 0.75:
+            raise ShotFlowError("Sequence 1.2 final hold must last at least 0.75 seconds")
+        transition_order = [
+            item["id"] for item in sequence["change_budget"]["transitions"]
+        ]
+        active_positions = {
+            transition_id: [
+                index
+                for index, checkpoint in enumerate(checkpoints)
+                if transition_id in checkpoint["active_changes"]
+            ]
+            for transition_id in transition_order
+        }
+        for transition_id, positions in active_positions.items():
+            if positions != list(range(positions[0], positions[-1] + 1)):
+                raise ShotFlowError(
+                    f"Sequence 1.2 transition {transition_id!r} must occupy contiguous checkpoints"
+                )
+        first_positions = [active_positions[item][0] for item in transition_order]
+        if first_positions != sorted(first_positions):
+            raise ShotFlowError(
+                "Sequence 1.2 transitions must activate in their registered order"
+            )
 
 
 def _validate_change_id(value: Any, field: str) -> str:
@@ -418,7 +460,9 @@ def _validate_change_id(value: Any, field: str) -> str:
     return value
 
 
-def _validate_change_budget(change_budget: Any) -> set[str]:
+def _validate_change_budget(
+    change_budget: Any, *, evidence_profile: bool = False
+) -> set[str]:
     if not isinstance(change_budget, dict):
         raise ShotFlowError("change_budget must be an object")
     required = {"protected", "transitions"}
@@ -435,12 +479,19 @@ def _validate_change_budget(change_budget: Any) -> set[str]:
 
     protected = change_budget["protected"]
     transitions = change_budget["transitions"]
-    if not isinstance(protected, list) or not 1 <= len(protected) <= 6:
-        raise ShotFlowError("change_budget.protected requires 1 to 6 items")
-    if not isinstance(transitions, list) or not 1 <= len(transitions) <= 3:
-        raise ShotFlowError("change_budget.transitions requires 1 to 3 items")
+    protected_maximum = 4 if evidence_profile else 6
+    transition_maximum = 2 if evidence_profile else 3
+    if not isinstance(protected, list) or not 1 <= len(protected) <= protected_maximum:
+        raise ShotFlowError(
+            f"change_budget.protected requires 1 to {protected_maximum} items"
+        )
+    if not isinstance(transitions, list) or not 1 <= len(transitions) <= transition_maximum:
+        raise ShotFlowError(
+            f"change_budget.transitions requires 1 to {transition_maximum} items"
+        )
 
     protected_ids: set[str] = set()
+    protected_states: set[str] = set()
     for index, item in enumerate(protected, start=1):
         if not isinstance(item, dict) or set(item) != {"id", "state"}:
             raise ShotFlowError(
@@ -452,11 +503,16 @@ def _validate_change_budget(change_budget: Any) -> set[str]:
         if item_id in protected_ids:
             raise ShotFlowError(f"Duplicate change budget id {item_id!r}")
         protected_ids.add(item_id)
-        _validate_positive_text(
+        state = _validate_positive_text(
             item["state"], f"change_budget.protected[{index}].state", 240
         )
+        normalized_state = " ".join(state.casefold().split())
+        if evidence_profile and normalized_state in protected_states:
+            raise ShotFlowError("Sequence 1.2 protected states must be unique")
+        protected_states.add(normalized_state)
 
     transition_ids: set[str] = set()
+    transition_subjects: set[str] = set()
     transition_fields = {
         "id",
         "subject",
@@ -481,6 +537,10 @@ def _validate_change_budget(change_budget: Any) -> set[str]:
             _validate_positive_text(
                 item[field], f"change_budget.transitions[{index}].{field}", 240
             )
+        normalized_subject = " ".join(item["subject"].casefold().split())
+        if evidence_profile and normalized_subject in transition_subjects:
+            raise ShotFlowError("Sequence 1.2 transition subjects must be unique")
+        transition_subjects.add(normalized_subject)
     return transition_ids
 
 
@@ -724,6 +784,8 @@ def render_prompt(
     grammar: dict[str, Any],
     sequence: dict[str, Any],
 ) -> str:
+    if sequence.get("sequence_version") == EVIDENCE_SEQUENCE_VERSION:
+        return render_evidence_prompt(beat, grammar, sequence)
     if sequence.get("sequence_version") == CAUSAL_SEQUENCE_VERSION:
         return render_causal_prompt(beat, grammar, sequence)
     beat_text = _validate_positive_text(beat, "beat", 320)
@@ -825,6 +887,63 @@ def render_causal_prompt(
     return prompt
 
 
+def render_evidence_prompt(
+    beat: str,
+    grammar: dict[str, Any],
+    sequence: dict[str, Any],
+) -> str:
+    """Render the short positive provider-direct-v5 evidence prompt."""
+
+    _validate_positive_text(beat, "beat", 320)
+    for axis in GRAMMAR_AXES:
+        _validate_positive_text(grammar[axis], f"grammar.{axis}", 360)
+    checkpoints = sequence["checkpoints"]
+    change_budget = sequence["change_budget"]
+    lines = [
+        "CONTINUE FROM THE ACCEPTED FINAL FRAME.",
+        "",
+        (
+            f"MATCH | {float(checkpoints[0]['start_seconds']):.2f}-"
+            f"{float(checkpoints[0]['end_seconds']):.2f}s"
+        ),
+        checkpoints[0]["state"].strip(),
+        "",
+        "KEEP STABLE",
+    ]
+    lines.extend(f"- {item['state'].strip()}" for item in change_budget["protected"])
+    lines.extend(["", "CHANGE IN ORDER"])
+    for index, item in enumerate(change_budget["transitions"], start=1):
+        active = [
+            checkpoint
+            for checkpoint in checkpoints
+            if item["id"] in checkpoint["active_changes"]
+        ]
+        start = float(active[0]["start_seconds"])
+        end = float(active[-1]["end_seconds"])
+        lines.append(
+            f"{index}. {start:.2f}-{end:.2f}s | {item['transition'].strip()} -> "
+            f"{item['to_state'].strip()}"
+        )
+    lines.extend(
+        [
+            "",
+            (
+                f"FINAL PROOF | {float(checkpoints[-1]['start_seconds']):.2f}-"
+                f"{float(checkpoints[-1]['end_seconds']):.2f}s"
+            ),
+        ]
+    )
+    lines.extend(f"- {item['proof'].strip()}" for item in change_budget["transitions"])
+    lines.append(f"- {checkpoints[-1]['state'].strip()}")
+    prompt = "\n".join(lines).rstrip() + "\n"
+    if len(prompt) > MAX_EVIDENCE_PROMPT_CHARS:
+        raise ShotFlowError(
+            f"Compiled provider prompt exceeds {MAX_EVIDENCE_PROMPT_CHARS} characters; "
+            "shorten protected states, transitions, or final proof"
+        )
+    return prompt
+
+
 def compile_next_shot(
     project: dict[str, Any],
     source_shot_id: str,
@@ -851,11 +970,16 @@ def compile_next_shot(
     duration_seconds = project["provider"]["parameters"]["duration_seconds"]
     validate_ordered_sequence(sequence, duration_seconds)
     prompt = render_prompt(beat, grammar, sequence)
-    causal_sequence = sequence["sequence_version"] == CAUSAL_SEQUENCE_VERSION
-    contract_version = (
-        CAUSAL_CONTRACT_VERSION if causal_sequence else CONTRACT_VERSION
-    )
-    prompt_profile = CAUSAL_PROMPT_PROFILE if causal_sequence else PROMPT_PROFILE
+    sequence_version = sequence["sequence_version"]
+    if sequence_version == EVIDENCE_SEQUENCE_VERSION:
+        contract_version = EVIDENCE_CONTRACT_VERSION
+        prompt_profile = EVIDENCE_PROMPT_PROFILE
+    elif sequence_version == CAUSAL_SEQUENCE_VERSION:
+        contract_version = CAUSAL_CONTRACT_VERSION
+        prompt_profile = CAUSAL_PROMPT_PROFILE
+    else:
+        contract_version = CONTRACT_VERSION
+        prompt_profile = PROMPT_PROFILE
     sequence_sha256 = sha256_text(canonical_json(sequence))
     contract = {
         "contract_version": contract_version,

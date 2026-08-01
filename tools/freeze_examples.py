@@ -98,12 +98,19 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
     grammar_v4 = root / "plan" / "clip-02-grammar-v4.json"
     sequence_v4 = root / "plan" / "clip-02-sequence-v4.json"
     prompt_v4 = root / "prompts" / "clip-02-shotflow-v4-rc1.txt"
+    baseline_v5 = root / "prompts" / "clip-02-baseline-v04.txt"
+    grammar_v5 = root / "plan" / "clip-02-grammar-v5.json"
+    sequence_v5 = root / "plan" / "clip-02-sequence-v5.json"
+    prompt_v5 = root / "prompts" / "clip-02-shotflow-v5-rc1.txt"
     provider_handoff = root / "evidence" / "provider-handoff.json"
     anchor_handoffs = sorted(
         (root / "evidence").glob("provider-handoff-*-anchor-v1.json")
     )
     causal_handoffs = sorted(
         (root / "evidence").glob("provider-handoff-*-gate[78].json")
+    )
+    evidence_handoffs = sorted(
+        (root / "evidence").glob("provider-handoff-*-v04.json")
     )
     source_shot = project["shots"][0]
     recorded = source_shot["prompt"]["sha256"]
@@ -129,6 +136,17 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
     if all(path.exists() for path in v4_files) and len(causal_handoffs) != 2:
         raise ValueError(
             f"{case_id}: provider-direct-v4 requires exactly two Gate handoffs"
+        )
+    v5_files = (baseline_v5, grammar_v5, sequence_v5, prompt_v5)
+    if any(path.exists() for path in v5_files) and not all(
+        path.exists() for path in v5_files
+    ):
+        raise ValueError(
+            f"{case_id}: provider-direct-v5 baseline, grammar, sequence, and prompt must be frozen together"
+        )
+    if all(path.exists() for path in v5_files) and len(evidence_handoffs) != 2:
+        raise ValueError(
+            f"{case_id}: provider-direct-v5 requires exactly two v0.4 handoffs"
         )
     observed = source_shot.get("observed")
     if observed and not shotflow.exists():
@@ -404,6 +422,63 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
         }
         if case_id == "obsidian-bloom" and gate7_result is not None:
             manifest["rc_prompt_candidate"]["gate_7_result"] = gate7_result
+    if all(path.exists() for path in v5_files):
+        manifest["v04_prompt_candidate"] = {
+            "profile": "provider-direct-v5",
+            "contract_version": "1.3",
+            "sequence_version": "1.2",
+            "handoff_profile": "anchor-frame-v3",
+            "status": (
+                "gate_9_awaiting_separate_generation_approval"
+                if case_id == "obsidian-bloom"
+                else "gate_10_blocked_until_gate_9_passes"
+            ),
+            "baseline_prompt": {
+                "path": baseline_v5.relative_to(root).as_posix(),
+                "sha256": sha256(baseline_v5),
+                "bytes": baseline_v5.stat().st_size,
+            },
+            "grammar": {
+                "path": grammar_v5.relative_to(root).as_posix(),
+                "sha256": sha256(grammar_v5),
+            },
+            "ordered_sequence": {
+                "path": sequence_v5.relative_to(root).as_posix(),
+                "sha256": sha256(sequence_v5),
+            },
+            "compiled_prompt": {
+                "path": prompt_v5.relative_to(root).as_posix(),
+                "sha256": sha256(prompt_v5),
+                "bytes": prompt_v5.stat().st_size,
+            },
+            "provider_handoffs": [
+                {
+                    "variant": handoff["variant"],
+                    "profile": handoff["profile"],
+                    "path": handoff_path.relative_to(root).as_posix(),
+                    "sha256": sha256(handoff_path),
+                    "submission_prompt_sha256": handoff["submission_prompt"][
+                        "sha256"
+                    ],
+                    "submission_prompt_characters": len(
+                        handoff["submission_prompt"]["text"]
+                    ),
+                }
+                for handoff_path in evidence_handoffs
+                for handoff in [load_json(handoff_path)]
+            ],
+            "reference_policy": (
+                "Both variants use the same accepted Clip 01 final frame as "
+                "the only media reference under anchor-frame-v3."
+            ),
+            "pair_count": 3,
+            "generation_order": [
+                ["baseline", "shotflow"],
+                ["shotflow", "baseline"],
+                ["baseline", "shotflow"],
+            ],
+            "canonical_review_raster": "1280x720",
+        }
     return manifest
 
 

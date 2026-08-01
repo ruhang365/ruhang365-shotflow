@@ -1,10 +1,15 @@
 # Provider handoff
 
 Provider submission stays outside the Core CLI. Before using any external
-runner, choose one `Provider Handoff v1` profile and freeze it for both A/B
+runner, choose one Provider Handoff profile and freeze it for both A/B
 variants.
 
-Use `anchor-frame-v2` with Sequence `1.1`. It sends a short positive-only
+Use `anchor-frame-v3` with Sequence `1.2`. Handoff `1.2` adds a compact
+positive Frame 1 authority wrapper, preserves creative/submission hashes, and
+enforces a 1,200-character submission limit. Use a context-free provider
+thread for each registered experiment cell.
+
+Use `anchor-frame-v2` when reproducing Sequence `1.1`. It sends a short positive-only
 opening-authority wrapper, the exact frozen creative Prompt, and the accepted
 final frame as the sole media reference. It does not add the legacy prohibition
 list. Both A/B variants must use this profile and the same frame hash.
@@ -57,6 +62,6 @@ python3 tools/prepare_provider_handoff.py \
   --prompt examples/storm-deck/prompts/clip-02-baseline-frozen.txt \
   --platform Lovart \
   --model-tool generate_video_seedance_v2_0 \
-  --profile anchor-frame-v2 \
+  --profile anchor-frame-v3 \
   --output examples/storm-deck/evidence/provider-handoff.json
 ```

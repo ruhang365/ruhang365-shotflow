@@ -4,7 +4,8 @@
   "title": "ShotFlow Ordered Sequence v1",
   "oneOf": [
     {"$ref": "#/$defs/sequenceV10"},
-    {"$ref": "#/$defs/sequenceV11"}
+    {"$ref": "#/$defs/sequenceV11"},
+    {"$ref": "#/$defs/sequenceV12"}
   ],
   "$defs": {
     "anchors": {
@@ -64,6 +65,25 @@
       },
       "additionalProperties": false
     },
+    "changeBudgetV12": {
+      "type": "object",
+      "required": ["protected", "transitions"],
+      "properties": {
+        "protected": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {"$ref": "#/$defs/protectedState"}
+        },
+        "transitions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": {"$ref": "#/$defs/transition"}
+        }
+      },
+      "additionalProperties": false
+    },
     "checkpointV10": {
       "type": "object",
       "required": ["phase", "start_seconds", "end_seconds", "state", "visual_test"],
@@ -87,6 +107,24 @@
         "visual_test": {"type": "string", "minLength": 1, "maxLength": 240},
         "active_changes": {
           "type": "array",
+          "items": {"$ref": "#/$defs/changeId"},
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "checkpointV12": {
+      "type": "object",
+      "required": ["phase", "start_seconds", "end_seconds", "state", "visual_test", "active_changes"],
+      "properties": {
+        "phase": {"type": "string"},
+        "start_seconds": {"type": "number", "minimum": 0},
+        "end_seconds": {"type": "number", "exclusiveMinimum": 0},
+        "state": {"type": "string", "minLength": 1, "maxLength": 360},
+        "visual_test": {"type": "string", "minLength": 1, "maxLength": 240},
+        "active_changes": {
+          "type": "array",
+          "maxItems": 1,
           "items": {"$ref": "#/$defs/changeId"},
           "uniqueItems": true
         }
@@ -119,6 +157,19 @@
       ],
       "items": false
     },
+    "checkpointsV12": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "prefixItems": [
+        {"allOf": [{"$ref": "#/$defs/checkpointV12"}, {"properties": {"phase": {"const": "match"}}}]},
+        {"allOf": [{"$ref": "#/$defs/checkpointV12"}, {"properties": {"phase": {"const": "continue"}}}]},
+        {"allOf": [{"$ref": "#/$defs/checkpointV12"}, {"properties": {"phase": {"const": "initiate"}}}]},
+        {"allOf": [{"$ref": "#/$defs/checkpointV12"}, {"properties": {"phase": {"const": "resolve"}}}]},
+        {"allOf": [{"$ref": "#/$defs/checkpointV12"}, {"properties": {"phase": {"const": "hold"}}}]}
+      ],
+      "items": false
+    },
     "sequenceV10": {
       "type": "object",
       "required": ["sequence_version", "duration_seconds", "anchors", "checkpoints"],
@@ -139,6 +190,18 @@
         "anchors": {"$ref": "#/$defs/anchors"},
         "change_budget": {"$ref": "#/$defs/changeBudget"},
         "checkpoints": {"$ref": "#/$defs/checkpointsV11"}
+      },
+      "additionalProperties": false
+    },
+    "sequenceV12": {
+      "type": "object",
+      "required": ["sequence_version", "duration_seconds", "anchors", "change_budget", "checkpoints"],
+      "properties": {
+        "sequence_version": {"const": "1.2"},
+        "duration_seconds": {"type": "number", "exclusiveMinimum": 0},
+        "anchors": {"$ref": "#/$defs/anchors"},
+        "change_budget": {"$ref": "#/$defs/changeBudgetV12"},
+        "checkpoints": {"$ref": "#/$defs/checkpointsV12"}
       },
       "additionalProperties": false
     }

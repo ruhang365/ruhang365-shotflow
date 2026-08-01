@@ -1,0 +1,43 @@
+{
+  "handoff_version": "1.2",
+  "project_schema_version": "1.0",
+  "profile": "anchor-frame-v3",
+  "project_id": "obsidian-bloom",
+  "variant": "clip-02-shotflow-v5-rc1",
+  "source_shot_id": "clip-01",
+  "provider": {
+    "platform": "Lovart",
+    "model_tool": "generate_video_seedance_v2_0"
+  },
+  "creative_prompt": {
+    "kind": "prompt",
+    "path": "prompts/clip-02-shotflow-v5-rc1.txt",
+    "sha256": "06f5a7613e314795cf559aab470dc72e09ea773f9d7a5550a1e540d950dc0d41",
+    "bytes": 837
+  },
+  "submission_prompt": {
+    "text": "FRAME 1 AUTHORITY:\nAttachment 1 is the accepted endpoint. Frame 1 matches its subject, geometry, camera, composition, light, and material state. Then execute the timeline.\n\nTIMELINE:\nCONTINUE FROM THE ACCEPTED FINAL FRAME.\n\nMATCH | 0.00-0.50s\nThe opening matches the accepted bottle, closed level cap, asymmetric collar, attached droplet, camera, horizon, and light.\n\nKEEP STABLE\n- The bottle body, front-right facet, hovering height, and attached upper-left droplet remain stable.\n- The asymmetric silver collar retains its accepted shape and alignment.\n- The locked near-frontal camera, low liquid horizon, cool reflection, and amber underlight remain stable.\n\nCHANGE IN ORDER\n1. 1.25-4.25s | the rigid cap rises straight upward by one centimeter -> the level unchanged cap holds one centimeter above the exposed silver neck\n\nFINAL PROOF | 4.25-5.00s\n- a clear vertical gap remains beneath the level unchanged cap\n- The level unchanged cap holds above the exposed neck while the complete product state remains stable.\n",
+    "sha256": "dc35090179d9326d6f054c997fadb44282fec6fdffe626909cb14c742f7f5307",
+    "creative_prompt_sha256": "06f5a7613e314795cf559aab470dc72e09ea773f9d7a5550a1e540d950dc0d41"
+  },
+  "references": [
+    {
+      "attachment_index": 1,
+      "role": "authoritative_opening_frame",
+      "authority": "accepted_observed_endpoint",
+      "artifact": {
+        "kind": "final_frame",
+        "path": "artifacts/clip-01-final-frame.png",
+        "sha256": "56d6455da0310b8acce2364af99229825307b70bae8f677306496c1fa08e8a0e",
+        "bytes": 568869
+      }
+    }
+  ],
+  "known_output_sha256": [],
+  "acceptance_gates": {
+    "new_artifact_hash_required": true,
+    "opening_frame_match_required": true,
+    "opening_frame_review": "pending",
+    "continuity_safe": false
+  }
+}

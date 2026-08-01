@@ -18,11 +18,11 @@
     "acceptance_gates"
   ],
   "properties": {
-    "handoff_version": {"enum": ["1.0", "1.1"]},
+    "handoff_version": {"enum": ["1.0", "1.1", "1.2"]},
     "project_schema_version": {"const": "1.0"},
     "profile": {
       "type": "string",
-      "enum": ["video-context-v1", "anchor-frame-v1", "anchor-frame-v2"]
+      "enum": ["video-context-v1", "anchor-frame-v1", "anchor-frame-v2", "anchor-frame-v3"]
     },
     "project_id": {"type": "string", "minLength": 1},
     "variant": {"type": "string", "minLength": 1},
@@ -98,6 +98,15 @@
       "then": {
         "properties": {
           "handoff_version": {"const": "1.1"},
+          "references": {"minItems": 1, "maxItems": 1}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"profile": {"const": "anchor-frame-v3"}}},
+      "then": {
+        "properties": {
+          "handoff_version": {"const": "1.2"},
           "references": {"minItems": 1, "maxItems": 1}
         }
       }

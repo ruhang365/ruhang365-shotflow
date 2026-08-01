@@ -1,0 +1,18 @@
+CONTINUE FROM THE ACCEPTED FINAL FRAME.
+
+MATCH | 0.00-0.50s
+The opening matches the horizontal worker screen-right of the tower, taut cable, red cape, amber hand light, and open fissure.
+
+KEEP STABLE
+- The same dark worker, attached red cape, amber hand light, and torso cable remain visible.
+- The tower stays left, storm sky stays right, and the exterior camera remains stable.
+- Wet steel, weighted red cloth, cold storm light, and amber edge light remain stable.
+
+CHANGE IN ORDER
+1. 0.50-2.50s | taut cable tension curves the body back until both boots plant on the outer rib -> both boots hold on the tower with the cable taut
+2. 2.50-4.25s | the hand light touches the seam and amber closure travels upward -> one repaired steel edge replaces the opening
+
+FINAL PROOF | 4.25-5.00s
+- both boots remain visibly planted on the outer rib
+- one uninterrupted repaired edge remains beside the planted worker
+- The worker holds both boots beside the sealed seam with the cable taut and cape attached.

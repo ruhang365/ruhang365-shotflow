@@ -1,0 +1,78 @@
+{
+  "sequence_version": "1.2",
+  "duration_seconds": 5,
+  "anchors": {
+    "identity": "One squat smoky-glass bottle keeps its broad shoulders and front-right facet.",
+    "wardrobe_props": "The glossy black cap, asymmetric silver collar, and upper-left amber droplet retain their accepted geometry.",
+    "space_direction": "The near-frontal bottle stays centered above the low black-liquid horizon at constant scale.",
+    "light_material": "Cool camera-left light and amber underlight preserve the accepted glass, metal, cap, and liquid response."
+  },
+  "change_budget": {
+    "protected": [
+      {
+        "id": "bottle-state",
+        "state": "The bottle body, front-right facet, hovering height, and attached upper-left droplet remain stable."
+      },
+      {
+        "id": "collar-state",
+        "state": "The asymmetric silver collar retains its accepted shape and alignment."
+      },
+      {
+        "id": "studio-state",
+        "state": "The locked near-frontal camera, low liquid horizon, cool reflection, and amber underlight remain stable."
+      }
+    ],
+    "transitions": [
+      {
+        "id": "cap-lift",
+        "subject": "the level glossy black cap",
+        "from_state": "the cap rests closed on the silver neck",
+        "transition": "the rigid cap rises straight upward by one centimeter",
+        "to_state": "the level unchanged cap holds one centimeter above the exposed silver neck",
+        "proof": "a clear vertical gap remains beneath the level unchanged cap"
+      }
+    ]
+  },
+  "checkpoints": [
+    {
+      "phase": "match",
+      "start_seconds": 0,
+      "end_seconds": 0.5,
+      "state": "The opening matches the accepted bottle, closed level cap, asymmetric collar, attached droplet, camera, horizon, and light.",
+      "visual_test": "Bottle silhouette, cap geometry, collar alignment, droplet position, horizon, and reflections match the accepted frame.",
+      "active_changes": []
+    },
+    {
+      "phase": "continue",
+      "start_seconds": 0.5,
+      "end_seconds": 1.25,
+      "state": "The complete accepted product state remains settled and readable.",
+      "visual_test": "The bottle, collar, droplet, liquid horizon, camera, and reflections remain fixed.",
+      "active_changes": []
+    },
+    {
+      "phase": "initiate",
+      "start_seconds": 1.25,
+      "end_seconds": 2.5,
+      "state": "The rigid level cap rises straight upward from the silver neck.",
+      "visual_test": "A clean vertical gap opens while the cap stays level and unchanged.",
+      "active_changes": ["cap-lift"]
+    },
+    {
+      "phase": "resolve",
+      "start_seconds": 2.5,
+      "end_seconds": 4.25,
+      "state": "The cap reaches one centimeter above the exposed silver neck and settles.",
+      "visual_test": "The vertical translation completes while every protected fact remains stable.",
+      "active_changes": ["cap-lift"]
+    },
+    {
+      "phase": "hold",
+      "start_seconds": 4.25,
+      "end_seconds": 5,
+      "state": "The level unchanged cap holds above the exposed neck while the complete product state remains stable.",
+      "visual_test": "The final frame proves the cap gap, stable collar, attached droplet, fixed bottle, horizon, and light.",
+      "active_changes": []
+    }
+  ]
+}

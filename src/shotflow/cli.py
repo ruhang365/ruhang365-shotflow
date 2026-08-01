@@ -23,6 +23,7 @@ from .core import (
     shot_diff,
     write_json,
 )
+from .demo import create_demo
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -41,6 +42,9 @@ def build_parser() -> argparse.ArgumentParser:
     init.add_argument("--ratio", default="16:9")
     init.add_argument("--resolution", default="720p")
     init.add_argument("--duration", type=int, default=5)
+
+    demo = commands.add_parser("demo", help="Build an account-free offline example")
+    demo.add_argument("directory")
 
     plan = commands.add_parser("plan", help="Record a planned shot")
     plan.add_argument("--project", default=".")
@@ -101,6 +105,9 @@ def _write_optional_json(path: str | None, value: dict[str, Any]) -> None:
 
 
 def run(args: argparse.Namespace) -> dict[str, Any]:
+    if args.command == "demo":
+        return create_demo(Path(args.directory))
+
     if args.command == "init":
         project_directory = Path(args.directory).expanduser().resolve()
         project_directory.mkdir(parents=True, exist_ok=True)

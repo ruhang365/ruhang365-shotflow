@@ -83,5 +83,65 @@
       }
     ],
     "reference_policy": "Both variants use the same accepted Clip 01 final frame as the only media reference under anchor-frame-v2."
+  },
+  "v04_prompt_candidate": {
+    "profile": "provider-direct-v5",
+    "contract_version": "1.3",
+    "sequence_version": "1.2",
+    "handoff_profile": "anchor-frame-v3",
+    "status": "gate_10_blocked_until_gate_9_passes",
+    "baseline_prompt": {
+      "path": "prompts/clip-02-baseline-v04.txt",
+      "sha256": "c5b0154434330a47cd7c398d821d18564bc9227bf1fc8c9f01abb6841948735e",
+      "bytes": 643
+    },
+    "grammar": {
+      "path": "plan/clip-02-grammar-v5.json",
+      "sha256": "2ebcae3a4aaea47fd6a2f3d6af461a2a2991d3df594ea0195affaf03156c16b2"
+    },
+    "ordered_sequence": {
+      "path": "plan/clip-02-sequence-v5.json",
+      "sha256": "52b03c98bf1044355f5925b4cd2c250099591609eab09025298124bca2e64bfc"
+    },
+    "compiled_prompt": {
+      "path": "prompts/clip-02-shotflow-v5-rc1.txt",
+      "sha256": "c645f7633aaefeb122ed793c84d0224af31cbfa4cc852c0f315567311ec2fe37",
+      "bytes": 1000
+    },
+    "provider_handoffs": [
+      {
+        "variant": "clip-02-baseline-v04",
+        "profile": "anchor-frame-v3",
+        "path": "evidence/provider-handoff-baseline-v04.json",
+        "sha256": "0a173902c7a379edd360e2bd36f5edcc05047d0dc882e784aae8829a5529a94e",
+        "submission_prompt_sha256": "0bd4f983667b19938527ab9fbee92f4a7c655271d2bcc9996335ee754f854ba5",
+        "submission_prompt_characters": 826
+      },
+      {
+        "variant": "clip-02-shotflow-v5-rc1",
+        "profile": "anchor-frame-v3",
+        "path": "evidence/provider-handoff-shotflow-v04.json",
+        "sha256": "ce1fc9d9f592f6d7133cfb52b55d68f0cd443101053b9a51974626441c72b87f",
+        "submission_prompt_sha256": "d75d2d16e78436d0f4e6589e2aa2a20ffa4d7ba0b4e725107ade45508b9a6874",
+        "submission_prompt_characters": 1183
+      }
+    ],
+    "reference_policy": "Both variants use the same accepted Clip 01 final frame as the only media reference under anchor-frame-v3.",
+    "pair_count": 3,
+    "generation_order": [
+      [
+        "baseline",
+        "shotflow"
+      ],
+      [
+        "shotflow",
+        "baseline"
+      ],
+      [
+        "baseline",
+        "shotflow"
+      ]
+    ],
+    "canonical_review_raster": "1280x720"
   }
 }

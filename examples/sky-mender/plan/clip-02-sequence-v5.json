@@ -1,0 +1,86 @@
+{
+  "sequence_version": "1.2",
+  "duration_seconds": 5,
+  "anchors": {
+    "identity": "One dark segmented sky-repair worker keeps the accepted silhouette and long red cape.",
+    "wardrobe_props": "The amber repair light remains in the raised outstretched hand and the thin safety cable remains attached at the lower torso.",
+    "space_direction": "The steel tower stays left, the worker starts screen-right, and the exterior camera side remains stable.",
+    "light_material": "Cold storm light, warm fissure edges, dull wet steel, and weighted red cloth retain their accepted response."
+  },
+  "change_budget": {
+    "protected": [
+      {
+        "id": "worker-state",
+        "state": "The same dark worker, attached red cape, amber hand light, and torso cable remain visible."
+      },
+      {
+        "id": "tower-state",
+        "state": "The tower stays left, storm sky stays right, and the exterior camera remains stable."
+      },
+      {
+        "id": "material-state",
+        "state": "Wet steel, weighted red cloth, cold storm light, and amber edge light remain stable."
+      }
+    ],
+    "transitions": [
+      {
+        "id": "contact-recovery",
+        "subject": "the cable-suspended worker",
+        "from_state": "the body hangs almost horizontal screen-right of the tower on a taut lower cable",
+        "transition": "taut cable tension curves the body back until both boots plant on the outer rib",
+        "to_state": "both boots hold on the tower with the cable taut",
+        "proof": "both boots remain visibly planted on the outer rib"
+      },
+      {
+        "id": "fissure-seal",
+        "subject": "the amber hand light and vertical fissure",
+        "from_state": "the bright vertical fissure remains open beside the recovered worker",
+        "transition": "the hand light touches the seam and amber closure travels upward",
+        "to_state": "one repaired steel edge replaces the opening",
+        "proof": "one uninterrupted repaired edge remains beside the planted worker"
+      }
+    ]
+  },
+  "checkpoints": [
+    {
+      "phase": "match",
+      "start_seconds": 0,
+      "end_seconds": 0.5,
+      "state": "The opening matches the horizontal worker screen-right of the tower, taut cable, red cape, amber hand light, and open fissure.",
+      "visual_test": "Worker silhouette, cape, light hand, cable direction, tower side, fissure, and storm light match the accepted endpoint.",
+      "active_changes": []
+    },
+    {
+      "phase": "continue",
+      "start_seconds": 0.5,
+      "end_seconds": 1.5,
+      "state": "The accepted screen-right motion slows as cable tension curves the worker back toward the tower.",
+      "visual_test": "Body inertia, cable tension, cape drag, and the return arc form one continuous motion.",
+      "active_changes": ["contact-recovery"]
+    },
+    {
+      "phase": "initiate",
+      "start_seconds": 1.5,
+      "end_seconds": 2.5,
+      "state": "Both boots plant on the outer rib while the taut cable and attached cape settle.",
+      "visual_test": "Two boot contacts, stable tower geography, taut cable, and the same worker remain visible.",
+      "active_changes": ["contact-recovery"]
+    },
+    {
+      "phase": "resolve",
+      "start_seconds": 2.5,
+      "end_seconds": 4.25,
+      "state": "The amber hand light touches the fissure and closure travels upward until one repaired steel edge remains.",
+      "visual_test": "One hand-light contact begins a visible closure that removes the open seam.",
+      "active_changes": ["fissure-seal"]
+    },
+    {
+      "phase": "hold",
+      "start_seconds": 4.25,
+      "end_seconds": 5,
+      "state": "The worker holds both boots beside the sealed seam with the cable taut and cape attached.",
+      "visual_test": "The final frame proves boot contact, stable identity and props, taut cable, tower geography, and a sealed seam.",
+      "active_changes": []
+    }
+  ]
+}

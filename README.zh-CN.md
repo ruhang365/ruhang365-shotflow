@@ -10,25 +10,35 @@
 
 ## 当前证据状态
 
-ShotFlow `v0.3.0-rc1` 是软件与离线候选案例版本，**不包含效果改善声明**。
-三组真实 Seedance Clip 01 已经生成、接受、观察并记录哈希。此前两组受控
-Clip 02 A/B 均由普通组获胜，失败证据继续公开保留。RC1 新增因果变化预算、
-纯正向 `anchor-frame-v2` 与最长 1800 字符的 `provider-direct-v4`。Gate 7
-随后在 Lovart 无限模式中各生成一次，但两组原生分辨率不同，在盲评前即被判定
-为无效 A/B。
+ShotFlow `v0.4.0-rc1` 是软件与预注册证据版本，**不包含效果改善声明**。
+历史失败证据保持原样：此前两组受控 Clip 02 A/B 均由普通组获胜，Gate 7
+又因两组原生分辨率不同而在评分前失效。RC1 新增 Ordered Sequence `1.2`、
+contract `1.3`、更短的 `provider-direct-v5`、`anchor-frame-v3`、确定性的
+720p 盲评素材准备工具，以及无需账号的 `shotflow demo`。尚未提交任何 v0.4
+服务商任务。
 
 | 案例 | 作用 | 当前状态 |
 | --- | --- | --- |
-| 天幕修补师 | 旗舰视觉奇观 | 历史尝试已拒绝；Gate 7 未形成有效 A/B，因此 v0.3 Gate 8 被阻止 |
+| 天幕修补师 | 旗舰视觉奇观 | v0.4 Gate 10 输入已冻结；仅在 Gate 9 通过后启动 |
 | 暴风甲板 | 现实动作 | Lovart 的 Kling O1 与两条 Seedance 2.0 普通组均被拒绝；修正交接仍发生首帧断裂，案例在尝试上限处关闭 |
-| 黑曜之息 | 虚构产品广告 | 历史 `anchor-frame-v1` A/B 落败；v0.3 Gate 7 普通组为 1280×720、v0.3 为 1920×1080，因分辨率不一致而关闭 |
+| 黑曜之息 | 虚构产品广告 | v0.4 Gate 9 输入已冻结；等待六条任务的单独生成批准 |
 
-所有已接受 Clip 01 原始视频均为 1920×1080、24fps、5.125 秒，并保留平台
-容器级 `AIGC Label=1`。Lovart Gate 6 两个输出同为 1920×1080，但容器没有
-AIGC 标识，因此任何公开衍生版本都必须增加可见披露。见
+v0.4 前瞻实验把服务商原生证据与统一评审素材分开：每条原生结果必须至少
+1280×720，并原样记录哈希；A/B 两侧再对称编码为 1280×720、24fps、5 秒，
+不裁切、不放大。Gate 9 用一个获准的瓶盖变化执行三对《黑曜之息》A/B；
+Gate 10 仅在 Gate 9 通过后，用两个严格顺序变化执行三对《天幕修补师》A/B。
+见 [v0.4 评审协议](examples/V04_EVALUATION_PROTOCOL.md)、
+[三方预注册审查](examples/V04_RC1_PREFLIGHT_REVIEW.md)、
+[Gate 9](examples/GATE_9_OBSIDIAN_BLOOM_V04_RC1_APPROVAL.md) 与
+[Gate 10](examples/GATE_10_SKY_MENDER_V04_RC1_APPROVAL.md)。
+
+历史失败或无效证据继续公开保留。所有已接受 Clip 01 原始视频均为
+1920×1080、24fps、5.125 秒，并保留平台容器级 `AIGC Label=1`。Lovart
+Gate 6 两个输出同为 1920×1080，但容器没有 AIGC 标识，因此任何公开衍生
+版本都必须增加可见披露。见
 [《天幕修补师》盲评](examples/sky-mender/reviews/clip-02-blind-review-v1.md)、
 [《黑曜之息》盲评](examples/obsidian-bloom/reviews/clip-02-blind-review-anchor-v1.md)
-与[已关闭的 Gate 2 清单](examples/GATE_2_APPROVAL.md)。
+与[已关闭的 Gate 7](examples/GATE_7_OBSIDIAN_BLOOM_V03_RC1_APPROVAL.md)。
 
 标准非 VIP 模型 `seedance2.0_direct` 因不支持 1080p 已停止。Gate 4 随后
 改用用户选择的 `seedance2.0_vision` VIP 模型与 1080p。第一条任务因账号
@@ -88,6 +98,12 @@ shotflow init my-sequence --title "我的连续镜头"
 shotflow --help
 ```
 
+无需账号、API Key、视频生成或积分即可运行完整编译演示：
+
+```bash
+shotflow demo shotflow-offline-demo
+```
+
 不安装也可以从仓库直接运行：
 
 ```bash
@@ -112,6 +128,7 @@ shotflow observe
 shotflow diff
 shotflow compile-next
 shotflow score
+shotflow demo
 ```
 
 - `plan`：只计划当前镜头，记录五轴电影语法。
@@ -127,17 +144,18 @@ shotflow score
 - [`shotflow.project.json` v1](schemas/shotflow.project.schema.json)：项目、模型、实体、道具、镜头、观察、连续性锁、素材哈希、Prompt 和评分。
 - [`ObservationPatch` v1](schemas/observation-patch.schema.json)：Core 人工观察与未来 Pro 自动分析共用的输出格式。
 - [`Generation Attempt Ledger` v1](schemas/generation-attempt.schema.json)：记录每次提交、接受、拒绝和失败，不写入服务商私密标识。
-- [`Ordered Sequence` 1.0/1.1](schemas/ordered-sequence.schema.json)：1.0 保持字节兼容；1.1 新增稳定状态、1–3 个获准变化、checkpoint `active_changes` 与最终证据。
-- [`Provider Handoff` v1](schemas/provider-handoff.schema.json)：固定参考素材角色、提交 Prompt 哈希、历史产物排除规则和首帧门禁。纯正向 `anchor-frame-v2` 只使用已接受终点，旧 profile 继续兼容。
+- [`Ordered Sequence` 1.0/1.1/1.2](schemas/ordered-sequence.schema.json)：旧版本保持字节兼容；1.2 新增单一活跃变化、首帧保持与最终停留门禁。
+- [`Provider Handoff` 1.0/1.1/1.2](schemas/provider-handoff.schema.json)：固定参考素材角色与 Prompt 哈希；纯正向 `anchor-frame-v3` 只使用已接受终点。
+- [`Evaluation Pair` v1](schemas/evaluation-pair.schema.json)：记录原生与统一评审素材、服务商参数、盲化映射、哈希和评审状态。
 - 五轴电影语法：叙事时刻、镜头运动、光线色彩、空间构图、材质物理。
 - 六项连续性量表：人物身份、服装道具、空间方向、动作承接、光线材质、故事节拍。
 
 真实观察始终覆盖计划状态。没有完整观察，不得输出 `continuity_safe=true`。
 
-Sequence `1.1` 使用 contract `1.2` 与 `provider-direct-v4`：JSON 保留完整
-观察、五轴电影语法和全部 `visual_test`，服务商 Prompt 只发送首帧匹配、
-稳定状态、获准变化、五阶段时间线和最终证据，最长 1800 字符。Sequence
-`1.0` 继续生成字节兼容的 contract `1.1` / `provider-direct-v3`。
+Sequence `1.2` 使用 contract `1.3` 与 `provider-direct-v5`：JSON 保留完整
+观察、五轴电影语法、checkpoint 和 `visual_test`，服务商 Prompt 只发送首帧
+匹配、稳定事实、顺序变化和最终可见证明；`anchor-frame-v3` 提交文本最长
+1200 字符。Sequence `1.0/1.1` 继续生成字节兼容的旧输出。
 
 ## 公平 A/B
 
@@ -150,7 +168,8 @@ Sequence `1.1` 使用 contract `1.2` 与 `provider-direct-v4`：JSON 保留完�
 5. 唯一变量是 Clip 02 是否读取真实观察；
 6. 评分时隐藏组别。
 
-只有 ShotFlow 在至少两组案例中获得多数胜出，且平均分提升至少 20 分，才会公开宣称连续性改善。
+只有 Gate 9 与 Gate 10 各自至少胜出三对中的两对、每个案例归一化平均分提升
+至少 20 分、首帧匹配与其余发布门槛全部通过，才会公开有限的连续性改善声明。
 
 ## Core 与 Pro
 

@@ -23,13 +23,16 @@ from .core import (
 
 HANDOFF_VERSION = "1.0"
 CAUSAL_HANDOFF_VERSION = "1.1"
+EVIDENCE_HANDOFF_VERSION = "1.2"
 VIDEO_CONTEXT_PROFILE = "video-context-v1"
 ANCHOR_FRAME_PROFILE = "anchor-frame-v1"
 ANCHOR_FRAME_V2_PROFILE = "anchor-frame-v2"
+ANCHOR_FRAME_V3_PROFILE = "anchor-frame-v3"
 HANDOFF_PROFILES = (
     VIDEO_CONTEXT_PROFILE,
     ANCHOR_FRAME_PROFILE,
     ANCHOR_FRAME_V2_PROFILE,
+    ANCHOR_FRAME_V3_PROFILE,
 )
 
 VIDEO_CONTEXT_DIRECTIVE = """REFERENCE BINDING — APPLY BEFORE THE CREATIVE INSTRUCTIONS:
@@ -56,6 +59,14 @@ ANCHOR_FRAME_V2_DIRECTIVE = """OPENING-FRAME AUTHORITY:
 CREATIVE INSTRUCTIONS:
 """
 
+ANCHOR_FRAME_V3_DIRECTIVE = """FRAME 1 AUTHORITY:
+Attachment 1 is the accepted endpoint. Frame 1 matches its subject, geometry, camera, composition, light, and material state. Then execute the timeline.
+
+TIMELINE:
+"""
+
+MAX_ANCHOR_FRAME_V3_PROMPT_CHARS = 1200
+
 
 def compile_submission_prompt(
     creative_prompt: str,
@@ -67,13 +78,23 @@ def compile_submission_prompt(
         raise ShotFlowError("Creative prompt must not be empty")
     if profile not in HANDOFF_PROFILES:
         raise ShotFlowError(f"Unknown provider handoff profile {profile!r}")
-    if profile == ANCHOR_FRAME_V2_PROFILE:
+    if profile == ANCHOR_FRAME_V3_PROFILE:
+        directive = ANCHOR_FRAME_V3_DIRECTIVE
+    elif profile == ANCHOR_FRAME_V2_PROFILE:
         directive = ANCHOR_FRAME_V2_DIRECTIVE
     elif profile == ANCHOR_FRAME_PROFILE:
         directive = ANCHOR_FRAME_DIRECTIVE
     else:
         directive = VIDEO_CONTEXT_DIRECTIVE
-    return directive + creative_prompt.rstrip() + "\n"
+    submission = directive + creative_prompt.rstrip() + "\n"
+    if (
+        profile == ANCHOR_FRAME_V3_PROFILE
+        and len(submission) > MAX_ANCHOR_FRAME_V3_PROMPT_CHARS
+    ):
+        raise ShotFlowError(
+            "anchor-frame-v3 submission prompt exceeds 1200 characters"
+        )
+    return submission
 
 
 def prepare_provider_handoff(
@@ -136,9 +157,13 @@ def prepare_provider_handoff(
         )
     return {
         "handoff_version": (
-            CAUSAL_HANDOFF_VERSION
-            if profile == ANCHOR_FRAME_V2_PROFILE
-            else HANDOFF_VERSION
+            EVIDENCE_HANDOFF_VERSION
+            if profile == ANCHOR_FRAME_V3_PROFILE
+            else (
+                CAUSAL_HANDOFF_VERSION
+                if profile == ANCHOR_FRAME_V2_PROFILE
+                else HANDOFF_VERSION
+            )
         ),
         "project_schema_version": SCHEMA_VERSION,
         "profile": profile,

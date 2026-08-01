@@ -189,6 +189,9 @@ CAUSAL_SEQUENCE = {
     ],
 }
 
+EVIDENCE_SEQUENCE = deepcopy(CAUSAL_SEQUENCE)
+EVIDENCE_SEQUENCE["sequence_version"] = "1.2"
+
 
 class CoreTests(unittest.TestCase):
     def test_new_project_marks_only_verified_model(self) -> None:
@@ -417,6 +420,80 @@ class CoreTests(unittest.TestCase):
         self.assertLessEqual(len(prompt), 1800)
         self.assertNotRegex(prompt, r"(?i)do not|must not|without|avoid|hard rule")
 
+    def test_evidence_sequence_compiles_short_v5_prompt(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            project_file = root / "shotflow.project.json"
+            project = new_project("Evidence compiler")
+            add_or_replace_plan(project, "clip-01", "Begin repair", PLAN)
+            media = root / "clip-01.mp4"
+            frame = root / "clip-01-final.png"
+            media.write_bytes(MP4_BYTES + b"accepted")
+            frame.write_bytes(PNG_BYTES + b"accepted")
+            observe_shot(project_file, project, "clip-01", OBSERVED, media, frame)
+            contract = compile_next_shot(
+                project,
+                "clip-01",
+                "clip-02-v5",
+                "The worker seals the fissure and holds beside it.",
+                GRAMMAR,
+                EVIDENCE_SEQUENCE,
+            )
+        prompt = contract["compiled_prompt"]["text"]
+        self.assertEqual(contract["contract_version"], "1.3")
+        self.assertEqual(contract["compiled_prompt"]["profile"], "provider-direct-v5")
+        self.assertIn("KEEP STABLE", prompt)
+        self.assertIn("CHANGE IN ORDER", prompt)
+        self.assertIn("FINAL PROOF", prompt)
+        self.assertLessEqual(len(prompt), 1100)
+        self.assertNotIn("FIVE VISIBLE CHECKPOINTS", prompt)
+
+    def test_evidence_sequence_enforces_budget_and_timing(self) -> None:
+        concurrent = deepcopy(EVIDENCE_SEQUENCE)
+        concurrent["checkpoints"][2]["active_changes"] = [
+            "swing-settle",
+            "seam-repair",
+        ]
+        with self.assertRaisesRegex(ShotFlowError, "at most one active"):
+            validate_ordered_sequence(concurrent, 5)
+
+        too_many_protected = deepcopy(EVIDENCE_SEQUENCE)
+        too_many_protected["change_budget"]["protected"].extend(
+            [
+                {"id": "third-lock", "state": "The third visible fact remains stable."},
+                {"id": "fourth-lock", "state": "The fourth visible fact remains stable."},
+                {"id": "fifth-lock", "state": "The fifth visible fact remains stable."},
+            ]
+        )
+        with self.assertRaisesRegex(ShotFlowError, "1 to 4"):
+            validate_ordered_sequence(too_many_protected, 5)
+
+        short_opening = deepcopy(EVIDENCE_SEQUENCE)
+        short_opening["checkpoints"][0]["end_seconds"] = 0.25
+        short_opening["checkpoints"][1]["start_seconds"] = 0.25
+        with self.assertRaisesRegex(ShotFlowError, "at least 0.5"):
+            validate_ordered_sequence(short_opening, 5)
+
+        short_hold = deepcopy(EVIDENCE_SEQUENCE)
+        short_hold["checkpoints"][3]["end_seconds"] = 4.5
+        short_hold["checkpoints"][4]["start_seconds"] = 4.5
+        with self.assertRaisesRegex(ShotFlowError, "at least 0.75"):
+            validate_ordered_sequence(short_hold, 5)
+
+    def test_evidence_sequence_rejects_noncontiguous_and_duplicate_states(self) -> None:
+        noncontiguous = deepcopy(EVIDENCE_SEQUENCE)
+        noncontiguous["checkpoints"][2]["active_changes"] = ["seam-repair"]
+        noncontiguous["checkpoints"][3]["active_changes"] = ["swing-settle"]
+        with self.assertRaisesRegex(ShotFlowError, "contiguous checkpoints"):
+            validate_ordered_sequence(noncontiguous, 5)
+
+        duplicate = deepcopy(EVIDENCE_SEQUENCE)
+        duplicate["change_budget"]["protected"][1]["state"] = duplicate[
+            "change_budget"
+        ]["protected"][0]["state"]
+        with self.assertRaisesRegex(ShotFlowError, "protected states must be unique"):
+            validate_ordered_sequence(duplicate, 5)
+
     def test_causal_sequence_rejects_change_budget_conflicts(self) -> None:
         duplicate = deepcopy(CAUSAL_SEQUENCE)
         duplicate["change_budget"]["transitions"][0]["id"] = "worker-identity"
@@ -534,6 +611,42 @@ class CoreTests(unittest.TestCase):
                 )
                 self.assertEqual(contract["compiled_prompt"]["text"], frozen)
                 self.assertLessEqual(len(frozen), 1800)
+
+    def test_v5_rc1_examples_match_frozen_compiler_output(self) -> None:
+        repository = Path(__file__).resolve().parents[1]
+        for case_id in ("obsidian-bloom", "sky-mender"):
+            with self.subTest(case=case_id):
+                case = repository / "examples" / case_id
+                project = json.loads(
+                    (case / "shotflow.project.json").read_text(encoding="utf-8")
+                )
+                grammar = json.loads(
+                    (case / "plan" / "clip-02-grammar-v5.json").read_text(
+                        encoding="utf-8"
+                    )
+                )
+                sequence = json.loads(
+                    (case / "plan" / "clip-02-sequence-v5.json").read_text(
+                        encoding="utf-8"
+                    )
+                )
+                contract = compile_next_shot(
+                    project,
+                    "clip-01",
+                    "clip-02-v5-rc1-regression",
+                    "The registered story outcome completes and holds visibly.",
+                    grammar,
+                    sequence,
+                )
+                frozen = (
+                    case / "prompts" / "clip-02-shotflow-v5-rc1.txt"
+                ).read_text(encoding="utf-8")
+                self.assertEqual(contract["contract_version"], "1.3")
+                self.assertEqual(
+                    contract["compiled_prompt"]["profile"], "provider-direct-v5"
+                )
+                self.assertEqual(contract["compiled_prompt"]["text"], frozen)
+                self.assertLessEqual(len(frozen), 1100)
 
 
 if __name__ == "__main__":
