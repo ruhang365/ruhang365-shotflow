@@ -10,7 +10,7 @@ Seedance 的连续性 Prompt。**
 
 ![《黑曜之息》已接受最终帧](examples/obsidian-bloom/evidence/clip-01-final-frame.jpg)
 
-## 安装后的 30 秒工作流
+## 安装后的快速工作流
 
 把已接受的最终帧附给具备视觉能力、已安装 ShotFlow Skill 的 Agent，然后输入：
 

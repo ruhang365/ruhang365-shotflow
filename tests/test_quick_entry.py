@@ -150,6 +150,7 @@ class QuickEntryTests(unittest.TestCase):
         self.assertIn("screen direction and anatomical direction", normalized)
         self.assertIn("ask which meaning the user intends", normalized)
         self.assertIn("including headings and whitespace", normalized)
+        self.assertIn("target range of 800–1,000 characters", normalized)
         self.assertIn("Never return an over-limit Prompt", normalized)
 
     def test_simulated_user_result_is_auditable_and_not_human_evidence(self) -> None:
@@ -206,6 +207,18 @@ class QuickEntryTests(unittest.TestCase):
         self.assertNotIn("git clone", primary)
         self.assertNotIn("pip install", primary)
 
+    def test_default_skill_keeps_advanced_workflow_out_of_quick_entry(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        skill = (root / "skills" / "shotflow" / "SKILL.md").read_text(encoding="utf-8")
+        advanced = (
+            root / "skills" / "shotflow" / "references" / "advanced-workflow.md"
+        ).read_text(encoding="utf-8")
+        self.assertLessEqual(len(skill.splitlines()), 100)
+        self.assertIn("Do not read advanced", skill)
+        self.assertIn("only when the user asks", skill)
+        self.assertIn("shotflow observe", advanced)
+        self.assertIn("Gate 9 and Gate 10 are deferred", advanced)
+
     def test_forward_test_result_is_auditable_and_has_no_effect_claim(self) -> None:
         root = Path(__file__).resolve().parents[1]
         result_path = root / "examples" / "forward-tests" / "results-v04-rc2.json"
@@ -234,6 +247,39 @@ class QuickEntryTests(unittest.TestCase):
         self.assertEqual(validate_quick_output(output.read_text(), expected_ratio="16:9"), [])
         self.assertFalse(receipt["agent"]["generation_submitted"])
         self.assertFalse(receipt["release_asset"]["tracked_in_git"])
+
+    def test_live_demo_receipt_binds_public_and_optimized_outputs(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        receipt = json.loads((root / "launch" / "live-demo-v041.json").read_text())
+        frame = root / receipt["input"]["frame"]
+        self.assertEqual(
+            hashlib.sha256(frame.read_bytes()).hexdigest(),
+            receipt["input"]["frame_sha256"],
+        )
+        for key in ("public_main_run", "optimized_local_retest"):
+            run = receipt[key]
+            output = root / run["tracked_output"]["path"]
+            self.assertEqual(
+                hashlib.sha256(output.read_bytes()).hexdigest(),
+                run["tracked_output"]["sha256"],
+            )
+            prompt, _ = extract_quick_prompt(output.read_text(encoding="utf-8"))
+            self.assertEqual(len(prompt), run["prompt_characters"])
+            self.assertEqual(validate_quick_output(output.read_text(), expected_ratio="16:9"), [])
+            self.assertTrue(run["contract_valid"])
+            self.assertFalse(run["generation_submitted"])
+        optimized = receipt["optimized_local_retest"]
+        skill = root / "skills" / "shotflow" / "SKILL.md"
+        advanced = root / "skills" / "shotflow" / "references" / "advanced-workflow.md"
+        self.assertEqual(
+            hashlib.sha256(skill.read_bytes()).hexdigest(),
+            optimized["skill_sha256"],
+        )
+        self.assertEqual(
+            hashlib.sha256(advanced.read_bytes()).hexdigest(),
+            optimized["advanced_reference_sha256"],
+        )
+        self.assertIn("does not prove generated-video effectiveness", receipt["claim_boundary"])
 
 
 if __name__ == "__main__":

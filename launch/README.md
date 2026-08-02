@@ -25,6 +25,13 @@ Recording checklist:
 
 The recording demonstrates the interface, not generated-video effectiveness.
 
+The v0.4.1 candidate also has a live Chinese forward run using the public
+GitHub Skill installation path and a local optimization retest. The complete
+outputs, hashes, model settings, token counts, measured wall time, and claim
+boundary are in `live-demo-v041.json`, `demo-output-zh-public-main.txt`, and
+`demo-output-zh-v041.txt`. These are Prompt-compilation evidence, not generated
+video evidence.
+
 The verified English capture is staged locally as
 `dist/shotflow-v0.4.0-demo-en.mp4`. It is deliberately ignored by Git. Its
 public-safe receipt and the exact Agent output are in `demo-assets.json` and

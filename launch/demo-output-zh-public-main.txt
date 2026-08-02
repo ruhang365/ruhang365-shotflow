@@ -1,0 +1,18 @@
+SEEDANCE PROMPT
+FRAME 1 AUTHORITY:
+0.00–0.50s，Attachment 1 是已接受末帧；生成首帧精确匹配画面中居中的透明厚壁矩形香水瓶、黑色圆润瓶盖、银色水平瓶颈环、近正面锁定机位、冷灰蓝背景、悬浮于深色波纹台面上方的构图，以及玻璃、金属和深色液体的当前反射。
+
+KEEP STABLE
+瓶身外轮廓、圆角肩部、内层矩形腔体、瓶颈、银环和瓶盖的尺寸、位置与对齐保持恒定。瓶体居中且竖直，底部离台面的间隙保持恒定。玻璃透明度、黑色高光、银色镜面反射、背景和暗色台面保持一致。
+
+CHANGE
+0.50–4.25s，瓶内下部现有的细窄橙琥珀亮边连续、平滑地增强，逐渐形成位于瓶内下三分之一的柔和琥珀光；光强稳定上升，暖色反射同步照亮内底边和正下方台面，产品几何结构始终保持首帧形态。
+
+FINAL PROOF
+4.25–5.00s，增强后的琥珀光达到稳定亮度并保持，清晰集中在瓶内下部，瓶身、内腔、瓶颈、银环与瓶盖仍与首帧完全对齐。
+
+SUBMIT WITH
+- Attachment 1: the accepted final frame, as the only media reference
+- Duration: 5 seconds
+- Ratio: 16:9
+- Generation submitted: no

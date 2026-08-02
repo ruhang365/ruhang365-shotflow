@@ -1,0 +1,47 @@
+{
+  "recorded_at": "2026-08-02",
+  "status": "real_quick_entry_forward_run_and_local_optimization_retest",
+  "input": {
+    "frame": "examples/obsidian-bloom/evidence/clip-01-final-frame.jpg",
+    "frame_sha256": "c75cd54375c614c89f7f573e83f19cd01697689c87856ac62af0895be3851a0a",
+    "ratio": "16:9",
+    "intent": "瓶内下部的琥珀光逐渐增强并保持，产品几何结构不变。"
+  },
+  "public_main_run": {
+    "installation_url": "https://github.com/ruhang365/ruhang365-shotflow/tree/main/skills/shotflow",
+    "public_commit": "8b37bd11451749f15d04eae31d362c197a35e02b",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "visual_access": true,
+    "prompt_characters": 419,
+    "contract_valid": true,
+    "raw_output_sha256": "56da3645b1086128abb861fe037df49dc3f196f3bd38c84f240b58916c7bed88",
+    "tracked_output": {
+      "path": "launch/demo-output-zh-public-main.txt",
+      "sha256": "486266abc209b2f79cb08b04bae38f2301085f72dc0ba046d8f6f4a294d1eefb",
+      "normalization": "one terminal newline added"
+    },
+    "tokens_used": 56815,
+    "wall_seconds": null,
+    "generation_submitted": false
+  },
+  "optimized_local_retest": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "low",
+    "visual_access": true,
+    "skill_sha256": "5bf5c4e73a09d420fac6a099d8aa95a449b75e2b80ed51f86e8965cdce645390",
+    "advanced_reference_sha256": "6094e2461558379934a3f28576c4b4ddae73cd6b7669fdba6b5c772e53fc2647",
+    "prompt_characters": 660,
+    "contract_valid": true,
+    "raw_output_sha256": "7b721d009432ecdb73cdcf37b3be9d1d7227bfd2ef2412ed38f5bd61db8ac653",
+    "tracked_output": {
+      "path": "launch/demo-output-zh-v041.txt",
+      "sha256": "2d5ea3357006ac95409e34c49a0b945b0651fedfe1a072431cbc6b2cd601942e",
+      "normalization": "one terminal newline added"
+    },
+    "tokens_used": 19520,
+    "wall_seconds": 62.51,
+    "generation_submitted": false
+  },
+  "claim_boundary": "This proves that a visual Agent can apply the Skill to one real accepted final frame and produce a contract-valid Seedance Prompt. It does not prove generated-video effectiveness or continuity improvement."
+}

@@ -5,6 +5,7 @@ launch_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 repo_root=$(dirname -- "$launch_dir")
 demo_root=$(mktemp -d /tmp/shotflow-launch-en-XXXXXX)
 demo_model=${SHOTFLOW_DEMO_MODEL:-gpt-5.6-sol}
+demo_effort=${SHOTFLOW_DEMO_REASONING_EFFORT:-low}
 demo_output="$demo_root/quick-entry.txt"
 
 cp -R "$repo_root/skills/shotflow" "$demo_root/skill"
@@ -19,6 +20,7 @@ printf '%s\n\n' 'Agent is reading the frame and compiling one visible change…'
 
 if codex \
   --model "$demo_model" \
+  --config "model_reasoning_effort=\"$demo_effort\"" \
   --sandbox read-only \
   --ask-for-approval never \
   --cd "$demo_root" \

@@ -41,9 +41,10 @@ Write one Prompt with this order:
 
 Keep the opening match visible for at least 0.5s. Keep the Prompt body from
 `FRAME 1 AUTHORITY` through `FINAL PROOF`, including headings and whitespace,
-at or below 1,200 characters. Use positive instructions such as “the locked
-camera remains near-frontal” and “the cap stays level.” Describe the one
-requested change once; do not pad the Prompt with cinematic adjectives.
+within a target range of 800–1,000 characters and never above 1,200. Use
+positive instructions such as “the locked camera remains near-frontal” and
+“the cap stays level.” Describe the one requested change once; do not pad the
+Prompt with cinematic adjectives.
 
 Before returning, scan the Prompt for `do not`, `must not`, `never`, `avoid`,
 `without`, `不要`, `禁止`, `不得`, and `避免`. Replace each with the positive

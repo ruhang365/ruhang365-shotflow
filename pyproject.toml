@@ -4,11 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ruhang365-shotflow"
-version = "0.4.0"
+version = "0.4.1"
 description = "Turn an accepted AI-video final frame and one sentence into a Seedance continuity Prompt."
 readme = "README.md"
 requires-python = ">=3.10"
-license = {text = "Apache-2.0"}
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE.md"]
 authors = [
   {name = "Ruhang365"}
 ]
@@ -21,7 +22,6 @@ keywords = [
 ]
 classifiers = [
   "Development Status :: 3 - Alpha",
-  "License :: OSI Approved :: Apache Software License",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
 ]

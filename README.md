@@ -10,7 +10,7 @@ one continuity Prompt ready to submit to Seedance.**
 
 ![Obsidian Bloom accepted final frame](examples/obsidian-bloom/evidence/clip-01-final-frame.jpg)
 
-## 30-second workflow after installation
+## Quick Entry workflow
 
 Attach your accepted final frame to a visual-capable agent with the ShotFlow
 Skill, then write:
