@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ruhang365-shotflow"
-version = "0.4.0"
+version = "0.4.0rc2"
 description = "Turn an accepted AI-video final frame and one sentence into a Seedance continuity Prompt."
 readme = "README.md"
 requires-python = ">=3.10"
