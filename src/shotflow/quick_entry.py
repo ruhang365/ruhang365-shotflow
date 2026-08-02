@@ -83,4 +83,3 @@ def validate_quick_output(output: str, *, expected_ratio: str) -> list[str]:
     if not not_submitted:
         errors.append("missing_not_submitted_state")
     return errors
-
