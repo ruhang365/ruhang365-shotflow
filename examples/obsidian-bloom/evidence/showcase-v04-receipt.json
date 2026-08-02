@@ -1,0 +1,74 @@
+{
+  "receipt_version": "1.0",
+  "case_id": "obsidian-bloom",
+  "gate": "single-showcase-v04",
+  "variant": "clip-02-shotflow-showcase-v04",
+  "status": "rejected",
+  "recorded_at": "2026-08-02T01:33:41Z",
+  "provider": {
+    "platform": "Lovart",
+    "model_tool": "generate_video_seedance_v2_0",
+    "generation_mode": "fast",
+    "reasoning_mode": "thinking",
+    "ratio": "16:9",
+    "requested_duration_seconds": 5
+  },
+  "run": {
+    "thread_id_sha256": "06a45735c5c4cb5a192f9a2faed6d9a60e4e0186e2cc3985b831b5bfb57c5d38",
+    "provider_status": "done",
+    "attempt_count": 1,
+    "credit_confirmation": "not_returned",
+    "visible_cost": null
+  },
+  "prompt": {
+    "path": "prompts/clip-02-showcase-v04.txt",
+    "sha256": "dc35090179d9326d6f054c997fadb44282fec6fdffe626909cb14c742f7f5307",
+    "bytes": 1020
+  },
+  "reference": {
+    "path": "artifacts/clip-01-final-frame.png",
+    "sha256": "56d6455da0310b8acce2364af99229825307b70bae8f677306496c1fa08e8a0e",
+    "bytes": 568869,
+    "only_media_reference": true
+  },
+  "output": {
+    "video": {
+      "repository_path": null,
+      "sha256": "f90687087d3dc0c14953ce3ad7d1ec516b75d8c7b0bfb5a4efa74f8a27a9747d",
+      "bytes": 1945657,
+      "codec": "h264",
+      "width": 1920,
+      "height": 1080,
+      "fps": 24,
+      "duration_seconds": 5.041667,
+      "frames": 121
+    },
+    "first_frame": {
+      "repository_path": null,
+      "sha256": "c55d1312ebd6a48c9fb26803e52cda09cb9ce9710a132bab3bea076c72be1593",
+      "bytes": 724861
+    },
+    "final_frame": {
+      "repository_path": null,
+      "sha256": "b46f03176f97cd1f5149eb023f764591662e5cf599221d41a2cf044e2ddaf886",
+      "bytes": 937203
+    },
+    "contact_sheet_9": {
+      "repository_path": null,
+      "sha256": "53ceb429dd0edeb37d3565cbf4221183c8487f3ea7b78c7149b605f643dbfc15",
+      "bytes": 781130
+    },
+    "local_media_retained": true,
+    "repository_media_committed": false
+  },
+  "showcase_decision": {
+    "eligible": false,
+    "opening_match": "close",
+    "protected_state": "broadly_stable",
+    "requested_transition": "failed_distance_and_final_hold",
+    "reason": "The cap continues upward far beyond one centimeter, forms an overlong silver neck column, and approaches or exits the upper frame boundary instead of holding the requested small gap."
+  },
+  "effectiveness_claim": false,
+  "ai_generated_disclosure_required": true,
+  "public_media_approved": false
+}

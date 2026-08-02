@@ -103,6 +103,7 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
     sequence_v5 = root / "plan" / "clip-02-sequence-v5.json"
     prompt_v5 = root / "prompts" / "clip-02-shotflow-v5-rc1.txt"
     showcase_v04 = root / "prompts" / "clip-02-showcase-v04.txt"
+    showcase_receipt = root / "evidence" / "showcase-v04-receipt.json"
     provider_handoff = root / "evidence" / "provider-handoff.json"
     anchor_handoffs = sorted(
         (root / "evidence").glob("provider-handoff-*-anchor-v1.json")
@@ -161,6 +162,14 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
             raise ValueError(
                 f"{case_id}: showcase Prompt must exactly match the frozen ShotFlow submission"
             )
+    if showcase_receipt.exists():
+        if not showcase_v04.exists():
+            raise ValueError(f"{case_id}: showcase receipt requires its frozen Prompt")
+        receipt = load_json(showcase_receipt)
+        if receipt.get("status") != "rejected":
+            raise ValueError(f"{case_id}: only the rejected Showcase result is registered")
+        if receipt.get("prompt", {}).get("sha256") != sha256(showcase_v04):
+            raise ValueError(f"{case_id}: showcase receipt Prompt hash does not match")
     observed = source_shot.get("observed")
     if observed and not shotflow.exists():
         raise ValueError(f"{case_id}: accepted Clip 01 is missing its ShotFlow prompt")
@@ -490,13 +499,23 @@ def expected_manifest(case_id: str) -> dict[str, Any]:
             "canonical_review_raster": "1280x720",
         }
         if showcase_v04.exists():
+            showcase_status = (
+                "generated_once_rejected_for_showcase"
+                if showcase_receipt.exists()
+                else "prompt_frozen_one_generation_not_authorized"
+            )
             manifest["v04_prompt_candidate"]["single_showcase"] = {
                 "path": showcase_v04.relative_to(root).as_posix(),
                 "sha256": sha256(showcase_v04),
                 "bytes": showcase_v04.stat().st_size,
-                "status": "prompt_frozen_one_generation_not_authorized",
+                "status": showcase_status,
                 "effectiveness_claim": False,
             }
+            if showcase_receipt.exists():
+                manifest["v04_prompt_candidate"]["single_showcase"]["receipt"] = {
+                    "path": showcase_receipt.relative_to(root).as_posix(),
+                    "sha256": sha256(showcase_receipt),
+                }
     return manifest
 
 

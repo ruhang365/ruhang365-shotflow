@@ -209,8 +209,12 @@
       "path": "prompts/clip-02-showcase-v04.txt",
       "sha256": "dc35090179d9326d6f054c997fadb44282fec6fdffe626909cb14c742f7f5307",
       "bytes": 1020,
-      "status": "prompt_frozen_one_generation_not_authorized",
-      "effectiveness_claim": false
+      "status": "generated_once_rejected_for_showcase",
+      "effectiveness_claim": false,
+      "receipt": {
+        "path": "evidence/showcase-v04-receipt.json",
+        "sha256": "e97edb1686dfbdff0de279a577ac1129e14bf4ab09a4e61677d0003754724aed"
+      }
     }
   }
 }

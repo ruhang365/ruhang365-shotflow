@@ -1,6 +1,6 @@
 # Obsidian Bloom — single ShotFlow showcase
 
-Status: **PROMPT FROZEN — ONE GENERATION NOT YET AUTHORIZED**
+Status: **GENERATED ONCE — REJECTED FOR SHOWCASE**
 
 This replaces the active Gate 9 six-job A/B plan with one quality-first public
 workflow example. It is a showcase, not benchmark evidence and not proof that
@@ -24,24 +24,26 @@ underlight. The only change is the vertical cap lift.
 - Accepted frame SHA-256: `56d6455da0310b8acce2364af99229825307b70bae8f677306496c1fa08e8a0e`
 - Attachment policy: accepted final frame first and as the only media reference
 
-## Proposed one-job generation gate
+## One-job generation result
 
 - Provider: Lovart
 - Model tool: standard Seedance 2.0, `generate_video_seedance_v2_0`
 - Account mode: `fast` credit channel; this is not the Fast model
 - Reasoning mode: `thinking`
 - Ratio and duration: 16:9, five seconds
-- Attempt budget: one job; no retry, upscale, downgrade, fallback, or A/B mate
+- Attempt budget: one job; consumed once with no retry, upscale, downgrade,
+  fallback, or A/B mate
 
-Read-only preflight on 2026-08-01 found the account currently set to
-`unlimited`, but its visible unlimited-model list included Seedance 1.5 Pro and
-did not include standard Seedance 2.0. Preserve the standard Seedance 2.0 model
-for quality; switch the account channel to `fast` only as part of a separately
-approved generation. Start a new `thinking` thread because this Showcase is a
-new product workflow after the old A/B benchmark was stopped.
+The user authorized this exact one-job gate on 2026-08-02. The run used a new
+isolated `thinking` thread and the `fast` credit channel with standard Seedance
+2.0. Lovart returned no additional credit confirmation. The native output is
+1920x1080, 24 fps, and 5.041667 seconds.
 
-Accept only when the opening visibly matches the reference, the cap translates
-vertically while staying level, the bottle/collar/droplet remain stable, and the
-final cap gap holds clearly. If Lovart asks for credit confirmation, stop and
-show the amount. Generation requires a separate explicit user approval after a
-read-only account/mode check.
+The opening visibly matches the reference closely, and the bottle, asymmetric
+collar, attached droplet, composition, and material lighting remain broadly
+stable. The result is nevertheless rejected as the public Showcase: instead of
+rising about one centimeter and holding, the cap continues upward, produces an
+overlong silver neck column, and approaches or leaves the upper frame boundary.
+The frozen one-attempt policy prevents a retry. This is execution evidence, not
+an effectiveness claim. See the
+[public-safe receipt](obsidian-bloom/evidence/showcase-v04-receipt.json).

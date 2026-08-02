@@ -211,6 +211,42 @@
         }
       },
       "reason": "Gate 7 v0.3 generation completed at 1920x1080, 24fps, 5.041667 seconds in Lovart unlimited mode with no credit confirmation. The paired baseline output was 1280x720. Because Gate 7 requires identical native resolution, both attempts are ineligible for blind scoring and the pair is failed without retry. Public-safe run evidence is in evidence/gate7-shotflow-receipt.json; full media is not approved for publication."
+    },
+    {
+      "attempt_id": "obsidian-bloom-006",
+      "variant": "clip-02-shotflow",
+      "status": "rejected",
+      "recorded_at": "2026-08-02T01:33:41+00:00",
+      "provider": {
+        "adapter": "seedance-2.0",
+        "model": "generate_video_seedance_v2_0",
+        "verified": false,
+        "parameters": {
+          "ratio": "16:9",
+          "resolution": "1920x1080",
+          "duration_seconds": 5,
+          "generation_mode": "fast",
+          "reasoning_mode": "thinking"
+        }
+      },
+      "prompt": {
+        "path": "prompts/clip-02-showcase-v04.txt",
+        "sha256": "dc35090179d9326d6f054c997fadb44282fec6fdffe626909cb14c742f7f5307",
+        "bytes": 1020
+      },
+      "references": {
+        "source_video": null,
+        "source_final_frame": {
+          "path": "artifacts/clip-01-final-frame.png",
+          "sha256": "56d6455da0310b8acce2364af99229825307b70bae8f677306496c1fa08e8a0e",
+          "bytes": 568869
+        }
+      },
+      "output": {
+        "video": null,
+        "final_frame": null
+      },
+      "reason": "The single authorized Lovart run completed at 1920x1080, 24fps, 5.041667 seconds in fast credit mode with no additional credit confirmation. The opening closely matches the accepted final frame and most protected product facts remain stable, but the cap rises far beyond one centimeter, creates an overlong silver neck column, and approaches or exits the upper frame boundary. The result is rejected for Showcase use without retry. Public-safe hashes and media facts are in evidence/showcase-v04-receipt.json; full media remains local and is not approved for publication."
     }
   ]
 }
