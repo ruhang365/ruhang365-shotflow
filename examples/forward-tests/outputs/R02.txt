@@ -1,0 +1,18 @@
+SEEDANCE PROMPT
+FRAME 1 AUTHORITY:
+Attachment 1 is the accepted endpoint. From 0.00–0.50s, generated frame 1 matches the kneeling worker, orange-red hard case, locked wide side view, blue corrugated container, metal stair rails, rain, and wet reflective deck.
+
+KEEP STABLE
+The worker keeps the yellow protective suit, white helmet, black joint panels, kneeling posture, and leftward-tensioned safety line. The orange-red case stays fixed at lower right with its black top handle and glowing green side indicator. The camera remains locked and low, with the worker centered-right and the case beside the stair structure. Cool overhead lamps continue to reflect across the wet metal surfaces.
+
+CHANGE
+From 0.50–4.25s, the worker’s right hand begins in visible contact with the case’s black top handle, opens to release it, then the right forearm draws smoothly back toward the body until the relaxed right hand settles beside the right knee. The case stays stationary throughout the release and withdrawal.
+
+FINAL PROOF
+From 4.25–5.00s, hold the worker kneeling with the right hand visibly relaxed beside the right knee, a clear gap between that hand and the case handle, and the case fixed in its original position.
+
+SUBMIT WITH
+- Attachment 1: the accepted final frame, as the only media reference
+- Duration: 5 seconds
+- Ratio: 16:9
+- Generation submitted: no

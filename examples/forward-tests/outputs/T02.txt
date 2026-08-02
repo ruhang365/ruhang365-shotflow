@@ -1,0 +1,16 @@
+```text
+SEEDANCE PROMPT
+FRAME 1 AUTHORITY: A worker in a bright yellow one-piece protective suit and white hard hat kneels on the reflective dark deck, right hand reaching to an orange hard-shell case on the floor to their right. A ribbed blue shipping container marked "HV07 R11 133" fills the background; a tension strap runs from upper left to the worker's harness; a white metal railing frames the right edge. Cool white overhead lamps pool light on the wet-looking floor against deep blue shadow.
+
+KEEP STABLE: The kneeling worker, yellow suit, white helmet, black gloves and boots stay identical. The blue container, its markings, the strap line, the railing, floor sheen, and the cool top-down lighting hold. Camera stays locked in the same wide low eye-level framing.
+
+CHANGE: The worker grips the orange case and drags it steadily leftward across the floor, the case sliding toward the body until it stops resting directly beside the raised right knee, then the hands settle and hold it still.
+
+FINAL PROOF: The orange case rests snug against the right knee, both hands steadied on it, motion fully stopped. Suit, helmet, container, strap, railing, and lighting unchanged.
+
+SUBMIT WITH
+- Attachment 1: the accepted final frame, as the only media reference
+- Duration: 5 seconds
+- Ratio: preserve the frame ratio; use 16:9 for the bundled showcase
+- Generation submitted: no
+```

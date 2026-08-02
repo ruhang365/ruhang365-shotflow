@@ -1,0 +1,18 @@
+SEEDANCE PROMPT
+FRAME 1 AUTHORITY:
+Attachment 1 is the accepted endpoint. For the first 0.50s, match the helmeted climber in dark wet armor and deep red cape, braced at frame right beside the riveted metal structure, with both gloved hands holding the amber contact light against the vertical seam.
+
+KEEP STABLE
+The locked side view and composition remain fixed. The climber’s posture, armor, helmet, cape, and grip remain continuous. The vertical metal seam, rivets, ladder bars, cloudy blue-gray sky, cool reflections, warm amber glow, and falling sparks retain their visible geometry and material character.
+
+CHANGE
+After 0.50s, the gloved hands guide the amber contact light smoothly upward along the same seam. The contact point stays aligned to the metal and advances only to the next visible rivet row above, arriving by 4.25s.
+
+FINAL PROOF
+From 4.25–5.00s, the amber light holds steady on that rivet row, centered on the seam, with both hands fixed around it and its warm reflection visible on the metal.
+
+SUBMIT WITH
+- Attachment 1: the accepted final frame, as the only media reference
+- Duration: 5 seconds
+- Ratio: 16:9
+- Generation submitted: no

@@ -24,6 +24,15 @@ When the user supplies an accepted final frame and one-sentence intent:
 5. Return exactly one positive, directly submittable Prompt of at most 1,200
    characters, plus the attachment instruction and suggested settings.
 
+Before returning, run two grounding checks. First, name a hand-to-object,
+strap-to-object, or other ownership relationship only when the visible contact
+or connection proves it; when an endpoint is ambiguous, lock the objects and
+their visible positions separately. Second, scan the Prompt for negative
+directive wording (`do not`, `must not`, `never`, `avoid`, `without`, and their
+Chinese equivalents) and rewrite every occurrence as the positive visible
+state that should hold. Describe individual hand actions only when each contact
+is visually distinguishable.
+
 Do not require a source video, project, JSON, CLI, account, API Key, or
 generation. Do not submit the Prompt. If no final frame is actually visible,
 ask for it instead of inventing continuity facts. If the requested outcome
@@ -56,7 +65,8 @@ The Prompt must contain `FRAME 1 AUTHORITY`, `KEEP STABLE`, `CHANGE`, and
 `FINAL PROOF`. Describe concrete visible facts rather than labels such as
 “same character” or “same cinematic style.” Use positive states. Avoid a long
 list of prohibitions, director names, unsupported off-frame detail, and extra
-story changes the user did not request.
+story changes the user did not request. Return plain text without a Markdown
+code fence.
 
 ## Advanced project workflow
 

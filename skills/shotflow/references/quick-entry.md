@@ -11,6 +11,13 @@ The frame, not the original plan, is the authority. Infer only facts visible in
 the supplied image. If a hand, prop owner, hidden surface, or off-frame object
 cannot be seen, do not invent it as a lock.
 
+Treat contact and ownership as separate visual claims. Name a relationship
+only when the connection or contact point is visible. If a strap crosses behind
+two objects, describe its visible diagonal and endpoints separately rather
+than assigning it to the nearer object. If individual hands cannot be
+distinguished, describe the visible contact area rather than inventing which
+hand holds which object.
+
 If no image is visible, ask the user to attach it. If the sentence requests
 multiple independent changes, ask the user to choose one. If the result depends
 on a hidden surface, off-frame object, or unknown owner, ask for clarification.
@@ -31,6 +38,10 @@ Keep the opening match visible for at least 0.5s. Keep the entire submission at
 or below 1,200 characters. Use positive instructions such as “the locked camera
 remains near-frontal” and “the cap stays level.” Describe the one requested
 change once; do not pad the Prompt with cinematic adjectives.
+
+Before returning, scan the Prompt for `do not`, `must not`, `never`, `avoid`,
+`without`, `不要`, `禁止`, `不得`, and `避免`. Replace each with the positive
+visible state to preserve. Return plain text with no Markdown code fence.
 
 ## Convert measurements into visual proof
 

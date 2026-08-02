@@ -1,0 +1,119 @@
+{
+  "protocol_version": "1.0",
+  "quick_entry_version": "1.0",
+  "release_candidate": "0.4.0rc2",
+  "completed_at": "2026-08-02",
+  "generation_submitted": false,
+  "effectiveness_claim": false,
+  "status": "pass",
+  "counted_case_ids": ["T01", "T02", "T04", "R01", "R02"],
+  "counted_passes": 4,
+  "counted_total": 5,
+  "minimum_passes": 4,
+  "author_model_families": ["OpenAI", "Anthropic", "Google"],
+  "cases": [
+    {
+      "id": "T01",
+      "author_model": "gpt-5.6-sol",
+      "output_sha256": "032083fd153c83d1c0f60a95f6d8917e90ac779327c226c51013c07f4ab2db9f",
+      "machine_contract": "pass",
+      "valid_review_votes": [
+        {"model": "claude-opus-4-8", "vote": "pass"},
+        {"model": "claude-sonnet-4-6", "vote": "pass"},
+        {"model": "claude-opus-4-6-thinking", "vote": "fail"}
+      ],
+      "verdict": "pass"
+    },
+    {
+      "id": "T02",
+      "author_model": "claude-opus-4-8",
+      "output_sha256": "6f13c55f7b891b1f0b24aee7052b8a3c73a7cdf85ac113e61566c02cf95476b6",
+      "machine_contract": "pass",
+      "valid_review_votes": [
+        {"model": "gpt-5.6-sol", "vote": "pass"},
+        {"model": "claude-sonnet-4-6", "vote": "pass"}
+      ],
+      "verdict": "pass"
+    },
+    {
+      "id": "T03",
+      "author_model": "gemini-3.1-pro-high",
+      "output_sha256": "1e23e9af7ca27d1ce094d7e8b546b4fa74a14626f00721401e1a53141232c8e7",
+      "machine_contract": "fail: negative_directive",
+      "valid_review_votes": [
+        {"model": "gpt-5.6-sol", "vote": "pass"},
+        {"model": "claude-opus-4-8", "vote": "pass"}
+      ],
+      "verdict": "fail",
+      "replaced_by": "R01"
+    },
+    {
+      "id": "T04",
+      "author_model": "gpt-5.6-sol",
+      "output_sha256": "4420e27a0a0c8ec6c7992803c10d89eeff4ce68c906737e6831507f2e2a5c91d",
+      "machine_contract": "pass",
+      "valid_review_votes": [
+        {"model": "claude-opus-4-8", "vote": "fail"},
+        {"model": "claude-sonnet-4-6", "vote": "pass"},
+        {"model": "claude-opus-4-6-thinking", "vote": "fail"}
+      ],
+      "verdict": "fail",
+      "issues": ["The Prompt assigned a distinct contact light and both-hand ownership where the visible contact region was ambiguous."]
+    },
+    {
+      "id": "T05",
+      "author_model": "claude-opus-4-8",
+      "output_sha256": "d0011aa1ee450bf06a0ac7b7b15abb324178498183999e33870bb31c3c3d7455",
+      "machine_contract": "pass",
+      "valid_review_votes": [
+        {"model": "gpt-5.6-sol", "vote": "fail"},
+        {"model": "claude-sonnet-4-6", "vote": "fail"},
+        {"model": "claude-opus-4-6-thinking", "vote": "pass"}
+      ],
+      "verdict": "fail",
+      "issues": ["The Prompt assigned the diagonal safety tether to the case instead of the worker harness."],
+      "replaced_by": "R02"
+    },
+    {
+      "id": "R01",
+      "author_model": "gemini-3.1-pro-high",
+      "output_sha256": "515dcdc5a2963e1f066d5ee5fb0e842ddffaeb04bc42dc91e43e304efe056056",
+      "machine_contract": "pass",
+      "valid_review_votes": [
+        {"model": "gpt-5.6-sol", "vote": "pass"},
+        {"model": "claude-opus-4-8", "vote": "pass"}
+      ],
+      "verdict": "pass"
+    },
+    {
+      "id": "R02",
+      "author_model": "gpt-5.6-sol",
+      "output_sha256": "22ba31bcee9ee7539c3557c6b12e7f9b435d8c8e0543c368b5b93753f56c29ca",
+      "machine_contract": "pass",
+      "valid_review_votes": [
+        {"model": "claude-opus-4-8", "vote": "pass"},
+        {"model": "claude-sonnet-4-6", "vote": "pass"}
+      ],
+      "verdict": "pass"
+    }
+  ],
+  "invalid_calls": [
+    {
+      "role": "R02 author",
+      "requested_model": "claude-opus-4-8",
+      "reason": "The response contained only a budget notice and no Quick Entry artifact.",
+      "saved_output": "outputs/R02-invalid.txt",
+      "output_sha256": "da45d3673c25a1e7ebbf56e557357a98e51f71dfa5bbaff497382a5aea5b9a8b"
+    },
+    {
+      "role": "visual reviewer",
+      "requested_model": "gemini-3.1-pro-high",
+      "reason": "The CLI reported the requested model with fallbackUsed=false, but the response self-labelled Gemini 3.6 Flash; its votes were excluded because the identity evidence conflicted."
+    }
+  ],
+  "limitations": [
+    "These are isolated AI Skill portability tests, not human usability tests.",
+    "No Prompt was submitted to Seedance or any other video provider.",
+    "The result does not show that ShotFlow improves generated-video continuity."
+  ]
+}

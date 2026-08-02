@@ -68,9 +68,11 @@ RC2 验证视觉 Agent 能否遵守 Quick Entry 1.0 契约，不证明 Seedance 
 | 暴风甲板 | 现实动作 | Lovart 的 Kling O1 与两条 Seedance 2.0 普通组均被拒绝；修正交接仍发生首帧断裂，案例在尝试上限处关闭 |
 | 黑曜之息 | 虚构产品广告 | 单条 Showcase 已生成一次并被拒绝；不重试 |
 
-当前路径是 5 个隔离 AI 会话，只使用最终帧和一句意图，不调用任何视频服务商。
-这些结果只证明跨 Agent 可移植性，不是真人测试或视频效果证据，也不触发 Pro。
-见[被拒绝的 Showcase 记录](examples/SHOWCASE_OBSIDIAN_BLOOM.md)、
+RC2 隔离前向测试已完成：启用两张预登记替补帧后，固定计分集 **4/5 通过**，
+覆盖 OpenAI、Anthropic 与 Google 三个模型家族。结果只证明 Skill 的跨 Agent
+可移植性，不是真人测试或视频效果证据，也不触发 Pro；测试没有调用视频服务商。
+见[机器可读结果](examples/forward-tests/results-v04-rc2.json)、
+[被拒绝的 Showcase 记录](examples/SHOWCASE_OBSIDIAN_BLOOM.md)、
 [AI 前向测试协议](FOUNDING_TESTER_SPRINT.md)、
 [延期的 v0.4 评审协议](examples/V04_EVALUATION_PROTOCOL.md)、
 [三方预注册审查](examples/V04_RC1_PREFLIGHT_REVIEW.md)、

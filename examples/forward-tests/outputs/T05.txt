@@ -1,0 +1,14 @@
+SEEDANCE PROMPT
+FRAME 1 AUTHORITY: A worker in a bright yellow hooded rain suit and white hard hat kneels on a wet, reflective steel deck at night, side-on to camera, reaching a gloved right hand toward a closed orange hard case on the right. A black tether strap runs from the case off-frame to the left. Behind them stands a blue corrugated shipping container with white stenciled markings and a mounted floodlight; a metal guardrail edges the right. Cold blue light, falling rain, a small green indicator LED glows steady on the front of the orange case.
+
+KEEP STABLE: Kneeling yellow-suited worker and white helmet in identical pose and position; orange hard case fixed at right with the tether strap running left; blue container wall, stenciled markings, floodlight, and right guardrail unchanged; wet deck reflections, cold blue key light, and rain hold constant; camera locked, no reframe.
+
+CHANGE: The green LED on the orange case brightens and dims in two slow, even pulses, each pulse rising to a brighter green and easing back down, then settles.
+
+FINAL PROOF: The green indicator rests at a single steady, even green glow on the orange case, everything else in the frame unchanged.
+
+SUBMIT WITH
+- Attachment 1: the accepted final frame, as the only media reference
+- Duration: 5 seconds
+- Ratio: preserve the frame ratio; use 16:9 for the bundled showcase
+- Generation submitted: no

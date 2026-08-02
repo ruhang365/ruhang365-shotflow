@@ -1,6 +1,6 @@
 # AI Forward-Test Sprint
 
-Status: **FROZEN FOR v0.4.0-rc2 — NO VIDEO GENERATION**
+Status: **COMPLETED — 4/5 COUNTED OUTPUTS PASSED — NO VIDEO GENERATION**
 
 This protocol validates Quick Entry 1.0 across isolated visual AI sessions. It
 does not represent human usability, generated-video quality, or an
@@ -27,6 +27,10 @@ other test output, Provider account, or generation tool.
 | T04 | Codex | Sky Mender repair endpoint | The amber light in the gloved hands moves upward along the seam to the next visible rivet row and holds. |
 | T05 | Claude | Storm Deck green-light endpoint | The green indicator pulses slowly twice and returns to a steady green. |
 
+Two preregistered reserve frames were used after general grounding rules were
+strengthened. R01 replaced T03; R02 replaced T05. The counted set was T01,
+T02, T04, R01, and R02. T04 remained the single counted failure.
+
 The machine-readable paths, hashes, ratios, and expected visible fact groups
 live in `examples/forward-tests/protocol-v04-rc2.json`. Copy only the selected
 frame and Skill into each scratch directory.
@@ -48,9 +52,11 @@ families. They score whether:
 
 An author or reviewer without real image access is invalid and disclosed. A
 third non-author reviewer resolves a disagreement. At most two unused historical
-frames may replace invalid author calls.
+frames may replace invalid or failed author calls after a general Skill rule is
+fixed. Original outputs remain unchanged.
 
 Stable `v0.4.0` requires five valid author sessions, at least two model families,
 and at least four passing outputs. General Skill fixes must be retested on an
 unseen reserve frame. Gate 9/10, Showcase retries, and Provider generation stay
-stopped.
+stopped. The frozen public-safe result, output hashes, invalid calls, and model
+votes are in `examples/forward-tests/results-v04-rc2.json`.

@@ -1,0 +1,21 @@
+SEEDANCE PROMPT
+FRAME 1 AUTHORITY:
+Attachment 1 is the accepted endpoint and generated frame 1 (0.00–0.50s) matches its square dark glass bottle, silver metallic collar, black rounded cap, single droplet hanging on the left collar, floating position over liquid ripples, dark ambient lighting, and initial amber glow at the bottle base.
+
+KEEP STABLE
+- The square glass bottle, silver collar, and black rounded cap remain completely stationary with unchanged geometry and position.
+- The single liquid droplet beneath the left collar ring remains locked in place without moving or dripping.
+- The centered eye-level camera framing and dark slate ambient background remain locked and static.
+- The concentric ripples on the dark liquid surface beneath the bottle remain unchanged.
+
+CHANGE
+From 0.50s to 4.25s, the amber glow inside the lower bottle gradually intensifies and brightens, casting a richer warm light through the bottom glass and onto the surface ripples below, then holds at peak intensity.
+
+FINAL PROOF
+From 4.25s to 5.00s, the intensified bright amber internal glow holds steady while all product geometry, droplet position, and camera framing remain completely static.
+
+SUBMIT WITH
+- Attachment 1: the accepted final frame, as the only media reference
+- Duration: 5 seconds
+- Ratio: 16:9
+- Generation submitted: no

@@ -53,5 +53,25 @@
       "intent": "The green indicator pulses slowly twice and returns to a steady green.",
       "visible_fact_groups": ["yellow-suit", "white-helmet", "tether-left", "orange-case-right", "green-indicator", "blue-container", "wet-deck"]
     }
+  ],
+  "reserve_cases": [
+    {
+      "id": "R01",
+      "replaces": "T03",
+      "author_lane": "gemini",
+      "frame": "../obsidian-bloom/artifacts/clip-02-baseline-gate6-final-frame.png",
+      "frame_sha256": "32b583f958fc53b17b11cf4b8b04f5ba1644c7ea4c4dfdceb219d9d89294263f",
+      "ratio": "16:9",
+      "intent": "The black cap descends vertically until it settles level on the silver collar and holds."
+    },
+    {
+      "id": "R02",
+      "replaces": "T05",
+      "author_lane": "claude",
+      "frame": "../storm-deck/artifacts/clip-02-baseline-lovart-seedance20/final-frame.png",
+      "frame_sha256": "331390639641cd1824378e01f44503e31ef7a264c3566ad2b4b750553bc00863",
+      "ratio": "16:9",
+      "intent": "The worker releases the case handle and draws the right hand back to rest beside the right knee."
+    }
   ]
 }

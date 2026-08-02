@@ -112,6 +112,15 @@ class QuickEntryTests(unittest.TestCase):
             self.assertEqual(case["ratio"], "16:9")
             hashes.add(actual)
         self.assertEqual(len(hashes), 5)
+        self.assertEqual(len(protocol["reserve_cases"]), 2)
+        for case in protocol["reserve_cases"]:
+            frame = (protocol_path.parent / case["frame"]).resolve(strict=True)
+            frame.relative_to(root / "examples")
+            actual = hashlib.sha256(frame.read_bytes()).hexdigest()
+            self.assertEqual(actual, case["frame_sha256"])
+            self.assertNotIn(actual, hashes)
+            hashes.add(actual)
+        self.assertEqual(len(hashes), 7)
 
     def test_quick_entry_documents_visual_measurement_proxy(self) -> None:
         root = Path(__file__).resolve().parents[1]
@@ -120,6 +129,32 @@ class QuickEntryTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
         self.assertIn("one centimeter", reference)
         self.assertIn("visible relative bound", reference)
+
+    def test_quick_entry_documents_grounding_and_positive_self_check(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        reference = (
+            root / "skills" / "shotflow" / "references" / "quick-entry.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("contact and ownership as separate visual claims", reference)
+        self.assertIn("If a strap crosses behind\ntwo objects", reference)
+        self.assertIn("Before returning, scan the Prompt", reference)
+        self.assertIn("no Markdown code fence", reference)
+
+    def test_forward_test_result_is_auditable_and_has_no_effect_claim(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        result_path = root / "examples" / "forward-tests" / "results-v04-rc2.json"
+        result = json.loads(result_path.read_text(encoding="utf-8"))
+        self.assertEqual(result["counted_passes"], 4)
+        self.assertEqual(result["counted_total"], 5)
+        self.assertFalse(result["generation_submitted"])
+        self.assertFalse(result["effectiveness_claim"])
+        self.assertEqual(len(result["counted_case_ids"]), 5)
+        cases = {case["id"]: case for case in result["cases"]}
+        for case_id in result["counted_case_ids"]:
+            case = cases[case_id]
+            output = result_path.parent / "outputs" / f"{case_id}.txt"
+            actual = hashlib.sha256(output.read_bytes()).hexdigest()
+            self.assertEqual(actual, case["output_sha256"])
 
 
 if __name__ == "__main__":

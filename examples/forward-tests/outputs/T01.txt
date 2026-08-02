@@ -1,0 +1,18 @@
+SEEDANCE PROMPT
+FRAME 1 AUTHORITY:
+Attachment 1 is the accepted endpoint. For the first 0.50s, match the suspended worker on the right, the steel tower and ladder frame on the left, the taut rope descending from the worker, and the locked wide 16:9 composition.
+
+KEEP STABLE
+The worker keeps the dark segmented suit, red cape, raised glowing light, and bent airborne posture. The weathered steel tower, warm vertical edge light, ladder geometry, storm clouds, and cool gray lighting remain fixed.
+
+CHANGE
+From 0.50s to 4.25s, steady rope tension draws the worker leftward toward the tower in one continuous motion. The body closes the visible gap while the cape trails to the right; both legs extend toward the ladder frame until both boots make firm visible contact and stop there.
+
+FINAL PROOF
+From 4.25s to 5.00s, hold both boots visibly pressed against the ladder frame, the rope taut, and the worker stabilized beside the tower.
+
+SUBMIT WITH
+- Attachment 1: the accepted final frame, as the only media reference
+- Duration: 5 seconds
+- Ratio: 16:9
+- Generation submitted: no

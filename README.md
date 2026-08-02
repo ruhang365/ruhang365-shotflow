@@ -75,10 +75,13 @@ Prompt precisely or that ShotFlow outperforms another workflow.
 | Storm Deck | physical action | Lovart Kling O1 and two Seedance 2.0 baselines rejected; corrected handoff was acknowledged but the opening still broke, so the case is closed at its attempt cap |
 | Obsidian Bloom | fictional product film | one Showcase generation completed and was rejected; no retry |
 
-The active validation path is five isolated AI forward tests using only one
-frame and one sentence. They are portability tests, not human usability or
-video-effect evidence, and they do not activate Pro. No Provider generation is
-part of this gate. See the [rejected Showcase record](examples/SHOWCASE_OBSIDIAN_BLOOM.md),
+The RC2 forward test completed with **4/5 counted outputs passing** after two
+preregistered reserve frames were used. The sessions used one frame and one
+sentence across OpenAI, Anthropic, and Google model families. This is a Skill
+portability result, not human usability or video-effect evidence, and it does
+not activate Pro. No Provider generation was part of this gate. See the
+[machine-readable result](examples/forward-tests/results-v04-rc2.json),
+[rejected Showcase record](examples/SHOWCASE_OBSIDIAN_BLOOM.md),
 [forward-test protocol](FOUNDING_TESTER_SPRINT.md),
 [deferred protocol](examples/V04_EVALUATION_PROTOCOL.md),
 [preflight review](examples/V04_RC1_PREFLIGHT_REVIEW.md),

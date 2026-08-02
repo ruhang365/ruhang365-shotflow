@@ -1,0 +1,20 @@
+SEEDANCE PROMPT
+FRAME 1 AUTHORITY:
+Attachment 1 is the accepted endpoint and generated frame 1 matches its visible subject, geometry, camera, composition, light, and material state.
+
+KEEP STABLE
+- The rectangular dark glass perfume bottle filled with amber liquid remains centered on the dark reflective surface with concentric ripple patterns.
+- The metallic silver collar at the bottle neck, the suspended amber liquid droplet on the left, and the luminous orange spiral trail on the right remain stationary.
+- The near-frontal eye-level camera angle, dark gradient backdrop, and warm glowing base illumination remain constant.
+
+CHANGE
+From 0.00s to 0.50s, the opening state matches Attachment 1. Between 0.50s and 4.25s, the glossy black cap hovering above the neck moves steadily and vertically downward until its base settles flush and level onto the top of the silver collar, remaining strictly horizontal throughout its descent.
+
+FINAL PROOF
+From 4.25s to 5.00s, the black cap holds motionless fully seated level atop the silver collar of the perfume bottle while all surroundings and camera position remain locked.
+
+SUBMIT WITH
+- Attachment 1: the accepted final frame, as the only media reference
+- Duration: 5 seconds
+- Ratio: 16:9
+- Generation submitted: no
