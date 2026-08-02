@@ -17,8 +17,8 @@ Skill, then write:
 
 ```text
 Use $shotflow on this accepted final frame.
-Next-shot intent: The black cap rises straight up by one centimeter,
-reveals the silver neck, and holds level.
+Next-shot intent: The amber glow inside the lower bottle gradually intensifies
+and holds while the product geometry stays unchanged.
 ```
 
 ShotFlow reads the actual pixels, locks the visible subject, props, camera,
@@ -26,18 +26,33 @@ space, light, and materials, budgets only the requested change, and returns:
 
 ```text
 SEEDANCE PROMPT
-[one positive Prompt, 1,200 characters or fewer]
+FRAME 1 AUTHORITY:
+Attachment 1 is the accepted endpoint. Frame 1 matches the visible product,
+camera, composition, light, and materials.
+
+KEEP STABLE
+- The centered black faceted bottle, closed cap, asymmetric silver collar,
+  and attached upper-left droplet remain stable.
+- The locked near-frontal camera, cool background, and amber base reflection
+  remain stable.
+
+CHANGE | 0.50-4.25s
+The amber glow inside the lower bottle gradually intensifies to a warm,
+clearly visible level.
+
+FINAL PROOF | 4.25-5.00s
+The stronger amber glow holds inside the unchanged bottle.
 
 SUBMIT WITH
 - Attachment 1: this final frame, as the only media reference
 - Duration: 5 seconds
-- Ratio: preserve the frame ratio
+- Ratio: 16:9
 - Generation submitted: no
 ```
 
 No source video, project file, JSON, CLI, provider account, API Key, or paid
-generation is required. See the [quick-entry contract](skills/shotflow/references/quick-entry.md)
-and the frozen [Obsidian Bloom single-Prompt showcase](examples/SHOWCASE_OBSIDIAN_BLOOM.md).
+generation is required. See the [Quick Entry 1.0 contract](skills/shotflow/references/quick-entry.md)
+and the saved [example output](examples/quick-entry/obsidian-bloom-output.txt).
 
 Install the Skill once for Codex:
 
@@ -47,24 +62,24 @@ mkdir -p ~/.codex/skills
 cp -R ruhang365-shotflow/skills/shotflow ~/.codex/skills/shotflow
 ```
 
-## Evidence status
+## Evidence boundary
 
-ShotFlow `v0.4.0-rc1` is public with **no effectiveness claim**. The six-job
-Gate 9/10 benchmark was stopped before submission and is now deferred. Its
-frozen contracts and all older failures remain public evidence; none has been
-deleted, rescored, or turned into a marketing win.
+Public `v0.4.0-rc1` and the local `v0.4.0-rc2` candidate make **no
+effectiveness claim**. RC2 validates whether visual agents can follow the
+Quick Entry 1.0 contract. It does not prove that Seedance will execute every
+Prompt precisely or that ShotFlow outperforms another workflow.
 
 | Case | Role | Status |
 | --- | --- | --- |
 | The Sky Mender | flagship spectacle | Gate 10 frozen and deferred; no v0.4 job submitted |
 | Storm Deck | physical action | Lovart Kling O1 and two Seedance 2.0 baselines rejected; corrected handoff was acknowledged but the opening still broke, so the case is closed at its attempt cap |
-| Obsidian Bloom | fictional product film | single Showcase Prompt frozen; one quality-first generation awaits separate approval |
+| Obsidian Bloom | fictional product film | one Showcase generation completed and was rejected; no retry |
 
-The current product validation path is one high-quality Obsidian Bloom
-Showcase, then five new testers using only a final frame and one sentence — no
-generation required. Strict A/B remains available as a deferred advanced path.
-See the [Showcase](examples/SHOWCASE_OBSIDIAN_BLOOM.md),
-[tester sprint](FOUNDING_TESTER_SPRINT.md),
+The active validation path is five isolated AI forward tests using only one
+frame and one sentence. They are portability tests, not human usability or
+video-effect evidence, and they do not activate Pro. No Provider generation is
+part of this gate. See the [rejected Showcase record](examples/SHOWCASE_OBSIDIAN_BLOOM.md),
+[forward-test protocol](FOUNDING_TESTER_SPRINT.md),
 [deferred protocol](examples/V04_EVALUATION_PROTOCOL.md),
 [preflight review](examples/V04_RC1_PREFLIGHT_REVIEW.md),
 [Gate 9](examples/GATE_9_OBSIDIAN_BLOOM_V04_RC1_APPROVAL.md), and
@@ -74,8 +89,9 @@ All prior failed or invalid evidence remains public: the
 [Sky Mender review](examples/sky-mender/reviews/clip-02-blind-review-v1.md),
 [Obsidian Bloom review](examples/obsidian-bloom/reviews/clip-02-blind-review-anchor-v1.md),
 and [closed Gate 7](examples/GATE_7_OBSIDIAN_BLOOM_V03_RC1_APPROVAL.md).
-Generated media keeps its required AI disclosure. Any Showcase generation and
-any full-media publication require separate approval.
+Generated media keeps its required AI disclosure. The failed Showcase media
+remains unpublished. Gate 9/10, generation retries, and full-media publication
+remain stopped unless the user starts a separate future gate.
 
 ## The problem
 

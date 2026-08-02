@@ -1,4 +1,4 @@
 interface:
   display_name: "ShotFlow"
-  short_description: "Turn a final frame into a Seedance continuity Prompt"
-  default_prompt: "Use $shotflow on this accepted final frame. My next-shot intent is: [describe the next visible action in one sentence]. Return one directly submittable Seedance continuity Prompt; do not generate video."
+  short_description: "Compile a final frame into a Seedance continuity Prompt"
+  default_prompt: "Use $shotflow on this accepted final frame. My next-shot intent is: [one visible change]. Return one directly submittable Seedance continuity Prompt; do not generate video."

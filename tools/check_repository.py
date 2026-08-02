@@ -180,6 +180,9 @@ def main() -> int:
         "schemas/provider-handoff.schema.json",
         "schemas/evaluation-pair.schema.json",
         "skills/shotflow/references/quick-entry.md",
+        "tools/validate_quick_output.py",
+        "examples/quick-entry/obsidian-bloom-output.txt",
+        "examples/forward-tests/protocol-v04-rc2.json",
         "examples/SHOWCASE_OBSIDIAN_BLOOM.md",
         "FOUNDING_TESTER_SPRINT.md",
     )

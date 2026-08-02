@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ruhang365-shotflow"
-version = "0.4.0rc1"
-description = "Cinematic continuity contracts compiled from real AI video shot outcomes."
+version = "0.4.0rc2"
+description = "Turn an accepted AI-video final frame and one sentence into a Seedance continuity Prompt."
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "Apache-2.0"}

@@ -1,0 +1,19 @@
+SEEDANCE PROMPT
+FRAME 1 AUTHORITY:
+Attachment 1 is the accepted endpoint. Frame 1 matches the visible product, camera, composition, light, and materials.
+
+KEEP STABLE
+- The centered black faceted bottle, closed black cap, asymmetric silver collar, and attached upper-left amber droplet remain stable.
+- The locked near-frontal camera, low liquid horizon, cool background, and amber base reflection remain stable.
+
+CHANGE | 0.50-4.25s
+The amber glow inside the lower bottle gradually intensifies to a warm, clearly visible level.
+
+FINAL PROOF | 4.25-5.00s
+The stronger amber glow holds inside the geometrically unchanged bottle.
+
+SUBMIT WITH
+- Attachment 1: the accepted final frame, as the only media reference
+- Duration: 5 seconds
+- Ratio: 16:9
+- Generation submitted: no

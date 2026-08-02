@@ -1,39 +1,56 @@
-# Founding Tester Sprint
+# AI Forward-Test Sprint
 
-Status: **READY AFTER THE SINGLE SHOWCASE IS ACCEPTED — NO GENERATION REQUIRED**
+Status: **FROZEN FOR v0.4.0-rc2 — NO VIDEO GENERATION**
 
-Recruit five new AI-video creators after the Obsidian Bloom showcase is
-accepted. Each tester supplies only:
+This protocol validates Quick Entry 1.0 across isolated visual AI sessions. It
+does not represent human usability, generated-video quality, or an
+effectiveness comparison. AI sessions do not count toward the Pro activation
+gate.
+
+Each author receives only:
 
 ```text
-one accepted final frame + one sentence of next-shot intent
+the ShotFlow Skill + one accepted final frame + one next-shot sentence
 ```
 
-The tester is successful when, within 15 minutes, they invoke the Skill and
-receive one directly submittable Seedance continuity Prompt with an attachment
-instruction. They do not need a source video, project, JSON, CLI, account, API
-Key, paid generation, publication, or public media upload.
+The author must actually inspect the frame and return the fixed Quick Entry 1.0
+output. It receives no repository history, frozen expected facts, prior Prompt,
+other test output, Provider account, or generation tool.
 
-Record only anonymous tester ID, platform/Python version, elapsed time,
-completion state, blocking step, and optional feedback. Do not collect account
-credentials, provider links, private media, or personal identifiers.
+## Frozen author cases
 
-At least four of five testers must succeed before the coordinated public
-launch. Record whether the agent could actually inspect the frame, whether the
-Prompt preserved visible identity/props/space/light, whether it expressed only
-the requested change, and whether the tester understood how to submit it.
-Onboarding failures may trigger Skill or documentation fixes. They do not
-authorize Showcase regeneration or reactivation of Gate 9/10.
+| Test | Lane | Frame | Next-shot intent |
+| --- | --- | --- | --- |
+| T01 | Codex | Sky Mender suspended endpoint | The rope draws the worker toward the tower until both boots contact the ladder frame and hold. |
+| T02 | Claude | Storm Deck endpoint | The worker pulls the orange case left until it rests beside the right knee and holds. |
+| T03 | Gemini | Obsidian Bloom endpoint | The amber glow inside the lower bottle gradually intensifies and holds while the product geometry stays unchanged. |
+| T04 | Codex | Sky Mender repair endpoint | The amber light in the gloved hands moves upward along the seam to the next visible rivet row and holds. |
+| T05 | Claude | Storm Deck green-light endpoint | The green indicator pulses slowly twice and returns to a steady green. |
 
-## Anonymous scorecard
+The machine-readable paths, hashes, ratios, and expected visible fact groups
+live in `examples/forward-tests/protocol-v04-rc2.json`. Copy only the selected
+frame and Skill into each scratch directory.
 
-Copy one row per tester. Use `pass`, `fail`, or `n/a`; do not attach their
-private frame.
+## Validation
 
-| Tester | Agent host | Visual access | Minutes | Prompt returned | Visible locks preserved | Only requested change | Submission understood | Success | Blocking step |
-| --- | --- | --- | ---: | --- | --- | --- | --- | --- | --- |
-| T01 |  |  |  |  |  |  |  |  |  |
-| T02 |  |  |  |  |  |  |  |  |  |
-| T03 |  |  |  |  |  |  |  |  |  |
-| T04 |  |  |  |  |  |  |  |  |  |
-| T05 |  |  |  |  |  |  |  |  |  |
+Run `tools/validate_quick_output.py` first. It checks the fixed sections, 1,200
+character limit, single final-frame attachment, five-second duration, ratio,
+positive language, private-data terms, and `Generation submitted: no`.
+
+Then give the frame, intent, and author output to two non-author visual model
+families. They score whether:
+
+- the subject, prop ownership, left/right geography, camera, light, and material
+  locks come from visible pixels;
+- the Prompt authorizes only the requested change;
+- no hidden or off-frame fact is invented;
+- opening match, causal change, and final visible proof are complete.
+
+An author or reviewer without real image access is invalid and disclosed. A
+third non-author reviewer resolves a disagreement. At most two unused historical
+frames may replace invalid author calls.
+
+Stable `v0.4.0` requires five valid author sessions, at least two model families,
+and at least four passing outputs. General Skill fixes must be retested on an
+unseen reserve frame. Gate 9/10, Showcase retries, and Provider generation stay
+stopped.

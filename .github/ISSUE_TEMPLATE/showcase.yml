@@ -1,5 +1,5 @@
 name: ShotFlow showcase
-description: Share a real two-shot result with public-safe evidence
+description: Share a final-frame-to-Prompt workflow or a real two-shot result
 title: "[Showcase] "
 labels: ["showcase", "evidence"]
 body:
@@ -10,9 +10,8 @@ body:
   - type: input
     id: public_url
     attributes:
-      label: Public work URL
-    validations:
-      required: true
+      label: Optional public work URL
+      description: Leave blank for a Prompt-only workflow.
   - type: input
     id: version
     attributes:
@@ -20,22 +19,23 @@ body:
     validations:
       required: true
   - type: input
-    id: provider
+    id: agent
     attributes:
-      label: Provider and exact model
+      label: Agent host and model
     validations:
       required: true
   - type: textarea
-    id: handoff
+    id: intent
     attributes:
-      label: Observed handoff
-      description: What real Clip 01 facts constrained Clip 02?
+      label: Final-frame facts and next-shot intent
+      description: Describe only shareable visible facts; do not attach private media.
     validations:
       required: true
   - type: textarea
-    id: evidence
+    id: prompt
     attributes:
-      label: A/B evidence and limitations
+      label: ShotFlow Prompt and limitations
+      description: State whether generation was submitted. A/B evidence is optional and must not be implied when absent.
     validations:
       required: true
   - type: checkboxes
@@ -43,7 +43,7 @@ body:
     attributes:
       label: Rights and disclosure
       options:
-        - label: I have the right to share every submitted asset.
+        - label: I have the right to share every submitted asset or description.
           required: true
-        - label: I disclosed the AI provider and preserved required AI labels.
+        - label: I disclosed any AI provider used and preserved required AI labels.
           required: true

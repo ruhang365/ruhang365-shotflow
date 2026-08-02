@@ -16,7 +16,7 @@ Seedance 的连续性 Prompt。**
 
 ```text
 使用 $shotflow 读取这张已接受的最终帧。
-下一镜头意图：黑色瓶盖垂直升起一厘米，露出银色瓶颈并保持水平。
+下一镜头意图：瓶内下部的琥珀光逐渐增强并保持，产品几何结构不变。
 ```
 
 ShotFlow 会读取真实像素，锁定可见主体、道具、机位、空间、光线和材质，只为
@@ -24,18 +24,29 @@ ShotFlow 会读取真实像素，锁定可见主体、道具、机位、空间�
 
 ```text
 SEEDANCE PROMPT
-[一条纯正向、最长 1200 字符的完整 Prompt]
+FRAME 1 AUTHORITY:
+附件 1 是已接受终点；生成首帧匹配可见产品、机位、构图、光线和材质。
+
+KEEP STABLE
+- 居中的黑色切面瓶、闭合瓶盖、非对称银色 collar 与左上方附着液滴保持稳定。
+- 正面锁定机位、冷色背景与底部琥珀反光保持稳定。
+
+CHANGE | 0.50-4.25s
+瓶内下部的琥珀光逐渐增强到温暖且清晰可见的亮度。
+
+FINAL PROOF | 4.25-5.00s
+增强后的琥珀光在几何结构不变的瓶内稳定保持。
 
 提交方式
 - 附件 1：这张最终帧，并作为唯一媒体参考
 - 时长：5 秒
-- 比例：保持最终帧比例
+- 比例：16:9
 - 已提交生成：否
 ```
 
 不需要源视频、项目文件、JSON、CLI、服务商账号、API Key 或付费生成。见
-[快速入口契约](skills/shotflow/references/quick-entry.md)和已冻结的
-[《黑曜之息》单条 Showcase](examples/SHOWCASE_OBSIDIAN_BLOOM.md)。
+[Quick Entry 1.0 契约](skills/shotflow/references/quick-entry.md)和
+[示例输出](examples/quick-entry/obsidian-bloom-output.txt)。
 
 在 Codex 中只需安装一次：
 
@@ -45,56 +56,33 @@ mkdir -p ~/.codex/skills
 cp -R ruhang365-shotflow/skills/shotflow ~/.codex/skills/shotflow
 ```
 
-## 当前证据状态
+## 当前证据边界
 
-ShotFlow `v0.4.0-rc1` 已公开，**不包含效果改善声明**。Gate 9/10 的六条 A/B
-计划在提交前被停止，严格 Benchmark 现已延期。其冻结合同和所有历史失败证据
-继续公开，没有删除、补评分或改写成营销胜利。
+公开的 `v0.4.0-rc1` 与本地 `v0.4.0-rc2` 候选均**不包含效果改善声明**。
+RC2 验证视觉 Agent 能否遵守 Quick Entry 1.0 契约，不证明 Seedance 一定精确
+执行 Prompt，也不证明 ShotFlow 优于其他方法。
 
 | 案例 | 作用 | 当前状态 |
 | --- | --- | --- |
 | 天幕修补师 | 旗舰视觉奇观 | Gate 10 已冻结并延期；没有提交 v0.4 任务 |
 | 暴风甲板 | 现实动作 | Lovart 的 Kling O1 与两条 Seedance 2.0 普通组均被拒绝；修正交接仍发生首帧断裂，案例在尝试上限处关闭 |
-| 黑曜之息 | 虚构产品广告 | 单条 Showcase Prompt 已冻结；一次质量优先生成等待单独批准 |
+| 黑曜之息 | 虚构产品广告 | 单条 Showcase 已生成一次并被拒绝；不重试 |
 
-当前产品验证路径改为：一条高质量《黑曜之息》Showcase，然后由 5 名新用户只用
-最终帧和一句话完成无生成测试。严格 A/B 保留为延期的高级路径。见
-[Showcase](examples/SHOWCASE_OBSIDIAN_BLOOM.md)、
-[5 人测试](FOUNDING_TESTER_SPRINT.md)、
+当前路径是 5 个隔离 AI 会话，只使用最终帧和一句意图，不调用任何视频服务商。
+这些结果只证明跨 Agent 可移植性，不是真人测试或视频效果证据，也不触发 Pro。
+见[被拒绝的 Showcase 记录](examples/SHOWCASE_OBSIDIAN_BLOOM.md)、
+[AI 前向测试协议](FOUNDING_TESTER_SPRINT.md)、
 [延期的 v0.4 评审协议](examples/V04_EVALUATION_PROTOCOL.md)、
 [三方预注册审查](examples/V04_RC1_PREFLIGHT_REVIEW.md)、
 [Gate 9](examples/GATE_9_OBSIDIAN_BLOOM_V04_RC1_APPROVAL.md) 与
 [Gate 10](examples/GATE_10_SKY_MENDER_V04_RC1_APPROVAL.md)。
 
-历史失败或无效证据继续公开保留。所有已接受 Clip 01 原始视频均为
-1920×1080、24fps、5.125 秒，并保留平台容器级 `AIGC Label=1`。Lovart
-Gate 6 两个输出同为 1920×1080，但容器没有 AIGC 标识，因此任何公开衍生
-版本都必须增加可见披露。见
+历史失败或无效证据继续公开保留，没有删除、补评分或包装成胜利。失败的
+《黑曜之息》Showcase 媒体不公开，也不再生成香水瓶视频。Gate 9/10、重试和
+完整媒体发布继续停止，除非用户未来单独建立新闸门。见
 [《天幕修补师》盲评](examples/sky-mender/reviews/clip-02-blind-review-v1.md)、
 [《黑曜之息》盲评](examples/obsidian-bloom/reviews/clip-02-blind-review-anchor-v1.md)
 与[已关闭的 Gate 7](examples/GATE_7_OBSIDIAN_BLOOM_V03_RC1_APPROVAL.md)。
-
-标准非 VIP 模型 `seedance2.0_direct` 因不支持 1080p 已停止。Gate 4 随后
-改用用户选择的 `seedance2.0_vision` VIP 模型与 1080p。第一条任务因账号
-积分不足结束；每日积分刷新后，经过一次明确批准的重试获得了有效视频，
-但裂缝最终仍未封闭，也没有在修复后出现黎明，因此结果被拒绝，《天幕修补师》
-停止重试并冻结。后续生成转到 Lovart，但平台与模型继续分开记录：Kling O1
-因故事动作推进不足被拒绝；Lovart 路由的 Seedance 2.0 虽完成后半段动作，
-首帧却丢失人物并把箱子放到错误一侧，同样被拒绝。修正后的交接合同把已接受
-最终帧固定为第一个权威附件并排除线程历史产物；Lovart 在文字中确认了角色，
-但重试仍重复首帧断裂，实际分辨率也只有 720p，而不是批准的 1080p。该结果在
-第 5 次尝试上限处被拒绝。当前没有任何案例获得无人值守生成授权；Gate 7
-在 Lovart 无限模式中用完两次上限后得到不同原生分辨率，因此未进入盲评、未重试，
-Gate 8 也未启动。见
-[已关闭的《暴风甲板》定向重试闸门](examples/GATE_4_STORM_DECK_BASELINE_APPROVAL.md)。
-上一套已登记机制是 `anchor-frame-v1`：Provider 尚未证明引用角色可靠时，
-只提交已接受的最终帧，不提交源视频。《黑曜之息》普通组与 ShotFlow 组已冻结
-相同的唯一媒体参考。Lovart 不提供分辨率选项，因此两组如实记录平台原生输出，
-最低接受 1280×720，不做超分；质量优先继续固定标准 Seedance 2.0，排除 Fast
-与 Mini。普通组实际返回 1920×1080 并通过首帧门禁；随后单独批准的 ShotFlow
-组也返回 1920×1080，但瓶盖侧翻、外置液滴掉落，琥珀光带还错误连接瓶底/液面。
-三名视觉盲评一致选择普通组（`9.67/12` 对 `3.33/12`），因此 ShotFlow 组被拒绝
-且不重试。
 
 ## 它解决什么
 

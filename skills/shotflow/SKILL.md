@@ -8,14 +8,16 @@ description: Turn an accepted AI-video final frame plus one sentence of next-sho
 Turn one accepted final frame and one sentence into the next Seedance-ready
 continuity Prompt. The final frame is the visual authority.
 
-## Quick path — default
+## Quick Entry 1.0 — default
 
 When the user supplies an accepted final frame and one-sentence intent:
 
-1. Inspect the actual frame pixels. Treat visible facts as authoritative.
+1. Confirm that the frame is actually visible and inspect its pixels. Treat
+   visible facts as authoritative.
 2. Extract four compact locks: subject or product identity, props and geometry,
    camera and spatial layout, light and material.
-3. Turn the sentence into one visible causal change. Use two changes only when
+3. Turn the sentence into one visible causal change. Ask the user to select one
+   when the sentence contains independent changes. Use two changes only when
    the second cannot begin before the first is visibly complete.
 4. Allocate 0.00–0.50s to opening match, up to 4.25s to the change, and
    4.25–5.00s to final proof.
@@ -24,7 +26,14 @@ When the user supplies an accepted final frame and one-sentence intent:
 
 Do not require a source video, project, JSON, CLI, account, API Key, or
 generation. Do not submit the Prompt. If no final frame is actually visible,
-ask for it instead of inventing continuity facts.
+ask for it instead of inventing continuity facts. If the requested outcome
+depends on a hidden surface, off-frame object, unknown prop owner, or another
+fact the frame cannot prove, ask for clarification before compiling.
+
+Translate uncalibrated physical quantities into visible, frame-relative proof.
+For example, express “one centimeter” as a narrow gap relative to a visible
+collar or edge. Preserve the intended small direction and endpoint, but do not
+claim that a single frame establishes an exact real-world distance.
 
 Read [quick-entry.md](references/quick-entry.md) for the exact output contract.
 
@@ -43,7 +52,8 @@ SUBMIT WITH
 - Generation submitted: no
 ```
 
-The Prompt must describe concrete visible facts rather than labels such as
+The Prompt must contain `FRAME 1 AUTHORITY`, `KEEP STABLE`, `CHANGE`, and
+`FINAL PROOF`. Describe concrete visible facts rather than labels such as
 “same character” or “same cinematic style.” Use positive states. Avoid a long
 list of prohibitions, director names, unsupported off-frame detail, and extra
 story changes the user did not request.
@@ -182,9 +192,10 @@ preregistered canonical review path in
 1280×720, 24fps, five seconds, H.264 CRF 18, Lanczos downscale only. Never crop
 or upscale. Keep the A/B mapping hidden until every valid review is frozen.
 
-Gate 9 and Gate 10 are deferred by user decision. Do not reactivate, submit,
-retry, or reinterpret them unless the user explicitly starts a new benchmark.
-Preserve all historical evidence unchanged.
+Gate 9 and Gate 10 are deferred by user decision. The Obsidian Bloom single
+Showcase generation was rejected at its one-attempt limit. Do not reactivate,
+submit, retry, or reinterpret any of them unless the user explicitly starts a
+new benchmark. Preserve all historical evidence unchanged.
 
 ## Safety and provenance
 

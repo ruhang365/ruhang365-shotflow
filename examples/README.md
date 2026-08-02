@@ -1,9 +1,10 @@
 # ShotFlow evidence cases
 
-The current public example is the
-[single Obsidian Bloom Showcase](SHOWCASE_OBSIDIAN_BLOOM.md): one accepted final
-frame plus one sentence produces one frozen Seedance-ready Prompt. It is not an
-A/B claim, and its one proposed generation has not been submitted.
+The current public quick-entry example uses one accepted final frame plus one
+sentence to produce one Seedance-ready Prompt. The separately authorized
+[Obsidian Bloom Showcase](SHOWCASE_OBSIDIAN_BLOOM.md) was generated once and
+rejected; it is historical evidence, not a success claim, and it will not be
+retried.
 
 These three original cases are pre-registered A/B experiments, not finished
 performance claims. Their real Clip 01 outputs are accepted and observed. The
