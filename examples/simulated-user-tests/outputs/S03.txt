@@ -1,0 +1,18 @@
+SEEDANCE PROMPT
+FRAME 1 AUTHORITY:
+Attachment 1 is the accepted endpoint. From 0.00–0.50s, generated frame 1 matches the visible wide view: dark riveted tower on the left, narrow ladder beside its warm glowing edge, helmeted worker airborne on the right against blue-gray storm clouds, red cloth trailing screen-right, orange-white light at the raised forward hand, and a thin rope line extending below the worker.
+
+KEEP STABLE
+The locked near-frontal wide camera, tower geometry, and ladder position remain fixed. The helmet, dark segmented suit, reflective chest panels, red cloth, and hand light retain their visible appearance. The storm light and warm tower-edge glow hold. The rope remains one thin, readable line.
+
+CHANGE
+From 0.50–4.25s, the visible rope line draws taut as the worker moves steadily toward screen-left. The worker pivots so both boot soles lead toward the ladder; both soles then meet the ladder frame at two clear contact points as body and cloth motion settle.
+
+FINAL PROOF
+From 4.25–5.00s, both boots stay visibly planted against the ladder frame while the worker holds at the tower edge. The taut rope, raised hand light, and trailing red cloth remain readable.
+
+SUBMIT WITH
+- Attachment 1: the accepted final frame, as the only media reference
+- Duration: 5 seconds
+- Ratio: 16:9
+- Generation submitted: no

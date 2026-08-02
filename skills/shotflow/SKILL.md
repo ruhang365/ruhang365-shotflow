@@ -33,6 +33,18 @@ Chinese equivalents) and rewrite every occurrence as the positive visible
 state that should hold. Describe individual hand actions only when each contact
 is visually distinguishable.
 
+Treat screen direction and anatomical direction as different facts. When
+`left` or `right` could mean either screen-left/screen-right or the subject's
+body side, ask one concise clarification before compiling. Do not infer a
+named knee, hand, or side when the pixels do not distinguish it.
+
+As the final step, count the complete Prompt body from `FRAME 1 AUTHORITY`
+through `FINAL PROOF`, including headings and whitespace. If it exceeds 1,200
+characters, shorten repeated locks and adjectives, then count again. Never
+return an over-limit Prompt. When working from this repository, use
+`python3 tools/validate_quick_output.py <saved-output> --ratio <ratio>` as the
+deterministic check; the user is not required to run it.
+
 Do not require a source video, project, JSON, CLI, account, API Key, or
 generation. Do not submit the Prompt. If no final frame is actually visible,
 ask for it instead of inventing continuity facts. If the requested outcome

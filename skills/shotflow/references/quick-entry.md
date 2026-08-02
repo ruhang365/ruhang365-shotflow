@@ -22,6 +22,11 @@ If no image is visible, ask the user to attach it. If the sentence requests
 multiple independent changes, ask the user to choose one. If the result depends
 on a hidden surface, off-frame object, or unknown owner, ask for clarification.
 
+Treat screen direction and anatomical direction as separate claims. If `left`
+or `right` could refer either to the image or to the subject's body, ask which
+meaning the user intends. Do not assign a named knee, hand, or body side unless
+the pixels make it distinguishable.
+
 ## Compile
 
 Write one Prompt with this order:
@@ -34,14 +39,18 @@ Write one Prompt with this order:
    state. A second sequential change is allowed only when necessary.
 4. `FINAL PROOF`: one directly visible end state held for the final 0.75s.
 
-Keep the opening match visible for at least 0.5s. Keep the entire submission at
-or below 1,200 characters. Use positive instructions such as “the locked camera
-remains near-frontal” and “the cap stays level.” Describe the one requested
-change once; do not pad the Prompt with cinematic adjectives.
+Keep the opening match visible for at least 0.5s. Keep the Prompt body from
+`FRAME 1 AUTHORITY` through `FINAL PROOF`, including headings and whitespace,
+at or below 1,200 characters. Use positive instructions such as “the locked
+camera remains near-frontal” and “the cap stays level.” Describe the one
+requested change once; do not pad the Prompt with cinematic adjectives.
 
 Before returning, scan the Prompt for `do not`, `must not`, `never`, `avoid`,
 `without`, `不要`, `禁止`, `不得`, and `避免`. Replace each with the positive
-visible state to preserve. Return plain text with no Markdown code fence.
+visible state to preserve. Count the final Prompt after all edits; if it is
+over 1,200 characters, shorten repeated locks and adjectives, then count
+again. Never return an over-limit Prompt. Return plain text with no Markdown
+code fence.
 
 ## Convert measurements into visual proof
 

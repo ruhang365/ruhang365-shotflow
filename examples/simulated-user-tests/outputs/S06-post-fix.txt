@@ -1,0 +1,17 @@
+I can see the accepted final frame, and I inspected it before doing anything else. Here's what I'm reading as authoritative, plus one thing I need from you before I compile the Prompt.
+
+What the pixels lock in:
+
+- Subject: a worker in a glossy yellow two-piece rain suit, white hard hat with side ear protection, black gloves, and black rubber boots, kneeling on a wet dark metal deck.
+- Props and geometry: an orange hard-shell case (Pelican-style) with a glowing green LED on its front, sitting on the deck at screen-right next to a white tubular railing/gate. The worker's gloved hand is in contact with the near edge/handle of the case. A separate dark safety lanyard runs from off-frame at upper-left down to the worker's upper back/shoulder — it's anchored to the worker, not to the case, so I'll keep those two as separate facts and won't treat the strap as towing the case.
+- Camera and space: a low, near-ground angle. A large corrugated blue shipping container with white ID markings and a hazard placard fills the background. The worker is angled facing screen-right toward the case.
+- Light and material: cool blue night lighting, white overhead work lamps on the container, falling rain, and reflective wet surfaces on both the deck and the suit.
+
+The one thing I can't ground from the frame:
+
+Your intent has two direction words that could each mean two different things, and the crouched pose doesn't let me settle them from the pixels:
+
+1. "Move the case to the left" — do you mean screen-left (the case travels across the frame toward the worker's body), or the worker's own left side?
+2. "beside the worker's right knee" — the worker is angled and one leg partly hides the other, so I can't reliably tell which knee is anatomically the right one. Could you point me to it in screen terms instead, for example "the knee nearer the camera" versus "the knee farther back, toward the container"?
+
+Once you confirm those, I'll turn it into a single visible causal change (case slides to rest against that knee and holds), allocate the timing across opening match / change / final proof, and hand you exactly one directly submittable Seedance Prompt with the attachment and settings. I won't submit any generation — that stays with you.

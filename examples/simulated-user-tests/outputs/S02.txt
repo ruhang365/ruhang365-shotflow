@@ -1,0 +1,14 @@
+SEEDANCE PROMPT
+FRAME 1 AUTHORITY: Open exactly on the accepted final frame. A worker in a bright yellow hooded coverall, white hard hat, dark gloves and boots kneels center-left on a dark glossy floor, facing screen-right and down. A ridged orange hard-shell case with latches sits at screen-right by a white metal railing. Behind is a blue corrugated shipping-container wall with pale stenciled marks. A dark tether runs diagonally from off-frame upper-left down to the worker's shoulder. Cool blue ambient light, one bright overhead flood at top-left, wet reflective floor.
+
+KEEP STABLE: The yellow suit, white hard hat, gloves, and kneeling pose hold. The container wall, white railing, the tether's angle from upper-left, the floor reflections, and the blue-plus-flood lighting stay constant. The case keeps its orange color, ridges, and latches.
+
+CHANGE: The gloved hands grip the orange case and draw it a short distance leftward across the floor toward the body, sliding it until it rests right beside the worker's right knee, the gap closing to contact.
+
+FINAL PROOF: The orange case rests still on the floor beside the worker's right knee, both gloved hands resting on it, the worker holding steady and motionless; the tether angle, lighting, and background stay unchanged.
+
+SUBMIT WITH
+- Attachment 1: the accepted final frame, as the only media reference
+- Duration: 5 seconds
+- Ratio: preserve the frame ratio (this frame reads as 16:9)
+- Generation submitted: no

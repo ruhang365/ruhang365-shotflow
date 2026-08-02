@@ -10,7 +10,7 @@ Seedance 的连续性 Prompt。**
 
 ![《黑曜之息》已接受最终帧](examples/obsidian-bloom/evidence/clip-01-final-frame.jpg)
 
-## 30 秒工作流
+## 安装后的 30 秒工作流
 
 把已接受的最终帧附给具备视觉能力、已安装 ShotFlow Skill 的 Agent，然后输入：
 
@@ -48,13 +48,17 @@ FINAL PROOF | 4.25-5.00s
 [Quick Entry 1.0 契约](skills/shotflow/references/quick-entry.md)和
 [示例输出](examples/quick-entry/obsidian-bloom-output.txt)。
 
-在 Codex 中只需安装一次：
+在 Codex 中只需粘贴一次安装请求：
 
-```bash
-git clone --depth 1 https://github.com/ruhang365/ruhang365-shotflow.git
-mkdir -p ~/.codex/skills
-cp -R ruhang365-shotflow/skills/shotflow ~/.codex/skills/shotflow
+```text
+使用 $skill-installer 安装这个 ShotFlow Skill：
+https://github.com/ruhang365/ruhang365-shotflow/tree/main/skills/shotflow
 ```
+
+Codex 只会把 `skills/shotflow` 文件夹下载到 Skill 目录；用户不用安装仓库
+源码、Python 包或 CLI。Skill 会在下一轮对话中可用。届时附上最终帧并输入：
+`使用 $shotflow 读取这张已接受的最终帧。` 其他 Agent 平台也可以通过各自的
+Skill 管理器导入同一个 [`skills/shotflow`](skills/shotflow/) 文件夹。
 
 ## 当前证据边界
 
@@ -78,6 +82,14 @@ RC2 隔离前向测试已完成：启用两张预登记替补帧后，固定计�
 [三方预注册审查](examples/V04_RC1_PREFLIGHT_REVIEW.md)、
 [Gate 9](examples/GATE_9_OBSIDIAN_BLOOM_V04_RC1_APPROVAL.md) 与
 [Gate 10](examples/GATE_10_SKY_MENDER_V04_RC1_APPROVAL.md)。
+
+正式版发布后又完成了 5 个隔离模拟用户角色测试。初始结果为 **4/5** 通过
+确定性契约；保留的失败输出既超过 1,200 字符，也擅自判断了含糊的屏幕方向与
+人物身体侧。通用规则修正后，一张未见画面的复测能够先要求澄清。它们只是 AI
+角色模拟，不是真人、需求验证、人类可用性证据或视频效果证据。见
+[测试协议](examples/simulated-user-tests/protocol-v040.json)和
+[测试结果](examples/simulated-user-tests/results-v040.json)，另有
+[可读报告](examples/simulated-user-tests/README.md)。
 
 历史失败或无效证据继续公开保留，没有删除、补评分或包装成胜利。失败的
 《黑曜之息》Showcase 媒体不公开，也不再生成香水瓶视频。Gate 9/10、重试和
@@ -190,7 +202,8 @@ Gate 9/10。
 
 公开 Core 已包含完整的人工连续性工作流，不依赖会员或云服务。未来 Pro 只负责自动读取视频，生成带时间证据和置信度的 ObservationPatch。
 
-达到 200 Stars 或 5 名真实 Core 测试者后才启动 Pro Beta；现在不创建空私库。
+达到 200 个公开 GitHub Stars 后才启动 Pro Beta；模拟用户测试不会触发 Pro，
+现在不创建空私库。
 
 ## 原创与许可
 

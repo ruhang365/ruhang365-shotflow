@@ -10,7 +10,7 @@ one continuity Prompt ready to submit to Seedance.**
 
 ![Obsidian Bloom accepted final frame](examples/obsidian-bloom/evidence/clip-01-final-frame.jpg)
 
-## 30-second workflow
+## 30-second workflow after installation
 
 Attach your accepted final frame to a visual-capable agent with the ShotFlow
 Skill, then write:
@@ -54,13 +54,18 @@ No source video, project file, JSON, CLI, provider account, API Key, or paid
 generation is required. See the [Quick Entry 1.0 contract](skills/shotflow/references/quick-entry.md)
 and the saved [example output](examples/quick-entry/obsidian-bloom-output.txt).
 
-Install the Skill once for Codex:
+Install the Skill once in Codex by pasting this request:
 
-```bash
-git clone --depth 1 https://github.com/ruhang365/ruhang365-shotflow.git
-mkdir -p ~/.codex/skills
-cp -R ruhang365-shotflow/skills/shotflow ~/.codex/skills/shotflow
+```text
+Use $skill-installer to install the ShotFlow Skill from:
+https://github.com/ruhang365/ruhang365-shotflow/tree/main/skills/shotflow
 ```
+
+Codex downloads only the `skills/shotflow` folder into its Skill directory;
+you do not install the repository, Python package, or CLI. The Skill becomes
+available on the next turn. Attach a final frame and write `Use $shotflow on
+this accepted final frame.` Other Agent hosts can import the same
+[`skills/shotflow`](skills/shotflow/) folder through their own Skill manager.
 
 ## Evidence boundary
 
@@ -86,6 +91,16 @@ not activate Pro. No Provider generation was part of this gate. See the
 [preflight review](examples/V04_RC1_PREFLIGHT_REVIEW.md),
 [Gate 9](examples/GATE_9_OBSIDIAN_BLOOM_V04_RC1_APPROVAL.md), and
 [Gate 10](examples/GATE_10_SKY_MENDER_V04_RC1_APPROVAL.md).
+
+Post-release product QA also ran five isolated simulated-user personas. The
+initial set passed **4/5** deterministic contracts; the preserved failure was
+an over-limit Prompt that also guessed ambiguous screen/anatomical directions.
+After strengthening the general rules, an unseen-frame retest correctly asked
+for clarification. These are AI persona simulations—not people, demand,
+human-usability evidence, or generated-video evidence. See the
+[protocol](examples/simulated-user-tests/protocol-v040.json) and
+[results](examples/simulated-user-tests/results-v040.json), plus the
+[human-readable report](examples/simulated-user-tests/README.md).
 
 All prior failed or invalid evidence remains public: the
 [Sky Mender review](examples/sky-mender/reviews/clip-02-blind-review-v1.md),
@@ -248,7 +263,7 @@ Core is complete for manual continuity work and stays local:
 - diff, next-shot compilation, and scoring;
 - generic provider interface and verified Seedance profile.
 
-The future Pro beta may auto-read video and fill an ObservationPatch with timestamped evidence and confidence. It will not change the Core format or make Core projects dependent on a cloud account. Pro development starts only after 200 GitHub Stars or five real Core testers.
+The future Pro beta may auto-read video and fill an ObservationPatch with timestamped evidence and confidence. It will not change the Core format or make Core projects dependent on a cloud account. Pro development starts only after 200 public GitHub Stars; simulated-user tests do not activate it.
 
 ## Clean-room and rights
 

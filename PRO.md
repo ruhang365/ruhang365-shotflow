@@ -16,9 +16,8 @@ Pro must use the public `ObservationPatch` and project schemas. It must not intr
 
 ## Activation gate
 
-Do not create an empty private repository. Begin a working beta only after either:
-
-- 200 public GitHub Stars; or
-- five people complete a real Core project and request automated analysis.
+Do not create an empty private repository. Begin a working beta only after 200
+public GitHub Stars. Simulated-user tests are internal product QA and do not
+activate Pro.
 
 Until then, Pro interest is collected through a labeled GitHub issue or discussion without asking users to publish private media.

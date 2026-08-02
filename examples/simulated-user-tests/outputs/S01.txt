@@ -1,0 +1,21 @@
+SEEDANCE PROMPT
+FRAME 1 AUTHORITY | 0.00-0.50s:
+附件 1 是已接受终点；生成首帧精确匹配可见产品、几何结构、机位、构图、光线与材质。
+
+KEEP STABLE
+- 居中的深色切面玻璃瓶保持当前方正瓶身、厚玻璃边缘与水平底边。
+- 黑色圆润瓶盖、银色不对称 collar，以及 collar 左侧细线下垂的琥珀液滴保持当前形态和位置。
+- 锁定近正面机位与居中构图，冷灰蓝背景和深色波纹底座保持稳定。
+- 玻璃高光、银色金属反射及底座上的琥珀反光保持当前材质表现。
+
+CHANGE | 0.50-4.25s
+瓶内下部现有的柔和琥珀光连续、平稳地增强，逐渐达到温暖且清晰可见的亮度；瓶身、瓶盖、collar、液滴及全部轮廓全程保持当前几何形态。
+
+FINAL PROOF | 4.25-5.00s
+增强后的琥珀光在瓶内下部以稳定亮度保持，产品几何结构与首帧一致。
+
+SUBMIT WITH
+- Attachment 1: the accepted final frame, as the only media reference
+- Duration: 5 seconds
+- Ratio: 16:9
+- Generation submitted: no

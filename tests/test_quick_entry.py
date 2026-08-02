@@ -135,10 +135,76 @@ class QuickEntryTests(unittest.TestCase):
         reference = (
             root / "skills" / "shotflow" / "references" / "quick-entry.md"
         ).read_text(encoding="utf-8")
+        normalized = " ".join(reference.split())
         self.assertIn("contact and ownership as separate visual claims", reference)
         self.assertIn("If a strap crosses behind\ntwo objects", reference)
         self.assertIn("Before returning, scan the Prompt", reference)
-        self.assertIn("no Markdown code fence", reference)
+        self.assertIn("no Markdown code fence", normalized)
+
+    def test_quick_entry_documents_spatial_ambiguity_and_final_count(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        reference = (
+            root / "skills" / "shotflow" / "references" / "quick-entry.md"
+        ).read_text(encoding="utf-8")
+        normalized = " ".join(reference.split())
+        self.assertIn("screen direction and anatomical direction", normalized)
+        self.assertIn("ask which meaning the user intends", normalized)
+        self.assertIn("including headings and whitespace", normalized)
+        self.assertIn("Never return an over-limit Prompt", normalized)
+
+    def test_simulated_user_result_is_auditable_and_not_human_evidence(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        result_path = root / "examples" / "simulated-user-tests" / "results-v040.json"
+        result = json.loads(result_path.read_text(encoding="utf-8"))
+        self.assertEqual(result["test_type"], "simulated_users_only")
+        self.assertEqual(result["real_human_count"], 0)
+        self.assertFalse(result["generation_submitted"])
+        self.assertEqual(result["counted_passes"], 4)
+        self.assertEqual(result["counted_total"], 5)
+        self.assertTrue(result["threshold_met"])
+        self.assertIn("not a real-user test", result["claim_boundary"])
+        protocol = result_path.parent / "protocol-v040.json"
+        self.assertEqual(
+            hashlib.sha256(protocol.read_bytes()).hexdigest(),
+            result["protocol_sha256"],
+        )
+        for case in result["cases"]:
+            output = result_path.parent / "outputs" / f"{case['id']}.txt"
+            self.assertEqual(
+                hashlib.sha256(output.read_bytes()).hexdigest(),
+                case["output_sha256"],
+            )
+        retest = result["post_fix_retest"]
+        self.assertFalse(retest["counted_in_original_result"])
+        self.assertEqual(retest["result"], "pass")
+        frame = (result_path.parent / retest["frame"]).resolve(strict=True)
+        self.assertEqual(
+            hashlib.sha256(frame.read_bytes()).hexdigest(),
+            retest["frame_sha256"],
+        )
+        output = result_path.parent / "outputs" / f"{retest['id']}.txt"
+        self.assertEqual(
+            hashlib.sha256(output.read_bytes()).hexdigest(),
+            retest["output_sha256"],
+        )
+
+    def test_current_pro_gate_does_not_claim_simulated_users_are_people(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        pro = (root / "PRO.md").read_text(encoding="utf-8")
+        normalized = " ".join(pro.split())
+        self.assertIn("only after 200 public GitHub Stars", normalized)
+        self.assertIn("Simulated-user tests", normalized)
+        self.assertNotIn("five people", normalized)
+
+    def test_readme_primary_install_is_skill_only(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        readme = (root / "README.md").read_text(encoding="utf-8")
+        primary = readme.split("## Evidence boundary", 1)[0]
+        self.assertIn("Use $skill-installer", primary)
+        self.assertIn("tree/main/skills/shotflow", primary)
+        self.assertIn("you do not install the repository", primary)
+        self.assertNotIn("git clone", primary)
+        self.assertNotIn("pip install", primary)
 
     def test_forward_test_result_is_auditable_and_has_no_effect_claim(self) -> None:
         root = Path(__file__).resolve().parents[1]

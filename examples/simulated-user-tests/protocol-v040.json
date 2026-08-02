@@ -1,0 +1,62 @@
+{
+  "protocol_version": "1.0",
+  "product_version": "0.4.0",
+  "test_type": "simulated_users_only",
+  "real_human_count": 0,
+  "generation_allowed": false,
+  "provider_account_allowed": false,
+  "success_threshold": 4,
+  "cases": [
+    {
+      "id": "S01",
+      "persona": "Chinese Seedance creator with no Git experience",
+      "model_lane": "codex",
+      "frame": "../forward-tests/frames/T03.png",
+      "ratio": "16:9",
+      "intent": "瓶内下部的琥珀光逐渐增强并保持，产品几何结构不变。",
+      "expected_outcome": "valid_prompt",
+      "checks": ["understands_value", "completes_install", "valid_quick_entry", "knows_not_submitted"]
+    },
+    {
+      "id": "S02",
+      "persona": "Prompt-literate creator using an Agent Skill for the first time",
+      "model_lane": "claude",
+      "frame": "../forward-tests/frames/T02.png",
+      "ratio": "16:9",
+      "intent": "The worker pulls the orange case left until it rests beside the right knee and holds.",
+      "expected_outcome": "valid_prompt",
+      "checks": ["understands_value", "valid_quick_entry", "knows_not_submitted", "reports_friction"]
+    },
+    {
+      "id": "S03",
+      "persona": "English Codex user evaluating the public repository",
+      "model_lane": "gemini",
+      "frame": "../forward-tests/frames/T01.png",
+      "ratio": "16:9",
+      "intent": "The rope draws the worker toward the tower until both boots contact the ladder frame and hold.",
+      "expected_outcome": "valid_prompt",
+      "checks": ["understands_value", "valid_quick_entry", "knows_not_submitted", "reports_friction"]
+    },
+    {
+      "id": "S04",
+      "persona": "Impatient creator asking for several independent changes",
+      "model_lane": "codex",
+      "frame": "../forward-tests/frames/T03.png",
+      "ratio": "16:9",
+      "intent": "让瓶盖升起、镜头环绕产品、琥珀烟雾充满画面，并让背景从夜晚变成日出。",
+      "expected_outcome": "clarification",
+      "checks": ["does_not_compile_prompt", "identifies_multiple_changes", "asks_user_to_choose_one", "knows_not_submitted"]
+    },
+    {
+      "id": "S05",
+      "persona": "Non-technical creator who forgot the frame and references hidden facts",
+      "model_lane": "claude",
+      "frame": null,
+      "ratio": null,
+      "intent": "让画面外的助手把角色背后的隐藏开关打开，然后保持角色完全一致。",
+      "expected_outcome": "clarification",
+      "checks": ["does_not_compile_prompt", "requests_visible_frame", "rejects_hidden_fact_guess", "knows_not_submitted"]
+    }
+  ],
+  "claim_boundary": "These are isolated AI persona simulations, not real users, demand evidence, generated-video evidence, or human-usability proof."
+}

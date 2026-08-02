@@ -1,0 +1,90 @@
+{
+  "protocol_version": "1.0",
+  "protocol_sha256": "73928bd52552a5c606d44b027d79d2ec954c154706d75a938f239147cfb87f89",
+  "product_version": "0.4.0",
+  "test_type": "simulated_users_only",
+  "real_human_count": 0,
+  "generation_submitted": false,
+  "counted_total": 5,
+  "counted_passes": 4,
+  "threshold": 4,
+  "threshold_met": true,
+  "cases": [
+    {
+      "id": "S01",
+      "model": "gpt-5.6-sol",
+      "result": "pass",
+      "output_sha256": "a88738b1857f25ef5ad9af34b4f244a9cf9e7d68699131e8d33224cc9884249c",
+      "finding": "The workflow produced a valid 387-character Prompt, but Git, terminal paths, the tilde, hidden directories, restart, and Skill discovery were unclear to the simulated novice."
+    },
+    {
+      "id": "S02",
+      "model": "claude-opus-4-8",
+      "result": "fail",
+      "output_sha256": "06c206cab9a172cd93f2b8b726f54b637cd8d234a35cf5ca5d0658ed02aec39b",
+      "finding": "The Prompt was 1,267 characters and chose ambiguous screen-left, anatomical-right-knee, hand contact, and tether relationships instead of asking for clarification."
+    },
+    {
+      "id": "S03",
+      "model": "gpt-5.6-sol",
+      "result": "pass",
+      "output_sha256": "456e5be150df66da10244a7b4bb0cdae130be2541c2a54b5337f40efdd377ab3",
+      "finding": "The replacement English persona produced a valid 1,174-character Prompt and disclosed rope endpoint ambiguity."
+    },
+    {
+      "id": "S04",
+      "model": "gpt-5.6-sol",
+      "result": "pass",
+      "output_sha256": "88b2532f4aa519183d197f0f0cd3d084d73d2936eeec19f94f4e0b02b5ac60f3",
+      "finding": "The Skill correctly identified four independent changes and asked the user to choose one instead of compiling."
+    },
+    {
+      "id": "S05",
+      "model": "claude-opus-4-8",
+      "result": "pass",
+      "output_sha256": "a6cda309a505bf4befd488c8d155c98fdc9a0d47fca30e8aecbcb93562eea2ef",
+      "finding": "The Skill correctly requested a visible final frame and refused to guess an off-frame assistant or hidden switch."
+    }
+  ],
+  "invalid_calls": [
+    {
+      "case": "S01",
+      "reason": "The first Codex sandbox had no network and could not perform a public clone; the controller supplied an anonymous local clone for the counted replacement."
+    },
+    {
+      "case": "S03",
+      "requested_model": "gemini-3.6-flash-high",
+      "reason": "Antigravity could not establish the isolated project and returned no user-test artifact; the counted replacement used a fresh Codex session."
+    }
+  ],
+  "post_fix_retest": {
+    "id": "S06-post-fix",
+    "counted_in_original_result": false,
+    "working_tree_target": "future patch after v0.4.0",
+    "persona": "First-time action creator using an unseen frame",
+    "model": "claude-opus-4-8",
+    "frame": "../forward-tests/frames/T05.png",
+    "frame_sha256": "8e0becfc5205a198db9353c9dd28570f4a5b80fb54116161720360955b6d9ec4",
+    "intent": "Move the orange case to the left until it rests beside the worker's right knee and holds.",
+    "expected_outcome": "clarification",
+    "result": "pass",
+    "output_sha256": "2934d0b2ea6e022974fe9710e23477221c271e725defb0d3cc84f7472472012d",
+    "checks": {
+      "visual_access": true,
+      "distinguishes_screen_and_anatomical_direction": true,
+      "does_not_guess_hidden_knee": true,
+      "does_not_compile_prompt": true,
+      "generation_submitted": false
+    },
+    "invalid_controller_capture_attempts_before_counted_call": 2,
+    "finding": "The unseen-frame retest asked whether left meant screen-left or the worker's body side and requested a visible landmark instead of guessing the obscured anatomical knee. The original S02 remains failed."
+  },
+  "shared_findings": [
+    "The primary value proposition was understood by all five counted personas.",
+    "All five counted personas said they would continue, but this is simulated intent and not demand evidence.",
+    "The install section does not explain Git, the tilde, hidden directories, restart, or how to verify Skill discovery.",
+    "A character limit written in prose is insufficient unless the Agent performs a final deterministic length check.",
+    "Screen direction and anatomical left or right need an explicit clarification rule when pixels do not disambiguate them."
+  ],
+  "claim_boundary": "This result is internal AI-persona QA. It is not a real-user test, market validation, human-usability evidence, generated-video evidence, or proof that ShotFlow improves continuity."
+}
