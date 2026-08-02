@@ -237,20 +237,25 @@ class QuickEntryTests(unittest.TestCase):
 
     def test_launch_demo_receipt_binds_valid_quick_entry_output(self) -> None:
         root = Path(__file__).resolve().parents[1]
-        receipt = json.loads((root / "launch" / "demo-assets.json").read_text())
+        receipt = json.loads(
+            (root / "launch" / "demo-assets.json").read_text(encoding="utf-8")
+        )
         source = root / receipt["source_frame"]["path"]
         source_sha = hashlib.sha256(source.read_bytes()).hexdigest()
         self.assertEqual(source_sha, receipt["source_frame"]["sha256"])
         output = root / receipt["quick_entry_output"]["path"]
         actual = hashlib.sha256(output.read_bytes()).hexdigest()
         self.assertEqual(actual, receipt["quick_entry_output"]["sha256"])
-        self.assertEqual(validate_quick_output(output.read_text(), expected_ratio="16:9"), [])
+        output_text = output.read_text(encoding="utf-8")
+        self.assertEqual(validate_quick_output(output_text, expected_ratio="16:9"), [])
         self.assertFalse(receipt["agent"]["generation_submitted"])
         self.assertFalse(receipt["release_asset"]["tracked_in_git"])
 
     def test_live_demo_receipt_binds_public_and_optimized_outputs(self) -> None:
         root = Path(__file__).resolve().parents[1]
-        receipt = json.loads((root / "launch" / "live-demo-v041.json").read_text())
+        receipt = json.loads(
+            (root / "launch" / "live-demo-v041.json").read_text(encoding="utf-8")
+        )
         frame = root / receipt["input"]["frame"]
         self.assertEqual(
             hashlib.sha256(frame.read_bytes()).hexdigest(),
@@ -263,9 +268,10 @@ class QuickEntryTests(unittest.TestCase):
                 hashlib.sha256(output.read_bytes()).hexdigest(),
                 run["tracked_output"]["sha256"],
             )
-            prompt, _ = extract_quick_prompt(output.read_text(encoding="utf-8"))
+            output_text = output.read_text(encoding="utf-8")
+            prompt, _ = extract_quick_prompt(output_text)
             self.assertEqual(len(prompt), run["prompt_characters"])
-            self.assertEqual(validate_quick_output(output.read_text(), expected_ratio="16:9"), [])
+            self.assertEqual(validate_quick_output(output_text, expected_ratio="16:9"), [])
             self.assertTrue(run["contract_valid"])
             self.assertFalse(run["generation_submitted"])
         optimized = receipt["optimized_local_retest"]
