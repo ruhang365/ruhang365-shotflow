@@ -1,0 +1,32 @@
+{
+  "recorded_at": "2026-08-02",
+  "status": "local_asset_awaiting_publication_approval",
+  "source_frame": {
+    "path": "examples/obsidian-bloom/artifacts/clip-01-final-frame.png",
+    "sha256": "56d6455da0310b8acce2364af99229825307b70bae8f677306496c1fa08e8a0e"
+  },
+  "intent": "The amber glow inside the lower bottle gradually intensifies and holds while the product geometry stays unchanged.",
+  "agent": {
+    "model": "gpt-5.6-sol",
+    "ephemeral_session": true,
+    "generation_submitted": false
+  },
+  "quick_entry_output": {
+    "path": "launch/demo-output-en.txt",
+    "sha256": "0cec7d6b49b66231df502be6e01e2d73e33af698e93a64ebd48f0bac0d9bc64c",
+    "prompt_characters": 1099,
+    "contract_valid": true
+  },
+  "release_asset": {
+    "filename": "shotflow-v0.4.0-demo-en.mp4",
+    "sha256": "557e7eb1fa3f9f1bbaa55caf171b1fb456ce26a8e6dc7467768579814e35c172",
+    "bytes": 411071,
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "duration_seconds": 40.0,
+    "recording_method": "public-safe Terminal window capture at 2 fps, encoded as H.264 at 30 fps",
+    "tracked_in_git": false
+  },
+  "claim_boundary": "This recording demonstrates the Quick Entry interface, not generated-video effectiveness."
+}

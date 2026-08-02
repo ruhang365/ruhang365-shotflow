@@ -184,6 +184,12 @@ def main() -> int:
         "examples/quick-entry/obsidian-bloom-output.txt",
         "examples/forward-tests/protocol-v04-rc2.json",
         "examples/forward-tests/results-v04-rc2.json",
+        "launch/demo-assets.json",
+        "launch/demo-output-en.txt",
+        "launch/run-demo-en.sh",
+        "launch/run-demo-zh.sh",
+        "launch/social-copy.md",
+        "RELEASE_NOTES_V0.4.0.md",
         "examples/SHOWCASE_OBSIDIAN_BLOOM.md",
         "FOUNDING_TESTER_SPRINT.md",
     )

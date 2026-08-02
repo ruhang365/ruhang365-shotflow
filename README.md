@@ -64,8 +64,7 @@ cp -R ruhang365-shotflow/skills/shotflow ~/.codex/skills/shotflow
 
 ## Evidence boundary
 
-Public `v0.4.0-rc1` and the local `v0.4.0-rc2` candidate make **no
-effectiveness claim**. RC2 validates whether visual agents can follow the
+`v0.4.0` makes **no effectiveness claim**. Its RC2 evidence validates whether visual agents can follow the
 Quick Entry 1.0 contract. It does not prove that Seedance will execute every
 Prompt precisely or that ShotFlow outperforms another workflow.
 

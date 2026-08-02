@@ -1,0 +1,18 @@
+SEEDANCE PROMPT
+FRAME 1 AUTHORITY:
+Attachment 1 is the accepted endpoint. From 0.00–0.50s, generated frame 1 precisely matches the visible product, geometry, camera, composition, lighting, reflections, and materials.
+
+KEEP STABLE
+The centered smoky transparent square bottle remains suspended above the dark rippled surface. Its faceted glass body, glossy black domed cap, silver collar, curved metallic band, and hanging amber droplet retain their exact silhouettes, proportions, positions, and orientations. The locked near-frontal camera, blue-gray background, and dark reflective setting remain fixed.
+
+CHANGE
+From 0.50–4.25s, the existing amber illumination inside the lower bottle smoothly and gradually intensifies from its current faint warmth into a richer, brighter glow concentrated through the lower chamber and thick glass base. The product geometry and material boundaries remain precisely matched throughout.
+
+FINAL PROOF
+From 4.25–5.00s, the intensified amber lower-bottle glow holds steady and clearly visible while every product component retains the accepted frame’s exact geometry and placement.
+
+SUBMIT WITH
+- Attachment 1: the accepted final frame, as the only media reference
+- Duration: 5 seconds
+- Ratio: 16:9
+- Generation submitted: no

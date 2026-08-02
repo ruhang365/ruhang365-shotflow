@@ -156,6 +156,16 @@ class QuickEntryTests(unittest.TestCase):
             actual = hashlib.sha256(output.read_bytes()).hexdigest()
             self.assertEqual(actual, case["output_sha256"])
 
+    def test_launch_demo_receipt_binds_valid_quick_entry_output(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        receipt = json.loads((root / "launch" / "demo-assets.json").read_text())
+        output = root / receipt["quick_entry_output"]["path"]
+        actual = hashlib.sha256(output.read_bytes()).hexdigest()
+        self.assertEqual(actual, receipt["quick_entry_output"]["sha256"])
+        self.assertEqual(validate_quick_output(output.read_text(), expected_ratio="16:9"), [])
+        self.assertFalse(receipt["agent"]["generation_submitted"])
+        self.assertFalse(receipt["release_asset"]["tracked_in_git"])
+
 
 if __name__ == "__main__":
     unittest.main()

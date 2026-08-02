@@ -58,8 +58,8 @@ cp -R ruhang365-shotflow/skills/shotflow ~/.codex/skills/shotflow
 
 ## 当前证据边界
 
-公开的 `v0.4.0-rc1` 与本地 `v0.4.0-rc2` 候选均**不包含效果改善声明**。
-RC2 验证视觉 Agent 能否遵守 Quick Entry 1.0 契约，不证明 Seedance 一定精确
+`v0.4.0` **不包含效果改善声明**。其 RC2 证据验证视觉 Agent 能否遵守
+Quick Entry 1.0 契约，不证明 Seedance 一定精确
 执行 Prompt，也不证明 ShotFlow 优于其他方法。
 
 | 案例 | 作用 | 当前状态 |
