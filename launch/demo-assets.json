@@ -2,7 +2,7 @@
   "recorded_at": "2026-08-02",
   "status": "local_asset_awaiting_publication_approval",
   "source_frame": {
-    "path": "examples/obsidian-bloom/artifacts/clip-01-final-frame.png",
+    "path": "examples/forward-tests/frames/T03.png",
     "sha256": "56d6455da0310b8acce2364af99229825307b70bae8f677306496c1fa08e8a0e"
   },
   "intent": "The amber glow inside the lower bottle gradually intensifies and holds while the product geometry stays unchanged.",

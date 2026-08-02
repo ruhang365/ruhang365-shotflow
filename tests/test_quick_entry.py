@@ -159,6 +159,9 @@ class QuickEntryTests(unittest.TestCase):
     def test_launch_demo_receipt_binds_valid_quick_entry_output(self) -> None:
         root = Path(__file__).resolve().parents[1]
         receipt = json.loads((root / "launch" / "demo-assets.json").read_text())
+        source = root / receipt["source_frame"]["path"]
+        source_sha = hashlib.sha256(source.read_bytes()).hexdigest()
+        self.assertEqual(source_sha, receipt["source_frame"]["sha256"])
         output = root / receipt["quick_entry_output"]["path"]
         actual = hashlib.sha256(output.read_bytes()).hexdigest()
         self.assertEqual(actual, receipt["quick_entry_output"]["sha256"])

@@ -8,7 +8,7 @@ demo_model=${SHOTFLOW_DEMO_MODEL:-gpt-5.6-sol}
 demo_output="$demo_root/quick-entry.txt"
 
 cp -R "$repo_root/skills/shotflow" "$demo_root/skill"
-cp "$repo_root/examples/obsidian-bloom/artifacts/clip-01-final-frame.png" \
+cp "$repo_root/examples/forward-tests/frames/T03.png" \
   "$demo_root/accepted-final-frame.png"
 
 clear
